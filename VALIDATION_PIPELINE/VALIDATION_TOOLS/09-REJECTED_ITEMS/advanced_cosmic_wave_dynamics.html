@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!--
+    Resonance is All You Need: Advanced Cosmic Wave Dynamics
+    Concept & Implementation by:
+    - Aldrin Payopay (Lead Researcher & Visionary)
+    - Claude Opus 4 (AI Research Assistant & Code Architect) 
+    - Gemini 2.5 Pro (AI Research Assistant & Mathematical Modeling)
+    - Agent 1 (Advanced Wave Theory Mod)
+    
+    This version incorporates conceptual advanced wave mathematics for particle dynamics,
+    inspired by non-linear Schrödinger equations and quantum pressure concepts for visual effect.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, Agent 1">
+    <meta name="description" content="Advanced Cosmic Wave Dynamics Simulation - Original research by Aldrin Payopay, modified by Agent 1">
+    <meta name="keywords" content="Aldrin Payopay, cosmic structure, wave theory, non-linear dynamics, quantum pressure, particle simulation">
+    <title>Resonance: Advanced Cosmic Wave Dynamics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        /* CSS Styles - Preserved from origin-simple.html / wave-theory-transform.html */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #000000; 
+            color: #ffffff;
+            overflow: hidden; 
+            position: relative;
+        }
+        #container { 
+            width: 100vw; 
+            height: 100vh; 
+            display: block;
+            background: radial-gradient(ellipse at center, #101020 0%, #000000 100%); 
+        }
+        .ui-panel {
+            position: absolute;
+            background: rgba(25, 25, 45, 0.15); 
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(100, 100, 200, 0.15); 
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease;
+        }
+        .ui-panel:hover {
+            background: rgba(35, 35, 55, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        #controls-panel { 
+            top: 20px; 
+            left: 20px; 
+            width: 380px; /* Slightly wider for new controls */
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.6s ease forwards;
+            animation-delay: 0.3s;
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        #controls-panel::-webkit-scrollbar { width: 8px; }
+        #controls-panel::-webkit-scrollbar-track { background: rgba(25, 25, 45, 0.1); border-radius: 10px; }
+        #controls-panel::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 10px; border: 1px solid rgba(25, 25, 45, 0.2); }
+        #controls-panel::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #9F50E8 0%, #5D1DE0 100%); }
+        #controls-panel { scrollbar-width: thin; scrollbar-color: #8A2BE2 rgba(25, 25, 45, 0.1); }
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        #stats-bar { 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(20px);
+            padding: 16px 32px;
+            z-index: 10;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .stat-label { font-size: 0.75rem; color: rgba(200, 200, 255, 0.6); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 1.25rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } 
+        .control-group { margin-bottom: 20px; }
+        #controls-panel .control-group { padding-right: 14px; }
+        #controls-panel h2, #controls-panel h3 { padding-right: 14px; }
+        .control-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.875rem; font-weight: 500; color: rgba(220, 220, 255, 0.9); text-transform: uppercase; letter-spacing: 0.05em; }
+        .control-group label[title] { cursor: help; }
+        .control-value { font-size: 1rem; color: #8A2BE2; font-weight: 600; }
+        .control-group small { display: block; color: rgba(200, 200, 255, 0.5); font-size: 0.75rem; font-weight: 400; text-transform: none; letter-spacing: normal; margin-top: -8px; margin-bottom: 12px; }
+        .info-icon { font-size: 0.7em; color: rgba(138, 43, 226, 0.7); font-weight: 400; margin-left: 8px; cursor: help; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+        .info-icon:hover { color: rgba(138, 43, 226, 1); transform: scale(1.1); }
+        input[type="range"] { width: 100%; height: 6px; background: rgba(200, 200, 255, 0.15); border-radius: 3px; outline: none; -webkit-appearance: none; cursor: pointer; transition: background 0.3s ease; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); transition: all 0.3s ease; }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 4px 20px rgba(138, 43, 226, 0.8); }
+        input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); }
+        select, .ui-input-number { width: 100%; padding: 12px 16px; background: rgba(35, 35, 55, 0.1); border: 1px solid rgba(100, 100, 200, 0.2); border-radius: 12px; color: #fff; font-size: 0.875rem; font-weight: 500; cursor: pointer; outline: none; transition: all 0.3s ease; -moz-appearance: textfield; }
+        select:hover, .ui-input-number:hover { background: rgba(45, 45, 65, 0.15); border-color: rgba(120, 120, 220, 0.3); }
+        select:focus, .ui-input-number:focus { border-color: #8A2BE2; box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2); }
+        .ui-input-number::-webkit-outer-spin-button, .ui-input-number::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        button { width: 100%; padding: 14px 20px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border: none; border-radius: 12px; color: white; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden; }
+        button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.15); transition: left 0.5s ease; }
+        button:hover::before { left: 0; }
+        button:active { transform: scale(0.98); box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 18px; background: linear-gradient(135deg, #C38FFF 0%, #A56EFF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 2px 10px rgba(138, 43, 226, 0.2); }
+        h3 { font-size: 1.1rem; font-weight: 600; margin-top: 20px; margin-bottom: 12px; color: rgba(200, 200, 255, 0.85); }
+        #title-card {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: auto; 
+            max-width: 400px; 
+            padding: 20px; 
+            text-align: right; 
+            opacity: 0;
+            transform: translateX(20px);
+            animation: slideInRight 0.6s ease forwards;
+            animation-delay: 0.4s;
+        }
+        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+        #title-card h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; line-height: 1.2; color: #fff; }
+        #title-card p { font-size: 0.8rem; color: rgba(200, 200, 255, 0.7); margin-bottom: 12px; line-height: 1.4; }
+        .author-credit { font-size: 0.7rem; color: rgba(150, 150, 200, 0.6); }
+        .loading-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 1000;
+            color: white; font-size: 1.5rem;
+        }
+        .loading-spinner {
+            border: 8px solid rgba(255,255,255,0.2);
+            border-top: 8px solid #8A2BE2;
+            border-radius: 50%;
+            width: 60px; height: 60px;
+            animation: spin 1s linear infinite; margin-bottom: 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        Initializing Advanced Wave Simulation...
+    </div>
+
+    <div id="container"></div>
+
+    <div id="controls-panel" class="ui-panel">
+        <h2>Advanced Wave Controls</h2>
+        
+        <div class="control-group">
+            <label for="particleCountSlider">Particles: <span id="particleCountValue" class="control-value">50000</span></label>
+            <input type="range" id="particleCountSlider" min="1000" max="150000" step="1000" value="50000">
+            <small>Number of particles in simulation.</small>
+        </div>
+
+        <div class="control-group">
+            <label for="wavePotentialStrengthSlider">Wave Potential Strength: <span id="wavePotentialStrengthValue" class="control-value">0.1</span></label>
+            <input type="range" id="wavePotentialStrengthSlider" min="0.001" max="1.0" step="0.001" value="0.1">
+            <small>Amplitude of the primary wave potential field.</small>
+        </div>
+
+        <div class="control-group">
+            <label for="particleMassSlider">Particle Mass: <span id="particleMassValue" class="control-value">0.01</span></label>
+            <input type="range" id="particleMassSlider" min="0.001" max="0.1" step="0.001" value="0.01">
+            <small>Inertial mass of particles.</small>
+        </div>
+        
+        <div class="control-group">
+            <label for="dampingFactorSlider">Damping: <span id="dampingFactorValue" class="control-value">0.98</span></label>
+            <input type="range" id="dampingFactorSlider" min="0.8" max="1.0" step="0.001" value="0.98">
+            <small>Velocity damping factor per step.</small>
+        </div>
+
+        <h3>Wave Parameters (Primary)</h3>
+        <div class="control-group">
+            <label for="waveKxSlider">k<sub>x</sub>: <span id="waveKxValue" class="control-value">2</span></label>
+            <input type="range" id="waveKxSlider" min="0.1" max="10" step="0.1" value="2">
+            <small>Wave number for X-axis.</small>
+
+            <label for="waveKySlider">k<sub>y</sub>: <span id="waveKyValue" class="control-value">2</span></label>
+            <input type="range" id="waveKySlider" min="0.1" max="10" step="0.1" value="2">
+            <small>Wave number for Y-axis.</small>
+
+            <label for="waveKzSlider">k<sub>z</sub>: <span id="waveKzValue" class="control-value">2</span></label>
+            <input type="range" id="waveKzSlider" min="0.1" max="10" step="0.1" value="2">
+            <small>Wave number for Z-axis.</small>
+
+            <label for="waveOmegaSlider">&omega; (Frequency): <span id="waveOmegaValue" class="control-value">0.5</span></label>
+            <input type="range" id="waveOmegaSlider" min="0.01" max="5" step="0.01" value="0.5">
+            <small>Temporal frequency of the wave potential.</small>
+        </div>
+
+        <h3>Advanced Interaction Parameters</h3>
+        <div class="control-group">
+            <label for="quantumForceStrengthSlider">Quantum Pressure Strength (C<sub>q</sub>): <span id="quantumForceStrengthValue" class="control-value">0.005</span></label>
+            <input type="range" id="quantumForceStrengthSlider" min="0" max="0.1" step="0.001" value="0.005">
+            <small>Strength of 'quantum pressure' like repulsive force.</small>
+        </div>
+        <div class="control-group">
+            <label for="quantumForceRangeSlider">Quantum Pressure Range (L<sub>q</sub>): <span id="quantumForceRangeValue" class="control-value">0.5</span></label>
+            <input type="range" id="quantumForceRangeSlider" min="0.1" max="5" step="0.1" value="0.5">
+            <small>Effective range of 'quantum pressure' like force.</small>
+        </div>
+         <div class="control-group">
+            <label for="nonLinearAttractionStrengthSlider">Non-Linear Attraction (C<sub>nl</sub>): <span id="nonLinearAttractionStrengthValue" class="control-value">0.002</span></label>
+            <input type="range" id="nonLinearAttractionStrengthSlider" min="0" max="0.1" step="0.001" value="0.002">
+            <small>Strength of non-linear attractive force.</small>
+        </div>
+        <div class="control-group">
+            <label for="nonLinearAttractionRangeSlider">Non-Linear Attraction Range (L<sub>nl</sub>): <span id="nonLinearAttractionRangeValue" class="control-value">1.0</span></label>
+            <input type="range" id="nonLinearAttractionRangeSlider" min="0.1" max="5" step="0.1" value="1.0">
+            <small>Effective range of non-linear attractive force.</small>
+        </div>
+
+
+        <div class="control-group" style="margin-top: 30px;">
+            <button id="resetButton">Reset Simulation</button>
+        </div>
+    </div>
+
+    <div id="title-card" class="ui-panel">
+        <h1>Advanced Cosmic Wave Dynamics</h1>
+        <p>Visualizing emergent complexity from conceptual wave interactions, inspired by non-linear and quantum-like phenomena in large-scale structure formation theories.</p>
+        <p class="author-credit">Lead: Aldrin Payopay. AI Assists: Claude Opus 4, Gemini 2.5 Pro. Mod: Agent 1.</p>
+    </div>
+
+    <div id="stats-bar" class="ui-panel">
+        <div class="stat-item">
+            <span class="stat-label">Particles</span>
+            <span id="fpsDisplayParticles" class="stat-value">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">FPS</span>
+            <span id="fpsDisplay" class="stat-value">0</span>
+        </div>
+         <div class="stat-item">
+            <span class="stat-label">Time</span>
+            <span id="timeDisplay" class="stat-value">0.00s</span>
+        </div>
+    </div>
+
+    <script type="module">
+        // Three.js and Tone.js are expected to be loaded from CDN
+
+        let scene, camera, renderer, particleSystem, controls, clock;
+        let particleCount = 50000;
+        const MAX_PARTICLES = 150000;
+
+        const simConfig = {
+            BOUNDS: 100,
+            wavePotentialStrength: 0.1,
+            particleMass: 0.01,
+            dampingFactor: 0.98,
+            timeStep: 0.016, // Approx 60 FPS
+            waveParams: {
+                kx: 2.0,
+                ky: 2.0,
+                kz: 2.0,
+                omega: 0.5
+            },
+            // New parameters for advanced interactions
+            quantumForceStrength: 0.005, // C_q
+            quantumForceRange: 0.5,    // L_q
+            nonLinearAttractionStrength: 0.002, // C_nl
+            nonLinearAttractionRange: 1.0, // L_nl
+            interactionCalculationThrottle: 2, // Calculate complex interactions every N frames
+            interactionNeighborsMax: 50 // Max neighbors to consider for performance
+        };
+
+        let frameCounter = 0;
+
+        // Shader for particles (simple, color can be set via attribute)
+        const particleVertexShader = `
+            attribute vec3 customColor;
+            varying vec3 vColor;
+            void main() {
+                vColor = customColor;
+                vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                gl_PointSize = 5.0 * (10.0 / -mvPosition.z);
+                gl_Position = projectionMatrix * mvPosition;
+            }
+        `;
+
+        const particleFragmentShader = `
+            varying vec3 vColor;
+            void main() {
+                if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
+                gl_FragColor = vec4(vColor, 1.0);
+            }
+        `;
+
+        init();
+
+        function init() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = simConfig.BOUNDS * 0.7; // Adjusted for new bounds
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('container').appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 10;
+            controls.maxDistance = simConfig.BOUNDS * 2;
+            
+            clock = new THREE.Clock();
+
+            initParticles();
+            setupUI();
+            
+            window.addEventListener('resize', onWindowResize, false);
+            
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.display = 'none';
+                animate();
+            }, 100);
+        }
+
+        function initParticles() {
+            if (particleSystem) scene.remove(particleSystem);
+
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const velocities = new Float32Array(particleCount * 3);
+
+            const color = new THREE.Color();
+
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3] = (Math.random() * 2 - 1) * simConfig.BOUNDS * 0.5; // Start in smaller region
+                positions[i * 3 + 1] = (Math.random() * 2 - 1) * simConfig.BOUNDS * 0.5;
+                positions[i * 3 + 2] = (Math.random() * 2 - 1) * simConfig.BOUNDS * 0.5;
+
+                velocities[i * 3] = (Math.random() - 0.5) * 0.01; 
+                velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.01;
+                velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
+
+                color.setHSL(Math.random(), 0.7, 0.6);
+                colors[i * 3] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('customColor', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+
+            const material = new THREE.ShaderMaterial({
+                uniforms: {},
+                vertexShader: particleVertexShader,
+                fragmentShader: particleFragmentShader,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+
+            particleSystem = new THREE.Points(geometry, material);
+            scene.add(particleSystem);
+            document.getElementById('fpsDisplayParticles').textContent = particleCount.toLocaleString();
+        }
+
+        function updateParticles(deltaTime) {
+            const positions = particleSystem.geometry.attributes.position.array;
+            const velocities = particleSystem.geometry.attributes.velocity.array;
+            const customColors = particleSystem.geometry.attributes.customColor.array;
+            const currentTime = clock.elapsedTime;
+
+            const kx = simConfig.waveParams.kx;
+            const ky = simConfig.waveParams.ky;
+            const kz = simConfig.waveParams.kz;
+            const omega = simConfig.waveParams.omega;
+            const potentialStrength = simConfig.wavePotentialStrength;
+            const mass = simConfig.particleMass;
+            const damping = simConfig.dampingFactor;
+            const bounds = simConfig.BOUNDS;
+
+            const Cq = simConfig.quantumForceStrength;
+            const Lq = simConfig.quantumForceRange;
+            const Cnl = simConfig.nonLinearAttractionStrength;
+            const Lnl = simConfig.nonLinearAttractionRange;
+
+            const calculateInteractions = (frameCounter % simConfig.interactionCalculationThrottle === 0);
+            let vec_i = new THREE.Vector3();
+            let vec_j = new THREE.Vector3();
+            let forceVec = new THREE.Vector3();
+
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                const x = positions[i3];
+                const y = positions[i3 + 1];
+                const z = positions[i3 + 2];
+
+                // Gradient of the primary wave potential U (numerical differentiation for simplicity here, analytic would be better)
+                // U = A * sin(kx*x)sin(ky*y)sin(kz*z)cos(omega*t)
+                // For simplicity, we'll use a slightly simplified potential for force calculation
+                // to avoid full analytic gradient in JS for this demo.
+                // Force F = -grad(U)
+                let fx = -potentialStrength * kx * Math.cos(kx * x) * Math.sin(ky * y) * Math.sin(kz * z) * Math.cos(omega * currentTime);
+                let fy = -potentialStrength * ky * Math.sin(kx * x) * Math.cos(ky * y) * Math.sin(kz * z) * Math.cos(omega * currentTime);
+                let fz = -potentialStrength * kz * Math.sin(kx * x) * Math.sin(ky * y) * Math.cos(kz * z) * Math.cos(omega * currentTime);
+                
+                forceVec.set(fx, fy, fz);
+
+                // Simplified advanced interactions (calculated periodically for performance)
+                if (calculateInteractions && (Cq > 0 || Cnl > 0)) {
+                    vec_i.set(x,y,z);
+                    let neighborsFound = 0;
+                    for (let j = 0; j < particleCount; j++) {
+                        if (i === j) continue;
+                        if (neighborsFound >= simConfig.interactionNeighborsMax && Math.random() > 0.1) continue; // Stochastic limit for performance
+
+                        const j3 = j * 3;
+                        vec_j.set(positions[j3], positions[j3+1], positions[j3+2]);
+                        let distSq = vec_i.distanceToSquared(vec_j);
+                        
+                        if (distSq < Lq*Lq && Cq > 0) { // Quantum-like pressure (repulsive)
+                           if (distSq < 0.001) distSq = 0.001; // Avoid division by zero
+                           let dist = Math.sqrt(distSq);
+                           let F_q_mag = Cq * Math.exp(-dist / Lq) / distSq; // 1/r^2 like, decays with Lq
+                           forceVec.addScaledVector(vec_i.clone().sub(vec_j).normalize(), F_q_mag);
+                           neighborsFound++;
+                        }
+                        if (distSq < Lnl*Lnl && Cnl > 0) { // Non-linear attraction
+                           let dist = Math.sqrt(distSq);
+                           let F_nl_mag = -Cnl * Math.exp(-dist / Lnl); // Simple exponential attraction
+                           forceVec.addScaledVector(vec_i.clone().sub(vec_j).normalize(), F_nl_mag);
+                           neighborsFound++;
+                        }
+                        if (neighborsFound >= simConfig.interactionNeighborsMax * 2) break; // Hard limit
+                    }
+                }
+
+                // Update velocities
+                velocities[i3] += (forceVec.x / mass) * deltaTime;
+                velocities[i3 + 1] += (forceVec.y / mass) * deltaTime;
+                velocities[i3 + 2] += (forceVec.z / mass) * deltaTime;
+
+                // Apply damping
+                velocities[i3] *= damping;
+                velocities[i3 + 1] *= damping;
+                velocities[i3 + 2] *= damping;
+
+                // Update positions
+                positions[i3] += velocities[i3] * deltaTime;
+                positions[i3 + 1] += velocities[i3 + 1] * deltaTime;
+                positions[i3 + 2] += velocities[i3 + 2] * deltaTime;
+
+                // Boundary conditions (simple reflection for this demo)
+                if (Math.abs(positions[i3]) > bounds) { positions[i3] = Math.sign(positions[i3]) * bounds; velocities[i3] *= -0.5; }
+                if (Math.abs(positions[i3+1]) > bounds) { positions[i3+1] = Math.sign(positions[i3+1]) * bounds; velocities[i3+1] *= -0.5; }
+                if (Math.abs(positions[i3+2]) > bounds) { positions[i3+2] = Math.sign(positions[i3+2]) * bounds; velocities[i3+2] *= -0.5; }
+                
+                // Update colors based on velocity magnitude or potential (example)
+                const speed = Math.sqrt(velocities[i3]**2 + velocities[i3+1]**2 + velocities[i3+2]**2);
+                const potentialValue = potentialStrength * Math.sin(kx * x) * Math.sin(ky * y) * Math.sin(kz * z) * Math.cos(omega * currentTime);
+                const heat = THREE.MathUtils.clamp((Math.sin(potentialValue * 20 / simConfig.wavePotentialStrength + currentTime * simConfig.waveParams.omega) + 1) / 2 + speed * 0.1, 0, 1);
+                const color = new THREE.Color();
+                color.setHSL(heat * 0.7 + 0.5 % 1.0 , 0.8, Math.max(0.2, Math.min(0.8, 0.3 + Math.abs(potentialValue*2) + speed * 0.05 )));
+                customColors[i3] = color.r;
+                customColors[i3+1] = color.g;
+                customColors[i3+2] = color.b;
+            }
+
+            particleSystem.geometry.attributes.position.needsUpdate = true;
+            particleSystem.geometry.attributes.velocity.needsUpdate = true;
+            particleSystem.geometry.attributes.customColor.needsUpdate = true;
+        }
+        
+        let lastTime = 0;
+        let fpsSamples = [];
+        const FPS_SAMPLE_COUNT = 60;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const currentTime = clock.getElapsedTime();
+            const deltaTime = currentTime - lastTime;
+            lastTime = currentTime;
+
+            if (deltaTime > 0) { // Ensure deltaTime is positive
+                updateParticles(Math.min(deltaTime, simConfig.timeStep * 2)); // Cap deltaTime to avoid instability
+                frameCounter++;
+            }
+
+            controls.update();
+            renderer.render(scene, camera);
+
+            // FPS calculation
+            const now = performance.now();
+            while (fpsSamples.length > 0 && fpsSamples[0] <= now - 1000) {
+                fpsSamples.shift();
+            }
+            fpsSamples.push(now);
+            document.getElementById('fpsDisplay').textContent = fpsSamples.length;
+            document.getElementById('timeDisplay').textContent = currentTime.toFixed(2) + 's';
+        }
+
+        function setupUI() {
+            const sliders = [
+                {id: 'particleCountSlider', valueId: 'particleCountValue', configKey: null, onRelease: (val) => { particleCount = parseInt(val); initParticles();} },
+                {id: 'wavePotentialStrengthSlider', valueId: 'wavePotentialStrengthValue', configKey: 'wavePotentialStrength', isFloat: true, precision: 3},
+                {id: 'particleMassSlider', valueId: 'particleMassValue', configKey: 'particleMass', isFloat: true, precision: 3},
+                {id: 'dampingFactorSlider', valueId: 'dampingFactorValue', configKey: 'dampingFactor', isFloat: true, precision: 3},
+                {id: 'waveKxSlider', valueId: 'waveKxValue', path: ['waveParams', 'kx'], isFloat: true, precision: 1},
+                {id: 'waveKySlider', valueId: 'waveKyValue', path: ['waveParams', 'ky'], isFloat: true, precision: 1},
+                {id: 'waveKzSlider', valueId: 'waveKzValue', path: ['waveParams', 'kz'], isFloat: true, precision: 1},
+                {id: 'waveOmegaSlider', valueId: 'waveOmegaValue', path: ['waveParams', 'omega'], isFloat: true, precision: 2},
+                {id: 'quantumForceStrengthSlider', valueId: 'quantumForceStrengthValue', configKey: 'quantumForceStrength', isFloat: true, precision: 3},
+                {id: 'quantumForceRangeSlider', valueId: 'quantumForceRangeValue', configKey: 'quantumForceRange', isFloat: true, precision: 1},
+                {id: 'nonLinearAttractionStrengthSlider', valueId: 'nonLinearAttractionStrengthValue', configKey: 'nonLinearAttractionStrength', isFloat: true, precision: 3},
+                {id: 'nonLinearAttractionRangeSlider', valueId: 'nonLinearAttractionRangeValue', configKey: 'nonLinearAttractionRange', isFloat: true, precision: 1},
+            ];
+
+            sliders.forEach(s => {
+                const slider = document.getElementById(s.id);
+                const valueDisplay = document.getElementById(s.valueId);
+                
+                const updateSimConfig = (val) => {
+                    if (s.configKey) simConfig[s.configKey] = val;
+                    else if (s.path) simConfig[s.path[0]][s.path[1]] = val;
+                };
+
+                slider.addEventListener('input', (event) => {
+                    const val = s.isFloat ? parseFloat(event.target.value) : parseInt(event.target.value);
+                    valueDisplay.textContent = s.isFloat ? val.toFixed(s.precision) : val.toLocaleString();
+                    if (!s.onRelease) updateSimConfig(val);
+                });
+                if (s.onRelease) {
+                     slider.addEventListener('change', (event) => {
+                        s.onRelease(s.isFloat ? parseFloat(event.target.value) : parseInt(event.target.value));
+                    });
+                }
+            });
+
+            document.getElementById('resetButton').addEventListener('click', () => {
+                initParticles(); // Re-initialize particles with current count
+                clock.start(); // Reset elapsed time
+                lastTime = 0; // Reset lastTime for deltaTime calculation
+                frameCounter = 0;
+            });
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+    </script>
+</body>
+</html> 

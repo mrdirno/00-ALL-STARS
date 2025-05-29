@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cosmic Acoustic Wave Sim (Agent 2)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body { margin: 0; background-color: #000; overflow: hidden; }
+        #container { width: 100vw; height: 100vh; display: block; }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        // COSMIC ACOUSTIC WAVE LOGIC
+        let scene, camera, renderer, controls;
+        let particleSystem, particlePositions, particleVelocities, particleMaterials;
+        
+        let PARTICLE_COUNT = 50000;
+        const PARTICLE_BOUNDS = 100; // Simulation domain size
+        
+        // Cosmic wave parameters
+        let WAVE_K = 0.1; // Wavenumber, controls characteristic scale of waves
+        let MODE_L = 3;   // Azimuthal mode number (phi dependence)
+        let MODE_M_THETA = 2; // Polar mode number (theta dependence)
+        let AMPLITUDE_SCALE = 1.0; // Amplitude of the wave potential
+        let FORCE_STRENGTH = 0.5;
+        let DAMPING = 0.02;
+        let PARTICLE_SIZE = 1.5;
+
+        const DELTA_GRAD = 0.01; // Small delta for numerical gradient calculation
+
+        let lastTime = performance.now();
+        // let frameCount = 0; // Not used in current minimal version
+
+        // --- Cosmic Wave Potential Function (3D) ---
+        function cosmicWavePotential3D(x, y, z, k, l_mode, m_mode_theta, ampScale) {
+            const r = Math.sqrt(x*x + y*y + z*z);
+            if (r === 0) return 0; 
+            
+            const kr = k * r;
+            const phi = Math.atan2(y, x); // Azimuthal angle (0 to 2pi)
+            const theta = Math.acos(z/r); // Polar angle (0 to pi)
+
+            // Radial part (inspired by spherical Bessel j1(x) = sin(x)/x^2 - cos(x)/x, simplified here)
+            // Or more simply j0(x) = sin(x)/x
+            let radialPart;
+            if (kr < 1e-6) { // Avoid division by zero, j0(0) = 1
+                 radialPart = 1.0;
+            } else {
+                 radialPart = Math.sin(kr) / kr; 
+            }
+            // For a more j1-like behavior:
+            // if (kr < 1e-6) radialPart = 0; else radialPart = (Math.sin(kr) / (kr*kr)) - (Math.cos(kr) / kr);
+
+
+            // Angular part (simplified spherical harmonics)
+            const angularPartL = Math.cos(l_mode * phi);
+            // Use a scaled theta for m_mode to get some variation along polar axis
+            const angularPartM = Math.sin(m_mode_theta * theta * 0.5 * Math.PI); // factor 0.5*PI to map theta influence
+            
+            let potential = ampScale * radialPart * angularPartL * angularPartM;
+            potential = isNaN(potential) ? 0 : potential; 
+            return Math.max(-1, Math.min(1, potential)); // Clamp potential
+        }
+
+        function gradientCosmicWave3D(x, y, z, k, l_mode, m_mode_theta, ampScale) {
+            const p_dx = (cosmicWavePotential3D(x + DELTA_GRAD, y, z, k, l_mode, m_mode_theta, ampScale) - cosmicWavePotential3D(x - DELTA_GRAD, y, z, k, l_mode, m_mode_theta, ampScale)) / (2 * DELTA_GRAD);
+            const p_dy = (cosmicWavePotential3D(x, y + DELTA_GRAD, z, k, l_mode, m_mode_theta, ampScale) - cosmicWavePotential3D(x, y - DELTA_GRAD, z, k, l_mode, m_mode_theta, ampScale)) / (2 * DELTA_GRAD);
+            const p_dz = (cosmicWavePotential3D(x, y, z + DELTA_GRAD, k, l_mode, m_mode_theta, ampScale) - cosmicWavePotential3D(x, y, z - DELTA_GRAD, k, l_mode, m_mode_theta, ampScale)) / (2 * DELTA_GRAD);
+            return new THREE.Vector3(p_dx, p_dy, p_dz);
+        }
+
+        function init() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.008);
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+            camera.position.set(0, 50, 150);
+            camera.lookAt(scene.position);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('container').appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.minDistance = 10;
+            controls.maxDistance = 500;
+            controls.maxPolarAngle = Math.PI;
+
+            initParticles();
+            
+            window.addEventListener('resize', onWindowResize, false);
+            console.log("Cosmic Acoustic Wave Simulation Initialized (Agent 2).");
+        }
+
+        function initParticles() {
+            if (particleSystem) scene.remove(particleSystem);
+
+            const geometry = new THREE.BufferGeometry();
+            particlePositions = new Float32Array(PARTICLE_COUNT * 3);
+            particleVelocities = new Float32Array(PARTICLE_COUNT * 3);
+            const colors = new Float32Array(PARTICLE_COUNT * 3);
+            const color = new THREE.Color();
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const r_init = PARTICLE_BOUNDS * Math.cbrt(Math.random()); // Distribute more evenly in volume
+                const theta_init = Math.random() * Math.PI * 2;
+                const phi_init_angle = Math.acos(2 * Math.random() - 1); // Correct spherical coordinate sampling for phi
+                particlePositions[i * 3] = r_init * Math.sin(phi_init_angle) * Math.cos(theta_init);
+                particlePositions[i * 3 + 1] = r_init * Math.sin(phi_init_angle) * Math.sin(theta_init);
+                particlePositions[i * 3 + 2] = r_init * Math.cos(phi_init_angle);
+                
+                particleVelocities[i * 3] = (Math.random() - 0.5) * 0.1;
+                particleVelocities[i * 3 + 1] = (Math.random() - 0.5) * 0.1;
+                particleVelocities[i * 3 + 2] = (Math.random() - 0.5) * 0.1;
+                
+                color.setHSL(i / PARTICLE_COUNT, 0.8, 0.65); // Slightly adjusted HSL
+                colors[i * 3] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            particleMaterials = new THREE.PointsMaterial({
+                size: PARTICLE_SIZE,
+                vertexColors: true,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false 
+            });
+
+            particleSystem = new THREE.Points(geometry, particleMaterials);
+            scene.add(particleSystem);
+        }
+        
+        function updateParticles(deltaTime) {
+            if (!particleSystem || !particlePositions || !particleVelocities) return;
+            const positions = particleSystem.geometry.attributes.position.array;
+            const timeScale = deltaTime * 30; // Consistent time scaling
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const ix = i * 3, iy = i * 3 + 1, iz = i * 3 + 2;
+                let x = positions[ix], y = positions[iy], z = positions[iz];
+                let vx = particleVelocities[ix], vy = particleVelocities[iy], vz = particleVelocities[iz];
+
+                // Use new potential and gradient functions
+                const potential = cosmicWavePotential3D(x, y, z, WAVE_K, MODE_L, MODE_M_THETA, AMPLITUDE_SCALE);
+                const gradP = gradientCosmicWave3D(x, y, z, WAVE_K, MODE_L, MODE_M_THETA, AMPLITUDE_SCALE);
+                
+                let ax = -FORCE_STRENGTH * potential * gradP.x;
+                let ay = -FORCE_STRENGTH * potential * gradP.y;
+                let az = -FORCE_STRENGTH * potential * gradP.z;
+                
+                ax -= DAMPING * vx;
+                ay -= DAMPING * vy;
+                az -= DAMPING * vz;
+                
+                vx += ax * timeScale;
+                vy += ay * timeScale;
+                vz += az * timeScale;
+                
+                x += vx * timeScale;
+                y += vy * timeScale;
+                z += vz * timeScale;
+
+                // Boundary conditions: reflect with some energy loss
+                if (x < -PARTICLE_BOUNDS || x > PARTICLE_BOUNDS) { vx *= -0.5; x = Math.max(-PARTICLE_BOUNDS, Math.min(PARTICLE_BOUNDS, x)); }
+                if (y < -PARTICLE_BOUNDS || y > PARTICLE_BOUNDS) { vy *= -0.5; y = Math.max(-PARTICLE_BOUNDS, Math.min(PARTICLE_BOUNDS, y)); }
+                if (z < -PARTICLE_BOUNDS || z > PARTICLE_BOUNDS) { vz *= -0.5; z = Math.max(-PARTICLE_BOUNDS, Math.min(PARTICLE_BOUNDS, z)); }
+                
+                positions[ix] = x;
+                positions[iy] = y;
+                positions[iz] = z;
+                particleVelocities[ix] = vx;
+                particleVelocities[iy] = vy;
+                particleVelocities[iz] = vz;
+            }
+            particleSystem.geometry.attributes.position.needsUpdate = true;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const currentTime = performance.now();
+            const deltaTime = (currentTime - lastTime) / 1000; 
+            lastTime = currentTime;
+            
+            updateParticles(deltaTime);
+            controls.update(); 
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        init();
+        animate();
+    </script>
+</body>
+</html> 

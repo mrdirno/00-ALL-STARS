@@ -1,0 +1,57 @@
+{
+  "item_path": "../00-INTAKE/advanced_wave_visualization.html",
+  "final_status": "REJECTED",
+  "processing_time_seconds": 0.0008032321929931641,
+  "timestamp": "2025-05-29T03:54:25.638429",
+  "stages_completed": [
+    "00-INTAKE"
+  ],
+  "validation_results": {
+    "00-INTAKE": {
+      "passed": true,
+      "content_length": 4749,
+      "claims_count": 0,
+      "equations_count": 32,
+      "hypotheses_count": 0,
+      "claims": [],
+      "equations": [
+        "src=\"https://cdnjs",
+        "scene = new THREE",
+        "camera = new THREE",
+        "renderer = new THREE",
+        "particleCount = 5000;",
+        "particles = new THREE",
+        "positions = new Float32Array(particleCount * 3);",
+        "colors = new Float32Array(particleCount * 3);",
+        "color = new THREE",
+        "i = 0; i < particleCount; i++) {",
+        "R = 200;",
+        "phi = Math",
+        "theta = Math",
+        "particleMaterial = new THREE",
+        "particleSystem = new THREE",
+        "z = 300;",
+        "time = Date",
+        "y = time * 0",
+        "x = time * 0",
+        "posAttribute = particleSystem",
+        "i = 0; i < particleCount; i++) {",
+        "x = posAttribute",
+        "y = posAttribute",
+        "z = posAttribute",
+        "waveFactor = 0",
+        "speedFactor = 0",
+        "lengthFactor = 0",
+        "dist = Math",
+        "radialWave = Math",
+        "scaleFactor = 1 + radialWave * 0",
+        "needsUpdate = true;",
+        "aspect = window"
+      ],
+      "hypotheses": []
+    }
+  },
+  "rejection_stage": "01-INITIAL_SCREENING",
+  "rejection_reason": "Initial screening pass rate 0.50 below 0.8 threshold",
+  "destination": "09-REJECTED_ITEMS"
+}

@@ -18,7 +18,7 @@ git --no-pager log --oneline -10     # Review recent commits
 pwd                                    # Confirm working directory
 git status                            # Check repository state
 Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"  # Get current UTC timestamp
-git log --oneline -10                 # Review recent commits
+git --no-pager log --oneline -10                 # Review recent commits
 ```
 
 ### ☐ Step 2: Repository Synchronization
