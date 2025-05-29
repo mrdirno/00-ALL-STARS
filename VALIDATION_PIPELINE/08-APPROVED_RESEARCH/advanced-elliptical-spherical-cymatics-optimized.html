@@ -1214,20 +1214,13 @@
 
             const effectiveFieldStrength = CHLADNI_3D_FIELD_STRENGTH * (isHeartbeatActive ? HEARTBEAT_FORCE_MULTIPLIER : 1.0);
             
-            // PERFORMANCE OPTIMIZATION: Process particles in batches
-            const BATCH_SIZE = Math.min(1000, Math.floor(PARTICLE_COUNT / 10));
-            const batchesPerFrame = Math.ceil(PARTICLE_COUNT / BATCH_SIZE);
-            const currentBatch = Math.floor(time / 16.67) % batchesPerFrame; // ~60fps batching
-            const startIdx = currentBatch * BATCH_SIZE;
-            const endIdx = Math.min(startIdx + BATCH_SIZE, PARTICLE_COUNT);
-            
             // Color update optimization
-            const colorUpdateBatchDivisor = 500; // Reduced frequency
+            const colorUpdateBatchDivisor = 300; 
             const colorUpdateModulo = Math.max(1, Math.floor(PARTICLE_COUNT / colorUpdateBatchDivisor));
-            const timeBasedOffset = Math.floor(time / 100); // Slower color updates
+            const timeBasedOffset = Math.floor(time / 50); 
 
-            // Process current batch of particles
-            for (let i = startIdx; i < endIdx; i++) {
+            // Main particle physics loop - Apply wave forces to ALL particles (FIXED)
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
                 const i3 = i * 3;
                 let px = positions[i3], py = positions[i3 + 1], pz = positions[i3 + 2];
                 let vx = velocities[i3], vy = velocities[i3 + 1], vz = velocities[i3 + 2];
@@ -1286,42 +1279,9 @@
                 positions[i3] = px; positions[i3 + 1] = py; positions[i3 + 2] = pz;
                 velocities[i3] = vx; velocities[i3 + 1] = vy; velocities[i3 + 2] = vz;
                 
-                // Update particle colors less frequently
+                // Update particle colors in batches for performance
                 if ((i + timeBasedOffset) % colorUpdateModulo === 0) { 
                     updateParticleColor(i, px, py, pz, currentPotential);
-                }
-            }
-            
-            // Process remaining particles with simpler physics (every few frames)
-            if (time % 100 < 16.67) { // Every ~6th frame
-                for (let i = 0; i < PARTICLE_COUNT; i++) {
-                    if (i >= startIdx && i < endIdx) continue; // Skip already processed
-                    
-                    const i3 = i * 3;
-                    let px = positions[i3], py = positions[i3 + 1], pz = positions[i3 + 2];
-                    let vx = velocities[i3], vy = velocities[i3 + 1], vz = velocities[i3 + 2];
-
-                    // Simple gravity only for non-batch particles
-                    const distSqToCenter = px*px + py*py + pz*pz;
-                    if (distSqToCenter < GRAVITY_WELL_RADIUS * GRAVITY_WELL_RADIUS && distSqToCenter > (CORE_ACTUAL_RADIUS * CORE_ACTUAL_RADIUS * 4)) {
-                        const distToCenter = Math.sqrt(distSqToCenter);
-                        const gravityForce = CENTRAL_GRAVITY_STRENGTH / (distSqToCenter + 0.01);
-                        vx -= (px / distToCenter) * gravityForce * deltaTime;
-                        vy -= (py / distToCenter) * gravityForce * deltaTime;
-                        vz -= (pz / distToCenter) * gravityForce * deltaTime;
-                    }
-                    
-                    // Simple damping and position update
-                    vx *= VELOCITY_DAMPING;
-                    vy *= VELOCITY_DAMPING;
-                    vz *= VELOCITY_DAMPING;
-                    
-                    px += vx * deltaTime;
-                    py += vy * deltaTime;
-                    pz += vz * deltaTime;
-                    
-                    positions[i3] = px; positions[i3 + 1] = py; positions[i3 + 2] = pz;
-                    velocities[i3] = vx; velocities[i3 + 1] = vy; velocities[i3 + 2] = vz;
                 }
             }
             
@@ -1339,7 +1299,7 @@
             // Performance monitoring (optional)
             if (time % 5000 < 16.67) { // Every 5 seconds
                 const cacheHitRate = gradientCacheHits / (gradientCacheHits + gradientCacheMisses) * 100;
-                console.log(`Cache hit rate: ${cacheHitRate.toFixed(1)}%, Processed batch: ${currentBatch}/${batchesPerFrame}`);
+                console.log(`Cache hit rate: ${cacheHitRate.toFixed(1)}%, Processed batch: ${currentSpawnIndex}/${PARTICLE_COUNT}`);
             }
         }
 
