@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonic Oscillator Energy Conservation Validation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .validation-info {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .control-group {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .control-group input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .control-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .canvas-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .validation-results {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.05);
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-pass { background: #00ff00; }
+        .status-fail { background: #ff0000; }
+        .status-warning { background: #ffaa00; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 Harmonic Oscillator Energy Conservation Validation</h1>
+            <p><strong>VALIDATION_PIPELINE Stage 02: Computational Validation</strong></p>
+            <p>Agent: Claude-3.5-Sonnet | Validation Sense: Computational Analysis | Timestamp: 2025-05-28 20:36:33 UTC</p>
+        </div>
+
+        <div class="validation-info">
+            <h3>📋 Validation Objectives</h3>
+            <ul>
+                <li><strong>Energy Conservation Test</strong>: Verify E = (1/2)mv² + (1/2)kx² remains constant</li>
+                <li><strong>Numerical Precision</strong>: Maintain energy variation < 0.1% as predicted</li>
+                <li><strong>Periodic Motion</strong>: Confirm period T = 2π/ω = 2π√(m/k)</li>
+                <li><strong>Mathematical Accuracy</strong>: Validate x(t) = A cos(ωt + φ) solution</li>
+            </ul>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Mass (kg)</label>
+                <input type="number" id="mass" value="1.0" step="0.1" min="0.1">
+            </div>
+            <div class="control-group">
+                <label>Spring Constant (N/m)</label>
+                <input type="number" id="springConstant" value="1.0" step="0.1" min="0.1">
+            </div>
+            <div class="control-group">
+                <label>Initial Position (m)</label>
+                <input type="number" id="initialPosition" value="1.0" step="0.1">
+            </div>
+            <div class="control-group">
+                <label>Initial Velocity (m/s)</label>
+                <input type="number" id="initialVelocity" value="0.0" step="0.1">
+            </div>
+            <div class="control-group">
+                <label>Time Step (s)</label>
+                <input type="number" id="timeStep" value="0.01" step="0.001" min="0.001">
+            </div>
+            <div class="control-group">
+                <label>Simulation Time (s)</label>
+                <input type="number" id="simTime" value="10.0" step="1.0" min="1.0">
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="button" onclick="runValidation()">🚀 Run Validation Test</button>
+            <button class="button" onclick="resetSimulation()">🔄 Reset</button>
+        </div>
+
+        <div class="canvas-container">
+            <div>
+                <h3>Position vs Time</h3>
+                <canvas id="positionCanvas" width="500" height="300"></canvas>
+            </div>
+            <div>
+                <h3>Energy vs Time</h3>
+                <canvas id="energyCanvas" width="500" height="300"></canvas>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <h4>Energy Conservation</h4>
+                <div class="metric-value" id="energyVariation">--</div>
+                <div>Maximum Variation (%)</div>
+            </div>
+            <div class="metric-card">
+                <h4>Period Accuracy</h4>
+                <div class="metric-value" id="periodAccuracy">--</div>
+                <div>Theoretical vs Measured</div>
+            </div>
+            <div class="metric-card">
+                <h4>Amplitude Conservation</h4>
+                <div class="metric-value" id="amplitudeConservation">--</div>
+                <div>Maximum Deviation (%)</div>
+            </div>
+            <div class="metric-card">
+                <h4>Numerical Stability</h4>
+                <div class="metric-value" id="numericalStability">--</div>
+                <div>Integration Quality</div>
+            </div>
+        </div>
+
+        <div class="validation-results" id="validationResults" style="display: none;">
+            <h3>🎯 Validation Results</h3>
+            <div id="testResults"></div>
+        </div>
+    </div>
+
+    <script>
+        let animationId;
+        let simulationData = [];
+        
+        class HarmonicOscillator {
+            constructor(mass, k, x0, v0, dt) {
+                this.mass = mass;
+                this.k = k;
+                this.omega = Math.sqrt(k / mass);
+                this.period = 2 * Math.PI / this.omega;
+                this.dt = dt;
+                
+                // Initial conditions
+                this.x = x0;
+                this.v = v0;
+                this.t = 0;
+                
+                // Calculate theoretical amplitude and phase
+                this.amplitude = Math.sqrt(x0 * x0 + (v0 / this.omega) * (v0 / this.omega));
+                this.phase = Math.atan2(-v0 / this.omega, x0);
+                
+                // Energy calculation
+                this.initialEnergy = 0.5 * mass * v0 * v0 + 0.5 * k * x0 * x0;
+                
+                this.history = [];
+            }
+            
+            step() {
+                // Velocity Verlet integration for better energy conservation
+                const a = -this.k * this.x / this.mass;
+                
+                // Update position
+                this.x += this.v * this.dt + 0.5 * a * this.dt * this.dt;
+                
+                // Calculate new acceleration
+                const newA = -this.k * this.x / this.mass;
+                
+                // Update velocity
+                this.v += 0.5 * (a + newA) * this.dt;
+                
+                this.t += this.dt;
+                
+                // Calculate current energy
+                const kineticEnergy = 0.5 * this.mass * this.v * this.v;
+                const potentialEnergy = 0.5 * this.k * this.x * this.x;
+                const totalEnergy = kineticEnergy + potentialEnergy;
+                
+                // Theoretical position for comparison
+                const theoreticalX = this.amplitude * Math.cos(this.omega * this.t + this.phase);
+                
+                this.history.push({
+                    t: this.t,
+                    x: this.x,
+                    v: this.v,
+                    kineticEnergy,
+                    potentialEnergy,
+                    totalEnergy,
+                    theoreticalX,
+                    energyError: Math.abs(totalEnergy - this.initialEnergy) / this.initialEnergy * 100
+                });
+            }
+            
+            getAnalytics() {
+                if (this.history.length < 10) return null;
+                
+                const energyErrors = this.history.map(h => h.energyError);
+                const maxEnergyError = Math.max(...energyErrors);
+                const avgEnergyError = energyErrors.reduce((a, b) => a + b, 0) / energyErrors.length;
+                
+                // Find periods by detecting zero crossings
+                const zeroCrossings = [];
+                for (let i = 1; i < this.history.length; i++) {
+                    if (this.history[i-1].x * this.history[i].x < 0 && this.history[i-1].v > 0) {
+                        zeroCrossings.push(this.history[i].t);
+                    }
+                }
+                
+                let measuredPeriod = null;
+                if (zeroCrossings.length >= 2) {
+                    const periods = [];
+                    for (let i = 1; i < zeroCrossings.length; i++) {
+                        periods.push(2 * (zeroCrossings[i] - zeroCrossings[i-1])); // Full period
+                    }
+                    measuredPeriod = periods.reduce((a, b) => a + b, 0) / periods.length;
+                }
+                
+                // Amplitude analysis
+                const positions = this.history.map(h => Math.abs(h.x));
+                const maxPosition = Math.max(...positions);
+                const amplitudeError = Math.abs(maxPosition - this.amplitude) / this.amplitude * 100;
+                
+                return {
+                    maxEnergyError,
+                    avgEnergyError,
+                    theoreticalPeriod: this.period,
+                    measuredPeriod,
+                    periodError: measuredPeriod ? Math.abs(measuredPeriod - this.period) / this.period * 100 : null,
+                    amplitudeError,
+                    dataPoints: this.history.length
+                };
+            }
+        }
+        
+        function runValidation() {
+            const mass = parseFloat(document.getElementById('mass').value);
+            const k = parseFloat(document.getElementById('springConstant').value);
+            const x0 = parseFloat(document.getElementById('initialPosition').value);
+            const v0 = parseFloat(document.getElementById('initialVelocity').value);
+            const dt = parseFloat(document.getElementById('timeStep').value);
+            const simTime = parseFloat(document.getElementById('simTime').value);
+            
+            const oscillator = new HarmonicOscillator(mass, k, x0, v0, dt);
+            const steps = Math.floor(simTime / dt);
+            
+            // Run simulation
+            for (let i = 0; i < steps; i++) {
+                oscillator.step();
+            }
+            
+            simulationData = oscillator.history;
+            const analytics = oscillator.getAnalytics();
+            
+            // Update visualizations
+            drawPositionGraph();
+            drawEnergyGraph();
+            updateMetrics(analytics);
+            showValidationResults(analytics);
+        }
+        
+        function drawPositionGraph() {
+            const canvas = document.getElementById('positionCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (simulationData.length === 0) return;
+            
+            const margin = 40;
+            const width = canvas.width - 2 * margin;
+            const height = canvas.height - 2 * margin;
+            
+            const maxTime = Math.max(...simulationData.map(d => d.t));
+            const maxPos = Math.max(...simulationData.map(d => Math.abs(d.x)));
+            
+            // Draw axes
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(margin, margin);
+            ctx.lineTo(margin, canvas.height - margin);
+            ctx.lineTo(canvas.width - margin, canvas.height - margin);
+            ctx.stroke();
+            
+            // Draw numerical solution
+            ctx.strokeStyle = '#00ff00';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            simulationData.forEach((point, i) => {
+                const x = margin + (point.t / maxTime) * width;
+                const y = canvas.height - margin - ((point.x + maxPos) / (2 * maxPos)) * height;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            
+            // Draw theoretical solution
+            ctx.strokeStyle = '#ff6b6b';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            simulationData.forEach((point, i) => {
+                const x = margin + (point.t / maxTime) * width;
+                const y = canvas.height - margin - ((point.theoreticalX + maxPos) / (2 * maxPos)) * height;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Labels
+            ctx.fillStyle = 'white';
+            ctx.font = '12px Arial';
+            ctx.fillText('Time (s)', canvas.width / 2, canvas.height - 10);
+            ctx.save();
+            ctx.translate(15, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('Position (m)', 0, 0);
+            ctx.restore();
+            
+            // Legend
+            ctx.fillStyle = '#00ff00';
+            ctx.fillText('Numerical', canvas.width - 120, 30);
+            ctx.fillStyle = '#ff6b6b';
+            ctx.fillText('Theoretical', canvas.width - 120, 50);
+        }
+        
+        function drawEnergyGraph() {
+            const canvas = document.getElementById('energyCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (simulationData.length === 0) return;
+            
+            const margin = 40;
+            const width = canvas.width - 2 * margin;
+            const height = canvas.height - 2 * margin;
+            
+            const maxTime = Math.max(...simulationData.map(d => d.t));
+            const maxEnergy = Math.max(...simulationData.map(d => Math.max(d.kineticEnergy, d.potentialEnergy, d.totalEnergy)));
+            
+            // Draw axes
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(margin, margin);
+            ctx.lineTo(margin, canvas.height - margin);
+            ctx.lineTo(canvas.width - margin, canvas.height - margin);
+            ctx.stroke();
+            
+            // Draw kinetic energy
+            ctx.strokeStyle = '#ff6b6b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            simulationData.forEach((point, i) => {
+                const x = margin + (point.t / maxTime) * width;
+                const y = canvas.height - margin - (point.kineticEnergy / maxEnergy) * height;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            
+            // Draw potential energy
+            ctx.strokeStyle = '#6b6bff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            simulationData.forEach((point, i) => {
+                const x = margin + (point.t / maxTime) * width;
+                const y = canvas.height - margin - (point.potentialEnergy / maxEnergy) * height;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            
+            // Draw total energy
+            ctx.strokeStyle = '#00ff00';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            simulationData.forEach((point, i) => {
+                const x = margin + (point.t / maxTime) * width;
+                const y = canvas.height - margin - (point.totalEnergy / maxEnergy) * height;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            
+            // Labels
+            ctx.fillStyle = 'white';
+            ctx.font = '12px Arial';
+            ctx.fillText('Time (s)', canvas.width / 2, canvas.height - 10);
+            ctx.save();
+            ctx.translate(15, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('Energy (J)', 0, 0);
+            ctx.restore();
+            
+            // Legend
+            ctx.fillStyle = '#ff6b6b';
+            ctx.fillText('Kinetic', canvas.width - 120, 30);
+            ctx.fillStyle = '#6b6bff';
+            ctx.fillText('Potential', canvas.width - 120, 50);
+            ctx.fillStyle = '#00ff00';
+            ctx.fillText('Total', canvas.width - 120, 70);
+        }
+        
+        function updateMetrics(analytics) {
+            if (!analytics) return;
+            
+            document.getElementById('energyVariation').textContent = analytics.maxEnergyError.toFixed(4) + '%';
+            document.getElementById('periodAccuracy').textContent = analytics.periodError ? analytics.periodError.toFixed(2) + '%' : 'N/A';
+            document.getElementById('amplitudeConservation').textContent = analytics.amplitudeError.toFixed(4) + '%';
+            document.getElementById('numericalStability').textContent = analytics.avgEnergyError < 0.01 ? 'Excellent' : 
+                                                                      analytics.avgEnergyError < 0.1 ? 'Good' : 'Poor';
+        }
+        
+        function showValidationResults(analytics) {
+            if (!analytics) return;
+            
+            const resultsDiv = document.getElementById('validationResults');
+            const testResultsDiv = document.getElementById('testResults');
+            
+            const tests = [
+                {
+                    name: 'Energy Conservation (< 0.1%)',
+                    result: analytics.maxEnergyError < 0.1,
+                    value: analytics.maxEnergyError.toFixed(4) + '%',
+                    expected: '< 0.1%'
+                },
+                {
+                    name: 'Period Accuracy (< 1%)',
+                    result: analytics.periodError ? analytics.periodError < 1 : false,
+                    value: analytics.periodError ? analytics.periodError.toFixed(2) + '%' : 'N/A',
+                    expected: '< 1%'
+                },
+                {
+                    name: 'Amplitude Conservation (< 0.5%)',
+                    result: analytics.amplitudeError < 0.5,
+                    value: analytics.amplitudeError.toFixed(4) + '%',
+                    expected: '< 0.5%'
+                },
+                {
+                    name: 'Numerical Stability',
+                    result: analytics.avgEnergyError < 0.01,
+                    value: analytics.avgEnergyError.toFixed(6) + '%',
+                    expected: 'Low drift'
+                }
+            ];
+            
+            let html = '<div style="display: grid; gap: 10px;">';
+            let passCount = 0;
+            
+            tests.forEach(test => {
+                const status = test.result ? 'pass' : 'fail';
+                if (test.result) passCount++;
+                
+                html += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 5px;">
+                        <div>
+                            <span class="status-indicator status-${status}"></span>
+                            <strong>${test.name}</strong>
+                        </div>
+                        <div style="text-align: right;">
+                            <div>Result: ${test.value}</div>
+                            <div style="font-size: 0.9em; opacity: 0.8;">Expected: ${test.expected}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            
+            const overallResult = passCount === tests.length ? 'VALIDATED' : passCount >= 3 ? 'PARTIALLY VALIDATED' : 'FAILED';
+            const confidence = passCount / tests.length;
+            
+            html += `
+                <div style="margin-top: 20px; padding: 15px; background: rgba(0,255,0,0.2); border-radius: 10px; text-align: center;">
+                    <h3>Overall Validation Result: ${overallResult}</h3>
+                    <p><strong>Confidence:</strong> ${(confidence * 100).toFixed(1)}% (${passCount}/${tests.length} tests passed)</p>
+                    <p><strong>Scientific Conclusion:</strong> ${overallResult === 'VALIDATED' ? 
+                        'Classical harmonic oscillator energy conservation confirmed within numerical precision limits.' :
+                        'Some validation criteria not met - requires investigation of numerical methods or parameters.'}</p>
+                </div>
+            `;
+            
+            testResultsDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+        }
+        
+        function resetSimulation() {
+            simulationData = [];
+            document.getElementById('positionCanvas').getContext('2d').clearRect(0, 0, 500, 300);
+            document.getElementById('energyCanvas').getContext('2d').clearRect(0, 0, 500, 300);
+            document.getElementById('validationResults').style.display = 'none';
+            
+            // Reset metrics
+            document.getElementById('energyVariation').textContent = '--';
+            document.getElementById('periodAccuracy').textContent = '--';
+            document.getElementById('amplitudeConservation').textContent = '--';
+            document.getElementById('numericalStability').textContent = '--';
+        }
+        
+        // Initialize with default parameters
+        window.addEventListener('load', () => {
+            // Auto-run validation with default parameters
+            setTimeout(runValidation, 500);
+        });
+    </script>
+</body>
+</html> 

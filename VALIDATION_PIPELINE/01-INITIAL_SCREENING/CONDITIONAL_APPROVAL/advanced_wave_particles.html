@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Advanced Wave Particle System</title>
+<style>
+  body { margin: 0; overflow: hidden; background-color: #000; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="particleCanvas"></canvas>
+<script>
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  const numParticles = 5000;
+  const particles = [];
+  const particleSize = 1;
+  const connectionDistance = 50; // Max distance to draw a line between particles
+
+  // Wave parameters
+  const A1 = 30, k1 = 0.02, w1 = 0.01, k_mod1 = 0.03;
+  const A2 = 30, k2 = 0.02, w2 = 0.015, k_mod2 = 0.03;
+  const A3 = 20, k3 = 0.02, w3 = 0.005, k_mod3 = 0.04;
+  
+  let time = 0;
+
+  // Camera properties
+  let fov = 300; // Field of view - effectively zoom
+  let viewX = 0;
+  let viewY = 0;
+  let viewZ = -500; // Camera Z position, start further back
+
+  class Particle {
+    constructor(x, y, z) {
+      this.x0 = x; // Initial x
+      this.y0 = y; // Initial y
+      this.z0 = z; // Initial z
+      this.x = x;
+      this.y = y;
+      this.z = z;
+      this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    }
+
+    updatePosition(time) {
+      // Advanced wave mathematics
+      this.x = this.x0 + A1 * Math.sin(k1 * this.x0 + w1 * time) * Math.cos(k_mod1 * this.z0);
+      this.y = this.y0 + A2 * Math.sin(k2 * this.y0 + w2 * time) * Math.cos(k_mod2 * this.x0);
+      this.z = this.z0 + A3 * Math.sin(k3 * this.z0 + w3 * time) * Math.cos(k_mod3 * this.y0);
+    }
+
+    project() {
+      // Simple 3D projection
+      const effectiveZ = this.z - viewZ;
+      if (effectiveZ <= 0) return null; // Behind or at camera plane
+
+      const scale = fov / effectiveZ;
+      const x2d = (this.x - viewX) * scale + width / 2;
+      const y2d = (this.y - viewY) * scale + height / 2;
+      return { x: x2d, y: y2d, scale: scale };
+    }
+
+    draw() {
+      const proj = this.project();
+      if (proj) {
+        ctx.beginPath();
+        ctx.arc(proj.x, proj.y, particleSize * proj.scale * (1 + Math.max(0, this.z / 1000)), 0, Math.PI * 2); // Size based on depth
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+  }
+
+  function initParticles() {
+    particles.length = 0; // Clear existing particles
+    const spread = 400; // How spread out the initial particles are
+    for (let i = 0; i < numParticles; i++) {
+      const x = (Math.random() - 0.5) * spread * 2;
+      const y = (Math.random() - 0.5) * spread * 2;
+      const z = (Math.random() - 0.5) * spread * 2;
+      particles.push(new Particle(x, y, z));
+    }
+  }
+  
+  let mouseX = 0, mouseY = 0;
+  let targetViewX = 0, targetViewY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / width) * 2 - 1; // -1 to 1
+    mouseY = (e.clientY / height) * 2 - 1; // -1 to 1
+    targetViewX = mouseX * 100; // Control camera pan with mouse
+    targetViewY = mouseY * 100;
+  });
+  
+  // Add mouse wheel zoom
+  document.addEventListener('wheel', (e) => {
+    fov -= e.deltaY * 0.1;
+    fov = Math.max(50, Math.min(1000, fov)); // Clamp FOV
+  });
+
+
+  function animate() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Semi-transparent black for trails
+    ctx.fillRect(0, 0, width, height);
+
+    time += 0.05;
+
+    // Smooth camera movement
+    viewX += (targetViewX - viewX) * 0.05;
+    viewY += (targetViewY - viewY) * 0.05;
+
+    particles.sort((a, b) => b.z - a.z); // Sort particles by Z for proper depth rendering
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].updatePosition(time);
+      particles[i].draw();
+    }
+    
+    // Optional: Draw lines between nearby particles (can be performance intensive)
+    /*
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+    for (let i = 0; i < particles.length; i++) {
+        const p1_proj = particles[i].project();
+        if (!p1_proj) continue;
+
+        for (let j = i + 1; j < particles.length; j++) {
+            const p2_proj = particles[j].project();
+            if (!p2_proj) continue;
+
+            const dx_proj = p1_proj.x - p2_proj.x;
+            const dy_proj = p1_proj.y - p2_proj.y;
+            const dist_proj_sq = dx_proj * dx_proj + dy_proj * dy_proj;
+
+            // Check distance in screen space to avoid too many lines
+            if (dist_proj_sq < connectionDistance * connectionDistance * p1_proj.scale * p2_proj.scale) {
+                 // Check distance in 3D space as well to make connections more meaningful
+                const dx_3d = particles[i].x - particles[j].x;
+                const dy_3d = particles[i].y - particles[j].y;
+                const dz_3d = particles[i].z - particles[j].z;
+                const dist_3d_sq = dx_3d*dx_3d + dy_3d*dy_3d + dz_3d*dz_3d;
+
+                if (dist_3d_sq < connectionDistance * connectionDistance * 2) { // Use a slightly larger 3D distance
+                    ctx.beginPath();
+                    ctx.moveTo(p1_proj.x, p1_proj.y);
+                    ctx.lineTo(p2_proj.x, p2_proj.y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    */
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    // Re-initialize or adjust particles if necessary, or just let projection handle it
+    // initParticles(); // Uncomment if particle distribution should adapt to new size
+  });
+
+  initParticles();
+  animate();
+</script>
+</body>
+</html> 

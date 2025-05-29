@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Wave Visualization</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Scene, Camera, Renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Particles
+        const particleCount = 5000;
+        const particles = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+        const color = new THREE.Color();
+
+        for (let i = 0; i < particleCount; i++) {
+            // Initial positions (random sphere)
+            const R = 200;
+            const phi = Math.acos(-1 + (2 * i) / particleCount);
+            const theta = Math.sqrt(particleCount * Math.PI) * phi;
+            
+            positions[i * 3] = R * Math.cos(theta) * Math.sin(phi);
+            positions[i * 3 + 1] = R * Math.sin(theta) * Math.sin(phi);
+            positions[i * 3 + 2] = R * Math.cos(phi);
+
+            // Colors
+            color.setHSL(i / particleCount, 1.0, 0.5);
+            colors[i * 3] = color.r;
+            colors[i * 3 + 1] = color.g;
+            colors[i * 3 + 2] = color.b;
+        }
+
+        particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+            size: 1.5,
+            vertexColors: true,
+            blending: THREE.AdditiveBlending,
+            transparent: true,
+            opacity: 0.7
+        });
+
+        const particleSystem = new THREE.Points(particles, particleMaterial);
+        scene.add(particleSystem);
+
+        camera.position.z = 300;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = Date.now() * 0.0005;
+            particleSystem.rotation.y = time * 0.1;
+            particleSystem.rotation.x = time * 0.05;
+
+            // Example of simple wave-like motion for particles
+            // This is where more advanced wave math would go.
+            const posAttribute = particleSystem.geometry.getAttribute('position');
+            for (let i = 0; i < particleCount; i++) {
+                const x = posAttribute.getX(i);
+                const y = posAttribute.getY(i);
+                const z = posAttribute.getZ(i);
+                
+                // Simple oscillation - placeholder for complex wave math
+                // Affect y position based on x and z, and time
+                const waveFactor = 0.1; // Amplitude of wave
+                const speedFactor = 0.5; // Speed of wave
+                const lengthFactor = 0.02; // Wavelength
+                
+                // A simple sinusoidal wave propagating along x
+                // posAttribute.setY(i, y + Math.sin(x * lengthFactor + time * speedFactor) * waveFactor * 10 );
+
+                // A more complex interaction: particles move radially based on a time-varying wave
+                // This is a very basic example; true cosmic wave structures would involve more complex physics.
+                const dist = Math.sqrt(x*x + y*y + z*z);
+                if (dist > 0) { // Avoid division by zero
+                    const radialWave = Math.sin(dist * lengthFactor - time * speedFactor) * waveFactor;
+                    const scaleFactor = 1 + radialWave * 0.1; // Modulate distance from origin
+
+                    // Apply scaling to original spherical distribution
+                    // This requires storing original positions or recalculating them based on initial parameters.
+                    // For simplicity, let's just modulate their current y position based on distance.
+                     posAttribute.setY(i, posAttribute.getY(i) + Math.sin(dist * 0.05 + time) * 5);
+                }
+            }
+            posAttribute.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }, false);
+
+    </script>
+</body>
+</html> 
