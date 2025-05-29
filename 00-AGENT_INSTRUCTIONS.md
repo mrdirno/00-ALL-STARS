@@ -50,14 +50,189 @@ Follow these global standards for cross-platform compatibility:
 - **Multi-line commits encouraged**: Include findings, measurements, and technical details in commit body
 - **Commit history is single source of truth**: Avoid creating files unless absolutely necessary for operation
 
-### Model Identification
-- **Always identify yourself** in commits and context documents
-- **If model name known**: Use specific model (e.g., "Claude 3.5 Sonnet", "GPT-4", "Gemini Pro")
-- **If uncertain**: Use company + current date: "Anthropic-2025-01-28", "OpenAI-2025-01-28"
-- **Get current date**: Use `Get-Date -Format "yyyy-MM-dd"` command (PowerShell) or `date +%Y-%m-%d` (bash), never rely on memory
-- **Commit format examples**: 
-  - `git commit -m "AGENT:Claude-3.5-Sonnet Method-Name: Achievement description"`
-  - `git commit -m "AGENT:Anthropic-2025-01-28 Method-Name: Achievement description"`
+### GIT TAGGING AND METADATA SYSTEM
+
+#### Semantic Tag Structure:
+```bash
+# Format: [agent-id].[category].[domain].[type].[version]
+# Examples:
+git tag claude-35.discovery.physics.breakthrough.v1.0
+git tag claude-35.optimization.computation.performance.v2.1
+git tag gemini-25.implementation.quantum.simulation.v1.0
+git tag gpt-4.validation.mathematics.proof.v1.0
+```
+
+#### Agent ID Tags:
+- `claude-35` - Claude 3.5 Sonnet
+- `claude-4` - Claude 4 (if available)
+- `gemini-25` - Gemini 2.5 Pro
+- `gpt-4` - GPT-4 variants
+- `anthropic-[date]` - Generic Anthropic models
+- `openai-[date]` - Generic OpenAI models
+
+#### Category Tags:
+- `discovery` - Novel findings or breakthroughs
+- `implementation` - New simulations or tools
+- `optimization` - Performance improvements
+- `validation` - Testing and verification
+- `synthesis` - Cross-domain integration
+- `debug` - Bug fixes and corrections
+- `documentation` - Essential documentation updates
+- `infrastructure` - Project structure improvements
+
+#### Domain Tags:
+- `physics` - Physics simulations and theory
+- `quantum` - Quantum mechanics and field theory
+- `cosmic` - Cosmology and large-scale structure
+- `mathematics` - Mathematical frameworks
+- `computation` - Computational methods and algorithms
+- `synthesis` - Cross-domain theoretical work
+- `visualization` - Graphics and rendering
+- `audio` - Sound and acoustic modeling
+
+#### Type Tags:
+- `breakthrough` - Major scientific discoveries
+- `simulation` - Interactive simulations
+- `algorithm` - New computational methods
+- `framework` - Theoretical frameworks
+- `performance` - Optimization achievements
+- `proof` - Mathematical proofs
+- `experiment` - Experimental validations
+- `tool` - Development tools
+
+#### Version Tags:
+- `v1.0` - Initial implementation
+- `v1.1` - Minor improvements
+- `v2.0` - Major revisions
+- `v2.1` - Performance optimizations
+- Use semantic versioning principles
+
+#### Tagging Workflow:
+```powershell
+# After significant commits, add appropriate tags
+git tag -a claude-35.discovery.physics.breakthrough.v1.0 -m "Quantum-classical resonance bridge discovery
+
+DISCOVERY TAG DETAILS:
+- Agent: Claude 3.5 Sonnet
+- Category: Major breakthrough discovery
+- Domain: Quantum physics / cosmology bridge
+- Type: Novel theoretical framework
+- Version: Initial discovery implementation
+
+TECHNICAL METADATA:
+- Mathematical framework: ψ(x,t) = Σ[A_n * exp(iω_n*t) * φ_n(x)]
+- Scale range: 10^-35m to Mpc scales
+- Performance: 200K particles at 60 FPS
+- Validation: 5 reasoning approaches applied
+- Accuracy: <0.001% energy conservation error
+
+RESEARCH CLASSIFICATION:
+- Primary: Quantum gravity theory
+- Secondary: Cosmological structure formation
+- Applications: Unified field simulations
+- Impact: Opens new research directions"
+
+# Push tags to remote
+git push origin --tags
+```
+
+#### Search and Discovery Patterns:
+```bash
+# Find all discoveries by Claude 3.5 Sonnet
+git tag -l "claude-35.discovery.*"
+
+# Find all physics-related breakthroughs
+git tag -l "*.physics.breakthrough.*"
+
+# Find all optimization work
+git tag -l "*.optimization.*"
+
+# View tag details
+git show claude-35.discovery.physics.breakthrough.v1.0
+
+# Find commits between tag versions
+git log claude-35.physics.simulation.v1.0..claude-35.physics.simulation.v2.0
+
+# List all agent contributions
+git tag -l "*discovery*" | grep claude-35
+```
+
+#### Multi-Agent Collaboration Tags:
+```bash
+# Collaborative work tags
+git tag -a multi-agent.synthesis.quantum-cosmic.framework.v1.0 -m "Multi-agent collaborative synthesis
+
+COLLABORATION DETAILS:
+- Primary Agent: Claude 3.5 Sonnet (theoretical framework)
+- Secondary Agent: Gemini 2.5 Pro (mathematical modeling)
+- Validation Agent: GPT-4 (cross-verification)
+
+SYNTHESIS ACHIEVEMENT:
+Combined quantum field theory with cosmic structure modeling
+to create unified computational framework for scale-invariant simulations.
+
+AGENT CONTRIBUTIONS:
+- Claude-35: Bootstrap reasoning and theoretical foundations
+- Gemini-25: Spherical harmonics optimization
+- GPT-4: Mathematical consistency validation
+
+INTEGRATION METRICS:
+- Performance: 300K particles at 45 FPS
+- Accuracy: Sub-quantum precision maintained
+- Scope: 10^-35m to Gpc scale coverage"
+```
+
+#### Tag-Based Project Organization:
+```bash
+# Create milestone tags for major achievements
+git tag -a milestone.physics-simulations.complete.v1.0 -m "Complete physics simulation collection validated
+
+MILESTONE ACHIEVEMENT:
+70 physics simulations successfully implemented and validated
+100% success rate across all implementation categories
+
+SCOPE COMPLETED:
+- Wave Mechanics & Harmonics: 35 simulations
+- Cosmic Structure: 20 simulations  
+- Quantum Physics: 10 simulations
+- Advanced Computational: 5 simulations
+
+QUALITY METRICS:
+- All files pass structural validation
+- Performance targets met across all categories
+- Mathematical accuracy verified
+- Cross-browser compatibility confirmed"
+
+# Create research direction tags
+git tag -a research.quantum-gravity.unified-field.v1.0 -m "Quantum gravity research direction established"
+git tag -a research.cosmic-structure.resonance-cascade.v1.0 -m "Cosmic resonance research direction"
+```
+
+#### Automated Tag Suggestions:
+```powershell
+# Function to suggest tags based on commit content
+function Suggest-GitTag {
+    param($CommitMessage)
+    
+    $agent = "claude-35"  # Detect from commit message
+    $category = "implementation"  # Default
+    $domain = "physics"  # Default
+    $type = "simulation"  # Default
+    $version = "v1.0"  # Default
+    
+    # Parse commit message for keywords
+    if ($CommitMessage -match "discovery|breakthrough|novel") { $category = "discovery"; $type = "breakthrough" }
+    if ($CommitMessage -match "optimization|performance|faster") { $category = "optimization"; $type = "performance" }
+    if ($CommitMessage -match "validation|verification|testing") { $category = "validation"; $type = "proof" }
+    if ($CommitMessage -match "quantum") { $domain = "quantum" }
+    if ($CommitMessage -match "cosmic|cosmology") { $domain = "cosmic" }
+    if ($CommitMessage -match "mathematics|mathematical") { $domain = "mathematics" }
+    
+    $suggestedTag = "$agent.$category.$domain.$type.$version"
+    Write-Host "Suggested tag: $suggestedTag"
+    return $suggestedTag
+}
+```
 
 ### MANDATORY STARTUP SEQUENCE
 
@@ -525,17 +700,13 @@ When you receive this instruction set again:
    - Each significant action gets a detailed commit message
    - Include technical details, measurements, reasoning in commit body
    - Use commit history as complete project documentation
+   - **Add appropriate tags for major achievements**
 
-4. **File Creation Discipline**
-   - Create files ONLY for:
-     - Actual implementations (simulations, tools, code)
-     - Essential operational files (README.md, package.json)
-     - User-requested deliverables
-   - Do NOT create files for:
-     - Validation reports (use commit messages)
-     - Discovery documentation (use commit messages)  
-     - Progress tracking (use commit messages)
-     - Analysis summaries (use commit messages)
+4. **Tag Significant Work**
+   - Use semantic tag structure for discoveries, optimizations, implementations
+   - Create milestone tags for major project completions
+   - Enable easy search and organization of AI agent contributions
+   - Push tags to remote for persistent metadata
 
 ### ERROR HANDLING AND BLOCKERS
 
@@ -661,10 +832,14 @@ Single line description of active work
 2. Secondary priority  
 3. Future consideration
 
-## Recent Major Commits
-- commit_hash: Brief description
-- commit_hash: Brief description
-(Details are in commit messages, not here)
+## Recent Major Commits & Tags
+- commit_hash: Brief description [tag: claude-35.discovery.physics.breakthrough.v1.0]
+- commit_hash: Brief description [tag: claude-35.optimization.computation.performance.v1.1]
+(Technical details are in commit messages and tag annotations, not here)
+
+## Active Research Tags
+- research.quantum-gravity.unified-field.v1.0
+- research.cosmic-structure.resonance-cascade.v1.0
 ```
 
 #### Breakthrough Discovery Protocol:
@@ -715,3 +890,13 @@ NEXT RESEARCH DIRECTIONS:
 - Validate against latest CMB observation data
 - Explore applications to quantum computing optimization
 ```
+
+### Model Identification
+- **Always identify yourself** in commits and context documents
+- **If model name known**: Use specific model (e.g., "Claude 3.5 Sonnet", "GPT-4", "Gemini Pro")
+- **If uncertain**: Use company + current date: "Anthropic-2025-01-28", "OpenAI-2025-01-28"
+- **Get current date**: Use `Get-Date -Format "yyyy-MM-dd"` command (PowerShell) or `date +%Y-%m-%d` (bash), never rely on memory
+- **Commit format examples**: 
+  - `git commit -m "AGENT:Claude-3.5-Sonnet Method-Name: Achievement description"`
+  - `git commit -m "AGENT:Anthropic-2025-01-28 Method-Name: Achievement description"`
+- **Tag format**: Use agent ID from tagging system (e.g., `claude-35`, `anthropic-[date]`)
