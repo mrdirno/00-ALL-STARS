@@ -1,0 +1,22 @@
+{
+  "file_name": "quantum-vacuum-fluctuations.html",
+  "rejection_timestamp": "2025-05-29T04:08:48.045425",
+  "validator": "Claude-3.5-Sonnet",
+  "validation_score": 0.0,
+  "total_errors": 13,
+  "high_severity_errors": 9,
+  "final_recommendation": "REJECT - Critical mathematical errors",
+  "rejection_reasons": [
+    "Failed rigorous scientific validation",
+    "Multiple mathematical errors detected",
+    "Code quality issues identified",
+    "Claims not supported by evidence"
+  ],
+  "required_for_resubmission": [
+    "Fix all mathematical errors",
+    "Provide rigorous scientific evidence",
+    "Address dimensional analysis failures",
+    "Implement proper edge case handling",
+    "Validate all physical constants"
+  ]
+}
