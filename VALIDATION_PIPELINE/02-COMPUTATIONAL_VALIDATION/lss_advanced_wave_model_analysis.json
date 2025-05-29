@@ -1,0 +1,48 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/lss_advanced_wave_model.html",
+  "file_size": 40945,
+  "analysis_timestamp": "2025-05-29T03:40:29.821971+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 40934,
+  "line_count": 771,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": true,
+  "contains_three_js": true,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 35,
+    "\\d+\\.\\d+": 180,
+    "[+\\-*/=]": 1390,
+    "sin|cos|tan|sqrt|pow|exp|log": 88,
+    "\u03c0|pi|PI": 29,
+    "\u2206|delta|\u0394": 13
+  },
+  "physics_content": {
+    "energy_conservation": 47,
+    "wave_mechanics": 62,
+    "particle_dynamics": 108,
+    "electromagnetism": 3
+  },
+  "computational_complexity": {
+    "loops": 3,
+    "functions": 9,
+    "arrays": 3,
+    "calculations": 53
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.8,
+    "computational_complexity": 1.0,
+    "overall_score": 0.9200000000000002
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

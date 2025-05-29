@@ -1,0 +1,46 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/nonlinear_wave_filament_sim_A1.html",
+  "file_size": 52537,
+  "analysis_timestamp": "2025-05-29T03:40:29.733561+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 52493,
+  "line_count": 799,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": true,
+  "contains_three_js": true,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 55,
+    "\\d+\\.\\d+": 232,
+    "[+\\-*/=]": 1503,
+    "sin|cos|tan|sqrt|pow|exp|log": 56,
+    "\u03c0|pi|PI": 19
+  },
+  "physics_content": {
+    "wave_mechanics": 169,
+    "particle_dynamics": 134,
+    "electromagnetism": 1
+  },
+  "computational_complexity": {
+    "loops": 7,
+    "functions": 14,
+    "arrays": 12,
+    "calculations": 74
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.6000000000000001,
+    "computational_complexity": 1.0,
+    "overall_score": 0.8400000000000001
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/next_gen_ellipsoidal_cymatics_2025.html",
+  "file_size": 44669,
+  "analysis_timestamp": "2025-05-29T03:40:29.807509+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 44645,
+  "line_count": 1065,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": false,
+  "contains_three_js": false,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 78,
+    "\\d+\\.\\d+": 87,
+    "[+\\-*/=]": 1201,
+    "sin|cos|tan|sqrt|pow|exp|log": 85,
+    "\u03c0|pi|PI": 17,
+    "\u2206|delta|\u0394": 3
+  },
+  "physics_content": {
+    "wave_mechanics": 31,
+    "particle_dynamics": 134,
+    "quantum_mechanics": 40,
+    "electromagnetism": 20
+  },
+  "computational_complexity": {
+    "loops": 19,
+    "functions": 0,
+    "arrays": 11,
+    "calculations": 105
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.8,
+    "computational_complexity": 0.7,
+    "overall_score": 0.8600000000000001
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

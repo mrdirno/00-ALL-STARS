@@ -1,0 +1,48 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_3d_ellipsoidal_harmonics_2025.html",
+  "file_size": 28680,
+  "analysis_timestamp": "2025-05-29T03:40:29.631940+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 28675,
+  "line_count": 605,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": false,
+  "contains_three_js": true,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 76,
+    "\\d+\\.\\d+": 135,
+    "[+\\-*/=]": 1028,
+    "sin|cos|tan|sqrt|pow|exp|log": 52,
+    "\u03c0|pi|PI": 19
+  },
+  "physics_content": {
+    "energy_conservation": 15,
+    "wave_mechanics": 11,
+    "particle_dynamics": 27,
+    "quantum_mechanics": 25,
+    "electromagnetism": 11
+  },
+  "computational_complexity": {
+    "loops": 3,
+    "functions": 8,
+    "arrays": 3,
+    "calculations": 78
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 1.0,
+    "computational_complexity": 1.0,
+    "overall_score": 1.0
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

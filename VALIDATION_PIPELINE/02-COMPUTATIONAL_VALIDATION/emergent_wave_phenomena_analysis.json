@@ -1,0 +1,48 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/emergent_wave_phenomena.html",
+  "file_size": 53258,
+  "analysis_timestamp": "2025-05-29T03:40:29.880051+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 53210,
+  "line_count": 903,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": true,
+  "contains_three_js": true,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 61,
+    "\\d+\\.\\d+": 217,
+    "[+\\-*/=]": 1525,
+    "sin|cos|tan|sqrt|pow|exp|log": 64,
+    "\u03c0|pi|PI": 28,
+    "\u2206|delta|\u0394": 1
+  },
+  "physics_content": {
+    "wave_mechanics": 122,
+    "particle_dynamics": 126,
+    "quantum_mechanics": 1,
+    "electromagnetism": 2
+  },
+  "computational_complexity": {
+    "loops": 2,
+    "functions": 11,
+    "arrays": 9,
+    "calculations": 78
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.8,
+    "computational_complexity": 1.0,
+    "overall_score": 0.9200000000000002
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/sample_physics_research.txt",
+  "file_size": 1933,
+  "analysis_timestamp": "2025-05-29T03:40:29.668061+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 1907,
+  "line_count": 43,
+  "contains_html": false,
+  "contains_javascript": false,
+  "contains_css": false,
+  "contains_webgl": false,
+  "contains_three_js": false,
+  "contains_physics": true,
+  "mathematical_content": {
+    "\\d+\\.\\d+": 5,
+    "[+\\-*/=]": 43,
+    "sin|cos|tan|sqrt|pow|exp|log": 10,
+    "\u03c0|pi|PI": 2
+  },
+  "physics_content": {
+    "energy_conservation": 19,
+    "wave_mechanics": 2,
+    "particle_dynamics": 2
+  },
+  "computational_complexity": {
+    "loops": 0,
+    "functions": 0,
+    "arrays": 0,
+    "calculations": 0
+  },
+  "validation_score": {
+    "content_quality": 0.5,
+    "physics_relevance": 0.6000000000000001,
+    "computational_complexity": 0.0,
+    "overall_score": 0.44000000000000006
+  },
+  "recommendation": "REQUIRES_REVIEW",
+  "next_stage": "01-INITIAL_SCREENING",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

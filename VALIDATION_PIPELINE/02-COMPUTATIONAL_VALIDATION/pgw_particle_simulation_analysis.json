@@ -1,0 +1,47 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/pgw_particle_simulation.html",
+  "file_size": 44805,
+  "analysis_timestamp": "2025-05-29T03:40:29.898786+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 44772,
+  "line_count": 771,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": true,
+  "contains_three_js": true,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 43,
+    "\\d+\\.\\d+": 206,
+    "[+\\-*/=]": 1289,
+    "sin|cos|tan|sqrt|pow|exp|log": 45,
+    "\u03c0|pi|PI": 20,
+    "\u2206|delta|\u0394": 12
+  },
+  "physics_content": {
+    "wave_mechanics": 47,
+    "particle_dynamics": 171,
+    "electromagnetism": 1
+  },
+  "computational_complexity": {
+    "loops": 4,
+    "functions": 21,
+    "arrays": 5,
+    "calculations": 61
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.6000000000000001,
+    "computational_complexity": 1.0,
+    "overall_score": 0.8400000000000001
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/enhanced_ellipsoidal_cymatics_optimized.html",
+  "file_size": 29176,
+  "analysis_timestamp": "2025-05-29T03:40:29.874767+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 29167,
+  "line_count": 695,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": true,
+  "contains_three_js": true,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 47,
+    "\\d+\\.\\d+": 75,
+    "[+\\-*/=]": 881,
+    "sin|cos|tan|sqrt|pow|exp|log": 41,
+    "\u03c0|pi|PI": 13
+  },
+  "physics_content": {
+    "energy_conservation": 17,
+    "wave_mechanics": 37,
+    "particle_dynamics": 62
+  },
+  "computational_complexity": {
+    "loops": 5,
+    "functions": 19,
+    "arrays": 3,
+    "calculations": 60
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.6000000000000001,
+    "computational_complexity": 1.0,
+    "overall_score": 0.8400000000000001
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

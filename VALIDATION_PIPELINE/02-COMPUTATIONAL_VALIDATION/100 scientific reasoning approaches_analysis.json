@@ -1,0 +1,46 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/100 scientific reasoning approaches.html",
+  "file_size": 36125,
+  "analysis_timestamp": "2025-05-29T03:40:29.517553+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 35728,
+  "line_count": 497,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": false,
+  "contains_three_js": false,
+  "contains_physics": true,
+  "mathematical_content": {
+    "\\d+\\.\\d+": 16,
+    "[+\\-*/=]": 309,
+    "sin|cos|tan|sqrt|pow|exp|log": 150,
+    "\u03c0|pi|PI": 15
+  },
+  "physics_content": {
+    "energy_conservation": 10,
+    "wave_mechanics": 3,
+    "quantum_mechanics": 5,
+    "electromagnetism": 5
+  },
+  "computational_complexity": {
+    "loops": 0,
+    "functions": 2,
+    "arrays": 0,
+    "calculations": 0
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.8,
+    "computational_complexity": 0.3,
+    "overall_score": 0.78
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

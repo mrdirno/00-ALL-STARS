@@ -1,0 +1,3617 @@
+{
+  "processing_start": "2025-05-29T03:40:29.458465+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "items_processed": [
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/ultra_advanced_ellipsoidal_harmonics_2025.html",
+      "file_size": 37570,
+      "analysis_timestamp": "2025-05-29T03:40:29.458828+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 37515,
+      "line_count": 828,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 74,
+        "\\d+\\.\\d+": 90,
+        "[+\\-*/=]": 1125,
+        "sin|cos|tan|sqrt|pow|exp|log": 51,
+        "\u03c0|pi|PI": 40
+      },
+      "physics_content": {
+        "wave_mechanics": 42,
+        "particle_dynamics": 77,
+        "quantum_mechanics": 4
+      },
+      "computational_complexity": {
+        "loops": 8,
+        "functions": 3,
+        "arrays": 5,
+        "calculations": 81
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/bao_wave_visualization.html",
+      "file_size": 13954,
+      "analysis_timestamp": "2025-05-29T03:40:29.465748+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 13954,
+      "line_count": 299,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 11,
+        "\\d+\\.\\d+": 63,
+        "[+\\-*/=]": 371,
+        "sin|cos|tan|sqrt|pow|exp|log": 7,
+        "\u03c0|pi|PI": 15,
+        "\u2206|delta|\u0394": 7
+      },
+      "physics_content": {
+        "energy_conservation": 20,
+        "wave_mechanics": 2,
+        "particle_dynamics": 59
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 7,
+        "arrays": 2,
+        "calculations": 33
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced-wave-sim-enhanced-v2.html",
+      "file_size": 38985,
+      "analysis_timestamp": "2025-05-29T03:40:29.467968+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 38940,
+      "line_count": 833,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 76,
+        "\\d+\\.\\d+": 146,
+        "[+\\-*/=]": 1234,
+        "sin|cos|tan|sqrt|pow|exp|log": 69,
+        "\u03c0|pi|PI": 19,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 16,
+        "wave_mechanics": 84,
+        "particle_dynamics": 92,
+        "quantum_mechanics": 4,
+        "electromagnetism": 2
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 15,
+        "arrays": 3,
+        "calculations": 97
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/quantum_acoustic_metamaterial_cymatics_2025.html",
+      "file_size": 36309,
+      "analysis_timestamp": "2025-05-29T03:40:29.475050+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 36277,
+      "line_count": 838,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 54,
+        "\\d+\\.\\d+": 163,
+        "[+\\-*/=]": 1091,
+        "sin|cos|tan|sqrt|pow|exp|log": 61,
+        "\u03c0|pi|PI": 8,
+        "\u2206|delta|\u0394": 5
+      },
+      "physics_content": {
+        "wave_mechanics": 41,
+        "particle_dynamics": 62,
+        "quantum_mechanics": 123,
+        "electromagnetism": 1
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 17,
+        "arrays": 3,
+        "calculations": 61
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/khronos_spheroidal_cymatics_2025.html",
+      "file_size": 38749,
+      "analysis_timestamp": "2025-05-29T03:40:29.481501+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 38739,
+      "line_count": 860,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 82,
+        "\\d+\\.\\d+": 172,
+        "[+\\-*/=]": 1307,
+        "sin|cos|tan|sqrt|pow|exp|log": 113,
+        "\u03c0|pi|PI": 14,
+        "\u2206|delta|\u0394": 3
+      },
+      "physics_content": {
+        "energy_conservation": 10,
+        "wave_mechanics": 31,
+        "particle_dynamics": 115,
+        "electromagnetism": 8
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 14,
+        "arrays": 3,
+        "calculations": 101
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_resonance_cascade_sim_A1.html",
+      "file_size": 21606,
+      "analysis_timestamp": "2025-05-29T03:40:29.488690+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 21565,
+      "line_count": 322,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 3,
+        "\\d+\\.\\d+": 138,
+        "[+\\-*/=]": 706,
+        "sin|cos|tan|sqrt|pow|exp|log": 15,
+        "\u03c0|pi|PI": 7
+      },
+      "physics_content": {
+        "energy_conservation": 9,
+        "wave_mechanics": 26,
+        "particle_dynamics": 19,
+        "electromagnetism": 12
+      },
+      "computational_complexity": {
+        "loops": 0,
+        "functions": 1,
+        "arrays": 0,
+        "calculations": 3
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 0.7,
+        "overall_score": 0.8600000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/ultra_advanced_cosmic_harmonics_2025.html",
+      "file_size": 45081,
+      "analysis_timestamp": "2025-05-29T03:40:29.492725+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 45074,
+      "line_count": 954,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 133,
+        "\\d+\\.\\d+": 169,
+        "[+\\-*/=]": 1434,
+        "sin|cos|tan|sqrt|pow|exp|log": 184,
+        "\u03c0|pi|PI": 20,
+        "\u2206|delta|\u0394": 2
+      },
+      "physics_content": {
+        "energy_conservation": 15,
+        "wave_mechanics": 67,
+        "particle_dynamics": 80,
+        "electromagnetism": 2
+      },
+      "computational_complexity": {
+        "loops": 8,
+        "functions": 18,
+        "arrays": 5,
+        "calculations": 141
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced-wave-structures-enhanced.html",
+      "file_size": 35401,
+      "analysis_timestamp": "2025-05-29T03:40:29.500581+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 35379,
+      "line_count": 766,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 54,
+        "\\d+\\.\\d+": 126,
+        "[+\\-*/=]": 1094,
+        "sin|cos|tan|sqrt|pow|exp|log": 65,
+        "\u03c0|pi|PI": 11,
+        "\u2206|delta|\u0394": 16
+      },
+      "physics_content": {
+        "energy_conservation": 16,
+        "wave_mechanics": 27,
+        "particle_dynamics": 91,
+        "electromagnetism": 3
+      },
+      "computational_complexity": {
+        "loops": 7,
+        "functions": 15,
+        "arrays": 3,
+        "calculations": 75
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/enhanced_spherical_harmonics_cymatics.html",
+      "file_size": 25396,
+      "analysis_timestamp": "2025-05-29T03:40:29.506973+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 25378,
+      "line_count": 566,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 65,
+        "\\d+\\.\\d+": 71,
+        "[+\\-*/=]": 849,
+        "sin|cos|tan|sqrt|pow|exp|log": 52,
+        "\u03c0|pi|PI": 13,
+        "\u2206|delta|\u0394": 10
+      },
+      "physics_content": {
+        "energy_conservation": 13,
+        "wave_mechanics": 55,
+        "particle_dynamics": 59,
+        "quantum_mechanics": 1,
+        "electromagnetism": 4
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 8,
+        "arrays": 4,
+        "calculations": 79
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/experimental_validation_framework.html",
+      "file_size": 33741,
+      "analysis_timestamp": "2025-05-29T03:40:29.511803+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 33734,
+      "line_count": 860,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 6,
+        "\\d+\\.\\d+": 67,
+        "[+\\-*/=]": 742,
+        "sin|cos|tan|sqrt|pow|exp|log": 90
+      },
+      "physics_content": {
+        "energy_conservation": 58,
+        "wave_mechanics": 16,
+        "particle_dynamics": 12,
+        "quantum_mechanics": 30
+      },
+      "computational_complexity": {
+        "loops": 0,
+        "functions": 1,
+        "arrays": 0,
+        "calculations": 6
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 0.7,
+        "overall_score": 0.8600000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/100 scientific reasoning approaches.html",
+      "file_size": 36125,
+      "analysis_timestamp": "2025-05-29T03:40:29.517553+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 35728,
+      "line_count": 497,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "\\d+\\.\\d+": 16,
+        "[+\\-*/=]": 309,
+        "sin|cos|tan|sqrt|pow|exp|log": 150,
+        "\u03c0|pi|PI": 15
+      },
+      "physics_content": {
+        "energy_conservation": 10,
+        "wave_mechanics": 3,
+        "quantum_mechanics": 5,
+        "electromagnetism": 5
+      },
+      "computational_complexity": {
+        "loops": 0,
+        "functions": 2,
+        "arrays": 0,
+        "calculations": 0
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 0.3,
+        "overall_score": 0.78
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_sim_A1_minimal.html",
+      "file_size": 8882,
+      "analysis_timestamp": "2025-05-29T03:40:29.524053+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 8882,
+      "line_count": 194,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 29,
+        "\\d+\\.\\d+": 23,
+        "[+\\-*/=]": 286,
+        "sin|cos|tan|sqrt|pow|exp|log": 18,
+        "\u03c0|pi|PI": 10,
+        "\u2206|delta|\u0394": 15
+      },
+      "physics_content": {
+        "energy_conservation": 18,
+        "wave_mechanics": 3,
+        "particle_dynamics": 61
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 9,
+        "arrays": 3,
+        "calculations": 41
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/wave-mechanics-structure.html",
+      "file_size": 65107,
+      "analysis_timestamp": "2025-05-29T03:40:29.525685+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 65027,
+      "line_count": 1171,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 76,
+        "\\d+\\.\\d+": 288,
+        "[+\\-*/=]": 1919,
+        "sin|cos|tan|sqrt|pow|exp|log": 126,
+        "\u03c0|pi|PI": 27,
+        "\u2206|delta|\u0394": 22
+      },
+      "physics_content": {
+        "energy_conservation": 41,
+        "wave_mechanics": 90,
+        "particle_dynamics": 168,
+        "quantum_mechanics": 2,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 19,
+        "arrays": 3,
+        "calculations": 105
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/interference_wave_simulation.html",
+      "file_size": 63725,
+      "analysis_timestamp": "2025-05-29T03:40:29.536790+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 63645,
+      "line_count": 1158,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 62,
+        "\\d+\\.\\d+": 271,
+        "[+\\-*/=]": 1821,
+        "sin|cos|tan|sqrt|pow|exp|log": 120,
+        "\u03c0|pi|PI": 19,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 15,
+        "wave_mechanics": 79,
+        "particle_dynamics": 162,
+        "quantum_mechanics": 2,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 84
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/quantum-gravitational-wave-lensing-supersolid-dark-matter-2025.html",
+      "file_size": 24688,
+      "analysis_timestamp": "2025-05-29T03:40:29.547706+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 24673,
+      "line_count": 592,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 45,
+        "\\d+\\.\\d+": 98,
+        "[+\\-*/=]": 744,
+        "sin|cos|tan|sqrt|pow|exp|log": 42,
+        "\u03c0|pi|PI": 8,
+        "\u2206|delta|\u0394": 20
+      },
+      "physics_content": {
+        "energy_conservation": 5,
+        "wave_mechanics": 32,
+        "particle_dynamics": 50,
+        "quantum_mechanics": 26,
+        "electromagnetism": 29
+      },
+      "computational_complexity": {
+        "loops": 10,
+        "functions": 16,
+        "arrays": 7,
+        "calculations": 67
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/ultimate_enhanced_3d_cosmic_cymatics_2025.html",
+      "file_size": 39881,
+      "analysis_timestamp": "2025-05-29T03:40:29.552351+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 39853,
+      "line_count": 894,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 63,
+        "\\d+\\.\\d+": 119,
+        "[+\\-*/=]": 1074,
+        "sin|cos|tan|sqrt|pow|exp|log": 96,
+        "\u03c0|pi|PI": 29,
+        "\u2206|delta|\u0394": 9
+      },
+      "physics_content": {
+        "energy_conservation": 10,
+        "wave_mechanics": 97,
+        "particle_dynamics": 141,
+        "quantum_mechanics": 31,
+        "electromagnetism": 3
+      },
+      "computational_complexity": {
+        "loops": 9,
+        "functions": 1,
+        "arrays": 3,
+        "calculations": 97
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/lensed_wave_simulation.html",
+      "file_size": 66124,
+      "analysis_timestamp": "2025-05-29T03:40:29.559171+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 66044,
+      "line_count": 1201,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 64,
+        "\\d+\\.\\d+": 277,
+        "[+\\-*/=]": 1923,
+        "sin|cos|tan|sqrt|pow|exp|log": 132,
+        "\u03c0|pi|PI": 19,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 15,
+        "wave_mechanics": 80,
+        "particle_dynamics": 163,
+        "quantum_mechanics": 2,
+        "thermodynamics": 1,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 89
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_particles.html",
+      "file_size": 5571,
+      "analysis_timestamp": "2025-05-29T03:40:29.570302+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 5571,
+      "line_count": 170,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 14,
+        "\\d+\\.\\d+": 18,
+        "[+\\-*/=]": 253,
+        "sin|cos|tan|sqrt|pow|exp|log": 16,
+        "\u03c0|pi|PI": 1,
+        "\u2206|delta|\u0394": 1
+      },
+      "physics_content": {
+        "wave_mechanics": 3,
+        "particle_dynamics": 36,
+        "electromagnetism": 1
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 2,
+        "arrays": 1,
+        "calculations": 18
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/ultra_advanced_spherical_harmonics_2025.html",
+      "file_size": 25788,
+      "analysis_timestamp": "2025-05-29T03:40:29.571554+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 25783,
+      "line_count": 590,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 41,
+        "\\d+\\.\\d+": 93,
+        "[+\\-*/=]": 799,
+        "sin|cos|tan|sqrt|pow|exp|log": 37,
+        "\u03c0|pi|PI": 16,
+        "\u2206|delta|\u0394": 2
+      },
+      "physics_content": {
+        "energy_conservation": 16,
+        "wave_mechanics": 36,
+        "particle_dynamics": 55,
+        "quantum_mechanics": 6
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 11,
+        "arrays": 3,
+        "calculations": 47
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/lss_wave_formation.html",
+      "file_size": 30057,
+      "analysis_timestamp": "2025-05-29T03:40:29.576003+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 30057,
+      "line_count": 548,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 17,
+        "\\d+\\.\\d+": 91,
+        "[+\\-*/=]": 832,
+        "sin|cos|tan|sqrt|pow|exp|log": 50,
+        "\u03c0|pi|PI": 22,
+        "\u2206|delta|\u0394": 3
+      },
+      "physics_content": {
+        "energy_conservation": 5,
+        "wave_mechanics": 67,
+        "particle_dynamics": 91,
+        "quantum_mechanics": 1,
+        "electromagnetism": 13
+      },
+      "computational_complexity": {
+        "loops": 1,
+        "functions": 10,
+        "arrays": 4,
+        "calculations": 17
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/revolutionary_ellipsoidal_3d_harmonics_2025.html",
+      "file_size": 31169,
+      "analysis_timestamp": "2025-05-29T03:40:29.579998+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 31162,
+      "line_count": 697,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 87,
+        "\\d+\\.\\d+": 91,
+        "[+\\-*/=]": 1012,
+        "sin|cos|tan|sqrt|pow|exp|log": 69,
+        "\u03c0|pi|PI": 20,
+        "\u2206|delta|\u0394": 2
+      },
+      "physics_content": {
+        "energy_conservation": 21,
+        "wave_mechanics": 98,
+        "particle_dynamics": 57,
+        "electromagnetism": 9
+      },
+      "computational_complexity": {
+        "loops": 6,
+        "functions": 16,
+        "arrays": 3,
+        "calculations": 94
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced-wave-sim.html",
+      "file_size": 72702,
+      "analysis_timestamp": "2025-05-29T03:40:29.585579+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 72613,
+      "line_count": 1323,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 116,
+        "\\d+\\.\\d+": 294,
+        "[+\\-*/=]": 2093,
+        "sin|cos|tan|sqrt|pow|exp|log": 147,
+        "\u03c0|pi|PI": 29,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 28,
+        "wave_mechanics": 113,
+        "particle_dynamics": 163,
+        "quantum_mechanics": 2,
+        "electromagnetism": 8
+      },
+      "computational_complexity": {
+        "loops": 6,
+        "functions": 21,
+        "arrays": 3,
+        "calculations": 147
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_expansion_waves.html",
+      "file_size": 64506,
+      "analysis_timestamp": "2025-05-29T03:40:29.598095+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 64419,
+      "line_count": 1156,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 65,
+        "\\d+\\.\\d+": 261,
+        "[+\\-*/=]": 1802,
+        "sin|cos|tan|sqrt|pow|exp|log": 185,
+        "\u03c0|pi|PI": 18,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 16,
+        "wave_mechanics": 80,
+        "particle_dynamics": 163,
+        "quantum_mechanics": 2,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 87
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/revolutionary_3d_ellipsoidal_harmonics.html",
+      "file_size": 36125,
+      "analysis_timestamp": "2025-05-29T03:40:29.609034+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 36116,
+      "line_count": 808,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 86,
+        "\\d+\\.\\d+": 101,
+        "[+\\-*/=]": 1047,
+        "sin|cos|tan|sqrt|pow|exp|log": 76,
+        "\u03c0|pi|PI": 25
+      },
+      "physics_content": {
+        "energy_conservation": 8,
+        "wave_mechanics": 47,
+        "particle_dynamics": 79,
+        "quantum_mechanics": 2
+      },
+      "computational_complexity": {
+        "loops": 7,
+        "functions": 20,
+        "arrays": 6,
+        "calculations": 100
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_web_waves.html",
+      "file_size": 59184,
+      "analysis_timestamp": "2025-05-29T03:40:29.615365+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 59093,
+      "line_count": 1082,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 54,
+        "\\d+\\.\\d+": 236,
+        "[+\\-*/=]": 1624,
+        "sin|cos|tan|sqrt|pow|exp|log": 152,
+        "\u03c0|pi|PI": 25,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 42,
+        "wave_mechanics": 112,
+        "particle_dynamics": 136,
+        "quantum_mechanics": 2,
+        "electromagnetism": 5
+      },
+      "computational_complexity": {
+        "loops": 7,
+        "functions": 21,
+        "arrays": 3,
+        "calculations": 79
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/holographic_dark_energy_waves_2025.html",
+      "file_size": 36455,
+      "analysis_timestamp": "2025-05-29T03:40:29.625305+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 36443,
+      "line_count": 759,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 52,
+        "\\d+\\.\\d+": 147,
+        "[+\\-*/=]": 1128,
+        "sin|cos|tan|sqrt|pow|exp|log": 213,
+        "\u03c0|pi|PI": 10,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 96,
+        "wave_mechanics": 65,
+        "particle_dynamics": 66,
+        "quantum_mechanics": 12,
+        "thermodynamics": 7,
+        "electromagnetism": 11
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 14,
+        "arrays": 3,
+        "calculations": 86
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_3d_ellipsoidal_harmonics_2025.html",
+      "file_size": 28680,
+      "analysis_timestamp": "2025-05-29T03:40:29.631940+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 28675,
+      "line_count": 605,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 76,
+        "\\d+\\.\\d+": 135,
+        "[+\\-*/=]": 1028,
+        "sin|cos|tan|sqrt|pow|exp|log": 52,
+        "\u03c0|pi|PI": 19
+      },
+      "physics_content": {
+        "energy_conservation": 15,
+        "wave_mechanics": 11,
+        "particle_dynamics": 27,
+        "quantum_mechanics": 25,
+        "electromagnetism": 11
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 8,
+        "arrays": 3,
+        "calculations": 78
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_structures_A1.html",
+      "file_size": 31890,
+      "analysis_timestamp": "2025-05-29T03:40:29.637090+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 31890,
+      "line_count": 576,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 35,
+        "\\d+\\.\\d+": 149,
+        "[+\\-*/=]": 979,
+        "sin|cos|tan|sqrt|pow|exp|log": 26,
+        "\u03c0|pi|PI": 36,
+        "\u2206|delta|\u0394": 27
+      },
+      "physics_content": {
+        "energy_conservation": 59,
+        "wave_mechanics": 107,
+        "particle_dynamics": 76,
+        "thermodynamics": 3,
+        "electromagnetism": 3
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 11,
+        "arrays": 4,
+        "calculations": 54
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/wave-theory-transform.html",
+      "file_size": 31890,
+      "analysis_timestamp": "2025-05-29T03:40:29.641296+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 31890,
+      "line_count": 576,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 35,
+        "\\d+\\.\\d+": 149,
+        "[+\\-*/=]": 979,
+        "sin|cos|tan|sqrt|pow|exp|log": 26,
+        "\u03c0|pi|PI": 36,
+        "\u2206|delta|\u0394": 27
+      },
+      "physics_content": {
+        "energy_conservation": 59,
+        "wave_mechanics": 107,
+        "particle_dynamics": 76,
+        "thermodynamics": 3,
+        "electromagnetism": 3
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 11,
+        "arrays": 4,
+        "calculations": 54
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/automated_performance_benchmarking_system.html",
+      "file_size": 29597,
+      "analysis_timestamp": "2025-05-29T03:40:29.645462+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 29568,
+      "line_count": 776,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 13,
+        "\\d+\\.\\d+": 44,
+        "[+\\-*/=]": 593,
+        "sin|cos|tan|sqrt|pow|exp|log": 37,
+        "\u03c0|pi|PI": 4
+      },
+      "physics_content": {
+        "energy_conservation": 10,
+        "quantum_mechanics": 1
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 0,
+        "arrays": 5,
+        "calculations": 16
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.4,
+        "computational_complexity": 0.7,
+        "overall_score": 0.7000000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/revolutionary_ellipsoidal_cymatics_2025.html",
+      "file_size": 36024,
+      "analysis_timestamp": "2025-05-29T03:40:29.650518+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 36005,
+      "line_count": 793,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 81,
+        "\\d+\\.\\d+": 107,
+        "[+\\-*/=]": 1210,
+        "sin|cos|tan|sqrt|pow|exp|log": 69,
+        "\u03c0|pi|PI": 23
+      },
+      "physics_content": {
+        "energy_conservation": 16,
+        "wave_mechanics": 45,
+        "particle_dynamics": 94,
+        "quantum_mechanics": 20,
+        "electromagnetism": 5
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 9,
+        "arrays": 4,
+        "calculations": 100
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/expanding_universe_wave_model_v2.html",
+      "file_size": 64929,
+      "analysis_timestamp": "2025-05-29T03:40:29.656957+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 64836,
+      "line_count": 1157,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 65,
+        "\\d+\\.\\d+": 262,
+        "[+\\-*/=]": 1808,
+        "sin|cos|tan|sqrt|pow|exp|log": 167,
+        "\u03c0|pi|PI": 18,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 16,
+        "wave_mechanics": 88,
+        "particle_dynamics": 163,
+        "quantum_mechanics": 2,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 87
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/sample_physics_research.txt",
+      "file_size": 1933,
+      "analysis_timestamp": "2025-05-29T03:40:29.668061+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 1907,
+      "line_count": 43,
+      "contains_html": false,
+      "contains_javascript": false,
+      "contains_css": false,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "\\d+\\.\\d+": 5,
+        "[+\\-*/=]": 43,
+        "sin|cos|tan|sqrt|pow|exp|log": 10,
+        "\u03c0|pi|PI": 2
+      },
+      "physics_content": {
+        "energy_conservation": 19,
+        "wave_mechanics": 2,
+        "particle_dynamics": 2
+      },
+      "computational_complexity": {
+        "loops": 0,
+        "functions": 0,
+        "arrays": 0,
+        "calculations": 0
+      },
+      "validation_score": {
+        "content_quality": 0.5,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 0.0,
+        "overall_score": 0.44000000000000006
+      },
+      "recommendation": "REQUIRES_REVIEW",
+      "next_stage": "01-INITIAL_SCREENING",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/ultimate_ellipsoidal_metamaterial_2025.html",
+      "file_size": 31252,
+      "analysis_timestamp": "2025-05-29T03:40:29.669061+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 31219,
+      "line_count": 638,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 59,
+        "\\d+\\.\\d+": 179,
+        "[+\\-*/=]": 1031,
+        "sin|cos|tan|sqrt|pow|exp|log": 62,
+        "\u03c0|pi|PI": 8,
+        "\u2206|delta|\u0394": 5
+      },
+      "physics_content": {
+        "wave_mechanics": 35,
+        "particle_dynamics": 44,
+        "quantum_mechanics": 42,
+        "electromagnetism": 1
+      },
+      "computational_complexity": {
+        "loops": 6,
+        "functions": 16,
+        "arrays": 3,
+        "calculations": 67
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_standing_wave_sim_A1.html",
+      "file_size": 9259,
+      "analysis_timestamp": "2025-05-29T03:40:29.674698+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 9259,
+      "line_count": 207,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 33,
+        "\\d+\\.\\d+": 23,
+        "[+\\-*/=]": 310,
+        "sin|cos|tan|sqrt|pow|exp|log": 54,
+        "\u03c0|pi|PI": 12,
+        "\u2206|delta|\u0394": 6
+      },
+      "physics_content": {
+        "energy_conservation": 21,
+        "wave_mechanics": 36,
+        "particle_dynamics": 65
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 7,
+        "arrays": 3,
+        "calculations": 45
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_standing_waves_sanity_check.html",
+      "file_size": 5650,
+      "analysis_timestamp": "2025-05-29T03:40:29.676302+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 5650,
+      "line_count": 165,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 32,
+        "\\d+\\.\\d+": 19,
+        "[+\\-*/=]": 277,
+        "sin|cos|tan|sqrt|pow|exp|log": 33,
+        "\u03c0|pi|PI": 2,
+        "\u2206|delta|\u0394": 1
+      },
+      "physics_content": {
+        "wave_mechanics": 11,
+        "particle_dynamics": 33,
+        "electromagnetism": 1
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 2,
+        "arrays": 1,
+        "calculations": 38
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/quantum_phononic_cosmic_structures_2025.html",
+      "file_size": 35310,
+      "analysis_timestamp": "2025-05-29T03:40:29.677629+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 35300,
+      "line_count": 732,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 48,
+        "\\d+\\.\\d+": 150,
+        "[+\\-*/=]": 1084,
+        "sin|cos|tan|sqrt|pow|exp|log": 60,
+        "\u03c0|pi|PI": 11,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 27,
+        "wave_mechanics": 64,
+        "particle_dynamics": 66,
+        "quantum_mechanics": 85,
+        "electromagnetism": 36
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 14,
+        "arrays": 3,
+        "calculations": 77
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_spherical_cymatics_refined_2025.html",
+      "file_size": 37908,
+      "analysis_timestamp": "2025-05-29T03:40:29.684001+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 37893,
+      "line_count": 825,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 58,
+        "\\d+\\.\\d+": 132,
+        "[+\\-*/=]": 1164,
+        "sin|cos|tan|sqrt|pow|exp|log": 53,
+        "\u03c0|pi|PI": 13,
+        "\u2206|delta|\u0394": 2
+      },
+      "physics_content": {
+        "energy_conservation": 23,
+        "wave_mechanics": 25,
+        "particle_dynamics": 85,
+        "quantum_mechanics": 27,
+        "electromagnetism": 16
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 16,
+        "arrays": 3,
+        "calculations": 64
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_web_dynamics_A1_v2.html",
+      "file_size": 13816,
+      "analysis_timestamp": "2025-05-29T03:40:29.690513+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 13816,
+      "line_count": 275,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 35,
+        "\\d+\\.\\d+": 44,
+        "[+\\-*/=]": 345,
+        "sin|cos|tan|sqrt|pow|exp|log": 25,
+        "\u03c0|pi|PI": 9,
+        "\u2206|delta|\u0394": 5
+      },
+      "physics_content": {
+        "energy_conservation": 1,
+        "particle_dynamics": 105
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 7,
+        "arrays": 3,
+        "calculations": 38
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.4,
+        "computational_complexity": 1.0,
+        "overall_score": 0.76
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_superposition_v1.html",
+      "file_size": 63707,
+      "analysis_timestamp": "2025-05-29T03:40:29.692645+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 63627,
+      "line_count": 1154,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 68,
+        "\\d+\\.\\d+": 274,
+        "[+\\-*/=]": 1817,
+        "sin|cos|tan|sqrt|pow|exp|log": 128,
+        "\u03c0|pi|PI": 18,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 16,
+        "wave_mechanics": 83,
+        "particle_dynamics": 162,
+        "quantum_mechanics": 2,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 90
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced-elliptical-spherical-cymatics-enhanced.html",
+      "file_size": 81665,
+      "analysis_timestamp": "2025-05-29T03:40:29.704161+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 81576,
+      "line_count": 1480,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 162,
+        "\\d+\\.\\d+": 372,
+        "[+\\-*/=]": 2428,
+        "sin|cos|tan|sqrt|pow|exp|log": 179,
+        "\u03c0|pi|PI": 36,
+        "\u2206|delta|\u0394": 9
+      },
+      "physics_content": {
+        "energy_conservation": 30,
+        "wave_mechanics": 127,
+        "particle_dynamics": 178,
+        "quantum_mechanics": 4,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 8,
+        "functions": 24,
+        "arrays": 3,
+        "calculations": 198
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/revolutionary_quantum_gpu_cymatics_2025.html",
+      "file_size": 40712,
+      "analysis_timestamp": "2025-05-29T03:40:29.718173+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 40665,
+      "line_count": 906,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 106,
+        "\\d+\\.\\d+": 156,
+        "[+\\-*/=]": 1010,
+        "sin|cos|tan|sqrt|pow|exp|log": 100,
+        "\u03c0|pi|PI": 24,
+        "\u2206|delta|\u0394": 1
+      },
+      "physics_content": {
+        "wave_mechanics": 109,
+        "particle_dynamics": 129,
+        "quantum_mechanics": 72,
+        "thermodynamics": 5,
+        "electromagnetism": 29
+      },
+      "computational_complexity": {
+        "loops": 15,
+        "functions": 0,
+        "arrays": 10,
+        "calculations": 114
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 0.7,
+        "overall_score": 0.9400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced-wave-structures.html",
+      "file_size": 47222,
+      "analysis_timestamp": "2025-05-29T03:40:29.725376+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 47216,
+      "line_count": 1044,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 83,
+        "\\d+\\.\\d+": 143,
+        "[+\\-*/=]": 1327,
+        "sin|cos|tan|sqrt|pow|exp|log": 74,
+        "\u03c0|pi|PI": 12
+      },
+      "physics_content": {
+        "energy_conservation": 22,
+        "wave_mechanics": 63,
+        "particle_dynamics": 133,
+        "quantum_mechanics": 32
+      },
+      "computational_complexity": {
+        "loops": 8,
+        "functions": 27,
+        "arrays": 8,
+        "calculations": 103
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/nonlinear_wave_filament_sim_A1.html",
+      "file_size": 52537,
+      "analysis_timestamp": "2025-05-29T03:40:29.733561+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 52493,
+      "line_count": 799,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 55,
+        "\\d+\\.\\d+": 232,
+        "[+\\-*/=]": 1503,
+        "sin|cos|tan|sqrt|pow|exp|log": 56,
+        "\u03c0|pi|PI": 19
+      },
+      "physics_content": {
+        "wave_mechanics": 169,
+        "particle_dynamics": 134,
+        "electromagnetism": 1
+      },
+      "computational_complexity": {
+        "loops": 7,
+        "functions": 14,
+        "arrays": 12,
+        "calculations": 74
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/quantum_ellipsoidal_cymatics_2025.html",
+      "file_size": 39820,
+      "analysis_timestamp": "2025-05-29T03:40:29.742513+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 39714,
+      "line_count": 931,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 38,
+        "\\d+\\.\\d+": 133,
+        "[+\\-*/=]": 1055,
+        "sin|cos|tan|sqrt|pow|exp|log": 88,
+        "\u03c0|pi|PI": 11,
+        "\u2206|delta|\u0394": 7
+      },
+      "physics_content": {
+        "energy_conservation": 2,
+        "wave_mechanics": 39,
+        "particle_dynamics": 44,
+        "quantum_mechanics": 65,
+        "electromagnetism": 2
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 3,
+        "arrays": 9,
+        "calculations": 51
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/revolutionary_3d_gaussian_splatting_harmonics_2025.html",
+      "file_size": 36078,
+      "analysis_timestamp": "2025-05-29T03:40:29.750141+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 36071,
+      "line_count": 820,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 93,
+        "\\d+\\.\\d+": 122,
+        "[+\\-*/=]": 1054,
+        "sin|cos|tan|sqrt|pow|exp|log": 82,
+        "\u03c0|pi|PI": 7
+      },
+      "physics_content": {
+        "wave_mechanics": 83,
+        "particle_dynamics": 59
+      },
+      "computational_complexity": {
+        "loops": 7,
+        "functions": 29,
+        "arrays": 3,
+        "calculations": 100
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.4,
+        "computational_complexity": 1.0,
+        "overall_score": 0.76
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_spherical_harmonics_optimized.html",
+      "file_size": 31355,
+      "analysis_timestamp": "2025-05-29T03:40:29.757428+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 31325,
+      "line_count": 762,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 89,
+        "\\d+\\.\\d+": 104,
+        "[+\\-*/=]": 1042,
+        "sin|cos|tan|sqrt|pow|exp|log": 122,
+        "\u03c0|pi|PI": 27,
+        "\u2206|delta|\u0394": 9
+      },
+      "physics_content": {
+        "energy_conservation": 13,
+        "wave_mechanics": 9,
+        "particle_dynamics": 72,
+        "quantum_mechanics": 1,
+        "electromagnetism": 15
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 7,
+        "arrays": 4,
+        "calculations": 101
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_spherical_harmonics_cymatics_v2.html",
+      "file_size": 33983,
+      "analysis_timestamp": "2025-05-29T03:40:29.764218+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 33959,
+      "line_count": 710,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 80,
+        "\\d+\\.\\d+": 98,
+        "[+\\-*/=]": 1081,
+        "sin|cos|tan|sqrt|pow|exp|log": 67,
+        "\u03c0|pi|PI": 20,
+        "\u2206|delta|\u0394": 2
+      },
+      "physics_content": {
+        "energy_conservation": 14,
+        "wave_mechanics": 59,
+        "particle_dynamics": 89,
+        "quantum_mechanics": 4,
+        "electromagnetism": 5
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 9,
+        "arrays": 6,
+        "calculations": 94
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/holographic-ads-cft-waves.html",
+      "file_size": 81985,
+      "analysis_timestamp": "2025-05-29T03:40:29.773296+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 81905,
+      "line_count": 1462,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 209,
+        "\\d+\\.\\d+": 369,
+        "[+\\-*/=]": 2794,
+        "sin|cos|tan|sqrt|pow|exp|log": 334,
+        "\u03c0|pi|PI": 39,
+        "\u2206|delta|\u0394": 36
+      },
+      "physics_content": {
+        "energy_conservation": 45,
+        "wave_mechanics": 107,
+        "particle_dynamics": 203,
+        "quantum_mechanics": 17,
+        "thermodynamics": 19,
+        "electromagnetism": 24
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 21,
+        "arrays": 3,
+        "calculations": 281
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/origin-transformed-wave-dynamics.html",
+      "file_size": 64820,
+      "analysis_timestamp": "2025-05-29T03:40:29.791058+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 64738,
+      "line_count": 1163,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 73,
+        "\\d+\\.\\d+": 277,
+        "[+\\-*/=]": 1840,
+        "sin|cos|tan|sqrt|pow|exp|log": 127,
+        "\u03c0|pi|PI": 20,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 17,
+        "wave_mechanics": 77,
+        "particle_dynamics": 169,
+        "quantum_mechanics": 2,
+        "electromagnetism": 7
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 95
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/emergent_scalar_field_LSS.html",
+      "file_size": 31341,
+      "analysis_timestamp": "2025-05-29T03:40:29.803250+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 31341,
+      "line_count": 571,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 23,
+        "\\d+\\.\\d+": 152,
+        "[+\\-*/=]": 917,
+        "sin|cos|tan|sqrt|pow|exp|log": 9,
+        "\u03c0|pi|PI": 37,
+        "\u2206|delta|\u0394": 22
+      },
+      "physics_content": {
+        "energy_conservation": 49,
+        "wave_mechanics": 70,
+        "particle_dynamics": 75,
+        "electromagnetism": 49
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 10,
+        "arrays": 5,
+        "calculations": 37
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/next_gen_ellipsoidal_cymatics_2025.html",
+      "file_size": 44669,
+      "analysis_timestamp": "2025-05-29T03:40:29.807509+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 44645,
+      "line_count": 1065,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 78,
+        "\\d+\\.\\d+": 87,
+        "[+\\-*/=]": 1201,
+        "sin|cos|tan|sqrt|pow|exp|log": 85,
+        "\u03c0|pi|PI": 17,
+        "\u2206|delta|\u0394": 3
+      },
+      "physics_content": {
+        "wave_mechanics": 31,
+        "particle_dynamics": 134,
+        "quantum_mechanics": 40,
+        "electromagnetism": 20
+      },
+      "computational_complexity": {
+        "loops": 19,
+        "functions": 0,
+        "arrays": 11,
+        "calculations": 105
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 0.7,
+        "overall_score": 0.8600000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/revolutionary_ellipsoidal_cymatics_enhanced_2025.html",
+      "file_size": 37289,
+      "analysis_timestamp": "2025-05-29T03:40:29.815191+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 37279,
+      "line_count": 788,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 94,
+        "\\d+\\.\\d+": 196,
+        "[+\\-*/=]": 1253,
+        "sin|cos|tan|sqrt|pow|exp|log": 73,
+        "\u03c0|pi|PI": 18,
+        "\u2206|delta|\u0394": 3
+      },
+      "physics_content": {
+        "energy_conservation": 10,
+        "wave_mechanics": 68,
+        "particle_dynamics": 95,
+        "quantum_mechanics": 62,
+        "electromagnetism": 2
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 11,
+        "arrays": 3,
+        "calculations": 115
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/lss_advanced_wave_model.html",
+      "file_size": 40945,
+      "analysis_timestamp": "2025-05-29T03:40:29.821971+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 40934,
+      "line_count": 771,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 35,
+        "\\d+\\.\\d+": 180,
+        "[+\\-*/=]": 1390,
+        "sin|cos|tan|sqrt|pow|exp|log": 88,
+        "\u03c0|pi|PI": 29,
+        "\u2206|delta|\u0394": 13
+      },
+      "physics_content": {
+        "energy_conservation": 47,
+        "wave_mechanics": 62,
+        "particle_dynamics": 108,
+        "electromagnetism": 3
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 9,
+        "arrays": 3,
+        "calculations": 53
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/fuzzy_dm_interference_A1.html",
+      "file_size": 9624,
+      "analysis_timestamp": "2025-05-29T03:40:29.829213+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 9624,
+      "line_count": 226,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 35,
+        "\\d+\\.\\d+": 32,
+        "[+\\-*/=]": 254,
+        "sin|cos|tan|sqrt|pow|exp|log": 19,
+        "\u03c0|pi|PI": 11,
+        "\u2206|delta|\u0394": 5
+      },
+      "physics_content": {
+        "energy_conservation": 1,
+        "particle_dynamics": 52
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 8,
+        "arrays": 5,
+        "calculations": 40
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.4,
+        "computational_complexity": 1.0,
+        "overall_score": 0.76
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_systems_showcase.html",
+      "file_size": 39076,
+      "analysis_timestamp": "2025-05-29T03:40:29.830914+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 39073,
+      "line_count": 977,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "\\d+\\.\\d+": 45,
+        "[+\\-*/=]": 1345,
+        "sin|cos|tan|sqrt|pow|exp|log": 47,
+        "\u03c0|pi|PI": 4
+      },
+      "physics_content": {
+        "wave_mechanics": 35,
+        "particle_dynamics": 22,
+        "quantum_mechanics": 20,
+        "electromagnetism": 3
+      },
+      "computational_complexity": {
+        "loops": 0,
+        "functions": 4,
+        "arrays": 0,
+        "calculations": 0
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 0.3,
+        "overall_score": 0.78
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/phononic-time-crystals.html",
+      "file_size": 79226,
+      "analysis_timestamp": "2025-05-29T03:40:29.837962+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 79146,
+      "line_count": 1438,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 211,
+        "\\d+\\.\\d+": 369,
+        "[+\\-*/=]": 2657,
+        "sin|cos|tan|sqrt|pow|exp|log": 267,
+        "\u03c0|pi|PI": 36,
+        "\u2206|delta|\u0394": 35
+      },
+      "physics_content": {
+        "energy_conservation": 47,
+        "wave_mechanics": 128,
+        "particle_dynamics": 191,
+        "quantum_mechanics": 18,
+        "electromagnetism": 29
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 272
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_dynamics.html",
+      "file_size": 54471,
+      "analysis_timestamp": "2025-05-29T03:40:29.852281+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 54387,
+      "line_count": 944,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 51,
+        "\\d+\\.\\d+": 243,
+        "[+\\-*/=]": 1558,
+        "sin|cos|tan|sqrt|pow|exp|log": 77,
+        "\u03c0|pi|PI": 19,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 22,
+        "wave_mechanics": 90,
+        "particle_dynamics": 134,
+        "electromagnetism": 6
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 25,
+        "arrays": 4,
+        "calculations": 73
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic-wave-structures.html",
+      "file_size": 71735,
+      "analysis_timestamp": "2025-05-29T03:40:29.862198+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 71657,
+      "line_count": 1305,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 121,
+        "\\d+\\.\\d+": 332,
+        "[+\\-*/=]": 2312,
+        "sin|cos|tan|sqrt|pow|exp|log": 191,
+        "\u03c0|pi|PI": 30,
+        "\u2206|delta|\u0394": 29
+      },
+      "physics_content": {
+        "energy_conservation": 43,
+        "wave_mechanics": 117,
+        "particle_dynamics": 171,
+        "quantum_mechanics": 29,
+        "electromagnetism": 20
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 171
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/enhanced_ellipsoidal_cymatics_optimized.html",
+      "file_size": 29176,
+      "analysis_timestamp": "2025-05-29T03:40:29.874767+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 29167,
+      "line_count": 695,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 47,
+        "\\d+\\.\\d+": 75,
+        "[+\\-*/=]": 881,
+        "sin|cos|tan|sqrt|pow|exp|log": 41,
+        "\u03c0|pi|PI": 13
+      },
+      "physics_content": {
+        "energy_conservation": 17,
+        "wave_mechanics": 37,
+        "particle_dynamics": 62
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 19,
+        "arrays": 3,
+        "calculations": 60
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/emergent_wave_phenomena.html",
+      "file_size": 53258,
+      "analysis_timestamp": "2025-05-29T03:40:29.880051+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 53210,
+      "line_count": 903,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 61,
+        "\\d+\\.\\d+": 217,
+        "[+\\-*/=]": 1525,
+        "sin|cos|tan|sqrt|pow|exp|log": 64,
+        "\u03c0|pi|PI": 28,
+        "\u2206|delta|\u0394": 1
+      },
+      "physics_content": {
+        "wave_mechanics": 122,
+        "particle_dynamics": 126,
+        "quantum_mechanics": 1,
+        "electromagnetism": 2
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 11,
+        "arrays": 9,
+        "calculations": 78
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_standing_waves_enhanced.html",
+      "file_size": 14032,
+      "analysis_timestamp": "2025-05-29T03:40:29.889147+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 14028,
+      "line_count": 465,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 70,
+        "\\d+\\.\\d+": 48,
+        "[+\\-*/=]": 561,
+        "sin|cos|tan|sqrt|pow|exp|log": 55,
+        "\u03c0|pi|PI": 6,
+        "\u2206|delta|\u0394": 1
+      },
+      "physics_content": {
+        "wave_mechanics": 33,
+        "particle_dynamics": 56
+      },
+      "computational_complexity": {
+        "loops": 6,
+        "functions": 7,
+        "arrays": 2,
+        "calculations": 80
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.4,
+        "computational_complexity": 1.0,
+        "overall_score": 0.76
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/quantum_foam_accretion_sim.html",
+      "file_size": 38582,
+      "analysis_timestamp": "2025-05-29T03:40:29.891960+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 38549,
+      "line_count": 729,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 58,
+        "\\d+\\.\\d+": 180,
+        "[+\\-*/=]": 1029,
+        "sin|cos|tan|sqrt|pow|exp|log": 68,
+        "\u03c0|pi|PI": 19,
+        "\u2206|delta|\u0394": 18
+      },
+      "physics_content": {
+        "energy_conservation": 1,
+        "wave_mechanics": 153,
+        "particle_dynamics": 129,
+        "quantum_mechanics": 2
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 22,
+        "arrays": 5,
+        "calculations": 79
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 1.0,
+        "overall_score": 0.9200000000000002
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/pgw_particle_simulation.html",
+      "file_size": 44805,
+      "analysis_timestamp": "2025-05-29T03:40:29.898786+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 44772,
+      "line_count": 771,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 43,
+        "\\d+\\.\\d+": 206,
+        "[+\\-*/=]": 1289,
+        "sin|cos|tan|sqrt|pow|exp|log": 45,
+        "\u03c0|pi|PI": 20,
+        "\u2206|delta|\u0394": 12
+      },
+      "physics_content": {
+        "wave_mechanics": 47,
+        "particle_dynamics": 171,
+        "electromagnetism": 1
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 21,
+        "arrays": 5,
+        "calculations": 61
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_visualization.html",
+      "file_size": 4749,
+      "analysis_timestamp": "2025-05-29T03:40:29.906578+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 4749,
+      "line_count": 113,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 12,
+        "\\d+\\.\\d+": 13,
+        "[+\\-*/=]": 155,
+        "sin|cos|tan|sqrt|pow|exp|log": 16,
+        "\u03c0|pi|PI": 1
+      },
+      "physics_content": {
+        "wave_mechanics": 17,
+        "particle_dynamics": 22
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 1,
+        "arrays": 2,
+        "calculations": 12
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.4,
+        "computational_complexity": 1.0,
+        "overall_score": 0.76
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_cosmic_wave_simulation.html",
+      "file_size": 62846,
+      "analysis_timestamp": "2025-05-29T03:40:29.907643+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 62810,
+      "line_count": 1218,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 101,
+        "\\d+\\.\\d+": 261,
+        "[+\\-*/=]": 2083,
+        "sin|cos|tan|sqrt|pow|exp|log": 126,
+        "\u03c0|pi|PI": 43,
+        "\u2206|delta|\u0394": 45
+      },
+      "physics_content": {
+        "energy_conservation": 46,
+        "wave_mechanics": 109,
+        "particle_dynamics": 147,
+        "quantum_mechanics": 177,
+        "electromagnetism": 77
+      },
+      "computational_complexity": {
+        "loops": 6,
+        "functions": 19,
+        "arrays": 4,
+        "calculations": 160
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/lss_wave_model.html",
+      "file_size": 60799,
+      "analysis_timestamp": "2025-05-29T03:40:29.918856+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 60714,
+      "line_count": 1108,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 64,
+        "\\d+\\.\\d+": 262,
+        "[+\\-*/=]": 1693,
+        "sin|cos|tan|sqrt|pow|exp|log": 121,
+        "\u03c0|pi|PI": 21,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 15,
+        "wave_mechanics": 97,
+        "particle_dynamics": 147,
+        "quantum_mechanics": 2,
+        "electromagnetism": 6
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 85
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/topological_quantum_field_waves_2025.html",
+      "file_size": 36472,
+      "analysis_timestamp": "2025-05-29T03:40:29.929965+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 36461,
+      "line_count": 767,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 58,
+        "\\d+\\.\\d+": 153,
+        "[+\\-*/=]": 1133,
+        "sin|cos|tan|sqrt|pow|exp|log": 149,
+        "\u03c0|pi|PI": 51,
+        "\u2206|delta|\u0394": 19
+      },
+      "physics_content": {
+        "energy_conservation": 32,
+        "wave_mechanics": 62,
+        "particle_dynamics": 66,
+        "quantum_mechanics": 36,
+        "electromagnetism": 32
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 14,
+        "arrays": 3,
+        "calculations": 94
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_acoustic_wave_sim_A2.html",
+      "file_size": 10001,
+      "analysis_timestamp": "2025-05-29T03:40:29.936795+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 10001,
+      "line_count": 211,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 32,
+        "\\d+\\.\\d+": 24,
+        "[+\\-*/=]": 330,
+        "sin|cos|tan|sqrt|pow|exp|log": 38,
+        "\u03c0|pi|PI": 15,
+        "\u2206|delta|\u0394": 15
+      },
+      "physics_content": {
+        "energy_conservation": 22,
+        "wave_mechanics": 25,
+        "particle_dynamics": 61
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 7,
+        "arrays": 3,
+        "calculations": 44
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/interactive_quantum_cosmic_educator.html",
+      "file_size": 26737,
+      "analysis_timestamp": "2025-05-29T03:40:29.938563+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 26625,
+      "line_count": 646,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": false,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 16,
+        "\\d+\\.\\d+": 45,
+        "[+\\-*/=]": 541,
+        "sin|cos|tan|sqrt|pow|exp|log": 48,
+        "\u03c0|pi|PI": 10
+      },
+      "physics_content": {
+        "energy_conservation": 4,
+        "wave_mechanics": 15,
+        "particle_dynamics": 38,
+        "quantum_mechanics": 22,
+        "electromagnetism": 11
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 4,
+        "arrays": 2,
+        "calculations": 18
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/quantum-vacuum-fluctuations.html",
+      "file_size": 74727,
+      "analysis_timestamp": "2025-05-29T03:40:29.943483+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 74631,
+      "line_count": 1361,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 151,
+        "\\d+\\.\\d+": 353,
+        "[+\\-*/=]": 2502,
+        "sin|cos|tan|sqrt|pow|exp|log": 235,
+        "\u03c0|pi|PI": 31,
+        "\u2206|delta|\u0394": 39
+      },
+      "physics_content": {
+        "energy_conservation": 80,
+        "wave_mechanics": 112,
+        "particle_dynamics": 195,
+        "quantum_mechanics": 80,
+        "thermodynamics": 2,
+        "electromagnetism": 36
+      },
+      "computational_complexity": {
+        "loops": 5,
+        "functions": 18,
+        "arrays": 3,
+        "calculations": 209
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/ultra_advanced_ellipsoidal_cymatics_2025.html",
+      "file_size": 34075,
+      "analysis_timestamp": "2025-05-29T03:40:29.956692+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 34047,
+      "line_count": 809,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": false,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 58,
+        "\\d+\\.\\d+": 68,
+        "[+\\-*/=]": 883,
+        "sin|cos|tan|sqrt|pow|exp|log": 57,
+        "\u03c0|pi|PI": 10
+      },
+      "physics_content": {
+        "wave_mechanics": 64,
+        "particle_dynamics": 68,
+        "quantum_mechanics": 47,
+        "electromagnetism": 4
+      },
+      "computational_complexity": {
+        "loops": 10,
+        "functions": 0,
+        "arrays": 7,
+        "calculations": 67
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.8,
+        "computational_complexity": 0.7,
+        "overall_score": 0.8600000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_cosmic_wave_dynamics.html",
+      "file_size": 31699,
+      "analysis_timestamp": "2025-05-29T03:40:29.962741+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 31698,
+      "line_count": 572,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 40,
+        "\\d+\\.\\d+": 161,
+        "[+\\-*/=]": 972,
+        "sin|cos|tan|sqrt|pow|exp|log": 39,
+        "\u03c0|pi|PI": 28,
+        "\u2206|delta|\u0394": 13
+      },
+      "physics_content": {
+        "energy_conservation": 23,
+        "wave_mechanics": 61,
+        "particle_dynamics": 89,
+        "quantum_mechanics": 24,
+        "thermodynamics": 2,
+        "electromagnetism": 2
+      },
+      "computational_complexity": {
+        "loops": 4,
+        "functions": 6,
+        "arrays": 4,
+        "calculations": 52
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 1.0,
+        "computational_complexity": 1.0,
+        "overall_score": 1.0
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/cosmic_string_wake_sim.html",
+      "file_size": 40808,
+      "analysis_timestamp": "2025-05-29T03:40:29.968009+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 40774,
+      "line_count": 757,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 37,
+        "\\d+\\.\\d+": 148,
+        "[+\\-*/=]": 1115,
+        "sin|cos|tan|sqrt|pow|exp|log": 112,
+        "\u03c0|pi|PI": 17,
+        "\u2206|delta|\u0394": 12
+      },
+      "physics_content": {
+        "wave_mechanics": 5,
+        "particle_dynamics": 173
+      },
+      "computational_complexity": {
+        "loops": 3,
+        "functions": 24,
+        "arrays": 4,
+        "calculations": 50
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.4,
+        "computational_complexity": 1.0,
+        "overall_score": 0.76
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    },
+    {
+      "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_simulation.html",
+      "file_size": 4231,
+      "analysis_timestamp": "2025-05-29T03:40:29.975172+00:00",
+      "agent_id": "Claude-3.5-Sonnet",
+      "content_length": 4231,
+      "line_count": 111,
+      "contains_html": true,
+      "contains_javascript": true,
+      "contains_css": true,
+      "contains_webgl": true,
+      "contains_three_js": true,
+      "contains_physics": true,
+      "mathematical_content": {
+        "Math\\.\\w+": 5,
+        "\\d+\\.\\d+": 25,
+        "[+\\-*/=]": 160,
+        "sin|cos|tan|sqrt|pow|exp|log": 11
+      },
+      "physics_content": {
+        "wave_mechanics": 8,
+        "particle_dynamics": 19,
+        "electromagnetism": 1
+      },
+      "computational_complexity": {
+        "loops": 2,
+        "functions": 1,
+        "arrays": 2,
+        "calculations": 10
+      },
+      "validation_score": {
+        "content_quality": 1.0,
+        "physics_relevance": 0.6000000000000001,
+        "computational_complexity": 1.0,
+        "overall_score": 0.8400000000000001
+      },
+      "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+      "next_stage": "02-COMPUTATIONAL_VALIDATION",
+      "validation_slot": {
+        "slot_claimed": true,
+        "sense": "computational_analysis",
+        "role": "primary_validator",
+        "timeout": 300
+      }
+    }
+  ],
+  "summary": {
+    "total_items": 75,
+    "by_recommendation": {
+      "ADVANCE_TO_COMPUTATIONAL_VALIDATION": 74,
+      "REQUIRES_REVIEW": 1
+    },
+    "by_next_stage": {
+      "02-COMPUTATIONAL_VALIDATION": 74,
+      "01-INITIAL_SCREENING": 1
+    },
+    "average_scores": {
+      "content_quality": 0.9933333333333333,
+      "physics_relevance": 0.8266666666666667,
+      "computational_complexity": 0.944,
+      "overall_score": 0.9168000000000001
+    },
+    "physics_categories": {}
+  },
+  "processing_end": "2025-05-29T03:40:29.976174+00:00"
+}

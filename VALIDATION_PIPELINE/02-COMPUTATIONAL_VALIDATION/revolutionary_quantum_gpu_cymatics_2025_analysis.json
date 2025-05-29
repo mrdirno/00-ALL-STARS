@@ -1,0 +1,49 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/revolutionary_quantum_gpu_cymatics_2025.html",
+  "file_size": 40712,
+  "analysis_timestamp": "2025-05-29T03:40:29.718173+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 40665,
+  "line_count": 906,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": false,
+  "contains_three_js": false,
+  "contains_physics": true,
+  "mathematical_content": {
+    "Math\\.\\w+": 106,
+    "\\d+\\.\\d+": 156,
+    "[+\\-*/=]": 1010,
+    "sin|cos|tan|sqrt|pow|exp|log": 100,
+    "\u03c0|pi|PI": 24,
+    "\u2206|delta|\u0394": 1
+  },
+  "physics_content": {
+    "wave_mechanics": 109,
+    "particle_dynamics": 129,
+    "quantum_mechanics": 72,
+    "thermodynamics": 5,
+    "electromagnetism": 29
+  },
+  "computational_complexity": {
+    "loops": 15,
+    "functions": 0,
+    "arrays": 10,
+    "calculations": 114
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 1.0,
+    "computational_complexity": 0.7,
+    "overall_score": 0.9400000000000001
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}

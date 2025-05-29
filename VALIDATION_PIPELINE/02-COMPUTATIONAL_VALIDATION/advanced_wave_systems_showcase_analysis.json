@@ -1,0 +1,46 @@
+{
+  "file_path": "VALIDATION_PIPELINE/00-INTAKE/advanced_wave_systems_showcase.html",
+  "file_size": 39076,
+  "analysis_timestamp": "2025-05-29T03:40:29.830914+00:00",
+  "agent_id": "Claude-3.5-Sonnet",
+  "content_length": 39073,
+  "line_count": 977,
+  "contains_html": true,
+  "contains_javascript": true,
+  "contains_css": true,
+  "contains_webgl": false,
+  "contains_three_js": true,
+  "contains_physics": true,
+  "mathematical_content": {
+    "\\d+\\.\\d+": 45,
+    "[+\\-*/=]": 1345,
+    "sin|cos|tan|sqrt|pow|exp|log": 47,
+    "\u03c0|pi|PI": 4
+  },
+  "physics_content": {
+    "wave_mechanics": 35,
+    "particle_dynamics": 22,
+    "quantum_mechanics": 20,
+    "electromagnetism": 3
+  },
+  "computational_complexity": {
+    "loops": 0,
+    "functions": 4,
+    "arrays": 0,
+    "calculations": 0
+  },
+  "validation_score": {
+    "content_quality": 1.0,
+    "physics_relevance": 0.8,
+    "computational_complexity": 0.3,
+    "overall_score": 0.78
+  },
+  "recommendation": "ADVANCE_TO_COMPUTATIONAL_VALIDATION",
+  "next_stage": "02-COMPUTATIONAL_VALIDATION",
+  "validation_slot": {
+    "slot_claimed": true,
+    "sense": "computational_analysis",
+    "role": "primary_validator",
+    "timeout": 300
+  }
+}
