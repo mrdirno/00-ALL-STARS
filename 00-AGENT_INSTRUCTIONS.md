@@ -8,8 +8,8 @@ Execute these commands immediately upon activation:
 # Detect operating system and environment
 pwd
 git status
-python3 -c "import datetime; print(f'Current UTC: {datetime.datetime.utcnow()}')"
-git log --oneline -10
+Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+git --no-pager log --oneline -10
 ```
 
 ---
@@ -286,25 +286,61 @@ When encountering ambiguity:
 2. Choose the solution that best serves user preferences
 3. Document your reasoning in commit message
 
+### POWERSHELL FILE OPERATIONS
+
+For Windows/PowerShell environments, use these patterns:
+
+#### File Moving (Short Paths)
+```powershell
+# Use relative paths and short commands
+Move-Item "source.html" "target/"
+Copy-Item "*.html" "destination/" -Recurse
+
+# For long filenames, use Get-ChildItem with filters
+Get-ChildItem "00-TO-BE-PROCESSED-BY-AI-AGENTS/" -Filter "*quantum*" | Move-Item -Destination "implementations/physics-simulations/"
+```
+
+#### Directory Operations
+```powershell
+# Create directories
+New-Item -ItemType Directory -Path "new-folder" -Force
+
+# List contents without issues
+Get-ChildItem -Name
+```
+
+#### Git Commands (No-Pager Required)
+```powershell
+# Always use --no-pager for git commands that might use pager
+git --no-pager log --oneline -10
+git --no-pager status  
+git --no-pager branch
+git --no-pager diff
+```
+
 ### GIT WORKFLOW PROTOCOL
 
 #### Branch Management:
 ```bash
-# Always create feature branch
-git checkout -b agent_work_[timestamp]
+# Always create feature branch (short names to avoid PowerShell issues)
+git checkout -b agent_work
 
-# Work and commit frequently
-git add -A
-git commit -m "[AGENT] [Approach Used]: [Specific achievement]"
+# Work and commit frequently using short commands
+git add .
+git commit -m "AGENT:Claude-3.5-Sonnet Method: Achievement"
+
+# Check status without pager
+git --no-pager status
+git --no-pager branch
 
 # Merge to main aggressively
 git checkout main
-git pull origin main --rebase
-git merge agent_work_[timestamp] --no-ff
+git pull origin main
+git merge agent_work --no-ff
 git push origin main
 
 # Cleanup
-git branch -d agent_work_[timestamp]
+git branch -d agent_work
 ```
 
 #### Merge Conflict Resolution:
