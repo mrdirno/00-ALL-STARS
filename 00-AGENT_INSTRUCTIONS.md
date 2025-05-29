@@ -316,6 +316,9 @@ git --no-pager log --oneline -10
 git --no-pager status  
 git --no-pager branch
 git --no-pager diff
+
+# Disable GPG signing if commit failures occur
+git config --global commit.gpgsign false
 ```
 
 ### GIT WORKFLOW PROTOCOL
