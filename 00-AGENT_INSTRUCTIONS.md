@@ -51,8 +51,10 @@ Follow these global standards for cross-platform compatibility:
 - **Always identify yourself** in commits and context documents
 - **If model name known**: Use specific model (e.g., "Claude 3.5 Sonnet", "GPT-4", "Gemini Pro")
 - **If uncertain**: Use company + current date: "Anthropic-2025-01-28", "OpenAI-2025-01-28"
-- **Get current date**: Use `date +%Y-%m-%d` command, never rely on memory
-- **Commit format**: `[AGENT:Claude-3.5-Sonnet] [Method]: Achievement` or `[AGENT:Anthropic-2025-01-28] [Method]: Achievement`
+- **Get current date**: Use `Get-Date -Format "yyyy-MM-dd"` command (PowerShell) or `date +%Y-%m-%d` (bash), never rely on memory
+- **Commit format examples**: 
+  - `git commit -m "AGENT:Claude-3.5-Sonnet Method-Name: Achievement description"`
+  - `git commit -m "AGENT:Anthropic-2025-01-28 Method-Name: Achievement description"`
 
 ### MANDATORY STARTUP SEQUENCE
 
@@ -79,20 +81,20 @@ Follow these global standards for cross-platform compatibility:
    - Format:
      ```markdown
      # Agent Context Document
-     Agent: [Model Name or Company-Date]
-     Last Updated: [UTC timestamp]
+     Agent: Model-Name-or-Company-Date
+     Last Updated: UTC-timestamp
      
      ## Current Task
-     [Active work description]
+     Active work description
      
      ## Completed Tasks
-     [List with commit hashes]
+     List with commit hashes
      
      ## Next Actions
-     [Prioritized list]
+     Prioritized list
      
      ## Discoveries/Findings
-     [Any significant results]
+     Any significant results
      ```
 
 ### INTAKE PROCESSING PROTOCOL: `00-TO-BE-PROCESSED-BY-AI-AGENTS/`
