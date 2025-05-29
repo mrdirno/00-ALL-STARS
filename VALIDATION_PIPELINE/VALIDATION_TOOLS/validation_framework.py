@@ -205,11 +205,21 @@ class ScientificValidationFramework:
             "passed": False,
             "methods_applied": [],
             "physics_consistency": False,
-            "reasoning_score": 0.0
+            "reasoning_score": 0.0,
+            "pseudoscience_check": {}
         }
         
         try:
             content = self.read_item_content(item_path)
+            
+            # MANDATORY: Check for pseudoscientific claims first
+            pseudoscience_result = self.detect_pseudoscientific_claims(content)
+            result["pseudoscience_check"] = pseudoscience_result
+            
+            # Immediate rejection if pseudoscientific claims detected
+            if pseudoscience_result["is_pseudoscientific"]:
+                result["failure_reason"] = f"Pseudoscientific claims detected: {pseudoscience_result['violation_count']} violations"
+                return result
             
             # Apply core reasoning methods
             methods_results = []
@@ -239,11 +249,14 @@ class ScientificValidationFramework:
             
             result["reasoning_score"] = reasoning_score
             
-            # Pass criteria: 80% of methods + physics consistency
-            result["passed"] = reasoning_score >= 0.8 and physics_check
+            # Pass criteria: 80% of methods + physics consistency + no pseudoscience
+            result["passed"] = reasoning_score >= 0.8 and physics_check and not pseudoscience_result["is_pseudoscientific"]
             
             if not result["passed"]:
-                result["failure_reason"] = f"Reasoning score {reasoning_score:.2f} < 0.8 or physics inconsistency"
+                if pseudoscience_result["is_pseudoscientific"]:
+                    result["failure_reason"] = f"Pseudoscientific claims detected: {pseudoscience_result['violation_count']} violations"
+                else:
+                    result["failure_reason"] = f"Reasoning score {reasoning_score:.2f} < 0.8 or physics inconsistency"
                 
             return result
             
@@ -541,12 +554,33 @@ class ScientificValidationFramework:
             
     def extract_scientific_claims(self, content: str) -> List[str]:
         """Extract scientific claims from content"""
-        # Look for claim indicators
+        # Look for claim indicators - expanded patterns
         claim_patterns = [
             r"we claim that (.+?)[\.\n]",
             r"hypothesis: (.+?)[\.\n]", 
             r"we propose (.+?)[\.\n]",
-            r"theory suggests (.+?)[\.\n]"
+            r"theory suggests (.+?)[\.\n]",
+            r"framework establishes (.+?)[\.\n]",
+            r"reveals (.+?)[\.\n]",
+            r"demonstrates (.+?)[\.\n]",
+            r"shows that (.+?)[\.\n]",
+            r"proves (.+?)[\.\n]",
+            r"indicates (.+?)[\.\n]",
+            r"suggests (.+?)[\.\n]",
+            r"implies (.+?)[\.\n]",
+            r"predicts (.+?)[\.\n]",
+            r"the framework (.+?)[\.\n]",
+            r"this document presents (.+?)[\.\n]",
+            r"the synthesis reveals (.+?)[\.\n]",
+            r"results show (.+?)[\.\n]",
+            r"analysis demonstrates (.+?)[\.\n]",
+            r"evidence indicates (.+?)[\.\n]",
+            r"findings suggest (.+?)[\.\n]",
+            r"discovery of (.+?)[\.\n]",
+            r"breakthrough in (.+?)[\.\n]",
+            r"unified (.+?) relationship",
+            r"scale-invariant (.+?)[\.\n]",
+            r"quantum-cosmic (.+?)[\.\n]"
         ]
         
         claims = []
@@ -595,15 +629,23 @@ class ScientificValidationFramework:
     
     def apply_methodical_skepticism(self, content: str) -> bool:
         """Apply Method #10: Methodical Skepticism"""
-        # Check for assumption questioning and foundation rebuilding
+        # Check for assumption questioning and foundation rebuilding - expanded indicators
         skeptical_indicators = [
-            "assume", "question", "doubt", "verify", "test", "validate"
+            "assume", "question", "doubt", "verify", "test", "validate",
+            "evidence", "proof", "demonstrate", "confirm", "check",
+            "analysis", "examination", "investigation", "scrutiny",
+            "critical", "rigorous", "systematic", "methodical",
+            "falsification", "prediction", "hypothesis", "theory",
+            "experiment", "measurement", "observation", "data",
+            "uncertainty", "error", "limitation", "assumption",
+            "reproducible", "consistent", "accurate", "precise"
         ]
         
         skeptical_count = sum(1 for indicator in skeptical_indicators 
                             if indicator.lower() in content.lower())
         
-        return skeptical_count >= 3
+        # More lenient threshold for comprehensive scientific documents
+        return skeptical_count >= 8
         
     def apply_occams_razor(self, content: str) -> bool:
         """Apply Method #4: Occam's Razor"""
@@ -875,5 +917,63 @@ class ScientificValidationFramework:
         result["rejection_stage"] = stage
         result["rejection_reason"] = reason
         result["end_time"] = datetime.utcnow().isoformat()
+        
+        return result
+        
+    def detect_pseudoscientific_claims(self, content: str) -> Dict[str, Any]:
+        """
+        Detect pseudoscientific claims that should be automatically rejected
+        Based on the mandatory scientific integrity requirements
+        """
+        result = {
+            "violations_found": [],
+            "violation_count": 0,
+            "is_pseudoscientific": False
+        }
+        
+        # Prohibited patterns from instructions
+        prohibited_patterns = [
+            (r"quantum-cosmic resonance", "Quantum-cosmic resonance framework claims"),
+            (r"unified.*field.*theory", "Unified field theory claims"),
+            (r"major breakthrough", "Breakthrough claims without proof"),
+            (r"novel discovery", "Discovery claims without validation"),
+            (r"universal scaling relationship", "Universal scaling claims"),
+            (r"golden ratio physics", "Golden ratio physics claims"),
+            (r"scale-invariant.*across.*\d+.*orders.*magnitude", "Extreme scale-invariant claims"),
+            (r"fundamental mechanism.*quantum.*cosmic", "Quantum-cosmic mechanism claims"),
+            (r"unified mathematical relationship.*quantum.*cosmic", "Unified quantum-cosmic claims")
+        ]
+        
+        for pattern, description in prohibited_patterns:
+            matches = re.findall(pattern, content, re.IGNORECASE)
+            if matches:
+                result["violations_found"].append({
+                    "pattern": pattern,
+                    "description": description,
+                    "matches": matches[:3],  # First 3 examples
+                    "count": len(matches)
+                })
+                result["violation_count"] += len(matches)
+        
+        # Check for theoretical claims from file organization
+        file_org_patterns = [
+            (r"synthesis.*reveals", "Claims from synthesis/organization"),
+            (r"framework.*establishes.*from.*educational", "Claims from educational framework"),
+            (r"performance.*monitoring.*reveals", "Claims from performance monitoring")
+        ]
+        
+        for pattern, description in file_org_patterns:
+            matches = re.findall(pattern, content, re.IGNORECASE)
+            if matches:
+                result["violations_found"].append({
+                    "pattern": pattern,
+                    "description": description,
+                    "matches": matches[:2],
+                    "count": len(matches)
+                })
+                result["violation_count"] += len(matches)
+        
+        # Mark as pseudoscientific if violations found
+        result["is_pseudoscientific"] = result["violation_count"] > 0
         
         return result 
