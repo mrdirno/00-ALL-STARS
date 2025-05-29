@@ -31,8 +31,21 @@ Aspect Ratio: AR = a/b (rugby ball elongation factor)
 Standing Wave Constraint: λ_target = 240 Mpc
 Resonance Condition: 2R = n × λ_target/2 (fundamental mode)
 Derived Radius: R = n × 120 Mpc (where n is mode number)
-Calibration Method: Acoustic test from opposite surface points
-Optimization: Adjust R until standing wave spacing = 240 Mpc
+
+Multi-Point Calibration Method:
+- Distribute N emission points evenly across sphere surface
+- Use spherical coordinates: θᵢ, φᵢ for i = 1 to N
+- Emit waves simultaneously from all points
+- Map interference patterns in 3D space
+- Identify nodal surfaces (cancellation zones)
+- Measure cross-sectional spacing at multiple radii
+- Optimize: Adjust R until nodal spacing = 240 Mpc
+
+Cross-Section Analysis:
+- Sample interference at radial distances: r = 2R, 3R, 4R, 5R
+- Measure nodal spacing in xy, xz, yz planes
+- Average spacing across all cross-sections
+- Convergence criterion: |avg_spacing - 240_Mpc| < tolerance
 ```
 
 **3. Resonant Oscillation Modes**
@@ -120,13 +133,25 @@ The model predicts a nested hierarchy based on spheroidal resonance modes:
 
 **Method**:
 1. Initialize spheroid with arbitrary radius R₀
-2. Emit waves from two opposite surface points
-3. Measure standing wave pattern spacing in surrounding medium
-4. Iteratively adjust radius: R_{n+1} = R_n × (240_Mpc / measured_spacing)
-5. Repeat until convergence: |measured_spacing - 240_Mpc| < tolerance
-6. Record final radius as R_optimal
+2. Distribute N emission points evenly across sphere surface (e.g., N=12, 20, or 32)
+3. Use geodesic or Fibonacci spiral distribution for optimal coverage
+4. Emit waves simultaneously from all N points
+5. Map 3D interference pattern in surrounding medium
+6. Identify nodal surfaces (destructive interference zones)
+7. Measure nodal spacing at multiple cross-sections and radial distances
+8. Calculate average spacing: avg_spacing = mean(all_cross_section_measurements)
+9. Iteratively adjust radius: R_{n+1} = R_n × (240_Mpc / avg_spacing)
+10. Repeat until convergence: |avg_spacing - 240_Mpc| < tolerance
+11. Record final radius as R_optimal
 
-**Expected Result**: Self-consistent radius that produces exactly 240 Mpc standing waves
+**Expected Result**: Self-consistent radius that produces exactly 240 Mpc standing waves across all cross-sections
+
+**Advantages of Multi-Point Method**:
+- Higher resolution interference mapping
+- Eliminates directional bias from two-point method
+- Captures full 3D nodal structure
+- More robust convergence
+- Better represents realistic spherical emission
 
 #### Test 2: Multi-Scale Validation
 **Platform**: Enhanced Cymatics Simulation
