@@ -868,7 +868,7 @@
             particleVelocities[i3 + 2] = vz;
             
             // Initialize color based on initial position and a default potential (or calculate initial potential)
-            const initialPotential = getAdvancedWavePotential3D(px, py, pz, parseFloat(ui.frequency.value), parseInt(ui.modeM.value), parseInt(ui.modeN.value), parseInt(ui.modeP.value), ui.waveform.value);
+            const initialPotential = getOptimizedAdvancedWavePotential3D(px, py, pz, parseFloat(ui.frequency.value), parseInt(ui.modeM.value), parseInt(ui.modeN.value), parseInt(ui.modeP.value), ui.waveform.value, false);
             updateParticleColor(index, px, py, pz, initialPotential);
         }
 
@@ -1499,6 +1499,13 @@
             const y = positions[i3 + 1];
             const z = positions[i3 + 2];
             
+            // Get current UI parameters
+            const freq = parseFloat(ui.frequency.value);
+            const modeM = parseInt(ui.modeM.value);
+            const modeN = parseInt(ui.modeN.value);
+            const modeP = parseInt(ui.modeP.value);
+            const waveType = ui.waveform.value;
+            
             // Spatial hash key for this particle
             const gridX = Math.floor((x + SIMULATION_EXTENT) / SPATIAL_CELL_SIZE);
             const gridY = Math.floor((y + SIMULATION_EXTENT) / SPATIAL_CELL_SIZE);
@@ -1512,11 +1519,11 @@
                 if (time - cachedData.timestamp < 50) { // Cache for 50ms
                     wavePotential = cachedData.potential;
                 } else {
-                    wavePotential = getOptimizedAdvancedWavePotential3D(x, y, z, frequency, modeM, modeN, modeP, waveType, true);
+                    wavePotential = getOptimizedAdvancedWavePotential3D(x, y, z, freq, modeM, modeN, modeP, waveType, true);
                     spatialHashGrid.set(hashKey, { potential: wavePotential, timestamp: time });
                 }
             } else {
-                wavePotential = getOptimizedAdvancedWavePotential3D(x, y, z, frequency, modeM, modeN, modeP, waveType, true);
+                wavePotential = getOptimizedAdvancedWavePotential3D(x, y, z, freq, modeM, modeN, modeP, waveType, true);
                 spatialHashGrid.set(hashKey, { potential: wavePotential, timestamp: time });
             }
             
