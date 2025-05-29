@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<!--
+    Resonance is All You Need: Advanced Wave Dynamics
+    Concept & Transformation by Agent 1 (Gemini 2.5 Pro) based on original work.
+    Original Concept & Implementation by:
+    - Aldrin Payopay (Lead Researcher & Visionary)
+    - Claude Opus 4 (AI Research Assistant & Code Architect) 
+    - Gemini 2.5 Pro (AI Research Assistant & Mathematical Modeling)
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, Agent 1">
+    <meta name="description" content="Advanced Wave Dynamics Model - Dual Source Interference. Original research by Aldrin Payopay with AI Assistants.">
+    <meta name="keywords" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, wave interference, cosmic structure, gravitational waves, resonance, advanced dynamics">
+    <meta name="creator" content="Aldrin Payopay (Human Researcher), Claude Opus 4 (AI Assistant), Gemini 2.5 Pro (AI Assistant), Agent 1 (AI Transformation)">
+    <title>Wave Interference Demo: Dual Source Model</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        /* CSS Styling - Unchanged from origin-simple.html */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #000000; 
+            color: #ffffff;
+            overflow: hidden; 
+            position: relative;
+        }
+        #container { 
+            width: 100vw; 
+            height: 100vh; 
+            display: block;
+            background: radial-gradient(ellipse at center, #101020 0%, #000000 100%); 
+        }
+        .ui-panel {
+            position: absolute;
+            background: rgba(25, 25, 45, 0.15); 
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(100, 100, 200, 0.15); 
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease;
+        }
+        .ui-panel:hover {
+            background: rgba(35, 35, 55, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        #controls-panel { 
+            top: 20px; 
+            left: 20px; 
+            width: 360px; 
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.6s ease forwards;
+            animation-delay: 0.3s;
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        #controls-panel::-webkit-scrollbar { width: 8px; }
+        #controls-panel::-webkit-scrollbar-track { background: rgba(25, 25, 45, 0.1); border-radius: 10px;}
+        #controls-panel::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 10px; border: 1px solid rgba(25, 25, 45, 0.2); }
+        #controls-panel::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #9F50E8 0%, #5D1DE0 100%); }
+        #controls-panel { scrollbar-width: thin; scrollbar-color: #8A2BE2 rgba(25, 25, 45, 0.1); }
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        #stats-bar { 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(20px);
+            padding: 16px 32px;
+            z-index: 10;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .stat-label { font-size: 0.75rem; color: rgba(200, 200, 255, 0.6); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 1.25rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } 
+        .control-group { margin-bottom: 20px; }
+        #controls-panel .control-group { padding-right: 14px; }
+        #controls-panel h2 { padding-right: 14px; }
+        .control-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.875rem; font-weight: 500; color: rgba(220, 220, 255, 0.9); text-transform: uppercase; letter-spacing: 0.05em; }
+        .control-group label[title] { cursor: help; }
+        .control-value { font-size: 1rem; color: #8A2BE2; font-weight: 600; }
+        .control-group small { display: block; color: rgba(200, 200, 255, 0.5); font-size: 0.75rem; font-weight: 400; text-transform: none; letter-spacing: normal; margin-top: -8px; margin-bottom: 12px; }
+        .info-icon { font-size: 0.7em; color: rgba(138, 43, 226, 0.7); font-weight: 400; margin-left: 8px; cursor: help; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+        .info-icon:hover { color: rgba(138, 43, 226, 1); transform: scale(1.1); }
+        input[type="range"] { width: 100%; height: 6px; background: rgba(200, 200, 255, 0.15); border-radius: 3px; outline: none; -webkit-appearance: none; cursor: pointer; transition: background 0.3s ease; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); transition: all 0.3s ease; }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 4px 20px rgba(138, 43, 226, 0.8); }
+        input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); }
+        select, .ui-input-number { width: 100%; padding: 12px 16px; background: rgba(35, 35, 55, 0.1); border: 1px solid rgba(100, 100, 200, 0.2); border-radius: 12px; color: #fff; font-size: 0.875rem; font-weight: 500; cursor: pointer; outline: none; transition: all 0.3s ease; -moz-appearance: textfield; /* Firefox */ }
+        select:hover, .ui-input-number:hover { background: rgba(45, 45, 65, 0.15); border-color: rgba(120, 120, 220, 0.3); }
+        select:focus, .ui-input-number:focus { border-color: #8A2BE2; box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2); }
+        .ui-input-number::-webkit-outer-spin-button,
+        .ui-input-number::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        button { width: 100%; padding: 14px 20px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border: none; border-radius: 12px; color: white; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden; }
+        button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.15); transition: left 0.5s ease; }
+        button:hover::before { left: 100%; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4); }
+        button:active { transform: translateY(0); }
+        button.active { background: linear-gradient(135deg, #CF63CF 0%, #f5576c 100%); } 
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; letter-spacing: -0.02em; }
+        #initialization-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, #101020 0%, #000000 100%);
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            z-index: 1000; padding: 20px;
+        }
+        .init-content { text-align: center; max-width: 600px; animation: fadeInScale 0.8s ease; }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .init-title { font-size: 3rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.03em; line-height: 1.2; }
+        .init-subtitle { font-size: 1.25rem; color: rgba(220, 220, 255, 0.7); margin-bottom: 40px; font-weight: 300; }
+        #start-button { padding: 18px 48px; font-size: 1.125rem; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border: none; border-radius: 30px; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: 0 10px 40px rgba(138, 43, 226, 0.4); position: relative; overflow: hidden; }
+        #start-button:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(138, 43, 226, 0.6); }
+        #start-button:disabled { background: #2a2a2a; cursor: not-allowed; box-shadow: none; }
+        #status-message { color: rgba(200, 200, 255, 0.6); margin-top: 20px; font-size: 0.875rem; }
+        #error-message { color: #f87171; margin-top: 15px; font-weight: 500; }
+        .loading-dots { display: inline-flex; gap: 4px; }
+        .dot { width: 8px; height: 8px; background: #8A2BE2; border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes loadingDot { 0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; } 40% { transform: scale(1.2); opacity: 1; } }
+        .sound-indicator { position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; z-index: 10; opacity: 0; animation: fadeIn 0.6s ease forwards; animation-delay: 0.7s; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        .sound-waves { position: relative; width: 100%; height: 100%; }
+        .wave { position: absolute; border: 2px solid rgba(138, 43, 226, 0.6); border-radius: 50%; opacity: 0; animation: soundWave 2s ease-out infinite; }
+        .wave:nth-child(2) { animation-delay: 0.5s; } .wave:nth-child(3) { animation-delay: 1s; }
+        @keyframes soundWave { 0% { width: 20px; height: 20px; top: 20px; left: 20px; opacity: 1; } 100% { width: 60px; height: 60px; top: 0; left: 0; opacity: 0; } }
+        .sound-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; fill: #8A2BE2; }
+        .instructions { position: absolute; bottom: 20px; right: 20px; background: rgba(25, 25, 45, 0.1); backdrop-filter: blur(15px); padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(100, 100, 200, 0.1); font-size: 0.75rem; color: rgba(200, 200, 255, 0.7); z-index: 10; opacity: 0; animation: fadeIn 0.6s ease forwards; animation-delay: 0.9s; }
+        .research-watermark { position: fixed; bottom: 5px; left: 5px; font-size: 8px; color: rgba(138, 43, 226, 0.1); z-index: 1; pointer-events: none; font-family: monospace; transform: rotate(-90deg); transform-origin: 0 0; }
+        .research-watermark div { white-space: nowrap; }
+        .pulse-indicator { width: 20px; height: 20px; background-color: #8A2BE2; border-radius: 50%; transition: all 0.3s ease; }
+        .pulse-active { animation: pulseAnim 0.7s ease-out; }
+        @keyframes pulseAnim { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7); } 50% { transform: scale(1.5); box-shadow: 0 0 10px 15px rgba(138, 43, 226, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); } }
+        #fullscreen-button {
+            position: absolute;
+            top: 20px;
+            right: 100px; /* Adjusted to make space for sound indicator */
+            padding: 10px 15px;
+            background: rgba(25, 25, 45, 0.2);
+            border: 1px solid rgba(100, 100, 200, 0.15);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            z-index: 10;
+            opacity:0; animation: fadeIn 0.6s ease forwards; animation-delay: 0.8s;
+        }
+         #fullscreen-button:hover { background: rgba(35, 35, 55, 0.3); }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <div id="initialization-overlay">
+        <div class="init-content">
+            <div class="init-title">Advanced Wave Dynamics: Dual Source Interference</div>
+            <div class="init-subtitle">Visualizing 3D wave interference patterns from two coherent sources. <br>A conceptual interactive model.</div>
+            <button id="start-button">Initialize Simulation</button>
+            <div id="status-message">Loading assets... <span class="loading-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+            <div id="error-message" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <div id="controls-panel" class="ui-panel">
+        <h2>Wave Parameters</h2>
+        <div class="control-group">
+            <label for="frequencySlider">Frequency: <span id="frequencyValue" class="control-value">10.0</span> Hz <span class="info-icon" title="Base frequency of the cosmic resonance field.">ℹ️</span></label>
+            <input type="range" id="frequencySlider" min="0.1" max="50" step="0.1" value="10.0">
+            <small>Adjusts the fundamental frequency of the wave patterns.</small>
+        </div>
+        <div class="control-group">
+            <label for="amplitudeSlider">Amplitude: <span id="amplitudeValue" class="control-value">1.0</span> <span class="info-icon" title="Strength of the cymatic displacement force.">ℹ️</span></label>
+            <input type="range" id="amplitudeSlider" min="0.0" max="5.0" step="0.01" value="1.0">
+            <small>Controls the intensity of the wave displacement effect.</small>
+        </div>
+        <div class="control-group">
+            <label for="sourceOffsetSlider">Source Offset: <span id="sourceOffsetValue" class="control-value">75</span> <span class="info-icon" title="Separation of the two wave interference sources.">ℹ️</span></label>
+            <input type="range" id="sourceOffsetSlider" min="0" max="200" step="1" value="75">
+            <small>Distance between dual wave sources. 0 for single source at origin.</small>
+        </div>
+        <div class="control-group">
+            <label for="modeMSlider">Mode M (Theta): <span id="modeMValue" class="control-value">4</span> <span class="info-icon" title="Azimuthal mode number (around Z-axis).">ℹ️</span></label>
+            <input type="range" id="modeMSlider" min="0" max="12" step="1" value="4">
+            <small>Determines angular patterns around the Z-axis.</small>
+        </div>
+        <div class="control-group">
+            <label for="modeNSlider">Mode N (Phi): <span id="modeNValue" class="control-value">5</span> <span class="info-icon" title="Polar mode number (from Z-axis).">ℹ️</span></label>
+            <input type="range" id="modeNSlider" min="0" max="12" step="1" value="5">
+            <small>Determines angular patterns relative to the Z-axis.</small>
+        </div>
+        <div class="control-group">
+            <label for="modePSlider">Mode P (Radial): <span id="modePValue" class="control-value">6</span> <span class="info-icon" title="Radial mode number.">ℹ️</span></label>
+            <input type="range" id="modePSlider" min="0" max="12" step="1" value="6">
+            <small>Determines concentric patterns from the source(s).</small>
+        </div>
+        <div class="control-group">
+            <label for="waveformSelect">Waveform: <span id="waveformValue" class="control-value">Sine</span> <span class="info-icon" title="Shape of the fundamental wave.">ℹ️</span></label>
+            <select id="waveformSelect">
+                <option value="sine" selected>Sine Wave</option>
+                <option value="square">Square Wave</option>
+                <option value="triangle">Triangle Wave</option>
+                <option value="sawtooth">Sawtooth Wave</option>
+            </select>
+            <small>Modifies the basic wave shape for different effects.</small>
+        </div>
+
+        <h2>Particle & System</h2>
+        <div class="control-group">
+            <label for="particleCountSlider">Particle Count: <span id="particleCountValue" class="control-value">50000</span> <span class="info-icon" title="Total number of particles in the simulation. Requires re-initialization.">ℹ️</span></label>
+            <input type="range" id="particleCountSlider" min="1000" max="250000" step="1000" value="50000">
+            <small>More particles create denser structures but reduce performance.</small>
+        </div>
+         <div class="control-group">
+            <label for="particlesToSpawnSlider">Spawn Rate / Frame: <span id="particlesToSpawnValue" class="control-value">500</span> <span class="info-icon" title="Number of particles to (re)initialize per animation frame.">ℹ️</span></label>
+            <input type="range" id="particlesToSpawnSlider" min="0" max="5000" step="100" value="500">
+            <small>Higher rates fill the volume faster or make patterns more dynamic if particles are reset.</small>
+        </div>
+        <div class="control-group">
+            <label for="heartRateSlider">Heartbeat Rate (BPM): <span id="heartRateValue" class="control-value">60</span> <span class="info-icon" title="Simulated cosmic heartbeat, influences force pulses and audio.">ℹ️</span></label>
+            <input type="range" id="heartRateSlider" min="30" max="180" step="1" value="60">
+            <small>Frequency of the central 'heartbeat' pulse.</small>
+        </div>
+        <div class="control-group">
+            <label for="gravityStrengthSlider">Gravity Strength: <span id="gravityStrengthValue" class="control-value">100</span> <span class="info-icon" title="Strength of the central gravitational pull.">ℹ️</span></label>
+            <input type="range" id="gravityStrengthSlider" min="0" max="1000" step="10" value="100">
+            <small>Adjusts the force of the central supermassive black hole analog.</small>
+        </div>
+        <div class="control-group">
+            <button id="reinitializeButton">Re-initialize Simulation</button>
+            <small>Applies particle count changes and resets the simulation.</small>
+        </div>
+        <div class="control-group">
+            <button id="toggleSoundButton"><span>🔊 Audio ON</span></button>
+            <small>Toggles generative soundscape based on simulation parameters.</small>
+        </div>
+    </div>
+
+    <div id="stats-bar" class="ui-panel">
+        <div class="stat-item">
+            <div class="stat-label">Particles</div>
+            <div id="activeParticlesStat" class="stat-value">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label">FPS</div>
+            <div id="fpsStat" class="stat-value">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label">Time Scale</div>
+            <div id="timeScaleStat" class="stat-value">1.0x</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label">Heartbeat</div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <div id="bpmStat" class="stat-value">60</div>
+                <div class="pulse-indicator" id="pulseIndicatorVisual"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sound-indicator" id="soundIndicatorVisual">
+        <div class="sound-waves">
+            <div class="wave"></div> <div class="wave"></div> <div class="wave"></div>
+        </div>
+        <svg class="sound-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+    </div>
+
+    <button id="fullscreen-button">Fullscreen</button>
+
+    <div class="instructions">Use mouse to orbit, scroll to zoom. Adjust parameters to explore wave patterns.</div>
+    
+    <div class="research-watermark">
+        <div>Wave Interference Demo: Dual Source Model</div>
+        <div>A. Payopay, Claude 4, Gemini 2.5 Pro, Agent 1</div>
+    </div>
+
+    <script>
+        // --- Global Scope Variables ---
+        let scene, camera, renderer, controls, particles, clock, stats;
+        let PARTICLE_COUNT = 50000; // Default, can be changed by slider
+        const SIMULATION_EXTENT = 500; // Max distance particles can go
+        const CORE_RADIUS_VISUAL = 0.5; 
+        const CORE_ACTUAL_RADIUS = 2.0; 
+        const GRAVITY_WELL_RADIUS = SIMULATION_EXTENT * 0.8;
+        const DEFAULT_GRAVITY_STRENGTH = 100;
+        const CHLADNI_3D_FIELD_STRENGTH = 0.8; 
+        const VELOCITY_DAMPING = 0.98; 
+        const PARTICLE_BASE_SIZE = 1.0;
+        const HEARTBEAT_EFFECT_DURATION = 150; // ms
+        const HEARTBEAT_FORCE_MULTIPLIER = 1.8;
+        const DEFAULT_SOURCE_OFFSET = 75;
+
+        let time = 0;
+        let currentSpawnIndex = 0;
+        let particlesToSpawnPerFrame = 500;
+        let isExperienceStarted = false;
+        let soundEnabled = true;
+        let heartbeatSynth, noiseSynth, reverb, masterVolume;
+        let lastBeatTime = 0;
+        let heartRate = 60; // BPM
+        let isHeartbeatActive = false;
+        let heartbeatEffectTimer = null;
+
+        const RESEARCH_TEAM = {
+            lead: "Aldrin Payopay",
+            ai_collaborators: ["Claude Opus 4", "Gemini 2.5 Pro", "Agent 1 (Transformation)"],
+            project: "Advanced Wave Dynamics: Dual Source Interference Demo",
+            year: 2025
+        };
+        const ALDRIN_PAYOPAY_SIGNATURE = btoa("Lead Researcher: Aldrin Payopay");
+        const CLAUDE_OPUS_4_SIGNATURE = btoa("AI Code Architect: Claude Opus 4");
+        const GEMINI_25_PRO_SIGNATURE = btoa("AI Mathematical Modeler: Gemini 2.5 Pro");
+        const AGENT_1_SIGNATURE = btoa("AI Transformation Agent: Agent 1");
+        const RESEARCH_INTEGRITY_HASH = { type: "SHA256-SIM", encoded_signature: "ModelTransformationAgent1DualSourceInterferenceV1.0" };
+
+        // UI elements cache
+        const ui = {};
+
+        // --- Initialization ---
+        function init() {
+            setupScene();
+            setupCamera();
+            setupRenderer();
+            setupControls();
+            setupLights();
+            setupEventListeners();
+            setupStats();
+            cacheUIElements();
+            initControls(); 
+            
+            // Start button activation
+            const startButton = document.getElementById('start-button');
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.innerHTML = 'Ready to Initialize <span class="loading-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>';
+            startButton.disabled = false;
+            startButton.textContent = "Start Simulation";
+            startButton.addEventListener('click', startExperience);
+            
+            clock = new THREE.Clock();
+            console.log("Resonance Engine Initialized. Research Team:", RESEARCH_TEAM);
+            verifyResearchIntegrity();
+        }
+
+        function startExperience() {
+            if (isExperienceStarted) return;
+            document.getElementById('initialization-overlay').style.display = 'none';
+            isExperienceStarted = true;
+
+            PARTICLE_COUNT = parseInt(ui.particleCount.value);
+            particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+            CENTRAL_GRAVITY_STRENGTH = parseFloat(ui.gravityStrength.value);
+
+
+            if (Tone.context.state !== 'running') {
+                Tone.start().then(() => {
+                    console.log("AudioContext started by Tone.js");
+                    setupSound(); // Initialize sound after user interaction
+                    if (soundEnabled) Tone.Destination.mute = false;
+                }).catch(e => {
+                    console.error("Error starting Tone.js AudioContext:", e);
+                    document.getElementById('error-message').textContent = "Could not initialize audio. Sound will be disabled.";
+                    document.getElementById('error-message').style.display = 'block';
+                    soundEnabled = false; 
+                });
+            } else {
+                 setupSound();
+                 if (soundEnabled) Tone.Destination.mute = false;
+            }
+            
+            createParticleSystem(PARTICLE_COUNT);
+            animate();
+        }
+        
+        function cacheUIElements() {
+            ui.frequency = document.getElementById('frequencySlider');
+            ui.frequencyValue = document.getElementById('frequencyValue');
+            ui.amplitude = document.getElementById('amplitudeSlider');
+            ui.amplitudeValue = document.getElementById('amplitudeValue');
+            ui.sourceOffset = document.getElementById('sourceOffsetSlider'); // New UI element
+            ui.sourceOffsetValue = document.getElementById('sourceOffsetValue'); // New UI element
+            ui.modeM = document.getElementById('modeMSlider');
+            ui.modeMValue = document.getElementById('modeMValue');
+            ui.modeN = document.getElementById('modeNSlider');
+            ui.modeNValue = document.getElementById('modeNValue');
+            ui.modeP = document.getElementById('modePSlider');
+            ui.modePValue = document.getElementById('modePValue');
+            ui.waveform = document.getElementById('waveformSelect');
+            ui.waveformValue = document.getElementById('waveformValue');
+            ui.particleCount = document.getElementById('particleCountSlider');
+            ui.particleCountValue = document.getElementById('particleCountValue');
+            ui.particlesToSpawn = document.getElementById('particlesToSpawnSlider');
+            ui.particlesToSpawnValue = document.getElementById('particlesToSpawnValue');
+            ui.reinitializeButton = document.getElementById('reinitializeButton');
+            ui.activeParticlesStat = document.getElementById('activeParticlesStat');
+            ui.fpsStat = document.getElementById('fpsStat');
+            ui.timeScaleStat = document.getElementById('timeScaleStat');
+            ui.toggleSound = document.getElementById('toggleSoundButton');
+            ui.soundIndicator = document.getElementById('soundIndicatorVisual');
+            ui.heartRate = document.getElementById('heartRateSlider');
+            ui.heartRateValue = document.getElementById('heartRateValue');
+            ui.bpmStat = document.getElementById('bpmStat');
+            ui.pulseIndicator = document.getElementById('pulseIndicatorVisual');
+            ui.gravityStrength = document.getElementById('gravityStrengthSlider');
+            ui.gravityStrengthValue = document.getElementById('gravityStrengthValue');
+            ui.fullscreenButton = document.getElementById('fullscreen-button');
+
+            // Set initial values from defaults or sliders
+            ui.frequencyValue.textContent = ui.frequency.value;
+            ui.amplitudeValue.textContent = ui.amplitude.value;
+            ui.sourceOffsetValue.textContent = ui.sourceOffset.value; // New
+            ui.modeMValue.textContent = ui.modeM.value;
+            ui.modeNValue.textContent = ui.modeN.value;
+            ui.modePValue.textContent = ui.modeP.value;
+            ui.waveformValue.textContent = ui.waveform.options[ui.waveform.selectedIndex].text;
+            ui.particleCountValue.textContent = ui.particleCount.value;
+            ui.particlesToSpawnValue.textContent = ui.particlesToSpawn.value;
+            ui.heartRateValue.textContent = ui.heartRate.value;
+            ui.gravityStrengthValue.textContent = ui.gravityStrength.value;
+        }
+
+        function initControls() {
+            ui.frequency.addEventListener('input', () => ui.frequencyValue.textContent = ui.frequency.value);
+            ui.amplitude.addEventListener('input', () => ui.amplitudeValue.textContent = ui.amplitude.value);
+            ui.sourceOffset.addEventListener('input', () => ui.sourceOffsetValue.textContent = ui.sourceOffset.value); // New
+            ui.modeM.addEventListener('input', () => ui.modeMValue.textContent = ui.modeM.value);
+            ui.modeN.addEventListener('input', () => ui.modeNValue.textContent = ui.modeN.value);
+            ui.modeP.addEventListener('input', () => ui.modePValue.textContent = ui.modeP.value);
+            ui.waveform.addEventListener('change', () => ui.waveformValue.textContent = ui.waveform.options[ui.waveform.selectedIndex].text);
+            ui.particleCount.addEventListener('input', () => ui.particleCountValue.textContent = ui.particleCount.value);
+            ui.particlesToSpawn.addEventListener('input', () => {
+                ui.particlesToSpawnValue.textContent = ui.particlesToSpawn.value;
+                particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+            });
+            ui.heartRate.addEventListener('input', () => {
+                heartRate = parseInt(ui.heartRate.value);
+                ui.heartRateValue.textContent = heartRate;
+                ui.bpmStat.textContent = heartRate;
+            });
+            ui.gravityStrength.addEventListener('input', () => {
+                CENTRAL_GRAVITY_STRENGTH = parseFloat(ui.gravityStrength.value);
+                ui.gravityStrengthValue.textContent = CENTRAL_GRAVITY_STRENGTH;
+            });
+
+            ui.reinitializeButton.addEventListener('click', () => {
+                PARTICLE_COUNT = parseInt(ui.particleCount.value);
+                particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+                CENTRAL_GRAVITY_STRENGTH = parseFloat(ui.gravityStrength.value);
+                currentSpawnIndex = 0; // Reset spawn index
+                if (particles) scene.remove(particles);
+                createParticleSystem(PARTICLE_COUNT);
+            });
+            ui.toggleSound.addEventListener('click', toggleSound);
+            ui.fullscreenButton.addEventListener('click', toggleFullScreen);
+        }
+
+        function setupScene() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.0015); 
+        }
+
+        function setupCamera() {
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, SIMULATION_EXTENT * 2);
+            camera.position.set(SIMULATION_EXTENT * 0.3, SIMULATION_EXTENT * 0.3, SIMULATION_EXTENT * 0.3);
+            camera.lookAt(scene.position);
+        }
+
+        function setupRenderer() {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x000000, 0); 
+            document.getElementById('container').appendChild(renderer.domElement);
+        }
+        
+        function setupControls() {
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 10;
+            controls.maxDistance = SIMULATION_EXTENT * 1.5;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.05; 
+        }
+
+        function setupLights() {
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambientLight);
+            const pointLight = new THREE.PointLight(0xffffff, 0.8, SIMULATION_EXTENT * 2);
+            pointLight.position.set(50, 50, 50);
+            scene.add(pointLight);
+        }
+
+        function setupEventListeners() {
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function setupStats() {
+            stats = {
+                fps: 0,
+                particles: 0,
+                lastTime: performance.now(),
+                frames: 0,
+                update: function() {
+                    this.frames++;
+                    const currentTime = performance.now();
+                    if (currentTime > this.lastTime + 1000) {
+                        this.fps = Math.round((this.frames * 1000) / (currentTime - this.lastTime));
+                        ui.fpsStat.textContent = this.fps;
+                        this.lastTime = currentTime;
+                        this.frames = 0;
+                    }
+                    ui.activeParticlesStat.textContent = PARTICLE_COUNT.toLocaleString(); // Display total configured particles
+                }
+            };
+        }
+
+        function createParticleSystem(numParticles) {
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(numParticles * 3);
+            const velocities = new Float32Array(numParticles * 3);
+            const colors = new Float32Array(numParticles * 3);
+            const initialPhase = new Float32Array(numParticles); // For individual particle variation if needed
+
+            for (let i = 0; i < numParticles; i++) {
+                initializeSingleParticle(i, positions, velocities, colors, initialPhase);
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('initialPhase', new THREE.BufferAttribute(initialPhase, 1));
+
+            const material = new THREE.PointsMaterial({
+                size: PARTICLE_BASE_SIZE,
+                vertexColors: true,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending, // Brighter where particles overlap
+                depthWrite: false // For better transparency with blending
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            currentSpawnIndex = 0; // Reset spawn index
+        }
+
+        function initializeSingleParticle(i, p = null, v = null, c = null, phase = null) {
+            const positions = p || particles.geometry.attributes.position.array;
+            const velocities = v || particles.geometry.attributes.velocity.array;
+            const colors = c || particles.geometry.attributes.color.array;
+            const initialPhases = phase || particles.geometry.attributes.initialPhase.array;
+
+            const i3 = i * 3;
+            
+            // Initial position: random spherical distribution within a shell
+            const R_MAX = SIMULATION_EXTENT * 0.8;
+            const R_MIN = CORE_ACTUAL_RADIUS * 5; 
+            let r, phi, theta, px, py, pz;
+
+            // Emission from a disk, not a sphere, to form accretion disk like structures
+            const diskRadius = R_MAX * 0.8;
+            const diskHeight = R_MAX * 0.1;
+            r = Math.random() * diskRadius;
+            theta = Math.random() * 2 * Math.PI;
+            
+            px = r * Math.cos(theta);
+            py = (Math.random() - 0.5) * diskHeight; // Spread along Y-axis for disk thickness
+            pz = r * Math.sin(theta);
+            
+            // Ensure not inside the absolute core
+            if(Math.sqrt(px*px+py*py+pz*pz) < CORE_ACTUAL_RADIUS * 2.1) {
+                 const scaleOut = (CORE_ACTUAL_RADIUS * 2.1) / Math.sqrt(px*px+py*py+pz*pz) ;
+                 px *= scaleOut; py *=scaleOut; pz *= scaleOut;
+            }
+
+
+            positions[i3] = px;
+            positions[i3+1] = py;
+            positions[i3+2] = pz;
+
+            // Initial velocities (e.g., slight outward or tangential motion)
+            const initialSpeed = 0.5 + Math.random() * 0.5;
+            const outwardBias = 0.1; // slight outward push
+            velocities[i3] = (Math.random() - 0.5 + outwardBias * (px/r || 0)) * initialSpeed;
+            velocities[i3+1] = (Math.random() - 0.5) * initialSpeed * 0.5; // Less vertical initial speed
+            velocities[i3+2] = (Math.random() - 0.5 + outwardBias * (pz/r || 0)) * initialSpeed;
+            
+            initialPhases[i] = Math.random() * 2 * Math.PI; // Store a random phase for this particle
+
+            // Initial color (can be dynamic later)
+            colors[i3] = 0.5 + Math.random() * 0.5; // R
+            colors[i3+1] = 0.3 + Math.random() * 0.4; // G
+            colors[i3+2] = 0.7 + Math.random() * 0.3; // B
+        }
+
+
+        const EMISSION_ZONES = { // For sound design based on BPM
+            sub_bass: { min: 30, max: 59, note: 'C1', color: new THREE.Color(0.3,0.1,0.5) },
+            bass:     { min: 60, max: 89, note: 'G1', color: new THREE.Color(0.5,0.2,0.6) },
+            low_mid:  { min: 90, max: 119, note: 'C2', color: new THREE.Color(0.7,0.3,0.7) },
+            mid:      { min: 120, max: 149, note: 'G2', color: new THREE.Color(0.9,0.4,0.8) },
+            high_mid: { min: 150, max: 180, note: 'C3', color: new THREE.Color(1.0,0.5,0.9) },
+            normal:   { min: 0, max:Infinity, note: 'A1', color: new THREE.Color(0.6,0.6,0.8)} // Default
+        };
+
+        function setupSound() {
+            if (Tone.context.state !== 'running') {
+                console.warn("AudioContext not running. Sound setup skipped.");
+                return;
+            }
+            masterVolume = new Tone.Volume(-12).toDestination(); // Master volume at -12dB
+            reverb = new Tone.Reverb({ decay: 4, wet: 0.4 }).connect(masterVolume);
+
+            heartbeatSynth = new Tone.MembraneSynth({
+                pitchDecay: 0.08, octaves: 6,
+                envelope: { attack: 0.001, decay: 0.5, sustain: 0.01, release: 0.1, attackCurve: 'exponential'}
+            }).connect(reverb);
+
+            noiseSynth = new Tone.NoiseSynth({
+                noise: { type: 'pink' },
+                envelope: { attack: 0.5, decay: 1.5, sustain: 0.1, release: 2 }
+            }).connect(reverb);
+            
+            if (soundEnabled) Tone.Destination.mute = false; else Tone.Destination.mute = true;
+            console.log("Sound system initialized.");
+        }
+
+        function getCurrentBPMZone(bpm) {
+            for (const key in EMISSION_ZONES) {
+                if (bpm >= EMISSION_ZONES[key].min && bpm <= EMISSION_ZONES[key].max) {
+                    return EMISSION_ZONES[key];
+                }
+            }
+            return EMISSION_ZONES.normal; 
+        }
+
+        function triggerHeartbeatVisualAndSound() {
+            const now = Tone.now(); 
+            const beatInterval = 60 / heartRate; 
+
+            if (now - lastBeatTime >= beatInterval) {
+                lastBeatTime = now;
+                isHeartbeatActive = true;
+                if (heartbeatEffectTimer) clearTimeout(heartbeatEffectTimer);
+                heartbeatEffectTimer = setTimeout(() => { isHeartbeatActive = false; }, HEARTBEAT_EFFECT_DURATION);
+
+                ui.pulseIndicator.classList.remove('pulse-active');
+                void ui.pulseIndicator.offsetWidth; 
+                ui.pulseIndicator.classList.add('pulse-active');
+
+                if (soundEnabled && heartbeatSynth && Tone.context.state === 'running') {
+                    const zone = getCurrentBPMZone(heartRate);
+                    const note = zone.note;
+                    const velocity = 0.3 + (heartRate - 40) / 280; 
+                    heartbeatSynth.triggerAttackRelease(note, "16n", now, velocity);
+                }
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            if (Tone.context.state === 'running') {
+                Tone.Destination.mute = !soundEnabled;
+            } else if (soundEnabled) { // try to start if enabling and not running
+                 Tone.start().then(() => {
+                    console.log("AudioContext started by Tone.js on sound toggle.");
+                    if (!heartbeatSynth) setupSound(); // If synth not ready, set it up
+                    Tone.Destination.mute = !soundEnabled;
+                }).catch(e => {
+                    console.error("Error starting Tone.js AudioContext on toggle:", e);
+                    soundEnabled = false; // Revert if failed
+                });
+            }
+            ui.toggleSound.innerHTML = soundEnabled ? "<span>🔊 Audio ON</span>" : "<span>🔇 Audio OFF</span>";
+            ui.toggleSound.classList.toggle('active', !soundEnabled);
+            ui.soundIndicator.style.opacity = soundEnabled ? '1' : '0.3';
+        }
+        
+        // --- Wave Math Transformation by Agent 1 ---
+        // New function to calculate potential from a single source
+        function calculateSingleSourcePotential(x_rel, y_rel, z_rel, freq, modeM, modeN, modeP, waveType, time_global, k_base_val, phase_offset_factor) {
+            const r = Math.sqrt(x_rel*x_rel + y_rel*y_rel + z_rel*z_rel);
+            if (r < 0.01) return 0; // Avoid singularity at source
+
+            const phi = Math.acos(z_rel/r); 
+            const theta = Math.atan2(y_rel, x_rel); 
+
+            const time_phase_component = time_global * 0.00005 * freq * 0.1 + phase_offset_factor * Math.PI;
+
+            let term1 = Math.cos(modeM * theta) * Math.sin(modeN * phi * k_base_val * 0.5);
+            let term2 = Math.sin(modeM * theta) * Math.cos(modeN * phi * k_base_val * 0.5);
+            let term3 = Math.cos(modeP * r * k_base_val * 0.1 + time_phase_component); 
+
+            let val = (term1 - term2) * term3;
+            
+            switch(waveType) {
+                case 'square': val = Math.sign(val) * Math.pow(Math.abs(val), 0.6); break; 
+                case 'triangle': val = Math.asin(Math.sin(val * Math.PI)) / Math.PI; break; 
+                case 'sawtooth': val = (val % 1.0); if (val < 0) val += 1; val = (val * 2) -1; break; 
+            }
+            return isNaN(val) ? 0 : val;
+        }
+
+        // Modified 3D Chladni potential for dual source interference
+        function getChladniPotential3D_DualSource(px, py, pz, freq, modeM, modeN, modeP, waveType, time_global, source_offset_param) {
+            const k_base_val = freq / 50.0; 
+            
+            const r_abs = Math.sqrt(px*px + py*py + pz*pz); // Absolute distance from origin
+            if (r_abs < CORE_ACTUAL_RADIUS * 2 && source_offset_param == 0) { // Apply core repulsion only if sources are at origin (offset = 0)
+                 return 1; // High potential inside core
+            }
+
+
+            // Source 1: at (-source_offset_param, 0, 0) relative to particle's current frame if sources move
+            // For fixed sources, px, py, pz are absolute world coordinates
+            const x_s1 = px + source_offset_param; 
+            const y_s1 = py;
+            const z_s1 = pz;
+            // Phase factor for source 1 (e.g., 0)
+            const pot1 = calculateSingleSourcePotential(x_s1, y_s1, z_s1, freq, modeM, modeN, modeP, waveType, time_global, k_base_val, 0);
+
+            // Source 2: at (+source_offset_param, 0, 0)
+            const x_s2 = px - source_offset_param;
+            const y_s2 = py;
+            const z_s2 = pz;
+            // Phase factor for source 2 (e.g., 0.5 for PI/2 phase diff for interference)
+            const pot2 = calculateSingleSourcePotential(x_s2, y_s2, z_s2, freq, modeM, modeN, modeP, waveType, time_global, k_base_val, 0.5);
+
+            if (source_offset_param == 0) { // If sources are at the same spot (origin), effectively single source
+                return pot1; // or (pot1+pot2)/2 but phases might make it tricky. Just use pot1.
+            }
+
+            return (pot1 + pot2) / 1.5; // Averaging or slightly attenuated sum to prevent overly large forces
+        }
+        
+        // --- Main Animation Loop ---
+        function animate() {
+            if (!isExperienceStarted || !particles) { // Added !particles check
+                 if(isExperienceStarted) requestAnimationFrame(animate); // Keep trying if started but particles not ready
+                 return;
+            }
+            requestAnimationFrame(animate);
+            const deltaTime = Math.min(clock.getDelta(), 0.033); 
+            time += deltaTime * 1000 * (controls.autoRotate ? 1 : 0.5) ; // Slow down time if not auto-rotating for finer control view
+
+            controls.update();
+            triggerHeartbeatVisualAndSound(); 
+            stats.update();
+
+            for (let i = 0; i < particlesToSpawnPerFrame; i++) {
+                if (currentSpawnIndex < PARTICLE_COUNT) { 
+                    initializeSingleParticle(currentSpawnIndex);
+                    currentSpawnIndex = (currentSpawnIndex + 1); 
+                } else if (particlesToSpawnPerFrame > 0) { 
+                    currentSpawnIndex = currentSpawnIndex % PARTICLE_COUNT;
+                    initializeSingleParticle(currentSpawnIndex);
+                    currentSpawnIndex = (currentSpawnIndex + 1) % PARTICLE_COUNT;
+                }
+            }
+            if (currentSpawnIndex >= PARTICLE_COUNT) currentSpawnIndex = 0; 
+
+            const positions = particles.geometry.attributes.position.array;
+            const velocities = particles.geometry.attributes.velocity.array;
+            
+            const freq = parseFloat(ui.frequency.value);
+            const amp = parseFloat(ui.amplitude.value);
+            const source_offset_val = parseFloat(ui.sourceOffset.value); // New param
+            const waveType = ui.waveform.value;
+            const modeM = parseInt(ui.modeM.value);
+            const modeN = parseInt(ui.modeN.value);
+            const modeP = parseInt(ui.modeP.value);
+
+            const effectiveFieldStrength = CHLADNI_3D_FIELD_STRENGTH * (isHeartbeatActive ? HEARTBEAT_FORCE_MULTIPLIER : 1.0);
+            
+            const colorUpdateBatchDivisor = 300; 
+            const colorUpdateModulo = Math.max(1, Math.floor(PARTICLE_COUNT / colorUpdateBatchDivisor));
+            const timeBasedOffset = Math.floor(time / 50); 
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const i3 = i * 3;
+                let px = positions[i3], py = positions[i3 + 1], pz = positions[i3 + 2];
+                let vx = velocities[i3], vy = velocities[i3 + 1], vz = velocities[i3 + 2];
+
+                // Central Gravity Well (remains unchanged, acts on absolute position)
+                const distSqToCenter = px*px + py*py + pz*pz;
+                if (distSqToCenter < GRAVITY_WELL_RADIUS * GRAVITY_WELL_RADIUS && distSqToCenter > (CORE_ACTUAL_RADIUS * CORE_ACTUAL_RADIUS * 4)) {
+                    const distToCenter = Math.sqrt(distSqToCenter);
+                    const gravityForce = CENTRAL_GRAVITY_STRENGTH / (distSqToCenter + 0.01);
+                    vx -= (px / distToCenter) * gravityForce * deltaTime;
+                    vy -= (py / distToCenter) * gravityForce * deltaTime;
+                    vz -= (pz / distToCenter) * gravityForce * deltaTime;
+                }
+                
+                // Cymatic Forces from Dual Source Interference
+                const currentPotential = getChladniPotential3D_DualSource(px, py, pz, freq, modeM, modeN, modeP, waveType, time, source_offset_val);
+                const delta = 0.02; 
+                const potDx = getChladniPotential3D_DualSource(px + delta, py, pz, freq, modeM, modeN, modeP, waveType, time, source_offset_val);
+                const potDy = getChladniPotential3D_DualSource(px, py + delta, pz, freq, modeM, modeN, modeP, waveType, time, source_offset_val);
+                const potDz = getChladniPotential3D_DualSource(px, py, pz + delta, freq, modeM, modeN, modeP, waveType, time, source_offset_val);
+                
+                const gradX = (potDx - currentPotential) / delta;
+                const gradY = (potDy - currentPotential) / delta;
+                const gradZ = (potDz - currentPotential) / delta;
+                
+                const forceScale = effectiveFieldStrength * amp * (1.0 - Math.abs(currentPotential)); // Force stronger away from nodes                
+                const forceX = -gradX * forceScale;
+                const forceY = -gradY * forceScale; 
+                const forceZ = -gradZ * forceScale;
+                
+                vx += forceX * deltaTime;
+                vy += forceY * deltaTime;
+                vz += forceZ * deltaTime;
+
+                vx *= VELOCITY_DAMPING;
+                vy *= VELOCITY_DAMPING;
+                vz *= VELOCITY_DAMPING;
+                
+                px += vx * deltaTime;
+                py += vy * deltaTime;
+                pz += vz * deltaTime;
+                
+                const distFromCenter = Math.sqrt(px*px + py*py + pz*pz);
+                if (distFromCenter > SIMULATION_EXTENT) { 
+                    const normX = px/distFromCenter;
+                    const normY = py/distFromCenter;
+                    const normZ = pz/distFromCenter;
+                    px = normX * SIMULATION_EXTENT * 0.99;
+                    py = normY * SIMULATION_EXTENT * 0.99;
+                    pz = normZ * SIMULATION_EXTENT * 0.99;
+                    const dotProduct = (vx * normX + vy * normY + vz * normZ);
+                    vx -= 1.5 * dotProduct * normX; 
+                    vy -= 1.5 * dotProduct * normY;
+                    vz -= 1.5 * dotProduct * normZ;
+                }
+                
+                positions[i3] = px; positions[i3 + 1] = py; positions[i3 + 2] = pz;
+                velocities[i3] = vx; velocities[i3 + 1] = vy; velocities[i3 + 2] = vz;
+                
+                if ((i + timeBasedOffset) % colorUpdateModulo === 0) { 
+                     updateParticleColor(i, px, py, pz, currentPotential);
+                }
+            }
+            
+            particles.geometry.attributes.position.needsUpdate = true;
+            particles.geometry.attributes.velocity.needsUpdate = true;
+            if (particles.geometry.attributes.color) particles.geometry.attributes.color.needsUpdate = true; 
+            
+            // Subtle camera pan for dynamism
+            if (controls.autoRotate) {
+                 camera.position.x += Math.sin(time * 0.000002) * 0.01; // Slower pan
+                 camera.position.y += Math.cos(time * 0.0000025) * 0.01;
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        function updateParticleColor(index, x, y, z, potential) {
+            const colors = particles.geometry.attributes.color.array;
+            const i3 = index * 3;
+            
+            const distSq = x*x + y*y + z*z;
+            const normalizedDist = Math.min(1, Math.sqrt(distSq) / (SIMULATION_EXTENT * 0.7)); // Normalize distance for color gradient
+
+            let r = 0.5 + Math.abs(potential) * 0.5; // Red based on potential strength
+            let g = 0.5 - Math.abs(potential) * 0.4; // Green inverse to potential
+            let b = normalizedDist * 0.6 + 0.4;    // Blue based on distance from center
+
+            // Heartbeat flash
+            if (isHeartbeatActive) {
+                r = Math.min(1, r + 0.4);
+                g = Math.min(1, g + 0.3);
+                b = Math.min(1, b + 0.5);
+            }
+            
+            colors[i3] = THREE.MathUtils.clamp(r, 0, 1);
+            colors[i3 + 1] = THREE.MathUtils.clamp(g, 0, 1);
+            colors[i3 + 2] = THREE.MathUtils.clamp(b, 0, 1);
+        }
+
+
+        function onWindowResize() {
+            if (!camera || !renderer) return;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+                ui.fullscreenButton.textContent = "Exit Fullscreen";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    ui.fullscreenButton.textContent = "Fullscreen";
+                }
+            }
+        }
+
+        function verifyResearchIntegrity() {
+            const decoded_aldrin = atob(ALDRIN_PAYOPAY_SIGNATURE);
+            const decoded_claude = atob(CLAUDE_OPUS_4_SIGNATURE); 
+            const decoded_gemini = atob(GEMINI_25_PRO_SIGNATURE);
+            const decoded_agent1 = atob(AGENT_1_SIGNATURE);
+            
+            console.log("🔬 Research Attribution Verified (Advanced Wave Dynamics):");
+            console.log("👨‍🔬 " + decoded_aldrin);
+            console.log("🤖 " + decoded_claude);
+            console.log("🧠 " + decoded_gemini);
+            console.log("🚀 " + decoded_agent1);
+            console.log("📊 Project: " + RESEARCH_TEAM.project);
+            console.log("📅 Year: " + RESEARCH_TEAM.year);
+            console.log("🔐 Integrity Hash: " + RESEARCH_INTEGRITY_HASH.encoded_signature);
+            console.log("✨ This simulation incorporates a dual-source interference model developed by Agent 1.");
+        }
+
+        // --- Entry Point ---
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html> 
