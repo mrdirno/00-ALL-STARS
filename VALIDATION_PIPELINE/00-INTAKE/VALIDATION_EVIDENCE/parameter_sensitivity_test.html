@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parameter Sensitivity Test - Modal Resonance Claims Validation</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .critical-warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .test-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #dc3545;
+        }
+        .result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .plot-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 20px 0;
+            min-height: 400px;
+        }
+        button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover { background: #c82333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 CRITICAL VALIDATION: Parameter Sensitivity Test</h1>
+        <p><strong>Purpose:</strong> Test Gemini's claims about "excellent luck" and "strong validation" through rigorous falsification</p>
+        
+        <div class="critical-warning">
+            <h3>⚠️ SCIENTIFIC INTEGRITY CHECK</h3>
+            <p><strong>Hypothesis Under Test:</strong> Gemini claims sawtooth wave produces meaningful 1:2:3 ratios validating cosmic resonance theory.</p>
+            <p><strong>Falsification Strategy:</strong> If results depend on arbitrary parameter choices, they are mathematical artifacts, not physics.</p>
+        </div>
+
+        <button onclick="runComprehensiveTests()">🧪 RUN FALSIFICATION TESTS</button>
+        <button onclick="clearResults()">🗑️ Clear Results</button>
+
+        <div id="testResults"></div>
+        <div id="sensitivityPlot" class="plot-container"></div>
+        <div id="waveComparisonPlot" class="plot-container"></div>
+    </div>
+
+    <script>
+        // Core functions from original validator (simplified)
+        function P_standard(k) {
+            const n_s = 0.96;
+            const A_s = 2.1e-9;
+            const k_pivot = 0.05;
+            return A_s * Math.pow(k / k_pivot, n_s - 1);
+        }
+
+        function sineWave(x) { return Math.sin(x); }
+        function squareWave(x) {
+            let sum = 0;
+            for (let n = 1; n <= 9; n += 2) { sum += (1 / n) * Math.sin(n * x); }
+            return (4 / Math.PI) * sum;
+        }
+        function triangleWave(x) {
+            let sum = 0;
+            for (let n = 1; n <= 9; n += 2) {
+                const sign = ((n - 1) / 2) % 2 === 0 ? 1 : -1;
+                sum += sign * (1 / (n * n)) * Math.sin(n * x);
+            }
+            return (8 / (Math.PI * Math.PI)) * sum;
+        }
+        function sawtoothWave(x) {
+            let sum = 0;
+            for (let n = 1; n <= 10; n++) { sum += (1 / n) * Math.sin(n * x); }
+            return (2 / Math.PI) * sum;
+        }
+
+        function modalEnhancementFactor(k, A, r_s, phi, waveType) {
+            const x = k * r_s + phi;
+            let waveValue = 0;
+            switch(waveType) {
+                case 'square': waveValue = squareWave(x); break;
+                case 'triangle': waveValue = triangleWave(x); break;
+                case 'sawtooth': waveValue = sawtoothWave(x); break;
+                case 'sine': default: waveValue = sineWave(x); break;
+            }
+            return 1 + A * waveValue;
+        }
+
+        function P_enhanced(k, A, r_s, phi, waveType) {
+            return P_standard(k) * modalEnhancementFactor(k, A, r_s, phi, waveType);
+        }
+
+        function findPeaks(k_array, P_array) {
+            const peaks = [];
+            if (k_array.length < 3) return peaks;
+            for (let i = 1; i < k_array.length - 1; i++) {
+                if (P_array[i] > P_array[i-1] && P_array[i] > P_array[i+1] && P_array[i] > 1e-10) {
+                    peaks.push({k: k_array[i], P: P_array[i], index: i});
+                }
+            }
+            return peaks;
+        }
+
+        function calculateRatios(peaks) {
+            const ratios = [];
+            for (let i = 0; i < peaks.length - 1; i++) {
+                for (let j = i + 1; j < peaks.length; j++) {
+                    ratios.push(peaks[j].k / peaks[i].k);
+                }
+            }
+            return ratios;
+        }
+
+        function testParameterSensitivity() {
+            const results = [];
+            const baseParams = {A: 0.20, r_s: 150, phi: 0.5 * Math.PI, waveType: 'sawtooth'};
+            
+            // Test 1: r_s sensitivity (Gemini's key parameter)
+            const r_s_values = [149, 150, 151]; // Tiny changes
+            const r_s_results = [];
+            
+            r_s_values.forEach(r_s => {
+                const k_spectrum = [], P_enh_spectrum = [];
+                for (let logk = -3; logk <= 0; logk += 0.005) {
+                    const k_val = Math.pow(10, logk);
+                    k_spectrum.push(k_val);
+                    P_enh_spectrum.push(P_enhanced(k_val, baseParams.A, r_s, baseParams.phi, baseParams.waveType));
+                }
+                const peaks = findPeaks(k_spectrum, P_enh_spectrum);
+                const ratios = calculateRatios(peaks);
+                r_s_results.push({r_s, peaks: peaks.length, ratios});
+            });
+
+            // Check if results are stable
+            const ratio_stability = r_s_results.map(r => r.ratios.slice(0, 3)); // First 3 ratios
+            const is_stable = ratio_stability.every(ratios => 
+                ratios.length >= 2 && 
+                Math.abs(ratios[0] - 2.0) < 0.1 && 
+                Math.abs(ratios[1] - 3.0) < 0.1
+            );
+
+            results.push({
+                test: "Parameter Sensitivity (r_s)",
+                passed: !is_stable, // We WANT instability to falsify claims
+                details: `r_s changes: ${JSON.stringify(r_s_results.map(r => ({r_s: r.r_s, peaks: r.peaks})))}`
+            });
+
+            return results;
+        }
+
+        function testWaveTypeComparison() {
+            const results = [];
+            const waveTypes = ['sine', 'square', 'triangle', 'sawtooth'];
+            const params = {A: 0.20, r_s: 150, phi: 0.5 * Math.PI};
+            
+            const waveResults = {};
+            
+            waveTypes.forEach(waveType => {
+                const k_spectrum = [], P_enh_spectrum = [];
+                for (let logk = -3; logk <= 0; logk += 0.005) {
+                    const k_val = Math.pow(10, logk);
+                    k_spectrum.push(k_val);
+                    P_enh_spectrum.push(P_enhanced(k_val, params.A, params.r_s, params.phi, waveType));
+                }
+                const peaks = findPeaks(k_spectrum, P_enh_spectrum);
+                const ratios = calculateRatios(peaks);
+                waveResults[waveType] = {peaks: peaks.length, ratios: ratios.slice(0, 3)};
+            });
+
+            // Check if sawtooth is uniquely special (Gemini's claim)
+            const sawtooth_ratios = waveResults.sawtooth.ratios;
+            const other_waves_similar = waveTypes.filter(w => w !== 'sawtooth').some(waveType => {
+                const ratios = waveResults[waveType].ratios;
+                return ratios.length >= 2 && 
+                       Math.abs(ratios[0] - sawtooth_ratios[0]) < 0.2 &&
+                       Math.abs(ratios[1] - sawtooth_ratios[1]) < 0.2;
+            });
+
+            results.push({
+                test: "Wave Type Uniqueness",
+                passed: other_waves_similar, // If others are similar, sawtooth is NOT special
+                details: `Wave results: ${JSON.stringify(waveResults)}`
+            });
+
+            return {results, waveResults};
+        }
+
+        function testPhysicalMechanism() {
+            const results = [];
+            
+            // Test: Can we get 1:2:3 ratios with completely different parameters?
+            const arbitrary_params = [
+                {A: 0.1, r_s: 100, phi: 0, waveType: 'sawtooth'},
+                {A: 0.3, r_s: 200, phi: Math.PI, waveType: 'sawtooth'},
+                {A: 0.15, r_s: 175, phi: 0.25 * Math.PI, waveType: 'sawtooth'}
+            ];
+
+            let successful_tuning = 0;
+            
+            arbitrary_params.forEach((params, i) => {
+                const k_spectrum = [], P_enh_spectrum = [];
+                for (let logk = -3; logk <= 0; logk += 0.005) {
+                    const k_val = Math.pow(10, logk);
+                    k_spectrum.push(k_val);
+                    P_enh_spectrum.push(P_enhanced(k_val, params.A, params.r_s, params.phi, params.waveType));
+                }
+                const peaks = findPeaks(k_spectrum, P_enh_spectrum);
+                const ratios = calculateRatios(peaks);
+                
+                if (ratios.length >= 2 && 
+                    Math.abs(ratios[0] - 2.0) < 0.3 && 
+                    Math.abs(ratios[1] - 3.0) < 0.3) {
+                    successful_tuning++;
+                }
+            });
+
+            results.push({
+                test: "Parameter Tuning Vulnerability",
+                passed: successful_tuning > 0, // If we can tune parameters, results are artifacts
+                details: `${successful_tuning}/${arbitrary_params.length} arbitrary parameter sets produced "validation"`
+            });
+
+            return results;
+        }
+
+        function runComprehensiveTests() {
+            const resultsDiv = document.getElementById('testResults');
+            resultsDiv.innerHTML = '<h2>🔬 FALSIFICATION TEST RESULTS</h2>';
+
+            // Run all tests
+            const sensitivityResults = testParameterSensitivity();
+            const {results: waveResults, waveResults: waveData} = testWaveTypeComparison();
+            const mechanismResults = testPhysicalMechanism();
+
+            const allResults = [...sensitivityResults, ...waveResults, ...mechanismResults];
+
+            // Display results
+            allResults.forEach(result => {
+                const className = result.passed ? 'fail' : 'pass'; // Inverted because we want to FAIL Gemini's claims
+                const status = result.passed ? '❌ FALSIFIED' : '✅ SURVIVED';
+                resultsDiv.innerHTML += `
+                    <div class="result ${className}">
+                        <strong>${result.test}: ${status}</strong><br>
+                        ${result.details}
+                    </div>
+                `;
+            });
+
+            // Overall verdict
+            const failed_tests = allResults.filter(r => r.passed).length;
+            const total_tests = allResults.length;
+            
+            resultsDiv.innerHTML += `
+                <div class="test-section">
+                    <h3>🎯 OVERALL VERDICT</h3>
+                    <p><strong>Tests Failed:</strong> ${failed_tests}/${total_tests}</p>
+                    <p><strong>Scientific Conclusion:</strong> ${failed_tests > 0 ? 
+                        '❌ GEMINI\'S CLAIMS FALSIFIED - Results are mathematical artifacts, not physics validation' : 
+                        '⚠️ Claims survived initial falsification - requires deeper investigation'}</p>
+                </div>
+            `;
+
+            // Plot wave comparison
+            plotWaveComparison(waveData);
+        }
+
+        function plotWaveComparison(waveData) {
+            const waveTypes = Object.keys(waveData);
+            const peakCounts = waveTypes.map(w => waveData[w].peaks);
+            const firstRatios = waveTypes.map(w => waveData[w].ratios[0] || 0);
+            const secondRatios = waveTypes.map(w => waveData[w].ratios[1] || 0);
+
+            const trace1 = {
+                x: waveTypes,
+                y: firstRatios,
+                name: 'First Ratio (should be ~2.0)',
+                type: 'bar',
+                marker: {color: 'blue'}
+            };
+
+            const trace2 = {
+                x: waveTypes,
+                y: secondRatios,
+                name: 'Second Ratio (should be ~3.0)',
+                type: 'bar',
+                marker: {color: 'red'}
+            };
+
+            const layout = {
+                title: 'CRITICAL TEST: Wave Type Comparison<br><sub>If all waves produce similar ratios, sawtooth is NOT special</sub>',
+                xaxis: {title: 'Wave Type'},
+                yaxis: {title: 'Ratio Value'},
+                barmode: 'group'
+            };
+
+            Plotly.newPlot('waveComparisonPlot', [trace1, trace2], layout, {responsive: true});
+        }
+
+        function clearResults() {
+            document.getElementById('testResults').innerHTML = '';
+            document.getElementById('waveComparisonPlot').innerHTML = '';
+        }
+    </script>
+</body>
+</html> 
