@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-    Resonance is All You Need: A Bio-Cymatic Model of Cosmic Structure Formation
+    Resonance is All You Need: A Modal Resonance Model of Cosmic Structure Formation
     
     Original Concept & Implementation by:
     - Aldrin Payopay (Lead Researcher & Visionary)
@@ -44,17 +44,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, Agent 1">
-    <meta name="description" content="Bio-Cymatic Model of Cosmic Structure Formation - Original research by Aldrin Payopay with Claude Opus 4 and Gemini 2.5 Pro. Modified with Advanced Wave Theory by Agent 1.">
-    <meta name="keywords" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, bio-cymatics, cosmic structure, gravitational waves, resonance, advanced wave theory, interference patterns">
+    <meta name="description" content="Modal Resonance Model of Cosmic Structure Formation - Original research by Aldrin Payopay with Claude Opus 4 and Gemini 2.5 Pro. Modified with Advanced Wave Theory by Agent 1.">
+    <meta name="keywords" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, modal resonance, cosmic structure, gravitational waves, resonance, advanced wave theory, interference patterns">
     <meta name="creator" content="Aldrin Payopay (Human Researcher), Claude Opus 4 (AI Assistant), Gemini 2.5 Pro (AI Assistant), Agent 1 (AI Modeler - Advanced Wave Theory)">
-    <title>Resonance: Advanced Wave Interference Model (Performance Optimized)</title>
+    <title>Resonance: Advanced Wave Interference Model</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
     <style>
         /*
-         * CSS Styling for "Resonance is All You Need: A Bio-Cymatic Model of Cosmic Structure Formation"
+         * CSS Styling for "Resonance is All You Need: A Modal Resonance Model of Cosmic Structure Formation"
          * 
          * Original Design & Implementation:
          * - Aldrin Payopay (Lead Researcher & Creative Director)
@@ -285,8 +285,8 @@
 <body>
     <div id="initialization-overlay">
         <div class="init-content">
-            <h1 class="init-title">Resonance: Advanced Wave Model</h1>
-            <p class="init-subtitle">Performance Optimized Bio-Cymatic Model: Sophisticated elliptical spherical harmonics with dual-source interference, optimized for smooth real-time performance with gradient caching and batch processing.</p>
+            <h1 class="init-title">Resonance is All You Need</h1>
+            <p class="init-subtitle">A Modal Resonance Model of Cosmic Structure Formation: Demonstrating gravitational wave resonance patterns with stable modal harmonics and synchronized emission pulses.</p>
             <p id="status-message">Initializing cosmic fabric<span class="loading-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></p>
             <p id="error-message"></p>
             <button id="start-button" disabled>Preparing Genesis</button>
@@ -358,21 +358,6 @@
         <div class="control-group">
             <button id="reset-particles"><span>↻ Reset Simulation</span></button>
         </div>
-        
-        <h2 style="margin-top: 32px;">Performance Optimization</h2>
-        <div class="control-group">
-            <label>Pixel Density <span class="control-value" id="pixelDensity-value">1.0x</span></label>
-            <input type="range" id="pixelDensity" min="0.25" max="2.0" value="1.0" step="0.25">
-            <small>Lower values = better performance, higher values = sharper visuals</small>
-        </div>
-        <div class="control-group">
-            <button id="toggle-antialiasing"><span>🎯 Anti-aliasing ON</span></button>
-        </div>
-        <div class="control-group">
-            <label>Particle Size <span class="control-value" id="particleSize-value">Auto</span></label>
-            <input type="range" id="particleSize" min="0.005" max="0.030" value="0.015" step="0.001">
-            <small>Smaller particles = better performance with high density</small>
-        </div>
     </div>
 
     <div id="stats-bar" class="ui-panel" style="display: none;">
@@ -381,7 +366,6 @@
         <div class="stat-item"><span class="stat-label">Modal</span><span class="stat-value"><span id="stats-modeM">3</span>·<span id="stats-modeN">4</span>·<span id="stats-modeP">2</span></span></div>
         <div class="stat-item"><span class="stat-label">Emission Rate</span><span class="stat-value" id="stats-heartRate">72 Hz</span></div>
         <div class="stat-item"><span class="stat-label">Matter</span><span class="stat-value" id="stats-particles">300K</span></div>
-        <div class="stat-item"><span class="stat-label">Performance</span><span class="stat-value" style="color: #00ff88;">OPTIMIZED</span></div>
     </div>
     
     <div class="sound-indicator" id="sound-indicator" style="display: none;">
@@ -396,7 +380,7 @@
 
     <script type="module">
         /*
-         * Resonance is All You Need: A Bio-Cymatic Model of Cosmic Structure Formation
+         * Resonance is All You Need: A Modal Resonance Model of Cosmic Structure Formation
          * (Modified with Advanced Wave Theory by Agent 1)
          * 
          * ORIGINAL AUTHORS & CONTRIBUTORS:
@@ -444,11 +428,6 @@
 
         let soundEnabled = true;
         let isExperienceStarted = false;
-        
-        // Performance optimization variables
-        let currentPixelRatio = 1.0;
-        let antialiasingEnabled = true;
-        let customParticleSize = null; // null = auto-sizing
         
         // Research attribution constants - DO NOT MODIFY ORIGINAL VALUES
         const RESEARCH_TEAM = {
@@ -571,11 +550,6 @@
             statsModeP: document.getElementById('stats-modeP'),
             statsHeartRate: document.getElementById('stats-heartRate'),
             statsParticles: document.getElementById('stats-particles'),
-            pixelDensity: document.getElementById('pixelDensity'),
-            toggleAntialiasing: document.getElementById('toggle-antialiasing'),
-            particleSize: document.getElementById('particleSize'),
-            pixelDensityValue: document.getElementById('pixelDensity-value'),
-            particleSizeValue: document.getElementById('particleSize-value'),
         };
 
         function formatNumber(num) {
@@ -636,9 +610,9 @@
                 camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
                 camera.position.set(0, SIMULATION_EXTENT * 0.3, SIMULATION_EXTENT * 1.5); 
 
-                renderer = new THREE.WebGLRenderer({ antialias: antialiasingEnabled, alpha: false });
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
                 renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio * currentPixelRatio, 2.0)); 
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); 
                 renderer.toneMapping = THREE.ACESFilmicToneMapping;
                 renderer.toneMappingExposure = 1.0;
                 document.getElementById('container').appendChild(renderer.domElement);
@@ -708,11 +682,6 @@
                 ui.toggleSound.addEventListener('click', toggleSound);
                 ui.resetParticles.addEventListener('click', resetAllParticles);
                 window.addEventListener('resize', onWindowResize, false);
-                
-                // Performance optimization event listeners
-                ui.pixelDensity.addEventListener('input', updatePixelDensity);
-                ui.toggleAntialiasing.addEventListener('click', toggleAntialiasing);
-                ui.particleSize.addEventListener('input', updateParticleSize);
 
                 ui.initializationOverlay.style.transition = 'opacity 0.5s ease';
                 ui.initializationOverlay.style.opacity = '0';
@@ -725,11 +694,6 @@
                 isExperienceStarted = true;
                 updateCymaticsParameters(); 
                 updateHeartRateUI();
-                
-                // Initialize performance optimization UI
-                updatePixelDensity();
-                updateParticleSize();
-                
                 animate();
 
             } catch (error) {
@@ -783,15 +747,7 @@
             geometry.setAttribute('velocity', new THREE.BufferAttribute(particleVelocities, 3));
             geometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
-            // Dynamic particle size based on performance settings
-            let particleSize;
-            if (customParticleSize !== null) {
-                particleSize = customParticleSize;
-            } else {
-                // Auto-sizing based on particle count (original logic)
-                particleSize = PARTICLE_COUNT > 200000 ? 0.008 : PARTICLE_COUNT > 100000 ? 0.012 : 0.018;
-            }
-            
+            const particleSize = PARTICLE_COUNT > 200000 ? 0.008 : PARTICLE_COUNT > 100000 ? 0.012 : 0.018; 
             particleMaterial = new THREE.PointsMaterial({
                 size: particleSize,
                 vertexColors: true,
@@ -911,7 +867,7 @@
             particleVelocities[i3 + 2] = vz;
             
             // Initialize color based on initial position and a default potential (or calculate initial potential)
-            const initialPotential = getOptimizedAdvancedWavePotential3D(px, py, pz, parseFloat(ui.frequency.value), parseInt(ui.modeM.value), parseInt(ui.modeN.value), parseInt(ui.modeP.value), ui.waveform.value, false);
+            const initialPotential = getAdvancedWavePotential3D(px, py, pz, parseFloat(ui.frequency.value), parseInt(ui.modeM.value), parseInt(ui.modeN.value), parseInt(ui.modeP.value), ui.waveform.value);
             updateParticleColor(index, px, py, pz, initialPotential);
         }
 
@@ -1008,175 +964,77 @@
             ui.soundIndicator.style.opacity = soundEnabled ? '1' : '0.3';
         }
         
-        // Performance optimization functions
-        function updatePixelDensity() {
-            currentPixelRatio = parseFloat(ui.pixelDensity.value);
-            ui.pixelDensityValue.textContent = currentPixelRatio.toFixed(2) + 'x';
-            
-            if (renderer) {
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio * currentPixelRatio, 2.0));
-                console.log(`Pixel density updated to ${currentPixelRatio}x`);
-            }
-        }
-        
-        function toggleAntialiasing() {
-            antialiasingEnabled = !antialiasingEnabled;
-            ui.toggleAntialiasing.innerHTML = antialiasingEnabled ? 
-                "<span>🎯 Anti-aliasing ON</span>" : 
-                "<span>🚫 Anti-aliasing OFF</span>";
-            ui.toggleAntialiasing.classList.toggle('active', !antialiasingEnabled);
-            
-            // Note: WebGL context needs to be recreated to change antialiasing
-            // For now, just update the setting for next initialization
-            console.log(`Anti-aliasing ${antialiasingEnabled ? 'enabled' : 'disabled'} (takes effect on restart)`);
-        }
-        
-        function updateParticleSize() {
-            const sizeValue = parseFloat(ui.particleSize.value);
-            customParticleSize = sizeValue;
-            ui.particleSizeValue.textContent = sizeValue.toFixed(3);
-            
-            // Update existing particle material if available
-            if (particleMaterial) {
-                particleMaterial.size = sizeValue;
-                particleMaterial.needsUpdate = true;
-                console.log(`Particle size updated to ${sizeValue.toFixed(3)}`);
-            }
-        }
-
-        // PERFORMANCE OPTIMIZED ADVANCED WAVE POTENTIAL - Agent 1 Revolutionary Implementation
-        // Maintains sophisticated patterns while dramatically improving performance
-        
-        // Gradient cache for performance optimization
-        const GRADIENT_CACHE = new Map();
-        const GRADIENT_CACHE_SIZE = 2000;
-        let gradientCacheHits = 0;
-        let gradientCacheMisses = 0;
-        
-        // Pre-computed lookup tables for performance
-        const TRIG_TABLE_SIZE = 1024;
-        const sinTable = new Float32Array(TRIG_TABLE_SIZE);
-        const cosTable = new Float32Array(TRIG_TABLE_SIZE);
-        
-        // Initialize lookup tables
-        for (let i = 0; i < TRIG_TABLE_SIZE; i++) {
-            const angle = (i / TRIG_TABLE_SIZE) * 2 * Math.PI;
-            sinTable[i] = Math.sin(angle);
-            cosTable[i] = Math.cos(angle);
-        }
-        
-        // Fast trigonometric functions using lookup tables
-        function fastSin(x) {
-            const index = Math.floor(((x % (2 * Math.PI)) / (2 * Math.PI)) * TRIG_TABLE_SIZE) & (TRIG_TABLE_SIZE - 1);
-            return sinTable[index];
-        }
-        
-        function fastCos(x) {
-            const index = Math.floor(((x % (2 * Math.PI)) / (2 * Math.PI)) * TRIG_TABLE_SIZE) & (TRIG_TABLE_SIZE - 1);
-            return cosTable[index];
-        }
-        
-        // Optimized spherical harmonics with reduced complexity
-        function fastSphericalYReal(l, m_signed, theta, phi) {
-            if (l > 8) l = 8; // Limit complexity for performance
-            const m = Math.abs(m_signed);
-            if (m > l) return 0;
-
-            // Simplified calculation for performance
-            let result = 1.0;
-            
-            // Basic spherical harmonic approximation
-            if (l === 0) return 0.282095; // Y_0^0 constant
-            
-            if (l === 1) {
-                if (m === 0) return 0.488603 * fastCos(theta);
-                if (m === 1) {
-                    return m_signed > 0 ? 
-                        0.345494 * fastSin(theta) * fastCos(phi) :
-                        0.345494 * fastSin(theta) * fastSin(phi);
-                }
-            }
-            
-            if (l === 2) {
-                if (m === 0) return 0.315392 * (3 * fastCos(theta) * fastCos(theta) - 1);
-                if (m === 1) {
-                    const sinTheta = fastSin(theta);
-                    const cosTheta = fastCos(theta);
-                    return m_signed > 0 ?
-                        0.546274 * sinTheta * cosTheta * fastCos(phi) :
-                        0.546274 * sinTheta * cosTheta * fastSin(phi);
-                }
-                if (m === 2) {
-                    const sinTheta = fastSin(theta);
-                    return m_signed > 0 ?
-                        0.273137 * sinTheta * sinTheta * fastCos(2 * phi) :
-                        0.273137 * sinTheta * sinTheta * fastSin(2 * phi);
-                }
-            }
-            
-            // For higher orders, use simplified approximation
-            const sinTheta = fastSin(theta);
-            const cosTheta = fastCos(theta);
-            result = Math.pow(sinTheta, m) * fastCos(l * theta + m * phi);
-            
-            return result * 0.5; // Normalize
-        }
-        
-        // PERFORMANCE OPTIMIZED WAVE POTENTIAL with gradient caching
-        function getOptimizedAdvancedWavePotential3D(x, y, z, freq, modeM, modeN, modeP, waveType, computeGradient = false) {
-            // Create cache key with reduced precision for better cache hits
-            const cacheX = Math.round(x * 20) / 20;
-            const cacheY = Math.round(y * 20) / 20;
-            const cacheZ = Math.round(z * 20) / 20;
-            const cacheTime = Math.floor(time / 100) * 100; // Cache for 100ms intervals
-            const cacheKey = `${cacheX},${cacheY},${cacheZ},${freq},${modeM},${modeN},${modeP},${waveType},${cacheTime}`;
-            
-            if (computeGradient && GRADIENT_CACHE.has(cacheKey)) {
-                gradientCacheHits++;
-                return GRADIENT_CACHE.get(cacheKey);
-            }
-            
+        // ENHANCED ELLIPTICAL SPHERICAL HARMONICS WAVE POTENTIAL - Agent 1 Revolutionary Implementation
+        // Based on original research by Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro
+        // Enhanced with cutting-edge elliptical spherical harmonics and prolate spheroidal wave functions
+        // Implementing true 3D spherical cymatics (not circular plane patterns but spherical from center)
+        function getAdvancedWavePotential3D(x, y, z, freq, modeM, modeN, modeP, waveType) {
+            // Convert Cartesian to spherical coordinates
             const r = Math.sqrt(x*x + y*y + z*z);
-            if (r < 1e-10) return computeGradient ? {potential: 0, gradX: 0, gradY: 0, gradZ: 0} : 0;
+            if (r < 1e-10) return 0; // Avoid singularity at origin
             
-            const theta = Math.acos(Math.max(-1, Math.min(1, z / r)));
-            const phi = Math.atan2(y, x);
+            const theta = Math.acos(Math.max(-1, Math.min(1, z / r))); // Polar angle [0, π]
+            const phi = Math.atan2(y, x); // Azimuthal angle [-π, π]
             
-            // Simplified parameters for performance
-            const l_primary = Math.max(0, Math.min(6, parseInt(modeM))); // Reduced from 15 to 6
-            const m_primary = Math.max(-l_primary, Math.min(l_primary, parseInt(modeN) - l_primary));
-            const ellipticalStrength = parseFloat(modeP) * 0.08; // Reduced complexity
-            const frequencyScale = parseFloat(freq) * 0.01;
+            // Enhanced parameters for elliptical spherical harmonics
+            const l_primary = Math.max(0, Math.min(15, parseInt(modeM))); // Extended degree range
+            const m_primary = Math.max(-l_primary, Math.min(l_primary, parseInt(modeN) - l_primary)); // Primary order
+            const ellipticalStrength = parseFloat(modeP) * 0.12; // Enhanced elliptical deformation
+            const frequencyScale = parseFloat(freq) * 0.01; // Refined frequency scaling
             
+            // Time-dependent phase for dynamic evolution with improved temporal coherence
             const timePhase = time * 0.001 * frequencyScale;
             
-            // === OPTIMIZED DUAL SOURCE CALCULATION ===
+            // === ELLIPTICAL SPHERICAL HARMONICS IMPLEMENTATION ===
+            // Based on prolate spheroidal wave functions for enhanced 3D patterns
             
-            // Source 1: Primary harmonic (simplified)
-            let Y_primary_s1 = fastSphericalYReal(l_primary, m_primary, theta, phi + timePhase);
+            // Primary elliptical deformation parameters
+            const eccentricity = 0.3 + ellipticalStrength * 0.7; // Ellipse eccentricity [0.3, 1.0]
+            const semiMajorAxis = 1.0 + ellipticalStrength * 0.5; // Semi-major axis scaling
+            const semiMinorAxis = Math.sqrt(1.0 - eccentricity * eccentricity) * semiMajorAxis;
             
-            // Simplified elliptical modulation
+            // Transform coordinates to elliptical system
+            const xi = Math.acosh(Math.max(1.0, r / semiMinorAxis)); // Prolate spheroidal coordinate
+            const eta = Math.cos(theta); // Transformed polar coordinate
+            
+            // === SOURCE 1: Primary elliptical spherical harmonic (centered) ===
+            let Y_primary_s1 = enhancedSphericalYReal(l_primary, m_primary, theta, phi + timePhase, eccentricity);
+            
+            // Secondary harmonics with elliptical modulation
+            const l_secondary_s1 = Math.max(0, l_primary + 1);
+            const m_secondary_s1 = Math.max(-l_secondary_s1, Math.min(l_secondary_s1, m_primary + 1));
+            let Y_secondary_s1 = enhancedSphericalYReal(l_secondary_s1, m_secondary_s1, theta, phi - timePhase * 0.7, eccentricity * 0.8);
+            
+            // Advanced elliptical deformation with prolate spheroidal modulation
             const ellipticalFactor_s1 = 1.0 + ellipticalStrength * (
-                fastSin(2 * theta) * fastCos(phi + timePhase) * 0.3 + 
-                fastCos(theta) * fastSin(2 * phi + timePhase * 0.5) * 0.2
+                Math.sin(2 * theta) * Math.cos(phi + timePhase) * (1.0 + 0.3 * Math.sin(xi)) + 
+                Math.cos(theta) * Math.sin(2 * phi + timePhase * 0.5) * (1.0 + 0.2 * Math.cos(xi)) +
+                0.15 * Math.sin(3 * theta) * Math.cos(3 * phi + timePhase * 0.3) // Higher order terms
             );
             
-            // Simplified radial decay
+            // Enhanced radial component with elliptical decay
             const normalizedR_s1 = r / (SIMULATION_EXTENT * ellipticalFactor_s1);
-            const ellipticalDecay_s1 = Math.exp(-normalizedR_s1 * normalizedR_s1 * 1.5);
+            const ellipticalDecay_s1 = Math.exp(-normalizedR_s1 * normalizedR_s1 * (1.8 + 0.4 * eccentricity));
             
-            let combinedHarmonic_s1 = Y_primary_s1 * ellipticalDecay_s1;
+            // Prolate spheroidal wave modulation
+            const prolateModulation_s1 = Math.cos(xi * (l_primary + 1)) * Math.exp(-xi * 0.5);
             
-            // Simplified standing waves
-            const radialWaves_s1 = fastSin(normalizedR_s1 * Math.PI * (l_primary + 1) + timePhase);
-            combinedHarmonic_s1 *= (1.0 + 0.3 * radialWaves_s1);
+            // Combine harmonics for source 1 with elliptical enhancement
+            let combinedHarmonic_s1 = (Y_primary_s1 * 1.0 + Y_secondary_s1 * 0.6) * prolateModulation_s1;
+            combinedHarmonic_s1 *= ellipticalDecay_s1;
             
-            // Source 2: Offset source (simplified)
-            const offsetX = SIMULATION_EXTENT * 0.3;
-            const offsetY = SIMULATION_EXTENT * 0.15;
+            // Enhanced standing wave patterns with elliptical modulation
+            const radialWaves_s1 = Math.sin(normalizedR_s1 * Math.PI * (l_primary + 1) + timePhase) * 
+                                   (1.0 + 0.3 * Math.sin(phi * 2 + timePhase * 0.4));
+            combinedHarmonic_s1 *= (1.0 + 0.4 * radialWaves_s1);
+            
+            // === SOURCE 2: Offset elliptical spherical harmonic (displaced) ===
+            const offsetX = SIMULATION_EXTENT * 0.35; // Slightly increased offset
+            const offsetY = SIMULATION_EXTENT * 0.18;
+            const offsetZ = SIMULATION_EXTENT * 0.1; // Added Z offset for true 3D
             const x2 = x - offsetX;
             const y2 = y - offsetY;
-            const z2 = z;
+            const z2 = z - offsetZ;
             
             const r2 = Math.sqrt(x2*x2 + y2*y2 + z2*z2);
             let combinedHarmonic_s2 = 0;
@@ -1184,81 +1042,115 @@
             if (r2 > 1e-10) {
                 const theta2 = Math.acos(Math.max(-1, Math.min(1, z2 / r2)));
                 const phi2 = Math.atan2(y2, x2);
-                const timePhase2 = timePhase * 0.8 + Math.PI / 4;
+                const xi2 = Math.acosh(Math.max(1.0, r2 / semiMinorAxis));
                 
-                const l_primary_s2 = Math.max(0, Math.min(6, (l_primary + 1) % 6 + 1));
-                const m_primary_s2 = Math.max(-l_primary_s2, Math.min(l_primary_s2, m_primary));
+                // Modified parameters for source 2 with different elliptical characteristics
+                const l_primary_s2 = Math.max(0, Math.min(15, (l_primary + 2) % 10 + 1));
+                const m_primary_s2 = Math.max(-l_primary_s2, Math.min(l_primary_s2, (m_primary + 1) % (2*l_primary_s2 + 1) - l_primary_s2));
+                const timePhase2 = timePhase * 0.85 + Math.PI / 3; // Phase offset
+                const eccentricity2 = eccentricity * 0.7; // Different eccentricity
                 
-                let Y_primary_s2 = fastSphericalYReal(l_primary_s2, m_primary_s2, theta2, phi2 + timePhase2);
+                let Y_primary_s2 = enhancedSphericalYReal(l_primary_s2, m_primary_s2, theta2, phi2 + timePhase2, eccentricity2);
                 
-                const normalizedR_s2 = r2 / (SIMULATION_EXTENT * 0.8);
-                const ellipticalDecay_s2 = Math.exp(-normalizedR_s2 * normalizedR_s2 * 1.8);
+                // Tertiary harmonic for source 2
+                const l_tertiary_s2 = Math.max(0, l_primary_s2 - 1);
+                const m_tertiary_s2 = Math.max(-l_tertiary_s2, Math.min(l_tertiary_s2, m_primary_s2));
+                let Y_tertiary_s2 = enhancedSphericalYReal(l_tertiary_s2, m_tertiary_s2, theta2, phi2 + timePhase2 * 1.2, eccentricity2 * 1.2);
                 
-                combinedHarmonic_s2 = Y_primary_s2 * ellipticalDecay_s2 * 0.6;
+                // Enhanced elliptical deformation for source 2
+                const ellipticalFactor_s2 = 1.0 + ellipticalStrength * 0.8 * (
+                    Math.sin(3 * theta2) * Math.cos(phi2 + timePhase2) * (1.0 + 0.25 * Math.sin(xi2)) + 
+                    Math.cos(2 * theta2) * Math.sin(phi2 + timePhase2 * 0.6) * (1.0 + 0.15 * Math.cos(xi2)) +
+                    0.1 * Math.sin(4 * theta2) * Math.cos(2 * phi2 + timePhase2 * 0.8) // Additional complexity
+                );
+                
+                // Enhanced radial component for source 2
+                const normalizedR_s2 = r2 / (SIMULATION_EXTENT * ellipticalFactor_s2);
+                const ellipticalDecay_s2 = Math.exp(-normalizedR_s2 * normalizedR_s2 * (2.2 + 0.3 * eccentricity2));
+                
+                // Prolate spheroidal wave modulation for source 2
+                const prolateModulation_s2 = Math.cos(xi2 * (l_primary_s2 + 1) * 0.9) * Math.exp(-xi2 * 0.4);
+                
+                // Combine harmonics for source 2
+                combinedHarmonic_s2 = (Y_primary_s2 * 0.8 + Y_tertiary_s2 * 0.5) * prolateModulation_s2;
+                combinedHarmonic_s2 *= ellipticalDecay_s2;
+                
+                // Enhanced standing wave patterns for source 2
+                const radialWaves_s2 = Math.sin(normalizedR_s2 * Math.PI * (l_primary_s2 + 1) + timePhase2) *
+                                       (1.0 + 0.25 * Math.sin(phi2 * 3 + timePhase2 * 0.5));
+                combinedHarmonic_s2 *= (1.0 + 0.3 * radialWaves_s2);
             }
             
-            // Combined interference
-            let combinedVal = combinedHarmonic_s1 * 0.7 + combinedHarmonic_s2 * 0.3;
+            // === ADVANCED INTERFERENCE COMBINATION ===
+            // Weighted combination with elliptical interference patterns
+            let combinedVal = combinedHarmonic_s1 * 0.65 + combinedHarmonic_s2 * 0.35;
             
-            // Simplified multi-scale patterns
-            const largeScale = fastSin(r / SIMULATION_EXTENT * Math.PI * 0.6 + timePhase * 0.4) * 0.1;
-            combinedVal += largeScale;
+            // Multi-scale elliptical interference patterns
+            const largeScalePattern = Math.sin(r / SIMULATION_EXTENT * Math.PI * 0.6 + timePhase * 0.4) * 
+                                      (1.0 + 0.2 * Math.sin(theta * 2 + phi + timePhase * 0.3)) * 0.15;
+            const mediumScalePattern = Math.sin(r / SIMULATION_EXTENT * Math.PI * 2.5 + timePhase * 0.8) * 
+                                       (1.0 + 0.15 * Math.cos(theta * 3 + phi * 2 + timePhase * 0.6)) * 0.08;
+            const fineScalePattern = Math.sin(r / SIMULATION_EXTENT * Math.PI * 6.0 + timePhase * 1.2) * 
+                                     (1.0 + 0.1 * Math.sin(theta * 5 + phi * 3 + timePhase * 0.9)) * 0.04;
             
-            // Apply waveform with fast functions
+            combinedVal += largeScalePattern + mediumScalePattern + fineScalePattern;
+            
+            // Apply waveform modulation with elliptical enhancement
             switch(waveType) {
                 case 'sine':
-                    combinedVal = fastSin(combinedVal * Math.PI);
+                    combinedVal = Math.sin(combinedVal * Math.PI * (1.0 + 0.1 * eccentricity));
                     break;
                 case 'square':
-                    combinedVal = Math.sign(combinedVal) * Math.min(1.0, Math.abs(combinedVal) * 2.0);
+                    combinedVal = Math.sign(combinedVal) * Math.min(1.0, Math.abs(combinedVal) * (2.0 + 0.3 * eccentricity));
                     break;
                 case 'triangle':
-                    const triVal = combinedVal * 2.0;
+                    const triVal = combinedVal * (2.0 + 0.2 * eccentricity);
                     combinedVal = 2.0 * Math.abs((triVal % 2.0) - 1.0) - 1.0;
                     break;
                 case 'sawtooth':
-                    const sawVal = combinedVal * 2.0;
+                    const sawVal = combinedVal * (2.0 + 0.15 * eccentricity);
                     combinedVal = 2.0 * (sawVal - Math.floor(sawVal + 0.5));
                     break;
                 default:
-                    combinedVal = fastSin(combinedVal * Math.PI);
+                    combinedVal = Math.sin(combinedVal * Math.PI * (1.0 + 0.1 * eccentricity));
                     break;
             }
             
-            const potential = isNaN(combinedVal) ? 0 : Math.max(-1.2, Math.min(1.2, combinedVal));
+            // Ensure bounded output for stability with elliptical scaling
+            return isNaN(combinedVal) ? 0 : Math.max(-1.5, Math.min(1.5, combinedVal * (1.0 + 0.1 * ellipticalStrength)));
+        }
+        
+        // Enhanced spherical harmonics with elliptical modulation
+        function enhancedSphericalYReal(l, m_signed, theta, phi, eccentricity = 0.0) {
+            if (l < 0) return 0;
+            const m = Math.abs(m_signed);
+            if (m > l) return 0;
+
+            // Base spherical harmonic
+            let baseHarmonic = sphericalYReal(l, m_signed, theta, phi);
             
-            if (!computeGradient) {
-                return potential;
+            // Elliptical modulation based on eccentricity
+            if (eccentricity > 0.01) {
+                // Apply elliptical deformation to the harmonic
+                const ellipticalModulation = 1.0 + eccentricity * (
+                    0.3 * Math.sin(l * theta) * Math.cos(m * phi) +
+                    0.2 * Math.cos((l + 1) * theta) * Math.sin((m + 1) * phi) +
+                    0.1 * Math.sin((l - 1) * theta) * Math.cos((m - 1) * phi)
+                );
+                
+                // Additional prolate spheroidal correction
+                const prolateCorrection = 1.0 + 0.15 * eccentricity * Math.sin(l * theta + m * phi);
+                
+                baseHarmonic *= ellipticalModulation * prolateCorrection;
             }
             
-            // Optimized gradient calculation using simplified finite differences
-            const delta = 0.05; // Larger delta for performance
-            const potDx = getOptimizedAdvancedWavePotential3D(x + delta, y, z, freq, modeM, modeN, modeP, waveType, false);
-            const potDy = getOptimizedAdvancedWavePotential3D(x, y + delta, z, freq, modeM, modeN, modeP, waveType, false);
-            const potDz = getOptimizedAdvancedWavePotential3D(x, y, z + delta, freq, modeM, modeN, modeP, waveType, false);
-            
-            const gradX = (potDx - potential) / delta;
-            const gradY = (potDy - potential) / delta;
-            const gradZ = (potDz - potential) / delta;
-            
-            const result = { potential, gradX, gradY, gradZ };
-            
-            // Cache the result
-            gradientCacheMisses++;
-            if (GRADIENT_CACHE.size >= GRADIENT_CACHE_SIZE) {
-                // Clear oldest entries
-                const keys = Array.from(GRADIENT_CACHE.keys());
-                for (let i = 0; i < GRADIENT_CACHE_SIZE / 4; i++) {
-                    GRADIENT_CACHE.delete(keys[i]);
-                }
-            }
-            GRADIENT_CACHE.set(cacheKey, result);
-            
-            return result;
+            return baseHarmonic;
         }
 
-        // Main animation loop - PERFORMANCE OPTIMIZED VERSION
+        // Main animation loop - Aldrin Payopay research framework with AI optimization
+        // Agent 1 Modification: Fixed wave force application to ensure proper visual transfer
         function animate() {
+            // Animation system by Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro research collaboration
             if (!isExperienceStarted) return;
             requestAnimationFrame(animate);
             const deltaTime = Math.min(clock.getDelta(), 0.033); 
@@ -1298,7 +1190,7 @@
             const colorUpdateModulo = Math.max(1, Math.floor(PARTICLE_COUNT / colorUpdateBatchDivisor));
             const timeBasedOffset = Math.floor(time / 50); 
 
-            // Main particle physics loop - Apply wave forces to ALL particles (FIXED)
+            // Main particle physics loop - Apply wave forces to ALL particles
             for (let i = 0; i < PARTICLE_COUNT; i++) {
                 const i3 = i * 3;
                 let px = positions[i3], py = positions[i3 + 1], pz = positions[i3 + 2];
@@ -1314,13 +1206,15 @@
                     vz -= (pz / distToCenter) * gravityForce * deltaTime;
                 }
                 
-                // OPTIMIZED Advanced Wave Forces - Single call with gradient
-                const waveData = getOptimizedAdvancedWavePotential3D(px, py, pz, freq, modeM, modeN, modeP, waveType, true);
-                const currentPotential = waveData.potential;
-                const gradX = waveData.gradX;
-                const gradY = waveData.gradY;
-                const gradZ = waveData.gradZ;
-                
+                // Advanced Wave Forces - THIS IS THE KEY FIX
+                const currentPotential = getAdvancedWavePotential3D(px, py, pz, freq, modeM, modeN, modeP, waveType);
+                const delta = 0.02; 
+                const potDx = getAdvancedWavePotential3D(px + delta, py, pz, freq, modeM, modeN, modeP, waveType);
+                const potDy = getAdvancedWavePotential3D(px, py + delta, pz, freq, modeM, modeN, modeP, waveType);
+                const potDz = getAdvancedWavePotential3D(px, py, pz + delta, freq, modeM, modeN, modeP, waveType);
+                const gradX = (potDx - currentPotential) / delta;
+                const gradY = (potDy - currentPotential) / delta;
+                const gradZ = (potDz - currentPotential) / delta;
                 const forceScale = effectiveFieldStrength * amp * (1.0 - Math.abs(currentPotential));                 
                 const forceX = -gradX * forceScale;
                 const forceY = -gradY * forceScale; 
@@ -1374,12 +1268,6 @@
             camera.position.y += Math.cos(time * 0.000025) * 0.005;
             
             renderer.render(scene, camera);
-            
-            // Performance monitoring (optional)
-            if (time % 5000 < 16.67) { // Every 5 seconds
-                const cacheHitRate = gradientCacheHits / (gradientCacheHits + gradientCacheMisses) * 100;
-                console.log(`Cache hit rate: ${cacheHitRate.toFixed(1)}%, Processed batch: ${currentSpawnIndex}/${PARTICLE_COUNT}`);
-            }
         }
 
         function onWindowResize() {
@@ -1387,7 +1275,6 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio * currentPixelRatio, 2.0));
         }
 
         // Attribution verification system - Aldrin Payopay research protection
@@ -1539,13 +1426,6 @@
             const y = positions[i3 + 1];
             const z = positions[i3 + 2];
             
-            // Get current UI parameters
-            const freq = parseFloat(ui.frequency.value);
-            const modeM = parseInt(ui.modeM.value);
-            const modeN = parseInt(ui.modeN.value);
-            const modeP = parseInt(ui.modeP.value);
-            const waveType = ui.waveform.value;
-            
             // Spatial hash key for this particle
             const gridX = Math.floor((x + SIMULATION_EXTENT) / SPATIAL_CELL_SIZE);
             const gridY = Math.floor((y + SIMULATION_EXTENT) / SPATIAL_CELL_SIZE);
@@ -1559,11 +1439,11 @@
                 if (time - cachedData.timestamp < 50) { // Cache for 50ms
                     wavePotential = cachedData.potential;
                 } else {
-                    wavePotential = getOptimizedAdvancedWavePotential3D(x, y, z, freq, modeM, modeN, modeP, waveType, true);
+                    wavePotential = getAdvancedWavePotential3D(x, y, z, frequency, modeM, modeN, modeP, waveType);
                     spatialHashGrid.set(hashKey, { potential: wavePotential, timestamp: time });
                 }
             } else {
-                wavePotential = getOptimizedAdvancedWavePotential3D(x, y, z, freq, modeM, modeN, modeP, waveType, true);
+                wavePotential = getAdvancedWavePotential3D(x, y, z, frequency, modeM, modeN, modeP, waveType);
                 spatialHashGrid.set(hashKey, { potential: wavePotential, timestamp: time });
             }
             
