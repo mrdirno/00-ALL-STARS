@@ -358,6 +358,21 @@
         <div class="control-group">
             <button id="reset-particles"><span>↻ Reset Simulation</span></button>
         </div>
+        
+        <h2 style="margin-top: 32px;">Performance Optimization</h2>
+        <div class="control-group">
+            <label>Pixel Density <span class="control-value" id="pixelDensity-value">1.0x</span></label>
+            <input type="range" id="pixelDensity" min="0.25" max="2.0" value="1.0" step="0.25">
+            <small>Lower values = better performance, higher values = sharper visuals</small>
+        </div>
+        <div class="control-group">
+            <button id="toggle-antialiasing"><span>🎯 Anti-aliasing ON</span></button>
+        </div>
+        <div class="control-group">
+            <label>Particle Size <span class="control-value" id="particleSize-value">Auto</span></label>
+            <input type="range" id="particleSize" min="0.005" max="0.030" value="0.015" step="0.001">
+            <small>Smaller particles = better performance with high density</small>
+        </div>
     </div>
 
     <div id="stats-bar" class="ui-panel" style="display: none;">
@@ -429,6 +444,11 @@
 
         let soundEnabled = true;
         let isExperienceStarted = false;
+        
+        // Performance optimization variables
+        let currentPixelRatio = 1.0;
+        let antialiasingEnabled = true;
+        let customParticleSize = null; // null = auto-sizing
         
         // Research attribution constants - DO NOT MODIFY ORIGINAL VALUES
         const RESEARCH_TEAM = {
@@ -551,6 +571,11 @@
             statsModeP: document.getElementById('stats-modeP'),
             statsHeartRate: document.getElementById('stats-heartRate'),
             statsParticles: document.getElementById('stats-particles'),
+            pixelDensity: document.getElementById('pixelDensity'),
+            toggleAntialiasing: document.getElementById('toggle-antialiasing'),
+            particleSize: document.getElementById('particleSize'),
+            pixelDensityValue: document.getElementById('pixelDensity-value'),
+            particleSizeValue: document.getElementById('particleSize-value'),
         };
 
         function formatNumber(num) {
@@ -611,9 +636,9 @@
                 camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
                 camera.position.set(0, SIMULATION_EXTENT * 0.3, SIMULATION_EXTENT * 1.5); 
 
-                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+                renderer = new THREE.WebGLRenderer({ antialias: antialiasingEnabled, alpha: false });
                 renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); 
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio * currentPixelRatio, 2.0)); 
                 renderer.toneMapping = THREE.ACESFilmicToneMapping;
                 renderer.toneMappingExposure = 1.0;
                 document.getElementById('container').appendChild(renderer.domElement);
@@ -683,6 +708,11 @@
                 ui.toggleSound.addEventListener('click', toggleSound);
                 ui.resetParticles.addEventListener('click', resetAllParticles);
                 window.addEventListener('resize', onWindowResize, false);
+                
+                // Performance optimization event listeners
+                ui.pixelDensity.addEventListener('input', updatePixelDensity);
+                ui.toggleAntialiasing.addEventListener('click', toggleAntialiasing);
+                ui.particleSize.addEventListener('input', updateParticleSize);
 
                 ui.initializationOverlay.style.transition = 'opacity 0.5s ease';
                 ui.initializationOverlay.style.opacity = '0';
@@ -695,6 +725,11 @@
                 isExperienceStarted = true;
                 updateCymaticsParameters(); 
                 updateHeartRateUI();
+                
+                // Initialize performance optimization UI
+                updatePixelDensity();
+                updateParticleSize();
+                
                 animate();
 
             } catch (error) {
@@ -748,7 +783,15 @@
             geometry.setAttribute('velocity', new THREE.BufferAttribute(particleVelocities, 3));
             geometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
-            const particleSize = PARTICLE_COUNT > 200000 ? 0.008 : PARTICLE_COUNT > 100000 ? 0.012 : 0.018; 
+            // Dynamic particle size based on performance settings
+            let particleSize;
+            if (customParticleSize !== null) {
+                particleSize = customParticleSize;
+            } else {
+                // Auto-sizing based on particle count (original logic)
+                particleSize = PARTICLE_COUNT > 200000 ? 0.008 : PARTICLE_COUNT > 100000 ? 0.012 : 0.018;
+            }
+            
             particleMaterial = new THREE.PointsMaterial({
                 size: particleSize,
                 vertexColors: true,
@@ -965,6 +1008,42 @@
             ui.soundIndicator.style.opacity = soundEnabled ? '1' : '0.3';
         }
         
+        // Performance optimization functions
+        function updatePixelDensity() {
+            currentPixelRatio = parseFloat(ui.pixelDensity.value);
+            ui.pixelDensityValue.textContent = currentPixelRatio.toFixed(2) + 'x';
+            
+            if (renderer) {
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio * currentPixelRatio, 2.0));
+                console.log(`Pixel density updated to ${currentPixelRatio}x`);
+            }
+        }
+        
+        function toggleAntialiasing() {
+            antialiasingEnabled = !antialiasingEnabled;
+            ui.toggleAntialiasing.innerHTML = antialiasingEnabled ? 
+                "<span>🎯 Anti-aliasing ON</span>" : 
+                "<span>🚫 Anti-aliasing OFF</span>";
+            ui.toggleAntialiasing.classList.toggle('active', !antialiasingEnabled);
+            
+            // Note: WebGL context needs to be recreated to change antialiasing
+            // For now, just update the setting for next initialization
+            console.log(`Anti-aliasing ${antialiasingEnabled ? 'enabled' : 'disabled'} (takes effect on restart)`);
+        }
+        
+        function updateParticleSize() {
+            const sizeValue = parseFloat(ui.particleSize.value);
+            customParticleSize = sizeValue;
+            ui.particleSizeValue.textContent = sizeValue.toFixed(3);
+            
+            // Update existing particle material if available
+            if (particleMaterial) {
+                particleMaterial.size = sizeValue;
+                particleMaterial.needsUpdate = true;
+                console.log(`Particle size updated to ${sizeValue.toFixed(3)}`);
+            }
+        }
+
         // PERFORMANCE OPTIMIZED ADVANCED WAVE POTENTIAL - Agent 1 Revolutionary Implementation
         // Maintains sophisticated patterns while dramatically improving performance
         
@@ -1308,6 +1387,7 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio * currentPixelRatio, 2.0));
         }
 
         // Attribution verification system - Aldrin Payopay research protection
