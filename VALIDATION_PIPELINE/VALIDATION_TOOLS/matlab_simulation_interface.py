@@ -1,776 +1,437 @@
 #!/usr/bin/env python3
 """
-MATLAB Simulation Interface
+MATLAB Simulation Interface for Scientific Validation
 
-Interface for running physics simulations using MATLAB or Python fallbacks.
-Provides validation of physics-based research through computational verification.
-
-Author: AI Agent Claude-3.5-Sonnet
-Date: 2025-05-29
+Provides physics simulation capabilities with automatic fallback to Python
+when MATLAB is not available.
 """
 
 import os
 import sys
 import subprocess
-import tempfile
-import json
-import logging
-from pathlib import Path
-from typing import Dict, List, Any, Optional, Tuple
-import shutil
-
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy import integrate, optimize
-from scipy.special import spherical_jn, spherical_yn
-import sympy as sp
+import matplotlib.pyplot as plt
+from pathlib import Path
+import logging
 
 class MATLABSimulationInterface:
     """
-    Interface for running physics simulations with MATLAB or Python fallbacks.
-    Validates physics-based research through computational verification.
+    Interface for running physics simulations with MATLAB or Python fallbacks
     """
     
     def __init__(self):
-        """Initialize the MATLAB simulation interface"""
-        self.logger = logging.getLogger("MATLABSimulationInterface")
-        self.matlab_executable = self._find_matlab()
-        self.temp_dir = Path(tempfile.mkdtemp(prefix="validation_sim_"))
+        self.logger = logging.getLogger(__name__)
+        self.matlab_executable = self.find_matlab()
+        self.matlab_available = self.matlab_executable is not None
         
-        # Simulation tolerance for validation
-        self.validation_tolerance = 0.01
-        
-        if self.matlab_executable:
-            self.logger.info(f"✅ MATLAB found: {self.matlab_executable}")
+        if self.matlab_available:
+            self.logger.info("MATLAB detected - using enhanced simulations")
         else:
-            self.logger.info("⚠️  MATLAB not found, using Python fallbacks")
-    
-    def _find_matlab(self) -> Optional[str]:
-        """Find MATLAB executable on the system"""
+            self.logger.info("MATLAB not found - using Python fallbacks")
+            
+    def find_matlab(self):
+        """Find MATLAB executable on system"""
         possible_paths = [
             "/Applications/MATLAB_R2023b.app/bin/matlab",
-            "/Applications/MATLAB_R2023a.app/bin/matlab",
-            "/Applications/MATLAB_R2022b.app/bin/matlab",
             "/usr/local/bin/matlab",
             "matlab"  # In PATH
         ]
         
         for path in possible_paths:
             try:
-                result = subprocess.run([path, "-help"], 
-                                      capture_output=True, 
-                                      timeout=10)
+                result = subprocess.run([path, "-batch", "exit"], 
+                                      capture_output=True, timeout=10)
                 if result.returncode == 0:
                     return path
             except (subprocess.TimeoutExpired, FileNotFoundError):
                 continue
-        
+                
         return None
-    
-    def validate_physics_simulation(self, physics_description: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Validate a physics simulation based on description
         
-        Args:
-            physics_description: Dictionary describing the physics system
+    def run_harmonic_oscillator_simulation(self, params=None):
+        """
+        Run harmonic oscillator simulation
+        """
+        if params is None:
+            params = {"m": 1.0, "k": 1.0, "x0": 1.0, "v0": 0.0, "t_max": 10.0}
             
-        Returns:
-            Validation results with success status and metrics
-        """
-        sim_type = physics_description.get("type", "unknown")
-        
-        self.logger.info(f"🧮 Running physics simulation: {sim_type}")
-        
+        if self.matlab_available:
+            return self.matlab_harmonic_oscillator(params)
+        else:
+            return self.python_harmonic_oscillator(params)
+            
+    def matlab_harmonic_oscillator(self, params):
+        """Run harmonic oscillator in MATLAB"""
         try:
-            if sim_type == "harmonic_oscillator":
-                return self._validate_harmonic_oscillator(physics_description)
-            elif sim_type == "wave_equation":
-                return self._validate_wave_equation(physics_description)
-            elif sim_type == "heat_equation":
-                return self._validate_heat_equation(physics_description)
-            elif sim_type == "projectile_motion":
-                return self._validate_projectile_motion(physics_description)
-            elif sim_type == "pendulum":
-                return self._validate_pendulum(physics_description)
-            elif sim_type == "spring_mass":
-                return self._validate_spring_mass(physics_description)
+            # Create MATLAB script
+            matlab_script = f"""
+            % Harmonic Oscillator Simulation
+            m = {params['m']};
+            k = {params['k']};
+            x0 = {params['x0']};
+            v0 = {params['v0']};
+            t_max = {params['t_max']};
+            
+            omega = sqrt(k/m);
+            t = linspace(0, t_max, 1000);
+            
+            % Analytical solution
+            x = x0 * cos(omega * t) + (v0/omega) * sin(omega * t);
+            v = -x0 * omega * sin(omega * t) + v0 * cos(omega * t);
+            
+            % Energy calculation
+            KE = 0.5 * m * v.^2;
+            PE = 0.5 * k * x.^2;
+            E_total = KE + PE;
+            
+            % Energy conservation check
+            E_mean = mean(E_total);
+            E_std = std(E_total);
+            energy_variation = E_std / E_mean;
+            
+            % Save results
+            save('harmonic_results.mat', 't', 'x', 'v', 'E_total', 'energy_variation');
+            
+            fprintf('Energy variation: %.6f\\n', energy_variation);
+            fprintf('Period: %.6f\\n', 2*pi/omega);
+            """
+            
+            # Write and execute MATLAB script
+            with open('harmonic_sim.m', 'w') as f:
+                f.write(matlab_script)
+                
+            result = subprocess.run([self.matlab_executable, "-batch", "harmonic_sim"],
+                                  capture_output=True, text=True, timeout=60)
+            
+            if result.returncode == 0:
+                # Parse MATLAB output
+                output_lines = result.stdout.split('\n')
+                energy_variation = None
+                period = None
+                
+                for line in output_lines:
+                    if "Energy variation:" in line:
+                        energy_variation = float(line.split(':')[1].strip())
+                    elif "Period:" in line:
+                        period = float(line.split(':')[1].strip())
+                        
+                return {
+                    "success": True,
+                    "energy_variation": energy_variation,
+                    "period": period,
+                    "energy_conserved": energy_variation < 0.01 if energy_variation else False,
+                    "method": "MATLAB"
+                }
             else:
-                return self._validate_generic_physics(physics_description)
+                self.logger.warning(f"MATLAB simulation failed: {result.stderr}")
+                return self.python_harmonic_oscillator(params)
                 
         except Exception as e:
-            self.logger.error(f"❌ Simulation failed: {str(e)}")
-            return {
-                "success": False,
-                "error_message": str(e),
-                "simulation_type": sim_type
-            }
-    
-    def _validate_harmonic_oscillator(self, desc: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate harmonic oscillator simulation"""
-        frequency = desc.get("frequency", 1.0)
-        damping = desc.get("damping", 0.0)
-        initial_position = desc.get("initial_position", 1.0)
-        initial_velocity = desc.get("initial_velocity", 0.0)
-        
-        # Time parameters
-        t_max = desc.get("t_max", 10.0)
-        dt = desc.get("dt", 0.01)
-        t = np.arange(0, t_max, dt)
-        
-        # Analytical solution for comparison
-        omega = 2 * np.pi * frequency
-        
-        if damping == 0:
-            # Undamped harmonic oscillator
-            x_analytical = (initial_position * np.cos(omega * t) + 
-                          (initial_velocity / omega) * np.sin(omega * t))
-            v_analytical = (-initial_position * omega * np.sin(omega * t) + 
-                          initial_velocity * np.cos(omega * t))
-        else:
-            # Damped harmonic oscillator
-            gamma = damping
-            omega_d = np.sqrt(omega**2 - gamma**2)
+            self.logger.warning(f"MATLAB simulation error: {str(e)}")
+            return self.python_harmonic_oscillator(params)
+        finally:
+            # Cleanup
+            for file in ['harmonic_sim.m', 'harmonic_results.mat']:
+                if os.path.exists(file):
+                    os.remove(file)
+                    
+    def python_harmonic_oscillator(self, params):
+        """Run harmonic oscillator in Python"""
+        try:
+            m = params['m']
+            k = params['k'] 
+            x0 = params['x0']
+            v0 = params['v0']
+            t_max = params['t_max']
             
-            if omega_d > 0:  # Underdamped
-                A = initial_position
-                B = (initial_velocity + gamma * initial_position) / omega_d
-                x_analytical = np.exp(-gamma * t) * (A * np.cos(omega_d * t) + B * np.sin(omega_d * t))
-                v_analytical = np.exp(-gamma * t) * (
-                    (-gamma * A - omega_d * B) * np.cos(omega_d * t) + 
-                    (omega_d * A - gamma * B) * np.sin(omega_d * t)
-                )
-            else:  # Critically damped or overdamped
-                x_analytical = np.exp(-gamma * t) * (initial_position + (initial_velocity + gamma * initial_position) * t)
-                v_analytical = np.exp(-gamma * t) * (initial_velocity - gamma * (initial_position + (initial_velocity + gamma * initial_position) * t))
-        
-        # Numerical solution using scipy
-        def harmonic_ode(t, y):
-            x, v = y
-            dxdt = v
-            dvdt = -omega**2 * x - 2 * damping * v
-            return [dxdt, dvdt]
-        
-        sol = integrate.solve_ivp(harmonic_ode, [0, t_max], 
-                                [initial_position, initial_velocity], 
-                                t_eval=t, rtol=1e-8)
-        
-        x_numerical = sol.y[0]
-        v_numerical = sol.y[1]
-        
-        # Calculate energy
-        kinetic_energy = 0.5 * v_numerical**2
-        potential_energy = 0.5 * omega**2 * x_numerical**2
-        total_energy = kinetic_energy + potential_energy
-        
-        # Validation metrics
-        position_error = np.mean(np.abs(x_numerical - x_analytical))
-        velocity_error = np.mean(np.abs(v_numerical - v_analytical))
-        
-        # Energy conservation check (for undamped case)
-        if damping == 0:
-            energy_variation = np.std(total_energy) / np.mean(total_energy)
-            energy_conserved = energy_variation < self.validation_tolerance
-        else:
-            # For damped case, energy should decrease
-            energy_conserved = np.all(np.diff(total_energy) <= 0)
-        
-        # Period validation
-        expected_period = 2 * np.pi / omega if damping == 0 else 2 * np.pi / np.sqrt(omega**2 - damping**2)
-        
-        # Find peaks to measure period
-        peaks = []
-        for i in range(1, len(x_numerical) - 1):
-            if x_numerical[i] > x_numerical[i-1] and x_numerical[i] > x_numerical[i+1]:
-                peaks.append(t[i])
-        
-        measured_period = np.mean(np.diff(peaks)) if len(peaks) > 1 else expected_period
-        period_error = abs(measured_period - expected_period) / expected_period
-        
-        # Overall validation score
-        validation_score = 1.0 - min(1.0, position_error + velocity_error + period_error)
-        
-        return {
-            "success": True,
-            "simulation_type": "harmonic_oscillator",
-            "validation_metrics": {
-                "position_error": position_error,
-                "velocity_error": velocity_error,
-                "period_error": period_error,
-                "energy_conserved": energy_conserved,
-                "validation_score": validation_score
-            },
-            "simulation_results": {
-                "time": t.tolist()[:100],  # Limit output size
-                "position": x_numerical.tolist()[:100],
-                "velocity": v_numerical.tolist()[:100],
-                "total_energy": total_energy.tolist()[:100],
-                "expected_period": expected_period,
-                "measured_period": measured_period
-            },
-            "parameters": {
-                "frequency": frequency,
-                "damping": damping,
-                "initial_position": initial_position,
-                "initial_velocity": initial_velocity
-            }
-        }
-    
-    def _validate_wave_equation(self, desc: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate wave equation simulation"""
-        wave_speed = desc.get("wave_speed", 1.0)
-        frequency = desc.get("frequency", 1.0)
-        amplitude = desc.get("amplitude", 1.0)
-        
-        # Spatial and temporal parameters
-        L = desc.get("length", 10.0)
-        T = desc.get("time_max", 5.0)
-        nx = desc.get("nx", 100)
-        nt = desc.get("nt", 500)
-        
-        x = np.linspace(0, L, nx)
-        t = np.linspace(0, T, nt)
-        dx = x[1] - x[0]
-        dt = t[1] - t[0]
-        
-        # CFL condition check
-        cfl = wave_speed * dt / dx
-        cfl_stable = cfl <= 1.0
-        
-        # Analytical solution for traveling wave
-        k = 2 * np.pi * frequency / wave_speed  # Wave number
-        omega = 2 * np.pi * frequency
-        
-        # Initialize wave
-        u = np.zeros((nt, nx))
-        
-        # Initial conditions: sinusoidal wave
-        u[0, :] = amplitude * np.sin(k * x)
-        
-        # Analytical solution at different times
-        analytical_solutions = []
-        for i, time in enumerate(t[::50]):  # Sample every 50th time step
-            u_analytical = amplitude * np.sin(k * x - omega * time)
-            analytical_solutions.append(u_analytical)
-        
-        # Numerical solution using finite differences
-        # Second-order wave equation: ∂²u/∂t² = c²∂²u/∂x²
-        
-        # Initial velocity (du/dt at t=0)
-        u[1, :] = u[0, :] - omega * amplitude * np.cos(k * x) * dt
-        
-        # Time stepping
-        for n in range(1, nt - 1):
-            for i in range(1, nx - 1):
-                u[n+1, i] = (2 * u[n, i] - u[n-1, i] + 
-                            (wave_speed * dt / dx)**2 * (u[n, i+1] - 2*u[n, i] + u[n, i-1]))
+            omega = np.sqrt(k/m)
+            t = np.linspace(0, t_max, 1000)
             
-            # Boundary conditions (fixed ends)
-            u[n+1, 0] = 0
-            u[n+1, -1] = 0
-        
-        # Validation metrics
-        errors = []
-        for i, time_idx in enumerate(range(0, nt, 50)):
-            if time_idx < nt and i < len(analytical_solutions):
-                error = np.mean(np.abs(u[time_idx, :] - analytical_solutions[i]))
-                errors.append(error)
-        
-        mean_error = np.mean(errors) if errors else float('inf')
-        
-        # Energy conservation check
-        kinetic_energy = []
-        potential_energy = []
-        
-        for n in range(1, nt - 1):
-            # Approximate kinetic energy
-            dudt = (u[n+1, :] - u[n-1, :]) / (2 * dt)
-            ke = 0.5 * np.sum(dudt**2) * dx
-            kinetic_energy.append(ke)
+            # Analytical solution
+            x = x0 * np.cos(omega * t) + (v0/omega) * np.sin(omega * t)
+            v = -x0 * omega * np.sin(omega * t) + v0 * np.cos(omega * t)
             
-            # Approximate potential energy
-            dudx = np.gradient(u[n, :], dx)
-            pe = 0.5 * wave_speed**2 * np.sum(dudx**2) * dx
-            potential_energy.append(pe)
-        
-        total_energy = np.array(kinetic_energy) + np.array(potential_energy)
-        energy_variation = np.std(total_energy) / np.mean(total_energy) if len(total_energy) > 0 else float('inf')
-        
-        # Validation score
-        validation_score = 1.0 - min(1.0, mean_error + energy_variation)
-        
-        return {
-            "success": True,
-            "simulation_type": "wave_equation",
-            "validation_metrics": {
-                "mean_error": mean_error,
-                "energy_variation": energy_variation,
-                "cfl_stable": cfl_stable,
-                "cfl_number": cfl,
-                "validation_score": validation_score
-            },
-            "simulation_results": {
-                "x": x.tolist(),
-                "t_sample": t[::50].tolist(),
-                "u_final": u[-1, :].tolist(),
-                "total_energy": total_energy.tolist()[:50],  # Limit output
-                "wave_speed": wave_speed,
-                "frequency": frequency
-            },
-            "parameters": {
-                "wave_speed": wave_speed,
-                "frequency": frequency,
-                "amplitude": amplitude,
-                "length": L,
-                "nx": nx,
-                "nt": nt
-            }
-        }
-    
-    def _validate_heat_equation(self, desc: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate heat equation simulation"""
-        diffusivity = desc.get("diffusivity", 0.01)
-        length = desc.get("length", 1.0)
-        time_max = desc.get("time_max", 1.0)
-        
-        # Grid parameters
-        nx = desc.get("nx", 50)
-        nt = desc.get("nt", 1000)
-        
-        x = np.linspace(0, length, nx)
-        t = np.linspace(0, time_max, nt)
-        dx = x[1] - x[0]
-        dt = t[1] - t[0]
-        
-        # Stability condition for explicit scheme
-        stability_factor = diffusivity * dt / dx**2
-        stable = stability_factor <= 0.5
-        
-        # Initial condition: step function
-        u = np.zeros((nt, nx))
-        u[0, :] = np.where(x < length/2, 1.0, 0.0)
-        
-        # Boundary conditions (fixed at 0)
-        u[:, 0] = 0
-        u[:, -1] = 0
-        
-        # Numerical solution using explicit finite differences
-        for n in range(nt - 1):
-            for i in range(1, nx - 1):
-                u[n+1, i] = u[n, i] + diffusivity * dt / dx**2 * (u[n, i+1] - 2*u[n, i] + u[n, i-1])
-        
-        # Analytical solution (Fourier series)
-        def analytical_solution(x_val, t_val):
-            result = 0
-            for n in range(1, 50):  # Sum first 50 terms
-                coeff = 4 / (np.pi * (2*n - 1)) * np.sin((2*n - 1) * np.pi / 2)
-                result += coeff * np.sin((2*n - 1) * np.pi * x_val / length) * np.exp(-(2*n - 1)**2 * np.pi**2 * diffusivity * t_val / length**2)
-            return result
-        
-        # Compare with analytical solution at final time
-        u_analytical = np.array([analytical_solution(x_val, time_max) for x_val in x])
-        error = np.mean(np.abs(u[-1, :] - u_analytical))
-        
-        # Conservation check (total heat should decrease due to boundary conditions)
-        total_heat = [np.sum(u[n, :]) * dx for n in range(nt)]
-        heat_decreasing = np.all(np.diff(total_heat) <= 0)
-        
-        # Maximum principle check (solution should be bounded by initial conditions)
-        max_value = np.max(u)
-        min_value = np.min(u)
-        max_principle_satisfied = (min_value >= 0) and (max_value <= 1.0)
-        
-        # Validation score
-        validation_score = 1.0 - min(1.0, error)
-        if not stable:
-            validation_score *= 0.5  # Penalize unstable schemes
-        if not max_principle_satisfied:
-            validation_score *= 0.7
-        
-        return {
-            "success": True,
-            "simulation_type": "heat_equation",
-            "validation_metrics": {
-                "error": error,
-                "stable": stable,
-                "stability_factor": stability_factor,
-                "heat_decreasing": heat_decreasing,
-                "max_principle_satisfied": max_principle_satisfied,
-                "validation_score": validation_score
-            },
-            "simulation_results": {
-                "x": x.tolist(),
-                "u_initial": u[0, :].tolist(),
-                "u_final": u[-1, :].tolist(),
-                "u_analytical": u_analytical.tolist(),
-                "total_heat": total_heat[::50],  # Sample every 50th step
-                "diffusivity": diffusivity
-            },
-            "parameters": {
-                "diffusivity": diffusivity,
-                "length": length,
-                "time_max": time_max,
-                "nx": nx,
-                "nt": nt
-            }
-        }
-    
-    def _validate_projectile_motion(self, desc: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate projectile motion simulation"""
-        initial_velocity = desc.get("initial_velocity", 50.0)  # m/s
-        launch_angle = desc.get("launch_angle", 45.0)  # degrees
-        gravity = desc.get("gravity", 9.81)  # m/s²
-        air_resistance = desc.get("air_resistance", 0.0)  # drag coefficient
-        
-        # Convert angle to radians
-        angle_rad = np.radians(launch_angle)
-        
-        # Initial conditions
-        vx0 = initial_velocity * np.cos(angle_rad)
-        vy0 = initial_velocity * np.sin(angle_rad)
-        
-        # Analytical solution (no air resistance)
-        if air_resistance == 0:
-            # Time of flight
-            t_flight = 2 * vy0 / gravity
-            
-            # Maximum height
-            max_height = vy0**2 / (2 * gravity)
-            
-            # Range
-            range_analytical = vx0 * t_flight
-            
-            # Trajectory
-            t = np.linspace(0, t_flight, 100)
-            x_analytical = vx0 * t
-            y_analytical = vy0 * t - 0.5 * gravity * t**2
-            
-            # Numerical solution for comparison
-            def projectile_ode(t, y):
-                x, y_pos, vx, vy = y
-                return [vx, vy, 0, -gravity]
-            
-            sol = integrate.solve_ivp(projectile_ode, [0, t_flight], 
-                                    [0, 0, vx0, vy0], 
-                                    t_eval=t, rtol=1e-8)
-            
-            x_numerical = sol.y[0]
-            y_numerical = sol.y[1]
-            
-            # Validation metrics
-            x_error = np.mean(np.abs(x_numerical - x_analytical))
-            y_error = np.mean(np.abs(y_numerical - y_analytical))
+            # Energy calculation
+            KE = 0.5 * m * v**2
+            PE = 0.5 * k * x**2
+            E_total = KE + PE
             
             # Energy conservation check
-            vx_num = sol.y[2]
-            vy_num = sol.y[3]
-            kinetic_energy = 0.5 * (vx_num**2 + vy_num**2)
-            potential_energy = gravity * y_numerical
-            total_energy = kinetic_energy + potential_energy
+            E_mean = np.mean(E_total)
+            E_std = np.std(E_total)
+            energy_variation = E_std / E_mean if E_mean > 0 else float('inf')
             
-            energy_variation = np.std(total_energy) / np.mean(total_energy)
+            period = 2 * np.pi / omega
             
-        else:
-            # With air resistance - numerical only
-            def projectile_with_drag(t, y):
-                x, y_pos, vx, vy = y
-                v_mag = np.sqrt(vx**2 + vy**2)
-                drag_x = -air_resistance * v_mag * vx
-                drag_y = -air_resistance * v_mag * vy
-                return [vx, vy, drag_x, drag_y - gravity]
-            
-            # Estimate flight time
-            t_flight_est = 2 * vy0 / gravity
-            t = np.linspace(0, t_flight_est * 1.5, 1000)
-            
-            sol = integrate.solve_ivp(projectile_with_drag, [0, t[-1]], 
-                                    [0, 0, vx0, vy0], 
-                                    t_eval=t, rtol=1e-8)
-            
-            x_numerical = sol.y[0]
-            y_numerical = sol.y[1]
-            
-            # Find actual landing time
-            landing_idx = np.where(y_numerical <= 0)[0]
-            if len(landing_idx) > 1:
-                landing_time = t[landing_idx[1]]
-                range_numerical = x_numerical[landing_idx[1]]
-            else:
-                landing_time = t[-1]
-                range_numerical = x_numerical[-1]
-            
-            # For validation, compare with no-drag case
-            range_analytical = vx0 * 2 * vy0 / gravity
-            max_height = vy0**2 / (2 * gravity)
-            
-            x_error = 0.1  # Nominal error for drag case
-            y_error = 0.1
-            energy_variation = 0.1  # Energy not conserved with drag
-        
-        # Validation score
-        validation_score = 1.0 - min(1.0, x_error + y_error + energy_variation)
-        
-        return {
-            "success": True,
-            "simulation_type": "projectile_motion",
-            "validation_metrics": {
-                "x_error": x_error,
-                "y_error": y_error,
+            return {
+                "success": True,
                 "energy_variation": energy_variation,
-                "validation_score": validation_score
-            },
-            "simulation_results": {
-                "time": t.tolist()[:100],
-                "x_trajectory": x_numerical.tolist()[:100],
-                "y_trajectory": y_numerical.tolist()[:100],
-                "max_height": max_height if air_resistance == 0 else np.max(y_numerical),
-                "range": range_analytical if air_resistance == 0 else range_numerical,
-                "flight_time": t_flight if air_resistance == 0 else landing_time
-            },
-            "parameters": {
-                "initial_velocity": initial_velocity,
-                "launch_angle": launch_angle,
-                "gravity": gravity,
-                "air_resistance": air_resistance
+                "period": period,
+                "energy_conserved": energy_variation < 0.01,
+                "method": "Python",
+                "time": t.tolist(),
+                "position": x.tolist(),
+                "velocity": v.tolist(),
+                "energy": E_total.tolist()
             }
-        }
-    
-    def _validate_pendulum(self, desc: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate pendulum simulation"""
-        length = desc.get("length", 1.0)  # m
-        gravity = desc.get("gravity", 9.81)  # m/s²
-        initial_angle = desc.get("initial_angle", 0.1)  # radians
-        damping = desc.get("damping", 0.0)  # damping coefficient
-        
-        # Small angle approximation
-        omega0 = np.sqrt(gravity / length)
-        period_small_angle = 2 * np.pi / omega0
-        
-        # Time parameters
-        t_max = desc.get("t_max", 10.0)
-        dt = desc.get("dt", 0.01)
-        t = np.arange(0, t_max, dt)
-        
-        # Numerical solution
-        def pendulum_ode(t, y):
-            theta, theta_dot = y
-            return [theta_dot, -omega0**2 * np.sin(theta) - 2 * damping * theta_dot]
-        
-        sol = integrate.solve_ivp(pendulum_ode, [0, t_max], 
-                                [initial_angle, 0], 
-                                t_eval=t, rtol=1e-8)
-        
-        theta_numerical = sol.y[0]
-        theta_dot_numerical = sol.y[1]
-        
-        # Small angle analytical solution for comparison
-        if damping == 0:
-            theta_analytical = initial_angle * np.cos(omega0 * t)
-        else:
-            # Damped oscillator
-            omega_d = np.sqrt(omega0**2 - damping**2)
-            if omega_d > 0:
-                theta_analytical = initial_angle * np.exp(-damping * t) * np.cos(omega_d * t)
-            else:
-                theta_analytical = initial_angle * np.exp(-damping * t)
-        
-        # Error calculation (valid for small angles)
-        if abs(initial_angle) < 0.3:  # Small angle regime
-            error = np.mean(np.abs(theta_numerical - theta_analytical))
-        else:
-            error = 0.1  # Nominal error for large angles
-        
-        # Energy conservation (for undamped case)
-        if damping == 0:
-            kinetic_energy = 0.5 * length**2 * theta_dot_numerical**2
-            potential_energy = gravity * length * (1 - np.cos(theta_numerical))
-            total_energy = kinetic_energy + potential_energy
-            energy_variation = np.std(total_energy) / np.mean(total_energy)
-        else:
-            energy_variation = 0.1  # Energy not conserved with damping
-        
-        # Period measurement
-        # Find peaks
-        peaks = []
-        for i in range(1, len(theta_numerical) - 1):
-            if (theta_numerical[i] > theta_numerical[i-1] and 
-                theta_numerical[i] > theta_numerical[i+1] and 
-                theta_numerical[i] > 0):
-                peaks.append(t[i])
-        
-        if len(peaks) > 1:
-            measured_period = np.mean(np.diff(peaks))
-            period_error = abs(measured_period - period_small_angle) / period_small_angle
-        else:
-            period_error = 0.1
-        
-        # Validation score
-        validation_score = 1.0 - min(1.0, error + energy_variation + period_error)
-        
-        return {
-            "success": True,
-            "simulation_type": "pendulum",
-            "validation_metrics": {
-                "angle_error": error,
-                "energy_variation": energy_variation,
-                "period_error": period_error,
-                "validation_score": validation_score
-            },
-            "simulation_results": {
-                "time": t.tolist()[:100],
-                "angle": theta_numerical.tolist()[:100],
-                "angular_velocity": theta_dot_numerical.tolist()[:100],
-                "expected_period": period_small_angle,
-                "measured_period": measured_period if len(peaks) > 1 else period_small_angle
-            },
-            "parameters": {
-                "length": length,
-                "gravity": gravity,
-                "initial_angle": initial_angle,
-                "damping": damping
-            }
-        }
-    
-    def _validate_spring_mass(self, desc: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate spring-mass system simulation"""
-        mass = desc.get("mass", 1.0)  # kg
-        spring_constant = desc.get("spring_constant", 1.0)  # N/m
-        initial_position = desc.get("initial_position", 1.0)  # m
-        initial_velocity = desc.get("initial_velocity", 0.0)  # m/s
-        damping = desc.get("damping", 0.0)  # damping coefficient
-        
-        # Natural frequency
-        omega0 = np.sqrt(spring_constant / mass)
-        period = 2 * np.pi / omega0
-        
-        # Time parameters
-        t_max = desc.get("t_max", 10.0)
-        dt = desc.get("dt", 0.01)
-        t = np.arange(0, t_max, dt)
-        
-        # Analytical solution
-        if damping == 0:
-            # Undamped
-            x_analytical = (initial_position * np.cos(omega0 * t) + 
-                          (initial_velocity / omega0) * np.sin(omega0 * t))
-            v_analytical = (-initial_position * omega0 * np.sin(omega0 * t) + 
-                          initial_velocity * np.cos(omega0 * t))
-        else:
-            # Damped
-            gamma = damping / (2 * mass)
-            omega_d = np.sqrt(omega0**2 - gamma**2)
             
-            if omega_d > 0:  # Underdamped
-                A = initial_position
-                B = (initial_velocity + gamma * initial_position) / omega_d
-                x_analytical = np.exp(-gamma * t) * (A * np.cos(omega_d * t) + B * np.sin(omega_d * t))
-                v_analytical = np.exp(-gamma * t) * (
-                    (-gamma * A - omega_d * B) * np.cos(omega_d * t) + 
-                    (omega_d * A - gamma * B) * np.sin(omega_d * t)
-                )
-            else:  # Critically damped or overdamped
-                x_analytical = np.exp(-gamma * t) * (initial_position + (initial_velocity + gamma * initial_position) * t)
-                v_analytical = np.exp(-gamma * t) * (initial_velocity - gamma * (initial_position + (initial_velocity + gamma * initial_position) * t))
-        
-        # Numerical solution
-        def spring_mass_ode(t, y):
-            x, v = y
-            return [v, -spring_constant/mass * x - damping/mass * v]
-        
-        sol = integrate.solve_ivp(spring_mass_ode, [0, t_max], 
-                                [initial_position, initial_velocity], 
-                                t_eval=t, rtol=1e-8)
-        
-        x_numerical = sol.y[0]
-        v_numerical = sol.y[1]
-        
-        # Validation metrics
-        position_error = np.mean(np.abs(x_numerical - x_analytical))
-        velocity_error = np.mean(np.abs(v_numerical - v_analytical))
-        
-        # Energy analysis
-        kinetic_energy = 0.5 * mass * v_numerical**2
-        potential_energy = 0.5 * spring_constant * x_numerical**2
-        total_energy = kinetic_energy + potential_energy
-        
-        if damping == 0:
-            energy_variation = np.std(total_energy) / np.mean(total_energy)
-        else:
-            # Energy should decrease with damping
-            energy_variation = 0.05 if np.all(np.diff(total_energy) <= 0.01) else 0.5
-        
-        # Validation score
-        validation_score = 1.0 - min(1.0, position_error + velocity_error + energy_variation)
-        
-        return {
-            "success": True,
-            "simulation_type": "spring_mass",
-            "validation_metrics": {
-                "position_error": position_error,
-                "velocity_error": velocity_error,
-                "energy_variation": energy_variation,
-                "validation_score": validation_score
-            },
-            "simulation_results": {
-                "time": t.tolist()[:100],
-                "position": x_numerical.tolist()[:100],
-                "velocity": v_numerical.tolist()[:100],
-                "total_energy": total_energy.tolist()[:100],
-                "natural_frequency": omega0,
-                "period": period
-            },
-            "parameters": {
-                "mass": mass,
-                "spring_constant": spring_constant,
-                "initial_position": initial_position,
-                "initial_velocity": initial_velocity,
-                "damping": damping
-            }
-        }
-    
-    def _validate_generic_physics(self, desc: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate generic physics system"""
-        # Basic validation for unknown physics types
-        sim_type = desc.get("type", "unknown")
-        
-        # Check for basic physics parameters
-        has_time = "time" in desc or "t_max" in desc
-        has_space = "length" in desc or "position" in desc or "x" in desc
-        has_dynamics = any(key in desc for key in ["velocity", "acceleration", "force", "energy"])
-        
-        # Basic validation score
-        validation_score = 0.5  # Neutral score for unknown systems
-        
-        if has_time:
-            validation_score += 0.2
-        if has_space:
-            validation_score += 0.2
-        if has_dynamics:
-            validation_score += 0.1
-        
-        return {
-            "success": True,
-            "simulation_type": sim_type,
-            "validation_metrics": {
-                "has_temporal_component": has_time,
-                "has_spatial_component": has_space,
-                "has_dynamics": has_dynamics,
-                "validation_score": min(validation_score, 1.0)
-            },
-            "simulation_results": {
-                "generic_validation": True,
-                "parameters_found": len(desc)
-            },
-            "parameters": desc
-        }
-    
-    def cleanup(self):
-        """Clean up temporary files"""
-        try:
-            if self.temp_dir.exists():
-                shutil.rmtree(self.temp_dir)
         except Exception as e:
-            self.logger.warning(f"Could not clean up temp directory: {str(e)}")
-    
-    def __del__(self):
-        """Destructor to clean up resources"""
-        self.cleanup() 
+            self.logger.error(f"Python simulation error: {str(e)}")
+            return {
+                "success": False,
+                "error": str(e),
+                "method": "Python"
+            }
+            
+    def run_wave_equation_simulation(self, params=None):
+        """
+        Run wave equation simulation
+        """
+        if params is None:
+            params = {"c": 1.0, "L": 1.0, "n_modes": 5, "t_max": 5.0}
+            
+        if self.matlab_available:
+            return self.matlab_wave_equation(params)
+        else:
+            return self.python_wave_equation(params)
+            
+    def python_wave_equation(self, params):
+        """Solve wave equation in Python"""
+        try:
+            c = params['c']  # wave speed
+            L = params['L']  # domain length
+            n_modes = params['n_modes']
+            t_max = params['t_max']
+            
+            # Spatial and temporal grids
+            x = np.linspace(0, L, 100)
+            t = np.linspace(0, t_max, 200)
+            
+            # Wave solution (standing wave modes)
+            u = np.zeros((len(t), len(x)))
+            
+            for n in range(1, n_modes + 1):
+                k_n = n * np.pi / L
+                omega_n = c * k_n
+                
+                # Mode amplitude (example)
+                A_n = 1.0 / n**2
+                
+                for i, t_val in enumerate(t):
+                    u[i, :] += A_n * np.sin(k_n * x) * np.cos(omega_n * t_val)
+                    
+            # Energy calculation
+            energy = np.zeros(len(t))
+            for i in range(len(t)):
+                # Kinetic + potential energy density integrated
+                if i > 0:
+                    dudt = (u[i, :] - u[i-1, :]) / (t[1] - t[0])
+                    dudx = np.gradient(u[i, :], x)
+                    energy[i] = 0.5 * np.trapz(dudt**2 + c**2 * dudx**2, x)
+                    
+            # Energy conservation check
+            if len(energy) > 1:
+                energy_variation = np.std(energy[1:]) / np.mean(energy[1:])
+            else:
+                energy_variation = 0.0
+                
+            return {
+                "success": True,
+                "energy_variation": energy_variation,
+                "energy_conserved": energy_variation < 0.1,
+                "method": "Python",
+                "wave_data": u.tolist(),
+                "energy": energy.tolist()
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Wave equation simulation error: {str(e)}")
+            return {
+                "success": False,
+                "error": str(e),
+                "method": "Python"
+            }
+            
+    def matlab_wave_equation(self, params):
+        """Run wave equation in MATLAB"""
+        try:
+            matlab_script = f"""
+            % Wave Equation Simulation
+            c = {params['c']};
+            L = {params['L']};
+            n_modes = {params['n_modes']};
+            t_max = {params['t_max']};
+            
+            x = linspace(0, L, 100);
+            t = linspace(0, t_max, 200);
+            
+            u = zeros(length(t), length(x));
+            
+            for n = 1:n_modes
+                k_n = n * pi / L;
+                omega_n = c * k_n;
+                A_n = 1.0 / n^2;
+                
+                for i = 1:length(t)
+                    u(i, :) = u(i, :) + A_n * sin(k_n * x) * cos(omega_n * t(i));
+                end
+            end
+            
+            % Energy calculation
+            energy = zeros(size(t));
+            for i = 2:length(t)
+                dudt = (u(i, :) - u(i-1, :)) / (t(2) - t(1));
+                dudx = gradient(u(i, :), x);
+                energy(i) = 0.5 * trapz(x, dudt.^2 + c^2 * dudx.^2);
+            end
+            
+            energy_variation = std(energy(2:end)) / mean(energy(2:end));
+            
+            fprintf('Wave energy variation: %.6f\\n', energy_variation);
+            """
+            
+            with open('wave_sim.m', 'w') as f:
+                f.write(matlab_script)
+                
+            result = subprocess.run([self.matlab_executable, "-batch", "wave_sim"],
+                                  capture_output=True, text=True, timeout=60)
+            
+            if result.returncode == 0:
+                # Parse output
+                energy_variation = None
+                for line in result.stdout.split('\n'):
+                    if "Wave energy variation:" in line:
+                        energy_variation = float(line.split(':')[1].strip())
+                        
+                return {
+                    "success": True,
+                    "energy_variation": energy_variation,
+                    "energy_conserved": energy_variation < 0.1 if energy_variation else False,
+                    "method": "MATLAB"
+                }
+            else:
+                return self.python_wave_equation(params)
+                
+        except Exception as e:
+            self.logger.warning(f"MATLAB wave simulation error: {str(e)}")
+            return self.python_wave_equation(params)
+        finally:
+            if os.path.exists('wave_sim.m'):
+                os.remove('wave_sim.m')
+                
+    def run_heat_equation_simulation(self, params=None):
+        """
+        Run heat equation simulation
+        """
+        if params is None:
+            params = {"alpha": 1.0, "L": 1.0, "T0": 100.0, "t_max": 1.0}
+            
+        return self.python_heat_equation(params)
+        
+    def python_heat_equation(self, params):
+        """Solve heat equation in Python"""
+        try:
+            alpha = params['alpha']  # thermal diffusivity
+            L = params['L']  # domain length
+            T0 = params['T0']  # initial temperature
+            t_max = params['t_max']
+            
+            # Spatial grid
+            nx = 50
+            x = np.linspace(0, L, nx)
+            dx = x[1] - x[0]
+            
+            # Time grid
+            dt = 0.001
+            nt = int(t_max / dt)
+            
+            # Initial condition
+            T = np.zeros((nt, nx))
+            T[0, :] = T0 * np.sin(np.pi * x / L)  # Initial temperature profile
+            
+            # Finite difference solution
+            r = alpha * dt / dx**2
+            
+            for n in range(nt - 1):
+                for i in range(1, nx - 1):
+                    T[n+1, i] = T[n, i] + r * (T[n, i+1] - 2*T[n, i] + T[n, i-1])
+                    
+                # Boundary conditions (T = 0 at ends)
+                T[n+1, 0] = 0
+                T[n+1, -1] = 0
+                
+            # Check for stability and physical behavior
+            max_temp = np.max(T)
+            min_temp = np.min(T)
+            
+            # Temperature should decrease over time (second law)
+            initial_energy = np.trapz(T[0, :], x)
+            final_energy = np.trapz(T[-1, :], x)
+            
+            energy_decrease = (initial_energy - final_energy) / initial_energy
+            
+            return {
+                "success": True,
+                "max_temperature": max_temp,
+                "min_temperature": min_temp,
+                "energy_decrease": energy_decrease,
+                "physically_consistent": energy_decrease > 0 and min_temp >= 0,
+                "method": "Python",
+                "temperature_data": T.tolist()
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Heat equation simulation error: {str(e)}")
+            return {
+                "success": False,
+                "error": str(e),
+                "method": "Python"
+            }
+            
+    def validate_physics_simulation(self, simulation_type, params=None):
+        """
+        Validate physics simulation results
+        """
+        simulation_methods = {
+            "harmonic_oscillator": self.run_harmonic_oscillator_simulation,
+            "wave_equation": self.run_wave_equation_simulation,
+            "heat_equation": self.run_heat_equation_simulation
+        }
+        
+        if simulation_type not in simulation_methods:
+            return {
+                "success": False,
+                "error": f"Unknown simulation type: {simulation_type}"
+            }
+            
+        try:
+            result = simulation_methods[simulation_type](params)
+            
+            # Add validation metadata
+            result["simulation_type"] = simulation_type
+            result["validation_timestamp"] = str(np.datetime64('now'))
+            result["matlab_available"] = self.matlab_available
+            
+            return result
+            
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+                "simulation_type": simulation_type
+            }
+            
+    def cleanup_temp_files(self):
+        """Clean up temporary simulation files"""
+        temp_files = [
+            'harmonic_sim.m', 'harmonic_results.mat',
+            'wave_sim.m', 'heat_sim.m'
+        ]
+        
+        for file in temp_files:
+            if os.path.exists(file):
+                try:
+                    os.remove(file)
+                except Exception as e:
+                    self.logger.warning(f"Failed to remove {file}: {str(e)}") 

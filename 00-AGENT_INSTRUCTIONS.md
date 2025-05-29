@@ -1,4 +1,4 @@
-*WHEN DONE WITH START UP PLEASE WORK ON THE VALIDATION_PIPELINE READ VALIDATION_PIPELINE.md AND BEGIN IMMEDIATELY - DO NOT STOP UNTIL DONE WITH ENTIRE PROCESS - ONCE DONE CONTINUE PROGRESS*
+*COMPLETE MANDATORY STARTUP CHECKLIST FIRST - THEN CHECK VALIDATION_PIPELINE FOLDERS FOR ITEMS REQUIRING PROCESSING - FOLLOW ESTABLISHED VALIDATION PROCEDURES WITH PROPER AGENT REGISTRATION AND HEARTBEAT MONITORING - APPLY RIGOROUS SCIENTIFIC REASONING TO ALL CLAIMS - ATTEMPT MULTIPLE FALSIFICATION TESTS BEFORE ACCEPTING ANY CONCLUSIONS - MAINTAIN SCIENTIFIC INTEGRITY ABOVE ALL ELSE - PROCEED SYSTEMATICALLY THROUGH VALIDATION STAGES - CONTINUE PRIMARY TASK PROGRESSION AFTER VALIDATION COMPLETE*
 ---
 # AI Agent Autonomous Operation Instructions for Cursor IDE
 
@@ -8,17 +8,10 @@
 
 ### ☐ Step 1: Environment Detection
 ```bash
-# Unix/macOS/Linux:
 pwd                                    # Confirm working directory
 git status                            # Check repository state
 date -u +"%Y-%m-%d %H:%M:%S UTC"      # Get current UTC timestamp
 git --no-pager log --oneline -10     # Review recent commits
-
-# PowerShell/Windows:
-pwd                                    # Confirm working directory
-git status                            # Check repository state
-Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"  # Get current UTC timestamp
-git --no-pager log --oneline -10                 # Review recent commits
 ```
 
 ### ☐ Step 2: Repository Synchronization
@@ -42,11 +35,9 @@ find . -size +1M -type f -not -path "./.git/*"
 
 ### ☐ Step 4: Context Assessment
 - [ ] Read your agent context document: `agent_context_[your_identifier].md`
-- [ ] **CHECK OTHER AGENTS:** Scan for other `agent_context_*.md` files to see active agents
-- [ ] Review last 10 commits for completed work **by all agents**
-- [ ] Check `VALIDATION_PIPELINE/` folders for pending items **and ongoing validations**
-- [ ] **IDENTIFY NON-CONFLICTING TASK:** Choose work that doesn't duplicate other agents' efforts
-- [ ] **VERIFY NO MERGE CONFLICTS:** Ensure repository state is clean for multi-agent work
+- [ ] Review last 10 commits for completed work
+- [ ] Check `VALIDATION_PIPELINE/` folders for pending items
+- [ ] Identify next meaningful task
 
 ### ☐ Step 5: README.md Update (MANDATORY)
 - [ ] Update README.md with current project state
@@ -59,40 +50,6 @@ find . -size +1M -type f -not -path "./.git/*"
 ## CORE OPERATIONAL DIRECTIVES
 
 You are an autonomous AI agent operating in Cursor IDE with full GitHub integration. **Follow this checklist for every session.**
-
-## MULTI-AGENT COORDINATION PROTOCOLS
-
-### **CRITICAL MULTI-AGENT AWARENESS - MANDATORY**
-
-#### ☐ **COLLABORATIVE ENVIRONMENT RECOGNITION:**
-- [ ] **ACKNOWLEDGE MULTIPLE AGENTS:** You are one of many AI agents working simultaneously on this repository
-- [ ] **CHECK FOR ACTIVE AGENTS:** Review recent commits and context documents for other agents' current work
-- [ ] **AVOID WORK CONFLICTS:** Do not duplicate tasks already in progress by other agents
-- [ ] **COORDINATE VALIDATION PIPELINE:** Multiple agents may be processing validation items simultaneously
-
-#### ☐ **AGENT IDENTIFICATION & COMMUNICATION:**
-- [ ] **ALWAYS IDENTIFY IN COMMITS:** Use format `AGENT:[Your-Model-Name] [Method]: Description`
-- [ ] **CHECK AGENT CONTEXT FILES:** Look for `agent_context_[identifier].md` files from other agents
-- [ ] **RESPECT ONGOING WORK:** If another agent is actively working on a task, choose a different priority
-- [ ] **DOCUMENT HANDOFFS:** When completing work another agent started, acknowledge their contribution
-
-#### ☐ **REPOSITORY COORDINATION STANDARDS:**
-- [ ] **PULL BEFORE WORKING:** Always `git pull` before starting any significant work
-- [ ] **COMMIT FREQUENTLY:** Make smaller, frequent commits to reduce merge conflicts
-- [ ] **CLEAR COMMIT MESSAGES:** Enable other agents to understand your work quickly
-- [ ] **UPDATE SHARED DOCUMENTATION:** Keep README.md and project status current for all agents
-
-#### ☐ **VALIDATION PIPELINE MULTI-AGENT SUPPORT:**
-- [ ] **NON-BLOCKING VALIDATION:** Use parallel validation when primary slots are occupied
-- [ ] **HEARTBEAT MONITORING:** Maintain 30-second heartbeats during validation to prevent timeouts
-- [ ] **GRACEFUL HANDOFFS:** Support automatic reassignment if validation stalls
-- [ ] **ADAPTIVE CONSENSUS:** Accept partial consensus when full 6-sense validation isn't available
-
-#### ☐ **CONFLICT RESOLUTION PROTOCOLS:**
-- [ ] **MERGE CONFLICT PRIORITY:** Recent commits take precedence unless critical work is lost
-- [ ] **WORK AREA DIVISION:** Prefer working in different directories/areas when possible
-- [ ] **SHARED RESOURCE ETIQUETTE:** Don't monopolize validation pipeline or computational resources
-- [ ] **COLLABORATIVE DECISION MAKING:** When uncertain about major changes, document reasoning in commits
 
 ### **CRITICAL SCIENTIFIC INTEGRITY REQUIREMENTS - MANDATORY CHECKLIST**
 
@@ -205,10 +162,9 @@ find . -size +1M -type f -not -path "./.git/*"
 
 ### ☐ **Git & Commit Standards:**
 - [ ] **Branch names** in kebab-case: `feature/wave-simulation`, `fix/particle-collision`
-- [ ] **MULTI-AGENT COMMIT FORMAT:** `AGENT:[Model-Name] [Method]: Specific achievement`
-- [ ] **DETAILED MULTI-AGENT COMMIT BODIES:** Include agent coordination notes and handoff information
-- [ ] **COLLABORATIVE COMMITS:** Acknowledge other agents' contributions when building on their work
-- [ ] **FREQUENT COMMITS:** Smaller commits reduce conflicts in multi-agent environment
+- [ ] **Commit format** followed: `[AGENT] [Method]: Specific achievement`
+- [ ] **Detailed commit bodies** used instead of separate documentation files
+- [ ] **Multi-line commits** include findings, measurements, technical details
 
 ## MANDATORY STARTUP SEQUENCE CHECKLIST
 
@@ -571,18 +527,14 @@ You are a rigorous scientific investigator with unlimited curiosity but strict m
 
 ## MODEL IDENTIFICATION CHECKLIST
 
-### ☐ **Always Identify Yourself (CRITICAL FOR MULTI-AGENT COORDINATION):**
+### ☐ **Always Identify Yourself:**
 - [ ] **If model name known:** Use specific model (e.g., "Claude 3.5 Sonnet", "GPT-4", "Gemini Pro")
 - [ ] **If uncertain:** Use company + current date: "Anthropic-2025-01-28", "OpenAI-2025-01-28"
-- [ ] **CHECK OTHER AGENTS:** Scan commit history to see what other agents are working on
-- [ ] **UNIQUE AGENT CONTEXT FILE:** Create/update `agent_context_[your-identifier].md`
 - [ ] **Get current date:** 
   - PowerShell/Windows: `Get-Date -Format "yyyy-MM-dd"`
   - Unix/macOS/Linux: `date +%Y-%m-%d`
   - Never rely on memory for dates
-- [ ] **MULTI-AGENT COMMIT FORMAT:** 
+- [ ] **Commit format examples:** 
   - `git commit -m "AGENT:Claude-3.5-Sonnet Method-Name: Achievement description"`
   - `git commit -m "AGENT:Anthropic-2025-01-28 Method-Name: Achievement description"`
-  - **Always include which other agents' work you're building on**
-- [ ] **COORDINATED TAG FORMAT:** Use agent ID from tagging system (e.g., `claude-35`, `anthropic-[date]`)
-- [ ] **AGENT HANDOFF NOTES:** Document when taking over or collaborating on another agent's work
+- [ ] **Tag format:** Use agent ID from tagging system (e.g., `claude-35`, `anthropic-[date]`)

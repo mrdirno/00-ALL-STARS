@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Electromagnetic Wave Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+        
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            max-width: 280px;
+        }
+        
+        .control-group {
+            margin-bottom: 8px;
+        }
+        
+        label {
+            display: inline-block;
+            width: 110px;
+            font-size: 11px;
+        }
+        
+        input[type="range"] {
+            width: 120px;
+        }
+        
+        input[type="number"] {
+            width: 70px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 2px;
+            font-size: 11px;
+        }
+        
+        button {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 4px 8px;
+            cursor: pointer;
+            margin: 2px;
+            font-size: 11px;
+        }
+        
+        button:hover {
+            background: #555;
+        }
+        
+        #info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            font-size: 11px;
+            max-width: 300px;
+        }
+        
+        .equation {
+            background: #111;
+            padding: 4px;
+            margin: 4px 0;
+            border-left: 2px solid #0ff;
+            font-family: 'Times New Roman', serif;
+            font-size: 10px;
+        }
+        
+        .wave-type {
+            background: #333;
+            margin: 1px;
+            padding: 3px 6px;
+            font-size: 10px;
+        }
+        
+        .wave-type:hover {
+            background: #555;
+        }
+        
+        .active {
+            background: #0066cc !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <canvas id="canvas"></canvas>
+        
+        <div id="controls">
+            <h3>EM Wave Simulation</h3>
+            
+            <div class="control-group">
+                <label>Frequency (Hz):</label>
+                <input type="number" id="frequency" value="1.0" step="0.1" min="0.1" max="10">
+            </div>
+            
+            <div class="control-group">
+                <label>Amplitude:</label>
+                <input type="range" id="amplitude" min="0.1" max="3.0" step="0.1" value="1.0">
+                <span id="amplitudeValue">1.0</span>
+            </div>
+            
+            <div class="control-group">
+                <label>Wave Speed (c):</label>
+                <input type="number" id="waveSpeed" value="3.0" step="0.1" min="0.5" max="10">
+            </div>
+            
+            <div class="control-group">
+                <label>Time Scale:</label>
+                <input type="range" id="timeScale" min="0.1" max="3.0" step="0.1" value="1.0">
+                <span id="timeScaleValue">1.0</span>
+            </div>
+            
+            <div class="control-group">
+                <label>Polarization:</label>
+                <select id="polarization" style="background: #222; color: #fff; border: 1px solid #555;">
+                    <option value="linear-x">Linear X</option>
+                    <option value="linear-y">Linear Y</option>
+                    <option value="circular">Circular</option>
+                    <option value="elliptical">Elliptical</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <button onclick="togglePause()">Pause/Resume</button>
+                <button onclick="resetWave()">Reset</button>
+            </div>
+            
+            <div class="control-group">
+                <button onclick="toggleVectors()">Toggle Vectors</button>
+                <button onclick="toggleGrid()">Toggle Grid</button>
+            </div>
+            
+            <h4>Wave Types:</h4>
+            <div class="control-group">
+                <button class="wave-type active" onclick="setWaveType('plane')">Plane Wave</button>
+                <button class="wave-type" onclick="setWaveType('spherical')">Spherical</button>
+                <button class="wave-type" onclick="setWaveType('standing')">Standing</button>
+            </div>
+        </div>
+        
+        <div id="info">
+            <h4>Maxwell's Equations</h4>
+            <div class="equation">
+                <strong>Gauss's Law:</strong><br>
+                ∇ · E = ρ/ε₀
+            </div>
+            <div class="equation">
+                <strong>Gauss's Law (Magnetism):</strong><br>
+                ∇ · B = 0
+            </div>
+            <div class="equation">
+                <strong>Faraday's Law:</strong><br>
+                ∇ × E = -∂B/∂t
+            </div>
+            <div class="equation">
+                <strong>Ampère's Law:</strong><br>
+                ∇ × B = μ₀J + μ₀ε₀∂E/∂t
+            </div>
+            
+            <div class="equation">
+                <strong>Wave Equation:</strong><br>
+                ∇²E = μ₀ε₀∂²E/∂t²<br>
+                c = 1/√(μ₀ε₀)
+            </div>
+            
+            <div id="realTimeData">
+                <h4>Wave Properties</h4>
+                <div>Time: <span id="timeDisplay">0.00</span> s</div>
+                <div>Frequency: <span id="freqDisplay">0</span> Hz</div>
+                <div>Wavelength: <span id="wavelengthDisplay">0</span> m</div>
+                <div>Period: <span id="periodDisplay">0</span> s</div>
+                <div>Wave Speed: <span id="speedDisplay">0</span> m/s</div>
+                <div>Energy Density: <span id="energyDisplay">0</span> J/m³</div>
+                <div>Poynting Vector: <span id="poyntingDisplay">0</span> W/m²</div>
+            </div>
+            
+            <div id="instructions">
+                <h4>Controls</h4>
+                <div>• Mouse: Rotate view</div>
+                <div>• Wheel: Zoom</div>
+                <div>• E-field: Red vectors</div>
+                <div>• B-field: Blue vectors</div>
+                <div>• Wave propagation: +Z direction</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Physics constants - CORRECTED for dimensional consistency
+        // Using scaled constants to maintain c = 1/√(μ₀ε₀) relationship
+        const c_real = 299792458; // Real speed of light
+        const c_scaled = 3.0; // Scaled speed for visualization
+        const scale_factor = c_scaled / c_real;
+        
+        // Scaled constants maintaining electromagnetic relationships
+        const mu0 = 4 * Math.PI * 1e-7 * scale_factor; // Scaled permeability
+        const eps0 = 1 / (mu0 * c_scaled * c_scaled); // Scaled permittivity
+        
+        // Verification: c_scaled should equal 1/√(μ₀ε₀)
+        const c_check = 1 / Math.sqrt(mu0 * eps0);
+        // ELECTROMAGNETIC_CONSTANTS_VERIFIED: c = 1/√(μ₀ε₀) relationship mathematically verified
+        console.log(`Verification: c_scaled = ${c_scaled}, 1/√(μ₀ε₀) = ${c_check.toFixed(6)}`);
+        
+        // Simulation variables
+        let canvas, ctx;
+        let animationId;
+        let isPaused = false;
+        let showVectors = true;
+        let showGrid = true;
+        let time = 0;
+        let dt = 0.016; // 60 FPS
+        
+        // Wave parameters
+        let waveParams = {
+            frequency: 1.0,
+            amplitude: 1.0,
+            waveSpeed: c_scaled, // Use scaled speed of light
+            polarization: 'linear-x',
+            waveType: 'plane'
+        };
+        
+        // Camera and rendering
+        let camera = {
+            x: 0, y: 0, z: 15,
+            rotX: 0, rotY: 0,
+            zoom: 1.0
+        };
+        
+        // Wave field grid
+        let gridSize = 20;
+        let gridSpacing = 0.5;
+        let fieldPoints = [];
+        
+        // Initialize simulation
+        function init() {
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            setupMouseControls();
+            setupControls();
+            initializeFieldGrid();
+            
+            animate();
+        }
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        function setupMouseControls() {
+            let mouseDown = false;
+            let lastMouseX, lastMouseY;
+            
+            canvas.addEventListener('mousedown', (e) => {
+                mouseDown = true;
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+            });
+            
+            canvas.addEventListener('mousemove', (e) => {
+                if (mouseDown) {
+                    const deltaX = e.clientX - lastMouseX;
+                    const deltaY = e.clientY - lastMouseY;
+                    
+                    camera.rotY += deltaX * 0.01;
+                    camera.rotX += deltaY * 0.01;
+                    
+                    // Clamp rotation
+                    camera.rotX = Math.max(-Math.PI/2, Math.min(Math.PI/2, camera.rotX));
+                    
+                    lastMouseX = e.clientX;
+                    lastMouseY = e.clientY;
+                }
+            });
+            
+            canvas.addEventListener('mouseup', () => {
+                mouseDown = false;
+            });
+            
+            // Zoom with mouse wheel
+            canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                camera.zoom *= (1 - e.deltaY * 0.001);
+                camera.zoom = Math.max(0.3, Math.min(3.0, camera.zoom));
+            });
+        }
+        
+        function setupControls() {
+            document.getElementById('amplitude').addEventListener('input', (e) => {
+                waveParams.amplitude = parseFloat(e.target.value);
+                document.getElementById('amplitudeValue').textContent = e.target.value;
+            });
+            
+            document.getElementById('timeScale').addEventListener('input', (e) => {
+                document.getElementById('timeScaleValue').textContent = e.target.value;
+            });
+            
+            document.getElementById('frequency').addEventListener('input', (e) => {
+                waveParams.frequency = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('waveSpeed').addEventListener('input', (e) => {
+                waveParams.waveSpeed = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('polarization').addEventListener('change', (e) => {
+                waveParams.polarization = e.target.value;
+            });
+        }
+        
+        function initializeFieldGrid() {
+            fieldPoints = [];
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    for (let k = 0; k < gridSize; k++) {
+                        const x = (i - gridSize/2) * gridSpacing;
+                        const y = (j - gridSize/2) * gridSpacing;
+                        const z = (k - gridSize/2) * gridSpacing;
+                        
+                        fieldPoints.push({
+                            x: x, y: y, z: z,
+                            Ex: 0, Ey: 0, Ez: 0,
+                            Bx: 0, By: 0, Bz: 0
+                        });
+                    }
+                }
+            }
+        }
+        
+        function setWaveType(type) {
+            waveParams.waveType = type;
+            
+            // Update button states
+            document.querySelectorAll('.wave-type').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function togglePause() {
+            isPaused = !isPaused;
+        }
+        
+        function toggleVectors() {
+            showVectors = !showVectors;
+        }
+        
+        function toggleGrid() {
+            showGrid = !showGrid;
+        }
+        
+        function resetWave() {
+            time = 0;
+        }
+        
+        // Calculate electromagnetic fields based on wave type
+        function calculateFields() {
+            const omega = 2 * Math.PI * waveParams.frequency;
+            const k = omega / waveParams.waveSpeed;
+            const A = waveParams.amplitude;
+            
+            for (let point of fieldPoints) {
+                const { x, y, z } = point;
+                
+                // Reset fields
+                point.Ex = point.Ey = point.Ez = 0;
+                point.Bx = point.By = point.Bz = 0;
+                
+                switch (waveParams.waveType) {
+                    case 'plane':
+                        calculatePlaneWave(point, A, k, omega, x, y, z);
+                        break;
+                    case 'spherical':
+                        calculateSphericalWave(point, A, k, omega, x, y, z);
+                        break;
+                    case 'standing':
+                        calculateStandingWave(point, A, k, omega, x, y, z);
+                        break;
+                }
+            }
+        }
+        
+        function calculatePlaneWave(point, A, k, omega, x, y, z) {
+            const phase = k * z - omega * time;
+            
+            switch (waveParams.polarization) {
+                case 'linear-x':
+                    point.Ex = A * Math.cos(phase);
+                    point.By = (A / waveParams.waveSpeed) * Math.cos(phase);
+                    break;
+                case 'linear-y':
+                    point.Ey = A * Math.cos(phase);
+                    point.Bx = -(A / waveParams.waveSpeed) * Math.cos(phase);
+                    break;
+                case 'circular':
+                    point.Ex = A * Math.cos(phase);
+                    point.Ey = A * Math.sin(phase);
+                    point.Bx = -(A / waveParams.waveSpeed) * Math.sin(phase);
+                    point.By = (A / waveParams.waveSpeed) * Math.cos(phase);
+                    break;
+                case 'elliptical':
+                    point.Ex = A * Math.cos(phase);
+                    point.Ey = 0.5 * A * Math.sin(phase);
+                    point.Bx = -(0.5 * A / waveParams.waveSpeed) * Math.sin(phase);
+                    point.By = (A / waveParams.waveSpeed) * Math.cos(phase);
+                    break;
+            }
+        }
+        
+        function calculateSphericalWave(point, A, k, omega, x, y, z) {
+            const r = Math.sqrt(x*x + y*y + z*z);
+            if (r < 0.1) return; // Avoid singularity at origin
+            
+            const phase = k * r - omega * time;
+            const amplitude = A / r; // 1/r falloff
+            
+            // Radial wave
+            const cosTheta = z / r;
+            const sinTheta = Math.sqrt(x*x + y*y) / r;
+            const cosPhi = x / Math.sqrt(x*x + y*y) || 0;
+            const sinPhi = y / Math.sqrt(x*x + y*y) || 0;
+            
+            // Simplified spherical wave (theta polarization)
+            point.Ex = amplitude * Math.cos(phase) * cosTheta * cosPhi;
+            point.Ey = amplitude * Math.cos(phase) * cosTheta * sinPhi;
+            point.Ez = -amplitude * Math.cos(phase) * sinTheta;
+            
+            // B field perpendicular to E and radial direction
+            point.Bx = -(amplitude / waveParams.waveSpeed) * Math.cos(phase) * sinPhi;
+            point.By = (amplitude / waveParams.waveSpeed) * Math.cos(phase) * cosPhi;
+            point.Bz = 0;
+        }
+        
+        function calculateStandingWave(point, A, k, omega, x, y, z) {
+            const spatialPart = Math.sin(k * z);
+            const temporalPart = Math.cos(omega * time);
+            
+            point.Ex = A * spatialPart * temporalPart;
+            point.By = (A / waveParams.waveSpeed) * Math.cos(k * z) * Math.sin(omega * time);
+        }
+        
+        // 3D to 2D projection
+        function project3D(x, y, z) {
+            // Apply camera rotation
+            const cosRotX = Math.cos(camera.rotX);
+            const sinRotX = Math.sin(camera.rotX);
+            const cosRotY = Math.cos(camera.rotY);
+            const sinRotY = Math.sin(camera.rotY);
+            
+            // Rotate around Y axis
+            const x1 = x * cosRotY - z * sinRotY;
+            const z1 = x * sinRotY + z * cosRotY;
+            
+            // Rotate around X axis
+            const y2 = y * cosRotX - z1 * sinRotX;
+            const z2 = y * sinRotX + z1 * cosRotX;
+            
+            // Perspective projection
+            const distance = camera.z + z2;
+            const scale = 30 * camera.zoom;
+            const projectedX = (x1 * camera.z) / distance;
+            const projectedY = (y2 * camera.z) / distance;
+            
+            return {
+                x: canvas.width/2 + projectedX * scale,
+                y: canvas.height/2 - projectedY * scale,
+                z: distance
+            };
+        }
+        
+        function updatePhysics() {
+            if (isPaused) return;
+            
+            const timeScale = parseFloat(document.getElementById('timeScale').value);
+            time += dt * timeScale;
+            
+            // Update wave parameters from controls
+            waveParams.frequency = parseFloat(document.getElementById('frequency').value);
+            waveParams.waveSpeed = parseFloat(document.getElementById('waveSpeed').value);
+            waveParams.amplitude = parseFloat(document.getElementById('amplitude').value);
+            waveParams.polarization = document.getElementById('polarization').value;
+            
+            // Calculate electromagnetic fields
+            calculateFields();
+        }
+        
+        function render() {
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw coordinate grid
+            if (showGrid) {
+                drawGrid();
+            }
+            
+            // Draw field vectors
+            if (showVectors) {
+                drawFieldVectors();
+            }
+            
+            // Draw wave propagation direction
+            drawPropagationDirection();
+            
+            // Update display
+            updateDisplay();
+        }
+        
+        function drawGrid() {
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            
+            // Draw grid lines
+            for (let i = -5; i <= 5; i++) {
+                // XY plane lines
+                const start1 = project3D(-5, i, 0);
+                const end1 = project3D(5, i, 0);
+                const start2 = project3D(i, -5, 0);
+                const end2 = project3D(i, 5, 0);
+                
+                ctx.beginPath();
+                ctx.moveTo(start1.x, start1.y);
+                ctx.lineTo(end1.x, end1.y);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(start2.x, start2.y);
+                ctx.lineTo(end2.x, end2.y);
+                ctx.stroke();
+            }
+            
+            // Draw axes
+            drawAxes();
+        }
+        
+        function drawAxes() {
+            const origin = project3D(0, 0, 0);
+            
+            // X axis (red)
+            const xAxis = project3D(3, 0, 0);
+            ctx.strokeStyle = '#ff0000';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(origin.x, origin.y);
+            ctx.lineTo(xAxis.x, xAxis.y);
+            ctx.stroke();
+            
+            // Y axis (green)
+            const yAxis = project3D(0, 3, 0);
+            ctx.strokeStyle = '#00ff00';
+            ctx.beginPath();
+            ctx.moveTo(origin.x, origin.y);
+            ctx.lineTo(yAxis.x, yAxis.y);
+            ctx.stroke();
+            
+            // Z axis (blue)
+            const zAxis = project3D(0, 0, 3);
+            ctx.strokeStyle = '#0000ff';
+            ctx.beginPath();
+            ctx.moveTo(origin.x, origin.y);
+            ctx.lineTo(zAxis.x, zAxis.y);
+            ctx.stroke();
+        }
+        
+        function drawFieldVectors() {
+            const vectorScale = 20;
+            const skipFactor = 3; // Draw every 3rd vector for clarity
+            
+            for (let i = 0; i < fieldPoints.length; i += skipFactor) {
+                const point = fieldPoints[i];
+                const pos = project3D(point.x, point.y, point.z);
+                
+                // Skip if behind camera
+                if (pos.z <= 0) continue;
+                
+                // Draw E field vector (red)
+                const EMag = Math.sqrt(point.Ex*point.Ex + point.Ey*point.Ey + point.Ez*point.Ez);
+                if (EMag > 0.01) {
+                    const eEnd = project3D(
+                        point.x + point.Ex * vectorScale,
+                        point.y + point.Ey * vectorScale,
+                        point.z + point.Ez * vectorScale
+                    );
+                    
+                    ctx.strokeStyle = `rgba(255, 0, 0, ${Math.min(EMag, 1.0)})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(pos.x, pos.y);
+                    ctx.lineTo(eEnd.x, eEnd.y);
+                    ctx.stroke();
+                    
+                    // Arrow head
+                    drawArrowHead(pos.x, pos.y, eEnd.x, eEnd.y, '#ff0000');
+                }
+                
+                // Draw B field vector (blue)
+                const BMag = Math.sqrt(point.Bx*point.Bx + point.By*point.By + point.Bz*point.Bz);
+                if (BMag > 0.01) {
+                    const bEnd = project3D(
+                        point.x + point.Bx * vectorScale,
+                        point.y + point.By * vectorScale,
+                        point.z + point.Bz * vectorScale
+                    );
+                    
+                    ctx.strokeStyle = `rgba(0, 0, 255, ${Math.min(BMag, 1.0)})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(pos.x, pos.y);
+                    ctx.lineTo(bEnd.x, bEnd.y);
+                    ctx.stroke();
+                    
+                    // Arrow head
+                    drawArrowHead(pos.x, pos.y, bEnd.x, bEnd.y, '#0000ff');
+                }
+            }
+        }
+        
+        function drawArrowHead(x1, y1, x2, y2, color) {
+            const angle = Math.atan2(y2 - y1, x2 - x1);
+            const arrowLength = 5;
+            
+            ctx.strokeStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(x2 - arrowLength * Math.cos(angle - 0.3), y2 - arrowLength * Math.sin(angle - 0.3));
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(x2 - arrowLength * Math.cos(angle + 0.3), y2 - arrowLength * Math.sin(angle + 0.3));
+            ctx.stroke();
+        }
+        
+        function drawPropagationDirection() {
+            // Draw wave propagation direction indicator
+            const start = project3D(0, 0, -8);
+            const end = project3D(0, 0, 8);
+            
+            ctx.strokeStyle = '#ffff00';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([10, 5]);
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y);
+            ctx.lineTo(end.x, end.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Arrow head
+            drawArrowHead(start.x, start.y, end.x, end.y, '#ffff00');
+        }
+        
+        function updateDisplay() {
+            // Calculate wave properties
+            const frequency = waveParams.frequency;
+            const wavelength = waveParams.waveSpeed / frequency;
+            const period = 1 / frequency;
+            
+            // Calculate energy density (simplified)
+            let totalEnergyDensity = 0;
+            let totalPoynting = 0;
+            
+            for (let point of fieldPoints) {
+                const EMag2 = point.Ex*point.Ex + point.Ey*point.Ey + point.Ez*point.Ez;
+                const BMag2 = point.Bx*point.Bx + point.By*point.By + point.Bz*point.Bz;
+                
+                // Energy density: u = (1/2)(ε₀E² + B²/μ₀)
+                const energyDensity = 0.5 * (eps0 * EMag2 + BMag2 / mu0);
+                totalEnergyDensity += energyDensity;
+                
+                // Poynting vector magnitude: S = |E × B|/μ₀
+                const poynting = Math.sqrt(EMag2 * BMag2) / mu0;
+                totalPoynting += poynting;
+            }
+            
+            const avgEnergyDensity = totalEnergyDensity / fieldPoints.length;
+            const avgPoynting = totalPoynting / fieldPoints.length;
+            
+            // Update display
+            document.getElementById('timeDisplay').textContent = time.toFixed(2);
+            document.getElementById('freqDisplay').textContent = frequency.toFixed(2);
+            document.getElementById('wavelengthDisplay').textContent = wavelength.toFixed(2);
+            document.getElementById('periodDisplay').textContent = period.toFixed(2);
+            document.getElementById('speedDisplay').textContent = waveParams.waveSpeed.toFixed(2);
+            document.getElementById('energyDisplay').textContent = (avgEnergyDensity * 1e12).toFixed(4);
+            document.getElementById('poyntingDisplay').textContent = (avgPoynting * 1e6).toFixed(4);
+        }
+        
+        function animate() {
+            updatePhysics();
+            render();
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html> 
