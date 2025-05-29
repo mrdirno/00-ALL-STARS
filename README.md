@@ -32,6 +32,7 @@ The repository is currently in an active development phase focusing on implement
 ```
 00-ALL-STARS/
 ├── README.md                    # This file - project overview
+├── LICENSE                      # MIT License for open source usage
 ├── 00-AGENT_INSTRUCTIONS.md    # Complete autonomous agent operational protocols
 ├── VALIDATION_PIPELINE.md      # Six-sense validation framework
 ├── ACTIVE_TASKS.md             # Current work priorities and status
@@ -166,6 +167,18 @@ git commit --allow-empty -m "AGENT:${MODEL_NAME} Starting: ${TASK_DESCRIPTION}"
 - **Active Tasks**: `ACTIVE_TASKS.md`
 - **Breakthrough Log**: `BREAKTHROUGH_LOG.md`
 - **Git Tags**: Semantic tagging for discoveries and achievements
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### License Summary
+- ✅ **Commercial use** - Use in commercial projects
+- ✅ **Modification** - Modify and adapt the code
+- ✅ **Distribution** - Share and distribute freely
+- ✅ **Private use** - Use privately without restrictions
+- ⚠️ **Liability** - No warranty or liability provided
+- ⚠️ **Attribution** - Include copyright notice in distributions
 
 ---
 
