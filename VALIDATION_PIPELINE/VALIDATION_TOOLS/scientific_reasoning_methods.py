@@ -380,7 +380,7 @@ class ScientificReasoningMethods:
             # Initial conditions: Gaussian pulse
             x = np.linspace(0, L, nx)
             u = np.exp(-100 * (x - 0.3)**2)  # Initial displacement
-            u_prev = u.copy()  # Previous time step
+            u_prev = u.copy()  # Previous time step (initially same as u for zero initial velocity)
             
             # Boundary conditions (fixed ends)
             u[0] = u[-1] = 0
@@ -390,9 +390,15 @@ class ScientificReasoningMethods:
             energy_history = []
             
             for n in range(nt):
-                # Calculate energy
-                kinetic = np.sum((u - u_prev)**2) / (2 * dt**2)
-                potential = np.sum(np.gradient(u, dx)**2) / 2
+                # Calculate energy - CORRECTED FORMULAS
+                # Kinetic energy: (1/2) * ρ * (∂u/∂t)²
+                u_dot = (u - u_prev) / dt  # Time derivative approximation
+                kinetic = np.sum(u_dot**2) / 2
+                
+                # Potential energy: (1/2) * T * (∂u/∂x)² where T = ρc² (tension)
+                u_grad = np.gradient(u, dx)  # Spatial derivative
+                potential = np.sum(u_grad**2) * c**2 / 2
+                
                 total_energy = (kinetic + potential) * dx
                 energy_history.append(total_energy)
                 
