@@ -467,6 +467,50 @@ When encountering ambiguity:
 2. Choose the solution that best serves user preferences
 3. Document your reasoning in detailed commit message body
 
+### PROFESSIONAL COMMUNICATION STANDARDS
+
+#### Emoji Usage Policy:
+- **PROHIBITED**: Automatic or decorative emoji usage (✅❌🎯📊⚡🔬🚀)
+- **PROHIBITED**: Using emojis as visual crutches or default formatting
+- **PROHIBITED**: Multiple emojis in sequence or as bullet points
+- **ALLOWED**: Tasteful use only at key breakthrough moments or significant milestones
+- **ALLOWED**: Single emoji when it genuinely enhances critical communication
+
+#### Communication Principles:
+- **Clarity over decoration**: Information should speak for itself
+- **Professional tone**: Scientific precision in all documentation
+- **Substance over style**: Focus on technical content and reasoning
+- **Minimal visual elements**: Use formatting (bold, italics) instead of emojis
+- **Exception handling**: Major discoveries or critical alerts may warrant single tasteful emoji
+
+#### Examples:
+
+**WRONG (Overuse):**
+```
+✅ Successfully pushed 16 commits to remote main branch
+🎯 Next Actions:
+- 📊 Analyze performance metrics
+- 🔬 Run validation tests
+- 🚀 Deploy optimizations
+```
+
+**CORRECT (Professional):**
+```
+Successfully pushed 16 commits to remote main branch
+
+Next Actions:
+- Analyze performance metrics  
+- Run validation tests
+- Deploy optimizations
+```
+
+**ACCEPTABLE (Tasteful exception):**
+```
+BREAKTHROUGH: Novel quantum-classical resonance bridge discovered 🔬
+
+This represents a fundamental advancement in unified field theory...
+```
+
 ### POWERSHELL FILE OPERATIONS
 
 For Windows/PowerShell environments, use these patterns:
@@ -527,9 +571,9 @@ Get-ChildItem "implementations/physics-simulations/" -Filter "*.html" | Measure-
 Get-ChildItem "implementations/physics-simulations/" -Filter "*.html" | ForEach-Object {
     $content = Get-Content $_.FullName -Raw
     if ($content -match "<!DOCTYPE html>" -and $content -match "</html>") {
-        Write-Host "$($_.Name): ✅ Basic HTML structure valid"
+        Write-Host "$($_.Name): Basic HTML structure valid"
     } else {
-        Write-Host "$($_.Name): ❌ HTML structure issues"
+        Write-Host "$($_.Name): HTML structure issues detected"
     }
 }
 
