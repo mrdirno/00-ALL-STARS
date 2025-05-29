@@ -39,6 +39,40 @@ ls -la
 tree -L 2  # Should show ONLY allowed folders
 ```
 
+**HEADLESS OPERATION PROTOCOL (Prevent Display Blocking):**
+```bash
+# CONFIGURE BEFORE ANY PYTHON EXECUTION:
+echo "=== CONFIGURING HEADLESS OPERATION ==="
+export MPLBACKEND=Agg  # Matplotlib non-interactive backend
+export DISPLAY=:99     # Virtual display
+export QT_QPA_PLATFORM=offscreen  # Qt applications
+export PLOTLY_RENDERER=png  # For Plotly
+
+# Verify settings
+echo "MPLBACKEND=$MPLBACKEND"
+echo "DISPLAY=$DISPLAY"
+
+# For ALL Python scripts with plotting:
+cat > work_in_progress/plot_config.py << 'EOF'
+import os
+os.environ['MPLBACKEND'] = 'Agg'
+import matplotlib
+matplotlib.use('Agg')  # Must be before importing pyplot
+import plotly.io as pio
+pio.renderers.default = 'png'  # No display needed
+
+def save_plot(fig, name, folder='work_in_progress'):
+    """Save plots without blocking automation"""
+    if hasattr(fig, 'savefig'):  # Matplotlib
+        fig.savefig(f'{folder}/{name}.png', dpi=150, bbox_inches='tight')
+        plt.close(fig)
+    else:  # Plotly
+        fig.write_image(f'{folder}/{name}.png')
+        fig.write_html(f'{folder}/{name}.html')
+    print(f"✅ Plot saved: {folder}/{name}.png")
+EOF
+```
+
 **MEMORY SYSTEM - GITHUB AS TEMPORAL RECORD:**
 ```bash
 # Initialize git if needed
@@ -114,6 +148,9 @@ git log --grep="$CURRENT_FOCUS" --oneline
 import os
 from datetime import datetime
 
+# Import plot config for headless operation
+exec(open('work_in_progress/plot_config.py').read())
+
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 current_cycle_file = f"cycle_outputs/cycle_{timestamp}.md"
 
@@ -150,17 +187,30 @@ Use these proven patterns from breakthroughs:
 experiment_file = "work_in_progress/current_experiment.py"  # NOT in root!
 results_file = "work_in_progress/experiment_results.json"   # NOT scattered!
 
-# Create properly structured experiment
+# Create properly structured experiment with headless plotting
 with open(experiment_file, 'w') as f:
     f.write("""
 # Experiment: {hypothesis}
 # Date: {date}
 # Status: IN PROGRESS
 
+# Configure headless operation
+import os
+os.environ['MPLBACKEND'] = 'Agg'
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 import numpy as np
+
 # ... experiment code ...
 
-# Results will be saved to: work_in_progress/experiment_results.json
+# Generate plots without display
+plt.figure(figsize=(10, 6))
+plt.plot(results)
+plt.savefig('work_in_progress/results_plot.png', dpi=150)
+plt.close()  # Free memory
+
+# Results saved to: work_in_progress/experiment_results.json
 """)
 ```
 
@@ -224,6 +274,7 @@ FILE_RULES = {
     "test.py": "work_in_progress/",
     "experiment.py": "work_in_progress/",
     "data_analysis.ipynb": "work_in_progress/",
+    "plot.png": "work_in_progress/",  # ALL plots here
     
     # Results (timestamped!)
     "results.json": "cycle_outputs/cycle_TIMESTAMP_results.json",
@@ -247,6 +298,8 @@ FILE_RULES = {
 improvements:
   - lesson: "NEVER create files in root directory"
     implementation: "enforce_file_discipline() on EVERY file creation"
+  - lesson: "Configure headless plotting ALWAYS"
+    implementation: "Set MPLBACKEND=Agg before any imports"
   - lesson: "Tag findings with temporal context"  
     implementation: "All findings include timestamp and expiry"
   - lesson: "Computational validation ≠ Peer review ready"
@@ -256,6 +309,11 @@ improvements:
 **OUTPUT FORMAT FOR EVERY CYCLE:**
 ```markdown
 # Research Cycle [TIMESTAMP]
+
+## Environment Configuration
+- ✅ Headless mode configured (MPLBACKEND=Agg)
+- ✅ Virtual display set (DISPLAY=:99)
+- ✅ Plots will save without blocking
 
 ## Workspace Status
 - ✅ Root directory clean (only README.md)
@@ -283,16 +341,23 @@ improvements:
 find . -maxdepth 1 -type f -name "*.py" -o -name "*.txt" | grep -v README
 # IMMEDIATELY move them:
 find . -maxdepth 1 -type f | grep -v -E "(README|LICENSE)" | xargs -I {} mv {} archived_attempts/
+
+# If plotting blocks execution:
+killall -9 python3  # Emergency stop
+export MPLBACKEND=Agg  # Reset backend
+export DISPLAY=:99  # Virtual display
 ```
 
 **CRITICAL REMINDERS:**
 - 📁 **EVERY file has a designated folder - NO EXCEPTIONS**
 - 🚫 **ZERO tolerance for root directory clutter**
+- 🖥️ **ALWAYS configure headless operation for plots**
 - ⏰ **Git commits include temporal context ALWAYS**
 - 🔬 **"Computational validation" ≠ "Mathematically proven"**
 - 📊 **Failed experiments → archived_attempts/ (still valuable!)**
 - ✅ **Only FULLY validated work → validated_findings/**
 - 🔄 **Past findings need reverification if >90 days old**
+- 📈 **Save plots as files, never try to display them**
 
 **CURRENT FOCUS:** [Insert specific domain/question here]
 
