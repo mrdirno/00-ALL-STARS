@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<!--
+    Resonance is All You Need: Primordial Gravitational Wave Particle Simulation
+    Concept & Transformation by Agent 1 (Gemini 2.5 Pro)
+    Original Base: advanced_wave_dynamics.html (Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, Agent 1)
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, Agent 1">
+    <meta name="description" content="Primordial Gravitational Wave (PGW) Particle Simulation. Original research by Aldrin Payopay with AI Assistants. Transformation by Agent 1.">
+    <meta name="keywords" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, PGW, primordial gravitational waves, cosmic structure, cosmology, particle simulation, resonance">
+    <meta name="creator" content="Aldrin Payopay (Human Researcher), Claude Opus 4 (AI Assistant), Gemini 2.5 Pro (AI Assistant), Agent 1 (AI Transformation)">
+    <title>PGW Particle Simulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        /* CSS Styling - Unchanged from origin-simple.html / advanced_wave_dynamics.html */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #000000; 
+            color: #ffffff;
+            overflow: hidden; 
+            position: relative;
+        }
+        #container { 
+            width: 100vw; 
+            height: 100vh; 
+            display: block;
+            background: radial-gradient(ellipse at center, #181020 0%, #000000 100%); /* Slightly different background gradient */
+        }
+        .ui-panel {
+            position: absolute;
+            background: rgba(25, 25, 45, 0.15); 
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(100, 100, 200, 0.15); 
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease;
+        }
+        .ui-panel:hover {
+            background: rgba(35, 35, 55, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        #controls-panel { 
+            top: 20px; 
+            left: 20px; 
+            width: 380px; /* Slightly wider for new controls */
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.6s ease forwards;
+            animation-delay: 0.3s;
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        #controls-panel::-webkit-scrollbar { width: 8px; }
+        #controls-panel::-webkit-scrollbar-track { background: rgba(25, 25, 45, 0.1); border-radius: 10px;}
+        #controls-panel::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 10px; border: 1px solid rgba(25, 25, 45, 0.2); }
+        #controls-panel::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #9F50E8 0%, #5D1DE0 100%); }
+        #controls-panel { scrollbar-width: thin; scrollbar-color: #8A2BE2 rgba(25, 25, 45, 0.1); }
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        #stats-bar { 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(20px);
+            padding: 16px 32px;
+            z-index: 10;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .stat-label { font-size: 0.75rem; color: rgba(200, 200, 255, 0.6); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 1.25rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } 
+        .control-group { margin-bottom: 20px; }
+        #controls-panel .control-group { padding-right: 14px; }
+        #controls-panel h2 { padding-right: 14px; }
+        .control-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.875rem; font-weight: 500; color: rgba(220, 220, 255, 0.9); text-transform: uppercase; letter-spacing: 0.05em; }
+        .control-group label[title] { cursor: help; }
+        .control-value { font-size: 1rem; color: #8A2BE2; font-weight: 600; }
+        .control-group small { display: block; color: rgba(200, 200, 255, 0.5); font-size: 0.75rem; font-weight: 400; text-transform: none; letter-spacing: normal; margin-top: -8px; margin-bottom: 12px; }
+        .info-icon { font-size: 0.7em; color: rgba(138, 43, 226, 0.7); font-weight: 400; margin-left: 8px; cursor: help; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+        .info-icon:hover { color: rgba(138, 43, 226, 1); transform: scale(1.1); }
+        input[type=\"range\"] { width: 100%; height: 6px; background: rgba(200, 200, 255, 0.15); border-radius: 3px; outline: none; -webkit-appearance: none; cursor: pointer; transition: background 0.3s ease; }
+        input[type=\"range\"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); transition: all 0.3s ease; }
+        input[type=\"range\"]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 4px 20px rgba(138, 43, 226, 0.8); }
+        input[type=\"range\"]::-moz-range-thumb { width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); }
+        select, .ui-input-number { width: 100%; padding: 12px 16px; background: rgba(35, 35, 55, 0.1); border: 1px solid rgba(100, 100, 200, 0.2); border-radius: 12px; color: #fff; font-size: 0.875rem; font-weight: 500; cursor: pointer; outline: none; transition: all 0.3s ease; -moz-appearance: textfield; /* Firefox */ }
+        select:hover, .ui-input-number:hover { background: rgba(45, 45, 65, 0.15); border-color: rgba(120, 120, 220, 0.3); }
+        select:focus, .ui-input-number:focus { border-color: #8A2BE2; box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2); }
+        .ui-input-number::-webkit-outer-spin-button,
+        .ui-input-number::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        button { width: 100%; padding: 14px 20px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border: none; border-radius: 12px; color: white; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden; }
+        button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.15); transition: left 0.5s ease; }
+        button:hover::before { left: 100%; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4); }
+        button:active { transform: translateY(0); }
+        button.active { background: linear-gradient(135deg, #CF63CF 0%, #f5576c 100%); } 
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; letter-spacing: -0.02em; }
+        #initialization-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, #181020 0%, #000000 100%);
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            z-index: 1000; padding: 20px;
+        }
+        .init-content { text-align: center; max-width: 600px; animation: fadeInScale 0.8s ease; }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .init-title { font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.03em; line-height: 1.2; }
+        .init-subtitle { font-size: 1.15rem; color: rgba(220, 220, 255, 0.7); margin-bottom: 40px; font-weight: 300; }
+        #start-button { padding: 18px 48px; font-size: 1.125rem; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border: none; border-radius: 30px; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: 0 10px 40px rgba(138, 43, 226, 0.4); position: relative; overflow: hidden; }
+        #start-button:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(138, 43, 226, 0.6); }
+        #start-button:disabled { background: #2a2a2a; cursor: not-allowed; box-shadow: none; }
+        #status-message { color: rgba(200, 200, 255, 0.6); margin-top: 20px; font-size: 0.875rem; }
+        #error-message { color: #f87171; margin-top: 15px; font-weight: 500; }
+        .loading-dots { display: inline-flex; gap: 4px; }
+        .dot { width: 8px; height: 8px; background: #8A2BE2; border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes loadingDot { 0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; } 40% { transform: scale(1.2); opacity: 1; } }
+        .sound-indicator { position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; z-index: 10; opacity: 0; animation: fadeIn 0.6s ease forwards; animation-delay: 0.7s; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        .sound-waves { position: relative; width: 100%; height: 100%; }
+        .wave { position: absolute; border: 2px solid rgba(138, 43, 226, 0.6); border-radius: 50%; opacity: 0; animation: soundWave 2s ease-out infinite; }
+        .wave:nth-child(2) { animation-delay: 0.5s; } .wave:nth-child(3) { animation-delay: 1s; }
+        @keyframes soundWave { 0% { width: 20px; height: 20px; top: 20px; left: 20px; opacity: 1; } 100% { width: 60px; height: 60px; top: 0; left: 0; opacity: 0; } }
+        .sound-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; fill: #8A2BE2; }
+        .instructions { position: absolute; bottom: 20px; right: 20px; background: rgba(25, 25, 45, 0.1); backdrop-filter: blur(15px); padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(100, 100, 200, 0.1); font-size: 0.75rem; color: rgba(200, 200, 255, 0.7); z-index: 10; opacity: 0; animation: fadeIn 0.6s ease forwards; animation-delay: 0.9s; }
+        .research-watermark { position: fixed; bottom: 5px; left: 5px; font-size: 8px; color: rgba(138, 43, 226, 0.1); z-index: 1; pointer-events: none; font-family: monospace; transform: rotate(-90deg); transform-origin: 0 0; }
+        .research-watermark div { white-space: nowrap; }
+        .pulse-indicator { width: 20px; height: 20px; background-color: #8A2BE2; border-radius: 50%; transition: all 0.3s ease; }
+        .pulse-active { animation: pulseAnim 0.7s ease-out; }
+        @keyframes pulseAnim { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7); } 50% { transform: scale(1.5); box-shadow: 0 0 10px 15px rgba(138, 43, 226, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); } }
+        #fullscreen-button {
+            position: absolute;
+            top: 20px;
+            right: 100px; 
+            padding: 10px 15px;
+            background: rgba(25, 25, 45, 0.2);
+            border: 1px solid rgba(100, 100, 200, 0.15);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            z-index: 10;
+            opacity:0; animation: fadeIn 0.6s ease forwards; animation-delay: 0.8s;
+        }
+         #fullscreen-button:hover { background: rgba(35, 35, 55, 0.3); }
+    </style>
+</head>
+<body>
+    <div id="container\"></div>
+
+    <div id="initialization-overlay\">
+        <div class="init-content">
+            <div class="init-title">Primordial Gravitational Wave Simulation</div>
+            <div class="init-subtitle">Visualizing particle dynamics under the influence of a stochastic Primordial Gravitational Wave background. <br>A conceptual interactive model by Agent 1.</div>
+            <button id="start-button\">Initialize Simulation</button>
+            <div id="status-message\">Loading assets... <span class="loading-dots"><span class="dot\"></span><span class="dot\"></span><span class="dot\"></span></span></div>
+            <div id="error-message\" style="display:none;\"></div>
+        </div>
+    </div>
+    
+    <div id="controls-panel\" class="ui-panel\">
+        <h2>PGW Parameters</h2>
+        <div class="control-group">
+            <label for="pgwStrengthSlider\">PGW Strength: <span id="pgwStrengthValue\" class="control-value\">0.5</span> <span class="info-icon\" title="Overall amplitude of the Primordial Gravitational Wave background.">ℹ️</span></label>
+            <input type="range\" id="pgwStrengthSlider\" min="0.0" max="2.0" step="0.01" value="0.5">
+            <small>Controls the intensity of the PGW effect on particles.</small>
+        </div>
+        <div class="control-group">
+            <label for="pgwComplexitySlider\">PGW Complexity: <span id="pgwComplexityValue\" class="control-value\">3</span> <span class="info-icon\" title="Number of dominant PGW modes contributing to the background.">ℹ️</span></label>
+            <input type="range\" id="pgwComplexitySlider\" min="1" max="10" step="1" value="3">
+            <small>Higher complexity means more superimposed wave patterns.</small>
+        </div>
+        <div class="control-group">
+            <label for="pgwScaleSlider\">PGW Scale (log): <span id="pgwScaleValue\" class="control-value\">10</span> Mpc <span class="info-icon\" title="Characteristic wavelength scale of dominant PGW modes (logarithmic).">ℹ️</span></label>
+            <input type="range\" id="pgwScaleSlider\" min="1" max="100" step="1" value="10"> <!-- Actual value could be 10^value for log scale -->
+            <small>Typical wavelength of the PGW modes. Smaller values = finer structures.</small>
+        </div>
+
+        <h2>Particle & System</h2>
+        <div class="control-group">
+            <label for="particleCountSlider\">Particle Count: <span id="particleCountValue\" class="control-value\">50000</span> <span class="info-icon\" title="Total number of particles. Requires re-initialization.">ℹ️</span></label>
+            <input type="range\" id="particleCountSlider\" min="1000" max="250000" step="1000" value="50000">
+            <small>More particles for denser structures, impacts performance.</small>
+        </div>
+         <div class="control-group">
+            <label for="particlesToSpawnSlider\">Spawn Rate / Frame: <span id="particlesToSpawnValue\" class="control-value\">500</span> <span class="info-icon\" title="Number of particles to (re)initialize per animation frame.">ℹ️</span></label>
+            <input type="range\" id="particlesToSpawnSlider\" min="0" max="5000" step="100" value="500">
+            <small>Higher rates fill volume faster or make patterns more dynamic.</small>
+        </div>
+        <div class="control-group">
+            <label for="gravityStrengthSlider\">Central Gravity: <span id="gravityStrengthValue\" class="control-value\">50</span> <span class="info-icon\" title="Strength of the central gravitational pull (e.g., a galaxy cluster).">ℹ️</span></label>
+            <input type="range\" id="gravityStrengthSlider\" min="0" max="500" step="5" value="50">
+            <small>Attraction towards the center of the simulation.</small>
+        </div>
+        <div class="control-group">
+            <button id="reinitializeButton\">Re-initialize Simulation</button>
+            <small>Applies particle count and PGW changes.</small>
+        </div>
+        <div class="control-group">
+            <button id="toggleSoundButton\"><span>🔊 Audio ON</span></button>
+            <small>Toggles generative soundscape (less relevant for PGW).</small>
+        </div>
+    </div>
+
+    <div id="stats-bar\" class="ui-panel\">
+        <div class="stat-item">
+            <div class="stat-label\">Particles</div>
+            <div id="activeParticlesStat\" class="stat-value\">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label\">FPS</div>
+            <div id="fpsStat\" class="stat-value\">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label\">Sim Time</div>
+            <div id="timeScaleStat\" class="stat-value\">0.0s</div>
+        </div>
+         <div class="stat-item">
+            <div class="stat-label\">PGW Scale</div>
+            <div id="pgwStatDisplay\" class="stat-value\">10 Mpc</div>
+        </div>
+    </div>
+
+    <div class="sound-indicator\" id="soundIndicatorVisual\">
+        <div class="sound-waves">
+            <div class="wave\"></div> <div class="wave\"></div> <div class="wave\"></div>
+        </div>
+        <svg class="sound-icon\" viewBox="0 0 24 24\"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z\"></path></svg>
+    </div>
+
+    <button id="fullscreen-button\">Fullscreen</button>
+
+    <div class="instructions\">Use mouse to orbit, scroll to zoom. Adjust PGW parameters to see effects on particle distribution.</div>
+    
+    <div class="research-watermark\">
+        <div>PGW Particle Simulation - Agent 1 Transformation</div>
+        <div>A. Payopay, Claude 4, Gemini 2.5 Pro, Agent 1</div>
+    </div>
+
+    <script>
+        // --- Global Scope Variables ---
+        let scene, camera, renderer, controls, particles, clock, stats;
+        let PARTICLE_COUNT = 50000; 
+        const SIMULATION_EXTENT = 500; 
+        const CORE_ACTUAL_RADIUS = 2.0; 
+        const VELOCITY_DAMPING = 0.98; 
+        const PARTICLE_BASE_SIZE = 1.0;
+
+        let time = 0;
+        let simulationTime = 0; // For physics steps
+        let currentSpawnIndex = 0;
+        let particlesToSpawnPerFrame = 500;
+        let isExperienceStarted = false;
+        let soundEnabled = true; 
+        let heartbeatSynth, noiseSynth, reverb, masterVolume; // Kept for now, but less relevant
+
+        // PGW specific parameters
+        let pgwModes = [];
+        const MAX_PGW_MODES = 10; // Matches slider
+
+        const RESEARCH_TEAM = {
+            lead: "Aldrin Payopay",
+            ai_collaborators: ["Claude Opus 4", "Gemini 2.5 Pro"],
+            transformation_agent: "Agent 1 (Gemini 2.5 Pro)",
+            project: "Primordial Gravitational Wave Particle Simulation",
+            year: 2025
+        };
+        // Signatures can be kept for consistency if desired
+        const ALDRIN_PAYOPAY_SIGNATURE = btoa("Lead Researcher: Aldrin Payopay");
+        const AGENT_1_PGW_SIGNATURE = btoa("PGW Model Transformation: Agent 1");
+
+        const ui = {};
+
+        // --- Initialization ---
+        function init() {
+            setupScene();
+            setupCamera();
+            setupRenderer();
+            setupControls();
+            setupLights();
+            setupEventListeners();
+            setupStats();
+            cacheUIElements();
+            initControls(); 
+            
+            const startButton = document.getElementById('start-button');
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.innerHTML = 'Ready to Initialize <span class="loading-dots"><span class="dot\"></span><span class="dot\"></span><span class="dot\"></span></span>';
+            startButton.disabled = false;
+            startButton.textContent = "Start Simulation";
+            startButton.addEventListener('click', startExperience);
+            
+            clock = new THREE.Clock();
+            console.log("PGW Resonance Engine Initialized. Research Team:", RESEARCH_TEAM);
+            console.log(atob(AGENT_1_PGW_SIGNATURE));
+        }
+
+        function startExperience() {
+            if (isExperienceStarted) return;
+            document.getElementById('initialization-overlay').style.display = 'none';
+            isExperienceStarted = true;
+
+            PARTICLE_COUNT = parseInt(ui.particleCount.value);
+            particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+            CENTRAL_GRAVITY_STRENGTH = parseFloat(ui.gravityStrength.value);
+            
+            // Initialize PGW modes based on UI
+            generatePGWModes(parseInt(ui.pgwComplexity.value), parseFloat(ui.pgwScale.value), parseFloat(ui.pgwStrength.value));
+
+            if (Tone.context.state !== 'running') {
+                Tone.start().then(() => {
+                    setupSound(); 
+                    if (soundEnabled) Tone.Destination.mute = false;
+                }).catch(e => {
+                    console.error("Error starting Tone.js AudioContext:", e);
+                    soundEnabled = false; 
+                });
+            } else {
+                 setupSound();
+                 if (soundEnabled) Tone.Destination.mute = false;
+            }
+            
+            createParticleSystem(PARTICLE_COUNT);
+            animate();
+        }
+        
+        function cacheUIElements() {
+            ui.pgwStrength = document.getElementById('pgwStrengthSlider');
+            ui.pgwStrengthValue = document.getElementById('pgwStrengthValue');
+            ui.pgwComplexity = document.getElementById('pgwComplexitySlider');
+            ui.pgwComplexityValue = document.getElementById('pgwComplexityValue');
+            ui.pgwScale = document.getElementById('pgwScaleSlider');
+            ui.pgwScaleValue = document.getElementById('pgwScaleValue');
+            
+            ui.particleCount = document.getElementById('particleCountSlider');
+            ui.particleCountValue = document.getElementById('particleCountValue');
+            ui.particlesToSpawn = document.getElementById('particlesToSpawnSlider');
+            ui.particlesToSpawnValue = document.getElementById('particlesToSpawnValue');
+            ui.gravityStrength = document.getElementById('gravityStrengthSlider');
+            ui.gravityStrengthValue = document.getElementById('gravityStrengthValue');
+
+            ui.reinitializeButton = document.getElementById('reinitializeButton');
+            ui.activeParticlesStat = document.getElementById('activeParticlesStat');
+            ui.fpsStat = document.getElementById('fpsStat');
+            ui.timeScaleStat = document.getElementById('timeScaleStat'); // Will show sim time
+            ui.pgwStatDisplay = document.getElementById('pgwStatDisplay'); // For PGW scale
+
+            ui.toggleSound = document.getElementById('toggleSoundButton');
+            ui.soundIndicator = document.getElementById('soundIndicatorVisual');
+            ui.fullscreenButton = document.getElementById('fullscreen-button');
+
+            // Set initial values
+            ui.pgwStrengthValue.textContent = ui.pgwStrength.value;
+            ui.pgwComplexityValue.textContent = ui.pgwComplexity.value;
+            ui.pgwScaleValue.textContent = ui.pgwScale.value;
+            ui.particleCountValue.textContent = ui.particleCount.value;
+            ui.particlesToSpawnValue.textContent = ui.particlesToSpawn.value;
+            ui.gravityStrengthValue.textContent = ui.gravityStrength.value;
+        }
+
+        function initControls() {
+            ui.pgwStrength.addEventListener('input', () => {
+                ui.pgwStrengthValue.textContent = ui.pgwStrength.value;
+                // Update PGW mode amplitudes dynamically
+                pgwModes.forEach(mode => mode.amplitude = parseFloat(ui.pgwStrength.value) * mode.baseAmplitudeFactor);
+            });
+            ui.pgwComplexity.addEventListener('input', () => ui.pgwComplexityValue.textContent = ui.pgwComplexity.value); // Reinit needed
+            ui.pgwScale.addEventListener('input', () => {
+                 ui.pgwScaleValue.textContent = ui.pgwScale.value;
+                 ui.pgwStatDisplay.textContent = ui.pgwScale.value + " Mpc";
+            }); // Reinit needed
+            
+            ui.particleCount.addEventListener('input', () => ui.particleCountValue.textContent = ui.particleCount.value); // Reinit needed
+            ui.particlesToSpawn.addEventListener('input', () => {
+                ui.particlesToSpawnValue.textContent = ui.particlesToSpawn.value;
+                particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+            });
+            ui.gravityStrength.addEventListener('input', () => {
+                CENTRAL_GRAVITY_STRENGTH = parseFloat(ui.gravityStrength.value);
+                ui.gravityStrengthValue.textContent = CENTRAL_GRAVITY_STRENGTH;
+            });
+
+            ui.reinitializeButton.addEventListener('click', () => {
+                PARTICLE_COUNT = parseInt(ui.particleCount.value);
+                particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+                CENTRAL_GRAVITY_STRENGTH = parseFloat(ui.gravityStrength.value);
+                currentSpawnIndex = 0; 
+                if (particles) scene.remove(particles); // Clean up old system
+                if (particles && particles.geometry) particles.geometry.dispose();
+                if (particles && particles.material) particles.material.dispose();
+
+                generatePGWModes(parseInt(ui.pgwComplexity.value), parseFloat(ui.pgwScale.value), parseFloat(ui.pgwStrength.value));
+                createParticleSystem(PARTICLE_COUNT);
+            });
+            ui.toggleSound.addEventListener('click', toggleSound);
+            ui.fullscreenButton.addEventListener('click', toggleFullScreen);
+        }
+
+        function setupScene() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.0010); // Slightly less fog
+        }
+
+        function setupCamera() {
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, SIMULATION_EXTENT * 2.5); // Increased far plane
+            camera.position.set(SIMULATION_EXTENT * 0.4, SIMULATION_EXTENT * 0.4, SIMULATION_EXTENT * 0.4);
+            camera.lookAt(scene.position);
+        }
+
+        function setupRenderer() {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x000000, 0); 
+            document.getElementById('container').appendChild(renderer.domElement);
+        }
+        
+        function setupControls() {
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 10;
+            controls.maxDistance = SIMULATION_EXTENT * 2.0; // Adjusted max distance
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.05; 
+        }
+
+        function setupLights() {
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.25); // Brighter ambient
+            scene.add(ambientLight);
+            const pointLight1 = new THREE.PointLight(0xaaaaff, 0.7, SIMULATION_EXTENT * 3); // Cooler point light
+            pointLight1.position.set(SIMULATION_EXTENT*0.5, SIMULATION_EXTENT*0.5, SIMULATION_EXTENT*0.5);
+            scene.add(pointLight1);
+            const pointLight2 = new THREE.PointLight(0xffaaaa, 0.5, SIMULATION_EXTENT * 3); // Warmer accent light
+            pointLight2.position.set(-SIMULATION_EXTENT*0.3, -SIMULATION_EXTENT*0.4, -SIMULATION_EXTENT*0.6);
+            scene.add(pointLight2);
+        }
+
+        function setupEventListeners() {
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function setupStats() { // Simplified stats
+            stats = {
+                fps: 0,
+                particles: 0,
+                lastTime: performance.now(),
+                frames: 0,
+                update: function() {
+                    this.frames++;
+                    const currentTime = performance.now();
+                    if (currentTime > this.lastTime + 1000) {
+                        this.fps = Math.round((this.frames * 1000) / (currentTime - this.lastTime));
+                        ui.fpsStat.textContent = this.fps;
+                        this.lastTime = currentTime;
+                        this.frames = 0;
+                    }
+                    ui.activeParticlesStat.textContent = PARTICLE_COUNT.toLocaleString(); 
+                    ui.timeScaleStat.textContent = simulationTime.toFixed(1) + "s";
+                }
+            };
+        }
+        
+        // --- PGW Physics ---
+        function generatePGWModes(complexity, scaleExponent, strength) {
+            pgwModes = [];
+            const baseScale = Math.pow(10, scaleExponent / 20); // Map slider to a log-like scale for wavelength
+            ui.pgwStatDisplay.textContent = baseScale.toFixed(1) + " Mpc"; // Update display
+
+            for (let i = 0; i < complexity; i++) {
+                const mode = {
+                    direction: new THREE.Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1).normalize(),
+                    wavelength: baseScale * (0.5 + Math.random() * 1.5), // Vary wavelengths around the base scale
+                    amplitude: strength * (0.5 + Math.random() * 0.5), // Base amplitude factor for dynamic update
+                    baseAmplitudeFactor: (0.5 + Math.random() * 0.5), // Store this factor
+                    phase: Math.random() * 2 * Math.PI,
+                    frequency: (2 * Math.PI) / (baseScale * (0.5 + Math.random() * 1.5) * 0.1) // Simplified omega (speed of light = 1)
+                };
+                mode.k = (2 * Math.PI) / mode.wavelength;
+                pgwModes.push(mode);
+            }
+        }
+
+        function getPGWForce(particlePositionVec, time) {
+            let totalForce = new THREE.Vector3(0, 0, 0);
+            if (!pgwModes || pgwModes.length === 0) return totalForce;
+
+            pgwModes.forEach(mode => {
+                // Simplified model: force proportional to h * (k dot x) * k_direction_component and transverse displacement
+                // This is highly conceptual and not physically rigorous but aims for visual effect.
+                const k_dot_x = mode.direction.dot(particlePositionVec);
+                const argument = mode.k * k_dot_x - mode.frequency * time + mode.phase;
+                
+                // Projection of particle position onto the plane perpendicular to wave propagation
+                let transversePos = particlePositionVec.clone().projectOnPlane(mode.direction);
+                
+                // The force is related to the strain (amplitude) and the particle's deviation in the transverse plane
+                // A more accurate model would use the Riemann tensor, but that's too complex here.
+                // Let's make the force push particles along the transverse direction, oscillating.
+                let forceMagnitude = mode.amplitude * Math.sin(argument) * mode.k * mode.k; // h * k^2 term like
+                
+                // Make force mostly perpendicular to wave direction to represent tidal forces
+                // A simple way is to take cross product of position and wave direction, then cross with wave direction again
+                // Or, simpler: force along transversePos, oscillating.
+                let forceDirection = transversePos.normalize();
+                if (forceDirection.lengthSq() < 0.001) { // If particle is on the k-axis, pick a random transverse
+                    forceDirection.set(Math.random()-0.5, Math.random()-0.5, Math.random()-0.5).projectOnPlane(mode.direction).normalize();
+                }
+
+                totalForce.add(forceDirection.multiplyScalar(forceMagnitude));
+            });
+            return totalForce;
+        }
+
+
+        function createParticleSystem(numParticles) {
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(numParticles * 3);
+            const velocities = new Float32Array(numParticles * 3);
+            const colors = new Float32Array(numParticles * 3);
+            // Removed initialPhase as PGW effect is global for this simple model
+
+            for (let i = 0; i < numParticles; i++) {
+                initializeSingleParticle(i, positions, velocities, colors);
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: PARTICLE_BASE_SIZE * 0.8, // Slightly smaller particles
+                vertexColors: true,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.6, // Slightly more transparent
+                blending: THREE.AdditiveBlending, 
+                depthWrite: false 
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            currentSpawnIndex = 0; 
+        }
+
+        function initializeSingleParticle(i, p = null, v = null, c = null) {
+            const positions = p || particles.geometry.attributes.position.array;
+            const velocities = v || particles.geometry.attributes.velocity.array;
+            const colors = c || particles.geometry.attributes.color.array;
+
+            const i3 = i * 3;
+            
+            // Initial position: random spherical distribution, more spread out
+            const R_MAX = SIMULATION_EXTENT * 0.95;
+            let r, phi, theta, px, py, pz;
+
+            r = Math.random() * R_MAX;
+            theta = Math.random() * 2 * Math.PI;
+            phi = Math.acos(2 * Math.random() - 1); 
+            
+            px = r * Math.sin(phi) * Math.cos(theta);
+            py = r * Math.sin(phi) * Math.sin(theta);
+            pz = r * Math.cos(phi);
+            
+            positions[i3] = px;
+            positions[i3+1] = py;
+            positions[i3+2] = pz;
+
+            // Initial velocities: small random velocities
+            const initialSpeed = 0.1 + Math.random() * 0.2;
+            velocities[i3] = (Math.random() - 0.5) * initialSpeed;
+            velocities[i3+1] = (Math.random() - 0.5) * initialSpeed;
+            velocities[i3+2] = (Math.random() - 0.5) * initialSpeed;
+            
+            // Initial color: can be themed for PGW, e.g. cooler colors
+            colors[i3] = 0.2 + Math.random() * 0.3; // R (less red)
+            colors[i3+1] = 0.4 + Math.random() * 0.4; // G 
+            colors[i3+2] = 0.6 + Math.random() * 0.4; // B (more blue/purple)
+        }
+
+        // Sound setup (can be simplified or removed if not central to PGW demo)
+        function setupSound() {
+            if (Tone.context.state !== 'running') return;
+            masterVolume = new Tone.Volume(-18).toDestination(); // Quieter
+            reverb = new Tone.Reverb({ decay: 2, wet: 0.3 }).connect(masterVolume);
+            heartbeatSynth = new Tone.MembraneSynth({ pitchDecay: 0.1, octaves: 4, envelope: { attack: 0.01, decay: 0.3, release: 0.1 } }).connect(reverb);
+            if (soundEnabled) Tone.Destination.mute = false; else Tone.Destination.mute = true;
+        }
+
+        function toggleSound() { // Simplified toggle
+            soundEnabled = !soundEnabled;
+            if (Tone.context.state === 'running') {
+                Tone.Destination.mute = !soundEnabled;
+            } else if (soundEnabled) {
+                 Tone.start().then(() => { if (!heartbeatSynth) setupSound(); Tone.Destination.mute = !soundEnabled; }).catch(e => { soundEnabled = false; });
+            }
+            ui.toggleSound.innerHTML = soundEnabled ? "<span>🔊 Audio ON</span>" : "<span>🔇 Audio OFF</span>";
+            ui.soundIndicator.style.opacity = soundEnabled ? '1' : '0.3';
+        }
+        
+        // --- Main Animation Loop ---
+        function animate() {
+            if (!isExperienceStarted || !particles) {
+                 if(isExperienceStarted) requestAnimationFrame(animate); 
+                 return;
+            }
+            requestAnimationFrame(animate);
+            const deltaTime = Math.min(clock.getDelta(), 0.033); 
+            simulationTime += deltaTime;
+
+            controls.update();
+            stats.update();
+
+            // Particle spawning logic (kept from base)
+            for (let i = 0; i < particlesToSpawnPerFrame; i++) {
+                if (currentSpawnIndex < PARTICLE_COUNT) { 
+                    initializeSingleParticle(currentSpawnIndex); // Re-initialize for dynamic effect if desired
+                    currentSpawnIndex = (currentSpawnIndex + 1); 
+                } else if (particlesToSpawnPerFrame > 0) { // Loop spawn
+                    currentSpawnIndex = currentSpawnIndex % PARTICLE_COUNT;
+                    initializeSingleParticle(currentSpawnIndex);
+                    currentSpawnIndex = (currentSpawnIndex + 1) % PARTICLE_COUNT;
+                }
+            }
+            if (currentSpawnIndex >= PARTICLE_COUNT && particlesToSpawnPerFrame > 0) currentSpawnIndex = 0; 
+
+            const positions = particles.geometry.attributes.position.array;
+            const velocities = particles.geometry.attributes.velocity.array;
+            
+            const particlePositionVec = new THREE.Vector3(); // For PGW calculations
+            const pgwForceVec = new THREE.Vector3();
+
+            const colorUpdateBatchDivisor = 300; 
+            const colorUpdateModulo = Math.max(1, Math.floor(PARTICLE_COUNT / colorUpdateBatchDivisor));
+            const timeBasedOffset = Math.floor(simulationTime * 20); 
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const i3 = i * 3;
+                let px = positions[i3], py = positions[i3 + 1], pz = positions[i3 + 2];
+                let vx = velocities[i3], vy = velocities[i3 + 1], vz = velocities[i3 + 2];
+
+                particlePositionVec.set(px, py, pz);
+
+                // 1. Central Gravity
+                const distSqToCenter = px*px + py*py + pz*pz;
+                if (distSqToCenter > (CORE_ACTUAL_RADIUS * CORE_ACTUAL_RADIUS * 1.1)) { // Avoid singularity and too strong pull at core
+                    const distToCenter = Math.sqrt(distSqToCenter);
+                    const gravityForceVal = CENTRAL_GRAVITY_STRENGTH / (distSqToCenter + 1.0); // Smoothed denominator
+                    vx -= (px / distToCenter) * gravityForceVal * deltaTime;
+                    vy -= (py / distToCenter) * gravityForceVal * deltaTime;
+                    vz -= (pz / distToCenter) * gravityForceVal * deltaTime;
+                }
+                
+                // 2. PGW Force Calculation
+                pgwForceVec.copy(getPGWForce(particlePositionVec, simulationTime));
+                
+                vx += pgwForceVec.x * deltaTime;
+                vy += pgwForceVec.y * deltaTime;
+                vz += pgwForceVec.z * deltaTime;
+
+                // Damping
+                vx *= VELOCITY_DAMPING;
+                vy *= VELOCITY_DAMPING;
+                vz *= VELOCITY_DAMPING;
+                
+                // Update position
+                px += vx * deltaTime;
+                py += vy * deltaTime;
+                pz += vz * deltaTime;
+                
+                // Boundary conditions (simple reflection/containment)
+                const distFromCenter = Math.sqrt(px*px + py*py + pz*pz);
+                if (distFromCenter > SIMULATION_EXTENT) { 
+                    const normX = px/distFromCenter;
+                    const normY = py/distFromCenter;
+                    const normZ = pz/distFromCenter;
+                    px = normX * SIMULATION_EXTENT * 0.99; // Bring back inside
+                    py = normY * SIMULATION_EXTENT * 0.99;
+                    pz = normZ * SIMULATION_EXTENT * 0.99;
+                    // Reflect velocity (simplified)
+                    const dotProduct = (vx * normX + vy * normY + vz * normZ);
+                    if (dotProduct > 0) { // only if moving outwards
+                        vx -= 2 * dotProduct * normX; 
+                        vy -= 2 * dotProduct * normY;
+                        vz -= 2 * dotProduct * normZ;
+                    }
+                }
+                
+                positions[i3] = px; positions[i3 + 1] = py; positions[i3 + 2] = pz;
+                velocities[i3] = vx; velocities[i3 + 1] = vy; velocities[i3 + 2] = vz;
+                
+                // Color update based on velocity magnitude or PGW influence (simplified)
+                if ((i + timeBasedOffset) % colorUpdateModulo === 0) { 
+                     updateParticleColor(i, px, py, pz, pgwForceVec.length()); // Color by PGW force magnitude
+                }
+            }
+            
+            particles.geometry.attributes.position.needsUpdate = true;
+            particles.geometry.attributes.velocity.needsUpdate = true;
+            if (particles.geometry.attributes.color) particles.geometry.attributes.color.needsUpdate = true; 
+            
+            if (controls.autoRotate) { // Keep camera rotation
+                 camera.position.x += Math.sin(simulationTime * 0.02) * 0.01; 
+                 camera.position.y += Math.cos(simulationTime * 0.025) * 0.01;
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        function updateParticleColor(index, x, y, z, forceMag) { // Color by PGW force
+            const colors = particles.geometry.attributes.color.array;
+            const i3 = index * 3;
+            
+            const normalizedForce = Math.min(1, forceMag * 5.0); // Adjust multiplier based on typical force values
+            
+            // Example: Cooler colors for low force, warmer for high force
+            let r = 0.2 + normalizedForce * 0.8; // More red with stronger force
+            let g = 0.5 - normalizedForce * 0.3;
+            let b = 0.8 - normalizedForce * 0.6; // Less blue with stronger force
+
+            colors[i3] = THREE.MathUtils.clamp(r, 0, 1);
+            colors[i3 + 1] = THREE.MathUtils.clamp(g, 0, 1);
+            colors[i3 + 2] = THREE.MathUtils.clamp(b, 0, 1);
+        }
+
+        function onWindowResize() {
+            if (!camera || !renderer) return;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+                ui.fullscreenButton.textContent = "Exit Fullscreen";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    ui.fullscreenButton.textContent = "Fullscreen";
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html> 

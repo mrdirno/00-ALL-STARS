@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!--
+    Resonance is All You Need: Large-Scale Structure Wave Formation
+    
+    Original Concept & Implementation by:
+    - Aldrin Payopay (Lead Researcher & Visionary)
+    - AI Assistants (Claude Opus 4, Gemini 2.5 Pro for original base)
+    - Current modification: Gemini (for LSS Wave Formation model)
+
+    Based on concepts from wave theory for cosmic structure formation,
+    inspired by works like Chaliasos (2005) on standing waves in the universe.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aldrin Payopay, AI Assistants">
+    <meta name="description" content="3D Particle Simulation of Large-Scale Structure Formation via Cosmic Standing Waves.">
+    <meta name="keywords" content="cosmic structure, standing waves, large-scale structure, 3d simulation, particle system, cosmology">
+    <title>Resonance: Large-Scale Structure Wave Formation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        /* CSS from origin-simple.html - UNCHANGED for aesthetics */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #000000; 
+            color: #ffffff;
+            overflow: hidden; 
+            position: relative;
+        }
+        #container { 
+            width: 100vw; 
+            height: 100vh; 
+            display: block;
+            background: radial-gradient(ellipse at center, #101020 0%, #000000 100%); 
+        }
+        .ui-panel {
+            position: absolute;
+            background: rgba(25, 25, 45, 0.15); 
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(100, 100, 200, 0.15); 
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease;
+        }
+        .ui-panel:hover {
+            background: rgba(35, 35, 55, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        #controls-panel { 
+            top: 20px; 
+            left: 20px; 
+            width: 360px; 
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.6s ease forwards;
+            animation-delay: 0.3s;
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        #controls-panel::-webkit-scrollbar { width: 8px; }
+        #controls-panel::-webkit-scrollbar-track { background: rgba(25, 25, 45, 0.1); border-radius: 10px; }
+        #controls-panel::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 10px; border: 1px solid rgba(25, 25, 45, 0.2); }
+        #controls-panel::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #9F50E8 0%, #5D1DE0 100%); }
+        #controls-panel { scrollbar-width: thin; scrollbar-color: #8A2BE2 rgba(25, 25, 45, 0.1); }
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        #stats-bar { 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(20px);
+            padding: 16px 32px;
+            z-index: 10;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .stat-label { font-size: 0.75rem; color: rgba(200, 200, 255, 0.6); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 1.25rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } 
+        .control-group { margin-bottom: 20px; }
+        #controls-panel .control-group { padding-right: 14px; }
+        #controls-panel h2 { padding-right: 14px; }
+        .control-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.875rem; font-weight: 500; color: rgba(220, 220, 255, 0.9); text-transform: uppercase; letter-spacing: 0.05em; }
+        .control-group label[title] { cursor: help; }
+        .control-value { font-size: 1rem; color: #8A2BE2; font-weight: 600; }
+        .control-group small { display: block; color: rgba(200, 200, 255, 0.5); font-size: 0.75rem; font-weight: 400; text-transform: none; letter-spacing: normal; margin-top: -8px; margin-bottom: 12px; }
+        .info-icon { font-size: 0.7em; color: rgba(138, 43, 226, 0.7); font-weight: 400; margin-left: 8px; cursor: help; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+        .info-icon:hover { color: rgba(138, 43, 226, 1); transform: scale(1.1); }
+        input[type="range"] { width: 100%; height: 6px; background: rgba(200, 200, 255, 0.15); border-radius: 3px; outline: none; -webkit-appearance: none; cursor: pointer; transition: background 0.3s ease; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); transition: all 0.3s ease; }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 4px 20px rgba(138, 43, 226, 0.8); }
+        input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 2px 10px rgba(138, 43, 226, 0.5); }
+        select, .ui-input-number { width: 100%; padding: 12px 16px; background: rgba(35, 35, 55, 0.1); border: 1px solid rgba(100, 100, 200, 0.2); border-radius: 12px; color: #fff; font-size: 0.875rem; font-weight: 500; cursor: pointer; outline: none; transition: all 0.3s ease; -moz-appearance: textfield; /* Firefox */ }
+        select:hover, .ui-input-number:hover { background: rgba(45, 45, 65, 0.15); border-color: rgba(120, 120, 220, 0.3); }
+        select:focus, .ui-input-number:focus { border-color: #8A2BE2; box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2); }
+        .ui-input-number::-webkit-outer-spin-button,
+        .ui-input-number::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        button { width: 100%; padding: 14px 20px; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); border: none; border-radius: 12px; color: white; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.05em; position: relative; overflow: hidden; }
+        button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.15); transition: left 0.5s ease; }
+        button:hover::before { left: 0; }
+        button:active { transform: scale(0.98); box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3); }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #fff; background: linear-gradient(135deg, #8A2BE2 0%, #4A00E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em; }
+        .section-divider { height: 1px; background: rgba(100, 100, 200, 0.1); margin: 24px 0; }
+        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); display: flex; justify-content: center; align-items: center; z-index: 1000; transition: opacity 0.5s ease; }
+        .loading-spinner { border: 4px solid rgba(255,255,255,0.1); border-left-color: #8A2BE2; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s 0.3s linear; }
+        .modal.active { opacity: 1; visibility: visible; transition: opacity 0.3s ease; }
+        .modal-content { background: rgba(35, 35, 55, 0.9); backdrop-filter: blur(15px); border: 1px solid rgba(100, 100, 200, 0.2); border-radius: 15px; padding: 30px; width: 90%; max-width: 600px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); text-align: left; position: relative; transform: scale(0.95); transition: transform 0.3s ease; }
+        .modal.active .modal-content { transform: scale(1); }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: rgba(200,200,255,0.7); font-size: 1.5rem; cursor: pointer; transition: color 0.2s ease; }
+        .modal-close:hover { color: #8A2BE2; }
+        .tooltip { position: relative; display: inline-block; }
+        .tooltip .tooltiptext { visibility: hidden; width: 220px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 5px 10px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 0.8rem; font-weight: normal; text-transform: none; letter-spacing: normal; }
+        .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 1001; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: linear-gradient(135deg, #8A2BE2AA 0%, #4A00E0AA 100%); color: white; padding: 15px 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-size: 0.9rem; opacity: 0; transform: translateX(100%); animation: slideInToast 0.5s forwards, fadeOutToast 0.5s 4.5s forwards; backdrop-filter: blur(5px); }
+        @keyframes slideInToast { to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeOutToast { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <div id="controls-panel" class="ui-panel">
+        <h2>Wave Formation Controls</h2>
+        
+        <div class="control-group">
+            <label for="particleCount">Particle Count <span id="particleCountValue" class="control-value"></span></label>
+            <input type="range" id="particleCount" min="1000" max="250000" step="1000">
+            <small>Number of particles in the simulation.</small>
+        </div>
+
+        <div class="control-group">
+            <label for="amplitude">Amplitude <span id="amplitudeValue" class="control-value"></span></label>
+            <input type="range" id="amplitude" min="0.1" max="5" step="0.1">
+            <small>Strength of the wave potential affecting particles.</small>
+        </div>
+
+        <div class="section-divider"></div>
+        <h2>Wave Parameters</h2>
+
+        <div class="control-group">
+            <label for="waveNumberX">Wave Number X (Mode) <span id="waveNumberXValue" class="control-value"></span></label>
+            <input type="range" id="waveNumberX" min="1" max="10" step="1">
+            <small>Mode number for standing wave along X-axis.</small>
+        </div>
+        <div class="control-group">
+            <label for="waveNumberY">Wave Number Y (Mode) <span id="waveNumberYValue" class="control-value"></span></label>
+            <input type="range" id="waveNumberY" min="1" max="10" step="1">
+            <small>Mode number for standing wave along Y-axis.</small>
+        </div>
+        <div class="control-group">
+            <label for="waveNumberZ">Wave Number Z (Mode) <span id="waveNumberZValue" class="control-value"></span></label>
+            <input type="range" id="waveNumberZ" min="1" max="10" step="1">
+            <small>Mode number for standing wave along Z-axis.</small>
+        </div>
+        
+        <div class="section-divider"></div>
+        <h2>Universe Properties</h2>
+
+        <div class="control-group">
+            <label for="particleDistributionRange">Distribution Range <span id="particleDistributionRangeValue" class="control-value"></span></label>
+            <input type="range" id="particleDistributionRange" min="5" max="20" step="1">
+            <small>Size of the cubic volume for initial particle distribution.</small>
+        </div>
+
+        <div class="control-group">
+            <label for="particleSize">Particle Size <span id="particleSizeValue" class="control-value"></span></label>
+            <input type="range" id="particleSize" min="0.001" max="0.05" step="0.001">
+            <small>Visual size of the particles.</small>
+        </div>
+
+        <div class="section-divider"></div>
+        <button id="resetButton">Reset Simulation</button>
+        <br>
+        <button id="infoButton" style="margin-top: 10px; background: linear-gradient(135deg, #5A5A7A 0%, #3A3A5A 100%);">About This Simulation</button>
+    </div>
+
+    <div id="stats-bar" class="ui-panel">
+        <div class="stat-item">
+            <span class="stat-label">Particles</span>
+            <span id="activeParticlesStat" class="stat-value">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">FPS</span>
+            <span id="fpsStat" class="stat-value">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Status</span>
+            <span id="statusStat" class="stat-value" style="font-size: 1rem;">Initializing</span>
+        </div>
+    </div>
+
+    <div id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalButton">&times;</button>
+            <h2>About: Large-Scale Structure Wave Formation</h2>
+            <p>This simulation models the formation of large-scale cosmic structures based on the theory of 3D standing waves in the early universe. Particles (representing matter) are initially distributed randomly and then influenced by a potential field derived from the superposition of cosmic-scale standing waves.</p>
+            <br>
+            <p>The mathematical model displaces particles towards regions of constructive interference (antinodes of energy, or specific nodal surfaces of the wave function), forming patterns reminiscent of cosmic filaments and voids.</p>
+            <br>
+            <p><strong>Key Concepts:</strong></p>
+            <ul>
+                <li><strong>Standing Waves:</strong> Superposition of waves creating stable patterns of nodes and antinodes.</li>
+                <li><strong>Wave Numbers (Modes):</strong> Control the complexity and scale of the wave patterns along each axis. Higher numbers mean more, smaller structures.</li>
+                <li><strong>Amplitude:</strong> Determines the strength of the wave's influence on particle positions.</li>
+            </ul>
+            <br>
+            <p>This visualization is inspired by research suggesting wave mechanics play a crucial role in the universe's structure, such as the work by E. Chaliasos (2005) on standing waves and P. Coles on wave-mechanical approaches to structure formation.</p>
+            <br>
+            <p style="font-size:0.8em; opacity:0.7;">Original simulation framework by Aldrin Payopay & AI Assistants. LSS wave model adapted by Gemini.</p>
+        </div>
+    </div>
+    
+    <div id="toast-container"></div>
+
+    <script>
+        let scene, camera, renderer, controls;
+        let particles = [];
+        let points;
+        let material;
+        
+        const params = {
+            particleCount: 50000,
+            amplitude: 1.5,
+            waveNumberX: 3, 
+            waveNumberY: 3,
+            waveNumberZ: 3,
+            particleDistributionRange: 10,
+            particleSize: 0.01,
+            backgroundColor: 0x000000,
+            particleColor: 0xffffff,
+            isAnimating: true,
+            targetFps: 60,
+        };
+
+        let lastFrameTime = 0;
+        let frameCount = 0;
+        let fps = 0;
+
+        const particlePool = [];
+        const MAX_PARTICLES = 250000; // Matches slider max
+
+        function init() {
+            showLoadingOverlay(true);
+            updateStatus("Initializing 3D Scene...");
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = params.particleDistributionRange * 1.2;
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(params.backgroundColor);
+            document.getElementById('container').appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 1;
+            controls.maxDistance = 50;
+            controls.maxPolarAngle = Math.PI;
+
+            material = new THREE.PointsMaterial({
+                color: params.particleColor,
+                size: params.particleSize,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending,
+            });
+
+            initParticles();
+            setupUI();
+            
+            window.addEventListener('resize', onWindowResize, false);
+            
+            // Initial status updates
+            setTimeout(() => {
+                updateStatus("Calculating Wave Patterns...");
+                updateParticlePositions(); // Initial calculation
+            }, 100);
+
+            setTimeout(() => {
+                showLoadingOverlay(false);
+                updateStatus("Running");
+                animate();
+            }, 200);
+        }
+
+        function initParticles() {
+            updateStatus(`Creating ${params.particleCount} particles...`);
+            
+            if (points) scene.remove(points); // Remove old points object if any
+            particles.forEach(p => particlePool.push(p)); // Return old particles to pool
+            particles = [];
+
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(MAX_PARTICLES * 3); // Allocate for max
+            
+            const halfRange = params.particleDistributionRange / 2;
+
+            for (let i = 0; i < params.particleCount; i++) {
+                let p;
+                if (particlePool.length > 0) {
+                    p = particlePool.pop();
+                } else {
+                    p = new THREE.Vector3();
+                }
+
+                const x = Math.random() * params.particleDistributionRange - halfRange;
+                const y = Math.random() * params.particleDistributionRange - halfRange;
+                const z = Math.random() * params.particleDistributionRange - halfRange;
+                
+                p.set(x, y, z);
+                p.userData = { initialPosition: new THREE.Vector3(x, y, z) };
+                particles.push(p);
+
+                positions[i * 3] = x;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = z;
+            }
+            
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setDrawRange(0, params.particleCount); // Only draw active particles
+
+            points = new THREE.Points(geometry, material);
+            scene.add(points);
+            
+            document.getElementById('activeParticlesStat').textContent = params.particleCount.toLocaleString();
+            updateParticlePositions(); // Update positions after creating
+        }
+        
+        // NEW: Wave Displacement Calculation (replaces Chladni)
+        function calculateWaveDisplacement(x, y, z, kx_mode, ky_mode, kz_mode) {
+            const halfRange = params.particleDistributionRange / 2;
+            // k = mode * PI / L (where L is half_range, so wavelength = 2L/mode)
+            const kx = kx_mode * Math.PI / halfRange;
+            const ky = ky_mode * Math.PI / halfRange;
+            const kz = kz_mode * Math.PI / halfRange;
+
+            const cx = Math.cos(kx * x);
+            const cy = Math.cos(ky * y);
+            const cz = Math.cos(kz * z);
+
+            const sx = Math.sin(kx * x);
+            //const sy = Math.sin(ky * y); // Not used in this formulation of dU/dx etc.
+            //const sz = Math.sin(kz * z); // Not used in this formulation of dU/dx etc.
+
+            // Displacement proportional to gradient of U = (cos(kx*x)cos(ky*y)cos(kz*z))^2
+            // F = grad(U) pushes towards maxima.
+            // dU/dx = -kx * sin(2*kx*x) * (cos(ky*y)*cos(kz*z))^2
+            // This formula actually pushes particles to where sin(2*kx*x) is zero, 
+            // which are kx*x = n*PI/2. These are nodes AND antinodes of cos(kx*x).
+            // To form structures like cosmic web (filaments/sheets), we want accumulation at specific surfaces.
+            // Let's use a simpler potential that creates clear surfaces:
+            // Potential V = - (cos(kx*x) + cos(ky*y) + cos(kz*z))
+            // Maxima of this are where cos terms are 1. Force F = -grad(V)
+            // Fx = - (kx * sin(kx*x))
+            // Fy = - (ky * sin(ky*y))
+            // Fz = - (kz * sin(kz*z))
+            // This will push particles to kx*x = n*PI, ky*y = m*PI, kz*z = l*PI
+            // These form planes.
+
+            let dx_factor = kx * Math.sin(kx * x); // Proportional to -dV/dx
+            let dy_factor = ky * Math.sin(ky * y); // Proportional to -dV/dy
+            let dz_factor = kz * Math.sin(kz * z); // Proportional to -dV/dz
+            
+            return { dx: dx_factor, dy: dy_factor, dz: dz_factor };
+        }
+
+        function updateParticlePositions() {
+            if (!particles.length || !points || !points.geometry) return;
+
+            const positions = points.geometry.attributes.position.array;
+            
+            particles.forEach((particle, i) => {
+                const initialPos = particle.userData.initialPosition;
+                
+                const displacementFactors = calculateWaveDisplacement(
+                    initialPos.x, 
+                    initialPos.y, 
+                    initialPos.z, 
+                    params.waveNumberX, 
+                    params.waveNumberY, 
+                    params.waveNumberZ
+                );
+
+                // The displacement calculation gives factors proportional to a force.
+                // We want to move particles from their initial random position to a new position
+                // on the "structure". A simple way is to add the scaled displacement.
+                particle.position.x = initialPos.x + displacementFactors.dx * params.amplitude;
+                particle.position.y = initialPos.y + displacementFactors.dy * params.amplitude;
+                particle.position.z = initialPos.z + displacementFactors.dz * params.amplitude;
+
+                // Clamp positions to stay within the original distribution range for visual coherence
+                const halfRange = params.particleDistributionRange / 2;
+                particle.position.x = THREE.MathUtils.clamp(particle.position.x, -halfRange, halfRange);
+                particle.position.y = THREE.MathUtils.clamp(particle.position.y, -halfRange, halfRange);
+                particle.position.z = THREE.MathUtils.clamp(particle.position.z, -halfRange, halfRange);
+
+                positions[i * 3] = particle.position.x;
+                positions[i * 3 + 1] = particle.position.y;
+                positions[i * 3 + 2] = particle.position.z;
+            });
+            points.geometry.attributes.position.needsUpdate = true;
+        }
+
+
+        function setupUI() {
+            const uiFields = [
+                { id: 'particleCount', param: 'particleCount', needsReinit: true, isFloat: false },
+                { id: 'amplitude', param: 'amplitude', needsReinit: false, isFloat: true },
+                { id: 'waveNumberX', param: 'waveNumberX', needsReinit: false, isFloat: false },
+                { id: 'waveNumberY', param: 'waveNumberY', needsReinit: false, isFloat: false },
+                { id: 'waveNumberZ', param: 'waveNumberZ', needsReinit: false, isFloat: false },
+                { id: 'particleDistributionRange', param: 'particleDistributionRange', needsReinit: true, isFloat: false },
+                { id: 'particleSize', param: 'particleSize', needsReinit: false, isFloat: true, updateMaterial: true }
+            ];
+
+            uiFields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const valueDisplay = document.getElementById(field.id + 'Value');
+                
+                input.value = params[field.param];
+                if (valueDisplay) valueDisplay.textContent = params[field.param];
+
+                input.addEventListener('input', (event) => {
+                    const val = field.isFloat ? parseFloat(event.target.value) : parseInt(event.target.value);
+                    params[field.param] = val;
+                    if (valueDisplay) valueDisplay.textContent = val;
+                    
+                    if (field.needsReinit) {
+                        initParticles(); // This now also calls updateParticlePositions
+                    } else if (field.updateMaterial) {
+                         material.size = params.particleSize;
+                    } else {
+                        updateParticlePositions();
+                    }
+                });
+            });
+            
+            document.getElementById('resetButton').addEventListener('click', () => {
+                showToast("Simulation Reset!");
+                // Reset params to some defaults if needed, or just re-init
+                // For now, just re-initialize with current params
+                initParticles();
+            });
+
+            document.getElementById('infoButton').addEventListener('click', () => {
+                document.getElementById('infoModal').classList.add('active');
+            });
+            document.getElementById('closeModalButton').addEventListener('click', () => {
+                document.getElementById('infoModal').classList.remove('active');
+            });
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            updateParticlePositions(); // Recalculate on resize if needed (e.g. if domain changes)
+        }
+
+        function animate(currentTime) {
+            if (!params.isAnimating) return;
+
+            requestAnimationFrame(animate);
+
+            const deltaTime = (currentTime - lastFrameTime) / 1000;
+            const targetInterval = 1 / params.targetFps;
+
+            if (deltaTime >= targetInterval) {
+                lastFrameTime = currentTime - (deltaTime % targetInterval);
+
+                controls.update();
+                renderer.render(scene, camera);
+
+                frameCount++;
+                if (currentTime >= 1000 && frameCount > 0) { // Calculate FPS once per second
+                    fps = frameCount / (currentTime / 1000); // Simplified, should be frameCount per elapsed second
+                    if (currentTime - (fpsStat.lastUpdated || 0) > 1000) {
+                         document.getElementById('fpsStat').textContent = Math.round(fps);
+                         fpsStat.lastUpdated = currentTime;
+                         frameCount = 0; // Reset frame count for next second
+                    }
+                }
+            }
+        }
+        
+        // Utility Functions (Toast, Loading, Status) - from origin-simple.html, UNCHANGED
+        function showToast(message) {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.textContent = message;
+            toastContainer.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        function showLoadingOverlay(show) {
+            const overlay = document.getElementById('loading-overlay');
+            if (show) {
+                overlay.style.opacity = '1';
+                overlay.style.visibility = 'visible';
+            } else {
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+            }
+        }
+        
+        function updateStatus(message) {
+            document.getElementById('statusStat').textContent = message;
+            console.log("Status:", message);
+        }
+
+        // Start simulation
+        init();
+    </script>
+</body>
+</html> 
