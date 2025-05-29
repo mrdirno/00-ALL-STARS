@@ -523,3 +523,528 @@
 2025-05-28 19:17:42,778 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
 2025-05-28 19:17:42,789 - WARNING - Stage 1: FAILED - Failed: occams_razor
 2025-05-28 19:17:42,789 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\wave-theory-transform.html - Failed: occams_razor
+2025-05-28 19:19:58,417 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\100 scientific reasoning approaches.html
+2025-05-28 19:19:58,417 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,417 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,417 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\100 scientific reasoning approaches.html to stage 1
+2025-05-28 19:19:58,417 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,417 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,417 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\100 scientific reasoning approaches.html - Failed: occams_razor
+2025-05-28 19:19:58,434 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-elliptical-spherical-cymatics-enhanced.html
+2025-05-28 19:19:58,449 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,449 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,450 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-elliptical-spherical-cymatics-enhanced.html to stage 1
+2025-05-28 19:19:58,450 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,506 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,506 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-elliptical-spherical-cymatics-enhanced.html - Failed: occams_razor
+2025-05-28 19:19:58,506 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-sim-enhanced-v2.html
+2025-05-28 19:19:58,506 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,506 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,506 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-sim-enhanced-v2.html to stage 1
+2025-05-28 19:19:58,506 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,551 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,553 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-sim-enhanced-v2.html - Failed: occams_razor
+2025-05-28 19:19:58,555 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-sim.html
+2025-05-28 19:19:58,555 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,555 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,556 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-sim.html to stage 1
+2025-05-28 19:19:58,556 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,601 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,601 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-sim.html - Failed: occams_razor
+2025-05-28 19:19:58,601 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-structures-enhanced.html
+2025-05-28 19:19:58,601 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,601 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,601 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-structures-enhanced.html to stage 1
+2025-05-28 19:19:58,616 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,657 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,657 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-structures-enhanced.html - Failed: occams_razor
+2025-05-28 19:19:58,657 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-structures.html
+2025-05-28 19:19:58,657 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,657 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,657 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-structures.html to stage 1
+2025-05-28 19:19:58,666 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,734 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,734 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced-wave-structures.html - Failed: occams_razor
+2025-05-28 19:19:58,734 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_3d_ellipsoidal_harmonics_2025.html
+2025-05-28 19:19:58,734 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,734 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,734 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_3d_ellipsoidal_harmonics_2025.html to stage 1
+2025-05-28 19:19:58,734 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,785 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,785 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_3d_ellipsoidal_harmonics_2025.html - Failed: occams_razor
+2025-05-28 19:19:58,785 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_cosmic_wave_dynamics.html
+2025-05-28 19:19:58,785 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,785 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,785 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_cosmic_wave_dynamics.html to stage 1
+2025-05-28 19:19:58,800 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,803 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,804 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_cosmic_wave_dynamics.html - Failed: occams_razor
+2025-05-28 19:19:58,805 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_cosmic_wave_simulation.html
+2025-05-28 19:19:58,806 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,806 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,806 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_cosmic_wave_simulation.html to stage 1
+2025-05-28 19:19:58,806 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,850 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,851 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_cosmic_wave_simulation.html - Failed: occams_razor
+2025-05-28 19:19:58,854 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_spherical_cymatics_refined_2025.html
+2025-05-28 19:19:58,854 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,854 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,854 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_spherical_cymatics_refined_2025.html to stage 1
+2025-05-28 19:19:58,854 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,903 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,904 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_spherical_cymatics_refined_2025.html - Failed: occams_razor
+2025-05-28 19:19:58,906 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_spherical_harmonics_cymatics_v2.html
+2025-05-28 19:19:58,906 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,906 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,906 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_spherical_harmonics_cymatics_v2.html to stage 1
+2025-05-28 19:19:58,906 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,951 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,951 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_spherical_harmonics_cymatics_v2.html - Failed: occams_razor
+2025-05-28 19:19:58,951 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_dynamics.html
+2025-05-28 19:19:58,951 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,951 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,951 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_dynamics.html to stage 1
+2025-05-28 19:19:58,951 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:58,990 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:58,990 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_dynamics.html - Failed: occams_razor
+2025-05-28 19:19:58,990 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_particles.html
+2025-05-28 19:19:58,990 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:58,990 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:58,990 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_particles.html to stage 1
+2025-05-28 19:19:58,990 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,034 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,035 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_particles.html - Failed: occams_razor
+2025-05-28 19:19:59,037 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_simulation.html
+2025-05-28 19:19:59,038 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,038 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,038 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_simulation.html to stage 1
+2025-05-28 19:19:59,038 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,076 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,076 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_simulation.html - Failed: occams_razor
+2025-05-28 19:19:59,078 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_sim_A1_minimal.html
+2025-05-28 19:19:59,079 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,079 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,079 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_sim_A1_minimal.html to stage 1
+2025-05-28 19:19:59,079 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,118 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,118 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_sim_A1_minimal.html - Failed: occams_razor
+2025-05-28 19:19:59,118 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_structures_A1.html
+2025-05-28 19:19:59,118 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,118 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,118 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_structures_A1.html to stage 1
+2025-05-28 19:19:59,118 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,157 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,157 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_structures_A1.html - Failed: occams_razor
+2025-05-28 19:19:59,157 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_superposition_v1.html
+2025-05-28 19:19:59,157 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,157 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,157 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_superposition_v1.html to stage 1
+2025-05-28 19:19:59,157 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,217 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,217 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_superposition_v1.html - Failed: occams_razor
+2025-05-28 19:19:59,217 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_systems_showcase.html
+2025-05-28 19:19:59,217 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,217 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,217 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_systems_showcase.html to stage 1
+2025-05-28 19:19:59,217 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,261 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,261 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_systems_showcase.html - Failed: occams_razor
+2025-05-28 19:19:59,266 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_visualization.html
+2025-05-28 19:19:59,266 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,266 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,267 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_visualization.html to stage 1
+2025-05-28 19:19:59,268 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,302 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,302 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\advanced_wave_visualization.html - Failed: occams_razor
+2025-05-28 19:19:59,302 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\automated_performance_benchmarking_system.html
+2025-05-28 19:19:59,302 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,302 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,302 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\automated_performance_benchmarking_system.html to stage 1
+2025-05-28 19:19:59,302 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,350 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,350 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\automated_performance_benchmarking_system.html - Failed: occams_razor
+2025-05-28 19:19:59,350 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\bao_wave_visualization.html
+2025-05-28 19:19:59,350 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,350 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,350 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\bao_wave_visualization.html to stage 1
+2025-05-28 19:19:59,350 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,407 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,407 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\bao_wave_visualization.html - Failed: occams_razor
+2025-05-28 19:19:59,407 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic-wave-structures.html
+2025-05-28 19:19:59,407 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,407 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,407 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic-wave-structures.html to stage 1
+2025-05-28 19:19:59,407 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,450 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,450 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic-wave-structures.html - Failed: occams_razor
+2025-05-28 19:19:59,450 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_acoustic_wave_sim_A2.html
+2025-05-28 19:19:59,450 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,450 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,450 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_acoustic_wave_sim_A2.html to stage 1
+2025-05-28 19:19:59,450 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,500 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,501 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_acoustic_wave_sim_A2.html - Failed: occams_razor
+2025-05-28 19:19:59,504 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_expansion_waves.html
+2025-05-28 19:19:59,504 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,504 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,504 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_expansion_waves.html to stage 1
+2025-05-28 19:19:59,504 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,552 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,552 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_expansion_waves.html - Failed: occams_razor
+2025-05-28 19:19:59,552 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_resonance_cascade_sim_A1.html
+2025-05-28 19:19:59,552 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,552 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,552 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_resonance_cascade_sim_A1.html to stage 1
+2025-05-28 19:19:59,552 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,601 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,601 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_resonance_cascade_sim_A1.html - Failed: occams_razor
+2025-05-28 19:19:59,601 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_spherical_harmonics_optimized.html
+2025-05-28 19:19:59,601 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,601 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,601 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_spherical_harmonics_optimized.html to stage 1
+2025-05-28 19:19:59,601 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,651 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,651 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_spherical_harmonics_optimized.html - Failed: occams_razor
+2025-05-28 19:19:59,651 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_waves_enhanced.html
+2025-05-28 19:19:59,651 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,651 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,651 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_waves_enhanced.html to stage 1
+2025-05-28 19:19:59,651 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,701 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,701 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_waves_enhanced.html - Failed: occams_razor
+2025-05-28 19:19:59,701 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_waves_sanity_check.html
+2025-05-28 19:19:59,701 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,701 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,701 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_waves_sanity_check.html to stage 1
+2025-05-28 19:19:59,701 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,741 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,750 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_waves_sanity_check.html - Failed: occams_razor
+2025-05-28 19:19:59,752 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_wave_sim_A1.html
+2025-05-28 19:19:59,752 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,752 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,752 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_wave_sim_A1.html to stage 1
+2025-05-28 19:19:59,752 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,784 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,784 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_standing_wave_sim_A1.html - Failed: occams_razor
+2025-05-28 19:19:59,784 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_string_wake_sim.html
+2025-05-28 19:19:59,784 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,784 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,784 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_string_wake_sim.html to stage 1
+2025-05-28 19:19:59,784 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,835 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,835 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_string_wake_sim.html - Failed: occams_razor
+2025-05-28 19:19:59,835 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_web_dynamics_A1_v2.html
+2025-05-28 19:19:59,835 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,835 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,835 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_web_dynamics_A1_v2.html to stage 1
+2025-05-28 19:19:59,835 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,885 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,885 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_web_dynamics_A1_v2.html - Failed: occams_razor
+2025-05-28 19:19:59,887 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_web_waves.html
+2025-05-28 19:19:59,887 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,887 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,887 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_web_waves.html to stage 1
+2025-05-28 19:19:59,887 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,934 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,934 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\cosmic_web_waves.html - Failed: occams_razor
+2025-05-28 19:19:59,934 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\emergent_scalar_field_LSS.html
+2025-05-28 19:19:59,934 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,934 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,934 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\emergent_scalar_field_LSS.html to stage 1
+2025-05-28 19:19:59,934 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:19:59,984 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:19:59,984 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\emergent_scalar_field_LSS.html - Failed: occams_razor
+2025-05-28 19:19:59,984 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\emergent_wave_phenomena.html
+2025-05-28 19:19:59,984 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:19:59,984 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:19:59,984 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\emergent_wave_phenomena.html to stage 1
+2025-05-28 19:19:59,984 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,035 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,035 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\emergent_wave_phenomena.html - Failed: occams_razor
+2025-05-28 19:20:00,035 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\enhanced_ellipsoidal_cymatics_optimized.html
+2025-05-28 19:20:00,035 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,035 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,035 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\enhanced_ellipsoidal_cymatics_optimized.html to stage 1
+2025-05-28 19:20:00,035 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,090 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,090 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\enhanced_ellipsoidal_cymatics_optimized.html - Failed: occams_razor
+2025-05-28 19:20:00,090 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\enhanced_spherical_harmonics_cymatics.html
+2025-05-28 19:20:00,090 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,090 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,090 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\enhanced_spherical_harmonics_cymatics.html to stage 1
+2025-05-28 19:20:00,090 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,135 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,135 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\enhanced_spherical_harmonics_cymatics.html - Failed: occams_razor
+2025-05-28 19:20:00,135 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\expanding_universe_wave_model_v2.html
+2025-05-28 19:20:00,135 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,135 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,135 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\expanding_universe_wave_model_v2.html to stage 1
+2025-05-28 19:20:00,135 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,202 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,202 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\expanding_universe_wave_model_v2.html - Failed: occams_razor
+2025-05-28 19:20:00,202 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\experimental_validation_framework.html
+2025-05-28 19:20:00,202 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,202 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,202 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\experimental_validation_framework.html to stage 1
+2025-05-28 19:20:00,202 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,257 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,257 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\experimental_validation_framework.html - Failed: occams_razor
+2025-05-28 19:20:00,274 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\fuzzy_dm_interference_A1.html
+2025-05-28 19:20:00,274 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,274 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,274 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\fuzzy_dm_interference_A1.html to stage 1
+2025-05-28 19:20:00,274 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,318 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,318 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\fuzzy_dm_interference_A1.html - Failed: occams_razor
+2025-05-28 19:20:00,318 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\holographic-ads-cft-waves.html
+2025-05-28 19:20:00,318 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,318 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,318 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\holographic-ads-cft-waves.html to stage 1
+2025-05-28 19:20:00,318 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,384 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,384 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\holographic-ads-cft-waves.html - Failed: occams_razor
+2025-05-28 19:20:00,384 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\holographic_dark_energy_waves_2025.html
+2025-05-28 19:20:00,384 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,384 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,384 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\holographic_dark_energy_waves_2025.html to stage 1
+2025-05-28 19:20:00,384 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,442 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,442 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\holographic_dark_energy_waves_2025.html - Failed: occams_razor
+2025-05-28 19:20:00,450 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\interactive_quantum_cosmic_educator.html
+2025-05-28 19:20:00,450 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,450 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,450 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\interactive_quantum_cosmic_educator.html to stage 1
+2025-05-28 19:20:00,450 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,485 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,485 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\interactive_quantum_cosmic_educator.html - Failed: occams_razor
+2025-05-28 19:20:00,502 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\interference_wave_simulation.html
+2025-05-28 19:20:00,502 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,502 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,502 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\interference_wave_simulation.html to stage 1
+2025-05-28 19:20:00,502 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,552 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,552 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\interference_wave_simulation.html - Failed: occams_razor
+2025-05-28 19:20:00,566 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\khronos_spheroidal_cymatics_2025.html
+2025-05-28 19:20:00,567 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,567 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,567 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\khronos_spheroidal_cymatics_2025.html to stage 1
+2025-05-28 19:20:00,567 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,620 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,620 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\khronos_spheroidal_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:00,623 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lensed_wave_simulation.html
+2025-05-28 19:20:00,623 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,624 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,624 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lensed_wave_simulation.html to stage 1
+2025-05-28 19:20:00,624 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,684 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,684 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lensed_wave_simulation.html - Failed: occams_razor
+2025-05-28 19:20:00,684 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_advanced_wave_model.html
+2025-05-28 19:20:00,684 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,684 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,684 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_advanced_wave_model.html to stage 1
+2025-05-28 19:20:00,684 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,734 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,734 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_advanced_wave_model.html - Failed: occams_razor
+2025-05-28 19:20:00,734 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_wave_formation.html
+2025-05-28 19:20:00,734 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,734 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,734 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_wave_formation.html to stage 1
+2025-05-28 19:20:00,734 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,801 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,801 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_wave_formation.html - Failed: occams_razor
+2025-05-28 19:20:00,801 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_wave_model.html
+2025-05-28 19:20:00,801 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,801 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,801 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_wave_model.html to stage 1
+2025-05-28 19:20:00,801 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,851 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,851 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\lss_wave_model.html - Failed: occams_razor
+2025-05-28 19:20:00,867 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\next_gen_ellipsoidal_cymatics_2025.html
+2025-05-28 19:20:00,867 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,867 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,867 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\next_gen_ellipsoidal_cymatics_2025.html to stage 1
+2025-05-28 19:20:00,867 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,917 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,917 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\next_gen_ellipsoidal_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:00,917 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\nonlinear_wave_filament_sim_A1.html
+2025-05-28 19:20:00,917 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,917 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,917 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\nonlinear_wave_filament_sim_A1.html to stage 1
+2025-05-28 19:20:00,917 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:00,984 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:00,984 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\nonlinear_wave_filament_sim_A1.html - Failed: occams_razor
+2025-05-28 19:20:00,984 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\origin-transformed-wave-dynamics.html
+2025-05-28 19:20:00,984 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:00,984 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:00,984 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\origin-transformed-wave-dynamics.html to stage 1
+2025-05-28 19:20:00,984 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,051 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,051 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\origin-transformed-wave-dynamics.html - Failed: occams_razor
+2025-05-28 19:20:01,051 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\pgw_particle_simulation.html
+2025-05-28 19:20:01,066 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,067 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,067 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\pgw_particle_simulation.html to stage 1
+2025-05-28 19:20:01,067 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,117 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,117 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\pgw_particle_simulation.html - Failed: occams_razor
+2025-05-28 19:20:01,133 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\phononic-time-crystals.html
+2025-05-28 19:20:01,134 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,134 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,135 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\phononic-time-crystals.html to stage 1
+2025-05-28 19:20:01,135 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,201 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,201 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\phononic-time-crystals.html - Failed: occams_razor
+2025-05-28 19:20:01,201 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum-gravitational-wave-lensing-supersolid-dark-matter-2025.html
+2025-05-28 19:20:01,201 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,201 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,201 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum-gravitational-wave-lensing-supersolid-dark-matter-2025.html to stage 1
+2025-05-28 19:20:01,201 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,252 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,252 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum-gravitational-wave-lensing-supersolid-dark-matter-2025.html - Failed: occams_razor
+2025-05-28 19:20:01,252 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum-vacuum-fluctuations.html
+2025-05-28 19:20:01,252 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,252 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,267 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum-vacuum-fluctuations.html to stage 1
+2025-05-28 19:20:01,267 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,334 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,334 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum-vacuum-fluctuations.html - Failed: occams_razor
+2025-05-28 19:20:01,340 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_acoustic_metamaterial_cymatics_2025.html
+2025-05-28 19:20:01,340 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,340 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,340 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_acoustic_metamaterial_cymatics_2025.html to stage 1
+2025-05-28 19:20:01,340 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,401 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,401 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_acoustic_metamaterial_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,401 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_ellipsoidal_cymatics_2025.html
+2025-05-28 19:20:01,401 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,401 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,401 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_ellipsoidal_cymatics_2025.html to stage 1
+2025-05-28 19:20:01,401 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,451 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,451 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_ellipsoidal_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,451 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_foam_accretion_sim.html
+2025-05-28 19:20:01,451 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,451 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,451 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_foam_accretion_sim.html to stage 1
+2025-05-28 19:20:01,451 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,518 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,518 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_foam_accretion_sim.html - Failed: occams_razor
+2025-05-28 19:20:01,518 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_phononic_cosmic_structures_2025.html
+2025-05-28 19:20:01,518 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,518 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,518 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_phononic_cosmic_structures_2025.html to stage 1
+2025-05-28 19:20:01,518 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,588 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,588 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\quantum_phononic_cosmic_structures_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,601 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_3d_ellipsoidal_harmonics.html
+2025-05-28 19:20:01,601 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,601 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,601 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_3d_ellipsoidal_harmonics.html to stage 1
+2025-05-28 19:20:01,601 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,653 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,653 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_3d_ellipsoidal_harmonics.html - Failed: occams_razor
+2025-05-28 19:20:01,667 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_3d_gaussian_splatting_harmonics_2025.html
+2025-05-28 19:20:01,668 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,668 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,668 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_3d_gaussian_splatting_harmonics_2025.html to stage 1
+2025-05-28 19:20:01,669 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,733 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,734 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_3d_gaussian_splatting_harmonics_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,734 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_3d_harmonics_2025.html
+2025-05-28 19:20:01,734 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,734 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,734 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_3d_harmonics_2025.html to stage 1
+2025-05-28 19:20:01,734 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,785 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,785 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_3d_harmonics_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,801 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_cymatics_2025.html
+2025-05-28 19:20:01,801 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,801 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,801 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_cymatics_2025.html to stage 1
+2025-05-28 19:20:01,801 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,871 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,871 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,874 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_cymatics_enhanced_2025.html
+2025-05-28 19:20:01,874 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,875 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,875 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_cymatics_enhanced_2025.html to stage 1
+2025-05-28 19:20:01,875 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,934 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,934 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_ellipsoidal_cymatics_enhanced_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,934 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_quantum_gpu_cymatics_2025.html
+2025-05-28 19:20:01,934 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,934 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,934 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_quantum_gpu_cymatics_2025.html to stage 1
+2025-05-28 19:20:01,934 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:01,986 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:01,986 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\revolutionary_quantum_gpu_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:01,986 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\sample_physics_research.txt
+2025-05-28 19:20:01,986 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:01,986 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:01,986 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\sample_physics_research.txt to stage 1
+2025-05-28 19:20:01,999 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,001 - WARNING - Stage 1: FAILED - Failed: methodical_skepticism, occams_razor
+2025-05-28 19:20:02,001 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\sample_physics_research.txt - Failed: methodical_skepticism, occams_razor
+2025-05-28 19:20:02,006 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\topological_quantum_field_waves_2025.html
+2025-05-28 19:20:02,006 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,006 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,007 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\topological_quantum_field_waves_2025.html to stage 1
+2025-05-28 19:20:02,007 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,051 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,066 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\topological_quantum_field_waves_2025.html - Failed: occams_razor
+2025-05-28 19:20:02,070 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultimate_ellipsoidal_metamaterial_2025.html
+2025-05-28 19:20:02,071 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,071 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,071 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultimate_ellipsoidal_metamaterial_2025.html to stage 1
+2025-05-28 19:20:02,072 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,118 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,133 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultimate_ellipsoidal_metamaterial_2025.html - Failed: occams_razor
+2025-05-28 19:20:02,137 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultimate_enhanced_3d_cosmic_cymatics_2025.html
+2025-05-28 19:20:02,137 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,137 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,137 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultimate_enhanced_3d_cosmic_cymatics_2025.html to stage 1
+2025-05-28 19:20:02,139 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,203 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,203 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultimate_enhanced_3d_cosmic_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:02,207 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_cosmic_harmonics_2025.html
+2025-05-28 19:20:02,207 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,207 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,207 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_cosmic_harmonics_2025.html to stage 1
+2025-05-28 19:20:02,208 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,251 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,267 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_cosmic_harmonics_2025.html - Failed: occams_razor
+2025-05-28 19:20:02,270 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_ellipsoidal_cymatics_2025.html
+2025-05-28 19:20:02,270 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,270 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,270 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_ellipsoidal_cymatics_2025.html to stage 1
+2025-05-28 19:20:02,270 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,317 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,317 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_ellipsoidal_cymatics_2025.html - Failed: occams_razor
+2025-05-28 19:20:02,333 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_ellipsoidal_harmonics_2025.html
+2025-05-28 19:20:02,334 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,334 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,334 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_ellipsoidal_harmonics_2025.html to stage 1
+2025-05-28 19:20:02,334 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,385 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,385 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_ellipsoidal_harmonics_2025.html - Failed: occams_razor
+2025-05-28 19:20:02,385 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_spherical_harmonics_2025.html
+2025-05-28 19:20:02,385 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,385 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,385 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_spherical_harmonics_2025.html to stage 1
+2025-05-28 19:20:02,385 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,451 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,451 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\ultra_advanced_spherical_harmonics_2025.html - Failed: occams_razor
+2025-05-28 19:20:02,451 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\wave-mechanics-structure.html
+2025-05-28 19:20:02,451 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,451 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,451 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\wave-mechanics-structure.html to stage 1
+2025-05-28 19:20:02,451 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,534 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,534 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\wave-mechanics-structure.html - Failed: occams_razor
+2025-05-28 19:20:02,534 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\wave-theory-transform.html
+2025-05-28 19:20:02,534 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:20:02,534 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:20:02,534 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\wave-theory-transform.html to stage 1
+2025-05-28 19:20:02,534 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:20:02,593 - WARNING - Stage 1: FAILED - Failed: occams_razor
+2025-05-28 19:20:02,593 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\wave-theory-transform.html - Failed: occams_razor
