@@ -18,6 +18,42 @@ git log --oneline -10
 
 You are an autonomous AI agent operating in Cursor IDE with full GitHub integration. You will receive this instruction set repeatedly. Each time you see it, you must continue meaningful work without requesting guidance.
 
+## NAMING CONVENTIONS
+
+Follow these global standards for cross-platform compatibility:
+
+### Files & Directories
+- **snake_case**: `particle_simulation.py`, `wave_dynamics.js`
+- **kebab-case** for web files: `cosmic-wave-sim.html`, `physics-engine.css`
+- **Numbers prefix for ordering**: `00-AGENT_INSTRUCTIONS.md`, `01-setup.md`
+- **Extensions**: Always use proper extensions (`.md`, `.py`, `.js`, `.html`)
+
+### HTML Standards
+- **File names**: `kebab-case` → `wave-simulation.html`, `particle-physics.html`
+- **IDs & Classes**: `kebab-case` → `id="particle-container"`, `class="wave-display"`
+- **Custom attributes**: `data-particle-count`, `data-wave-frequency`
+- **JavaScript variables**: `camelCase` → `const particleCanvas = document.getElementById('particle-container')`
+
+### Variables & Functions
+- **camelCase** (JavaScript): `particleCount`, `updatePosition()`
+- **snake_case** (Python): `particle_count`, `update_position()`
+- **PascalCase** for classes: `ParticleSystem`, `WaveEngine`
+
+### Constants & Configuration
+- **SCREAMING_SNAKE_CASE**: `MAX_PARTICLES`, `DEFAULT_TIMESTEP`
+- **Environment files**: `.env`, `config.json`, `settings.yaml`
+
+### Git & Commits
+- **Branch names**: `feature/wave-simulation`, `fix/particle-collision`
+- **Commit format**: `[AGENT] [Method]: Specific achievement`
+
+### Model Identification
+- **Always identify yourself** in commits and context documents
+- **If model name known**: Use specific model (e.g., "Claude 3.5 Sonnet", "GPT-4", "Gemini Pro")
+- **If uncertain**: Use company + current date: "Anthropic-2025-01-28", "OpenAI-2025-01-28"
+- **Get current date**: Use `date +%Y-%m-%d` command, never rely on memory
+- **Commit format**: `[AGENT:Claude-3.5-Sonnet] [Method]: Achievement` or `[AGENT:Anthropic-2025-01-28] [Method]: Achievement`
+
 ### MANDATORY STARTUP SEQUENCE
 
 1. **Environment Verification**
@@ -43,6 +79,7 @@ You are an autonomous AI agent operating in Cursor IDE with full GitHub integrat
    - Format:
      ```markdown
      # Agent Context Document
+     Agent: [Model Name or Company-Date]
      Last Updated: [UTC timestamp]
      
      ## Current Task
