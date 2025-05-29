@@ -532,6 +532,53 @@ Get-ChildItem "implementations/physics-simulations/" -Filter "*.html" | ForEach-
         Write-Host "$($_.Name): ❌ HTML structure issues"
     }
 }
+
+# Comprehensive validation script
+$validationResults = @()
+Get-ChildItem "implementations/physics-simulations/" -Filter "*.html" | ForEach-Object {
+    $result = @{
+        File = $_.Name
+        HTMLStructure = $false
+        JavaScript = $false
+        Canvas = $false
+        Performance = $false
+        Documentation = $false
+    }
+    
+    $content = Get-Content $_.FullName -Raw
+    
+    # Check HTML structure
+    if ($content -match "<!DOCTYPE html>" -and $content -match "</html>") {
+        $result.HTMLStructure = $true
+    }
+    
+    # Check for JavaScript
+    if ($content -match "<script" -and $content -match "function") {
+        $result.JavaScript = $true
+    }
+    
+    # Check for canvas element
+    if ($content -match "<canvas") {
+        $result.Canvas = $true
+    }
+    
+    # Check for performance monitoring
+    if ($content -match "requestAnimationFrame|performance\.now") {
+        $result.Performance = $true
+    }
+    
+    # Check for documentation/comments
+    if ($content -match "//.*|/\*.*\*/") {
+        $result.Documentation = $true
+    }
+    
+    $validationResults += $result
+}
+
+# Generate validation report
+$totalFiles = $validationResults.Count
+$validFiles = ($validationResults | Where-Object { $_.HTMLStructure -and $_.JavaScript }).Count
+Write-Host "Validation Summary: $validFiles/$totalFiles files passed basic checks"
 ```
 
 #### Code Quality Checks:
