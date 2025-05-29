@@ -1,0 +1,7 @@
+2025-05-28 19:06:58,365 - INFO - Starting validation for: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\sample_physics_research.txt
+2025-05-28 19:06:58,365 - INFO - Executing Stage 0: 00-INTAKE
+2025-05-28 19:06:58,365 - INFO - Stage 0: PASSED - Item ready for initial screening
+2025-05-28 19:06:58,365 - INFO - Moving C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\sample_physics_research.txt to stage 1
+2025-05-28 19:06:58,365 - INFO - Executing Stage 1: 01-INITIAL_SCREENING
+2025-05-28 19:06:58,365 - WARNING - Stage 1: FAILED - Failed: methodical_skepticism, occams_razor
+2025-05-28 19:06:58,365 - INFO - Rejected: C:\Users\AP7155\OneDrive - AVI-SPL\Desktop\00-ALL-STARS\00-ALL-STARS\VALIDATION_PIPELINE\00-INTAKE\sample_physics_research.txt - Failed: methodical_skepticism, occams_razor
