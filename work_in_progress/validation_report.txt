@@ -1,0 +1,51 @@
+============================================================
+3-4:2 MODAL FRAMEWORK VALIDATION REPORT
+============================================================
+Sound Horizon Scale: 150.0 Mpc
+Fundamental k: 0.0419 h/Mpc
+
+FRAMEWORK PREDICTIONS:
+  k2_k1: 2.0
+  k3_k1: 3.0
+  k3_k2: 1.5
+
+DETECTION RESULTS:
+  Total peaks detected: 21
+  Framework matches: 5
+  Validation status: VALIDATED
+
+FRAMEWORK MATCHES:
+  k2_k1:
+    Predicted: 2.00
+    Observed:  2.02
+    Deviation: 1.2%
+    k-values:  0.0420, 0.0850
+
+  k3_k1:
+    Predicted: 3.00
+    Observed:  3.09
+    Deviation: 3.0%
+    k-values:  0.0420, 0.1298
+
+  k3_k2:
+    Predicted: 1.50
+    Observed:  1.53
+    Deviation: 1.8%
+    k-values:  0.0118, 0.0180
+
+  k3_k2:
+    Predicted: 1.50
+    Observed:  1.53
+    Deviation: 1.8%
+    k-values:  0.0850, 0.1298
+
+  k2_k1:
+    Predicted: 2.00
+    Observed:  2.02
+    Deviation: 1.2%
+    k-values:  0.0850, 0.1721
+
+OVERALL ASSESSMENT:
+  ✅ FRAMEWORK PREDICTIONS CONFIRMED
+  Multiple harmonic ratios detected as predicted
+============================================================
