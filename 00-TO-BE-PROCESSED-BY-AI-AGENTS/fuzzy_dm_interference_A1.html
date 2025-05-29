@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fuzzy DM Interference (Agent 1)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body { margin: 0; background-color: #000; overflow: hidden; }
+        #container { width: 100vw; height: 100vh; display: block; }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        // FUZZY DARK MATTER INSPIRED INTERFERENCE LOGIC
+        let scene, camera, renderer, controls;
+        let particleSystem, particlePositions, particleVelocities;
+        
+        let PARTICLE_COUNT = 50000;
+        const PARTICLE_BOUNDS = 120;
+        
+        // Fuzzy DM parameters (heuristic)
+        let SOLITON_CORE_STRENGTH = 0.8;
+        let GRANULE_ATTRACTION_STRENGTH = 0.5;
+        let NUM_GRANULES = 15;
+        let GRANULE_LIFESPAN = 200; // frames
+        let GRANULE_MAX_DIST = 80;
+        let DAMPING = 0.03;
+        let PARTICLE_SIZE = 1.5;
+
+        let lastTime = performance.now();
+        let time = 0;
+
+        const solitonCores = [
+            new THREE.Vector3(0, 0, 0)
+            // Add more cores if desired, e.g., new THREE.Vector3(50, 0, 0)
+        ];
+        let granules = []; // { position: Vector3, strength: float, age: int }
+
+        function initGranules() {
+            granules = [];
+            for (let i = 0; i < NUM_GRANULES; i++) {
+                spawnGranule();
+            }
+        }
+
+        function spawnGranule() {
+            const r = Math.random() * GRANULE_MAX_DIST;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            granules.push({
+                position: new THREE.Vector3(
+                    r * Math.sin(phi) * Math.cos(theta),
+                    r * Math.sin(phi) * Math.sin(theta),
+                    r * Math.cos(phi)
+                ),
+                strength: 0.5 + Math.random() * 0.5, // Varying strength
+                age: 0
+            });
+        }
+        
+        function updateGranules() {
+            for (let i = granules.length - 1; i >= 0; i--) {
+                granules[i].age++;
+                // Dynamic behavior: granules slowly drift or change strength (optional)
+                // granules[i].position.x += (Math.random() - 0.5) * 0.1; 
+                if (granules[i].age > GRANULE_LIFESPAN * granules[i].strength) { // Stronger granules live a bit longer
+                    granules.splice(i, 1);
+                    spawnGranule();
+                }
+            }
+        }
+
+
+        function init() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.007);
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+            camera.position.set(0, 60, 160);
+            camera.lookAt(scene.position);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('container').appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.minDistance = 20;
+            controls.maxDistance = 600;
+            controls.maxPolarAngle = Math.PI;
+
+            initParticles();
+            initGranules();
+            
+            window.addEventListener('resize', onWindowResize, false);
+            console.log("Fuzzy DM Interference Simulation Initialized (Agent 1).");
+        }
+
+        function initParticles() {
+            if (particleSystem) scene.remove(particleSystem);
+
+            const geometry = new THREE.BufferGeometry();
+            particlePositions = new Float32Array(PARTICLE_COUNT * 3);
+            particleVelocities = new Float32Array(PARTICLE_COUNT * 3);
+            const colors = new Float32Array(PARTICLE_COUNT * 3);
+            const color = new THREE.Color();
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const r_init = PARTICLE_BOUNDS * 0.8 * Math.cbrt(Math.random()); // Start somewhat concentrated
+                const theta_init = Math.random() * Math.PI * 2;
+                const phi_init = Math.acos(2 * Math.random() - 1);
+                particlePositions[i * 3] = r_init * Math.sin(phi_init) * Math.cos(theta_init);
+                particlePositions[i * 3 + 1] = r_init * Math.sin(phi_init) * Math.sin(theta_init);
+                particlePositions[i * 3 + 2] = r_init * Math.cos(phi_init);
+                
+                particleVelocities[i * 3]     = (Math.random() - 0.5) * 0.1;
+                particleVelocities[i * 3 + 1] = (Math.random() - 0.5) * 0.1;
+                particleVelocities[i * 3 + 2] = (Math.random() - 0.5) * 0.1;
+
+                color.setHSL(0.5 + Math.random() * 0.2, 0.8, 0.55); // Cyan/blueish tones
+                colors[i * 3]     = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const pointsMaterial = new THREE.PointsMaterial({
+                size: PARTICLE_SIZE,
+                vertexColors: true,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false 
+            });
+
+            particleSystem = new THREE.Points(geometry, pointsMaterial);
+            scene.add(particleSystem);
+        }
+        
+        function updateParticles(deltaTime) {
+            if (!particleSystem || !particlePositions || !particleVelocities) return;
+            const positions = particleSystem.geometry.attributes.position.array;
+            const timeScale = deltaTime * 20; // Adjusted simulation speed
+
+            time += deltaTime;
+            updateGranules();
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const ix = i * 3, iy = i * 3 + 1, iz = i * 3 + 2;
+                let p = new THREE.Vector3(positions[ix], positions[iy], positions[iz]);
+                let v = new THREE.Vector3(particleVelocities[ix], particleVelocities[iy], particleVelocities[iz]);
+                let acc = new THREE.Vector3(0,0,0);
+
+                // Solitonic core attraction
+                solitonCores.forEach(corePos => {
+                    const vecToCore = new THREE.Vector3().subVectors(corePos, p);
+                    const distSqToCore = vecToCore.lengthSq();
+                    if (distSqToCore > 0.1) { // Avoid singularity
+                        const forceMag = SOLITON_CORE_STRENGTH / (distSqToCore * 0.1 + 1); // Softer 1/r^2 like
+                        acc.add(vecToCore.normalize().multiplyScalar(forceMag));
+                    }
+                });
+
+                // Granule attraction (interference peaks)
+                granules.forEach(granule => {
+                    const vecToGranule = new THREE.Vector3().subVectors(granule.position, p);
+                    const distSqToGranule = vecToGranule.lengthSq();
+                    if (distSqToGranule > 0.1 && distSqToGranule < (GRANULE_MAX_DIST * 0.5)^2) { // Effective range for granules
+                        const forceMag = GRANULE_ATTRACTION_STRENGTH * granule.strength / (distSqToGranule * 0.2 + 1);
+                        acc.add(vecToGranule.normalize().multiplyScalar(forceMag));
+                    }
+                });
+                
+                // Apply damping
+                acc.add(v.clone().multiplyScalar(-DAMPING));
+
+                // Update velocity
+                v.add(acc.clone().multiplyScalar(timeScale));
+
+                // Update position
+                p.add(v.clone().multiplyScalar(timeScale));
+
+                // Boundary conditions (simple reflection with some energy loss)
+                if (Math.abs(p.x) > PARTICLE_BOUNDS) { p.x = Math.sign(p.x) * PARTICLE_BOUNDS; v.x *= -0.3; }
+                if (Math.abs(p.y) > PARTICLE_BOUNDS) { p.y = Math.sign(p.y) * PARTICLE_BOUNDS; v.y *= -0.3; }
+                if (Math.abs(p.z) > PARTICLE_BOUNDS) { p.z = Math.sign(p.z) * PARTICLE_BOUNDS; v.z *= -0.3; }
+                
+                positions[ix] = p.x;
+                positions[iy] = p.y;
+                positions[iz] = p.z;
+                particleVelocities[ix] = v.x;
+                particleVelocities[iy] = v.y;
+                particleVelocities[iz] = v.z;
+            }
+            particleSystem.geometry.attributes.position.needsUpdate = true;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const currentTime = performance.now();
+            const deltaTime = Math.min(0.05, (currentTime - lastTime) / 1000);
+            lastTime = currentTime;
+            
+            updateParticles(deltaTime);
+            controls.update(); 
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        init();
+        animate();
+    </script>
+</body>
+</html> 

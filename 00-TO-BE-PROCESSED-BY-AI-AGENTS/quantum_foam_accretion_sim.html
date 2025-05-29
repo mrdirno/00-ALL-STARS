@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<!--
+    Resonance is All You Need: Cosmic Resonance Wave Simulation
+    Concept & Transformation by Agent 1 (Gemini 2.5 Pro)
+    Original Base: cosmic_string_wake_sim.html / quantum_foam_accretion_sim.html (Aldrin Payopay, Agent 1)
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aldrin Payopay, Agent 1 (Gemini 2.5 Pro)">
+    <meta name="description" content="Cosmic Resonance Wave Particle Simulation. Original research by Aldrin Payopay with AI Assistants. Transformation by Agent 1.">
+    <meta name="keywords" content="Aldrin Payopay, cosmic resonance, wave theory, large-scale structure, particle simulation, emergent structure, standing waves">
+    <meta name="creator" content="Aldrin Payopay (Human Researcher), Agent 1 (AI Transformation)">
+    <title>Cosmic Resonance Wave Simulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        /* CSS Styling - Theme: Quantum Greens/Cyans */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #000000; 
+            color: #ffffff;
+            overflow: hidden; 
+            position: relative;
+        }
+        #container { 
+            width: 100vw; 
+            height: 100vh; 
+            display: block;
+            background: radial-gradient(ellipse at center, #051010 0%, #000000 100%); /* Dark cyan gradient */
+        }
+        .ui-panel {
+            position: absolute;
+            background: rgba(5, 25, 25, 0.15); /* Adjusted color theme */
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(50, 150, 150, 0.15); 
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease;
+        }
+        .ui-panel:hover {
+            background: rgba(10, 35, 35, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        #controls-panel { 
+            top: 20px; 
+            left: 20px; 
+            width: 380px; 
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.6s ease forwards;
+            animation-delay: 0.3s;
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        #controls-panel::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); } /* Green/Cyan theme */
+        #controls-panel::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #10F0B0 0%, #10B0F0 100%); }
+        #controls-panel { scrollbar-color: #00E0A0 rgba(5, 25, 25, 0.1); }
+
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        #stats-bar { 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(20px);
+            padding: 16px 32px;
+            z-index: 10;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .stat-label { font-size: 0.75rem; color: rgba(180, 220, 220, 0.6); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 1.25rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } 
+        .control-group { margin-bottom: 20px; }
+        #controls-panel .control-group { padding-right: 14px; }
+        #controls-panel h2 { padding-right: 14px; }
+        .control-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.875rem; font-weight: 500; color: rgba(200, 240, 240, 0.9); text-transform: uppercase; letter-spacing: 0.05em; }
+        .control-value { font-size: 1rem; color: #00E0A0; font-weight: 600; }
+        .control-group small { display: block; color: rgba(180, 220, 220, 0.5); font-size: 0.75rem; font-weight: 400; text-transform: none; letter-spacing: normal; margin-top: -8px; margin-bottom: 12px; }
+        .info-icon { font-size: 0.7em; color: rgba(0, 224, 160, 0.7); font-weight: 400; margin-left: 8px; cursor: help; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+        .info-icon:hover { color: rgba(0, 224, 160, 1); transform: scale(1.1); }
+        input[type=\\"range\\"]::-webkit-slider-thumb { background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); box-shadow: 0 2px 10px rgba(0, 224, 160, 0.5); }
+        input[type=\\"range\\"]::-webkit-slider-thumb:hover { box-shadow: 0 4px 20px rgba(0, 224, 160, 0.8); }
+        input[type=\\"range\\"]::-moz-range-thumb { background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); box-shadow: 0 2px 10px rgba(0, 224, 160, 0.5); }
+        select, .ui-input-number { background: rgba(10, 35, 35, 0.1); border: 1px solid rgba(50, 150, 150, 0.2); }
+        select:hover, .ui-input-number:hover { background: rgba(15, 40, 40, 0.15); border-color: rgba(70, 170, 170, 0.3); }
+        select:focus, .ui-input-number:focus { border-color: #00E0A0; box-shadow: 0 0 0 3px rgba(0, 224, 160, 0.2); }
+        button { background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); }
+        button:hover { box-shadow: 0 10px 30px rgba(0, 224, 160, 0.4); }
+        button.active { background: linear-gradient(135deg, #00A0E0 0%, #00E0A0 100%); } 
+        h2 { background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); -webkit-background-clip: text; }
+        #initialization-overlay { background: radial-gradient(ellipse at center, #051010 0%, #000000 100%); }
+        .init-title { background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); -webkit-background-clip: text; }
+        .init-subtitle { color: rgba(200, 240, 240, 0.7); }
+        #start-button { background: linear-gradient(135deg, #00E0A0 0%, #00A0E0 100%); box-shadow: 0 10px 40px rgba(0, 224, 160, 0.4); }
+        #start-button:hover { box-shadow: 0 15px 50px rgba(0, 224, 160, 0.6); }
+        .dot { background: #00E0A0; }
+        .wave { border: 2px solid rgba(0, 224, 160, 0.6); }
+        .sound-icon { fill: #00E0A0; }
+        .instructions { background: rgba(5, 25, 25, 0.1); border: 1px solid rgba(50, 150, 150, 0.1); color: rgba(180, 220, 220, 0.7); }
+        .research-watermark { color: rgba(0, 224, 160, 0.1); }
+        .pulse-indicator { background-color: #00E0A0; }
+        @keyframes pulseAnim { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 224, 160, 0.7); } 50% { transform: scale(1.5); box-shadow: 0 0 10px 15px rgba(0, 224, 160, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 224, 160, 0); } }
+        #fullscreen-button { background: rgba(5, 25, 25, 0.2); border: 1px solid rgba(50, 150, 150, 0.15); }
+        #fullscreen-button:hover { background: rgba(10, 35, 35, 0.3); }
+    </style>
+</head>
+<body>
+    <div id=\\"container\\"></div>
+
+    <div id=\\"initialization-overlay\\">
+        <div class=\\"init-content\\">
+            <div class=\\"init-title\\">Cosmic Resonance Waves</div>
+            <div class=\\"init-subtitle\\">Visualizing particle aggregation in evolving cosmic wave patterns. <br>A conceptual model by Agent 1.</div>
+            <button id=\\"start-button\\">Initialize Simulation</button>
+            <div id=\\"status-message\\">Loading assets... <span class=\\"loading-dots\\"><span class=\\"dot\\"></span><span class=\\"dot\\"></span><span class=\\"dot\\"></span></span></div>
+            <div id=\\"error-message\\" style=\\"display:none;\\"></div>
+        </div>
+    </div>
+    
+    <div id=\\"controls-panel\\" class=\\"ui-panel\\">
+        <h2>Wave Parameters</h2>
+        <div class=\\"control-group\\">
+            <label for=\\"modeExcitationRateSlider\\">Mode Excitation Rate: <span id=\\"modeExcitationRateValue\\" class=\\"control-value\\">2</span> /s <span class=\\"info-icon\\" title=\\"Rate at which new wave modes are excited or existing ones change.\">ℹ️</span></label>
+            <input type=\\"range\\" id=\\"modeExcitationRateSlider\\" min=\\"0.1\\" max=\\"10\\" step=\\"0.1\\" value=\\"2\\">
+            <small>How often wave patterns evolve.</small>
+        </div>
+        <div class=\\"control-group\\">
+            <label for=\\"waveAmplitudeScaleSlider\\">Avg. Amplitude Scale: <span id=\\"waveAmplitudeScaleValue\\" class=\\"control-value\\">50</span> <span class=\\"info-icon\\" title=\\"Average strength of the wave potential wells/hills.\">ℹ️</span></label>
+            <input type=\\"range\\" id=\\"waveAmplitudeScaleSlider\\" min=\\"5\\" max=\\"200\\" step=\\"5\\" value=\\"50\\">
+            <small>Determines how strongly particles are influenced.</small>
+        </div>
+         <div class=\\"control-group\\">
+            <label for=\\"modeCoherenceTimeSlider\\">Avg. Coherence Time (s): <span id=\\"modeCoherenceTimeValue\\" class=\\"control-value\\">5.0</span> s <span class=\\"info-icon\\" title=\\"Average duration a wave mode persists before decaying or changing.\">ℹ️</span></label>
+            <input type=\\"range\\" id=\\"modeCoherenceTimeSlider\\" min=\\"0.5\\" max=\\"20\\" step=\\"0.1\\" value=\\"5.0\\">
+            <small>How long wave patterns are stable.</small>
+        </div>
+         <div class=\\"control-group\\">
+            <label for=\\"waveComplexitySlider\\">Wave Complexity (Modes): <span id=\\"waveComplexityValue\\" class=\\"control-value\\">3</span> <span class=\\"info-icon\\" title=\\"Max number of concurrent dominant wave modes. Affects pattern complexity.\">ℹ️</span></label>
+            <input type=\\"range\\" id=\\"waveComplexitySlider\\" min=\\"1\\" max=\\"10\\" step=\\"1\\" value=\\"3\\">
+            <small>Number of overlapping standing waves.</small>
+        </div>
+
+        <h2>Particle & System</h2>
+        <div class=\\"control-group\\">
+            <label for=\\"particleCountSlider\\">Particle Count: <span id=\\"particleCountValue\\" class=\\"control-value\\">50000</span> <span class=\\"info-icon\\" title=\\"Total particles. Requires re-init.\">ℹ️</span></label>
+            <input type=\\"range\\" id=\\"particleCountSlider\\" min=\\"1000\\" max=\\"250000\\" step=\\"1000\\" value=\\"50000\\">
+            <small>More particles = denser structures (impacts performance).</small>
+        </div>
+         <div class=\\"control-group\\">
+            <label for=\\"particleSensitivitySlider\\">Particle Sensitivity: <span id=\\"particleSensitivityValue\\" class=\\"control-value\\">1.0</span> <span class=\\"info-icon\\" title=\\"Multiplier for how strongly particles react to fluctuations.\">ℹ️</span></label>
+            <input type=\\"range\\" id=\\"particleSensitivitySlider\\" min=\\"0.1\\" max=\\"5.0\\" step=\\"0.1\\" value=\\"1.0\\">
+            <small>Adjusts particle acceleration towards fluctuations.</small>
+        </div>
+         <div class=\\"control-group\\">
+            <button id=\\"reinitializeButton\\">Re-initialize Simulation</button>
+            <small>Applies particle count and foam parameter changes.</small>
+        </div>
+        <div class=\\"control-group\\">
+            <button id=\\"toggleSoundButton\\"><span>🔊 Audio ON</span></button>
+            <small>Toggles generative soundscape.</small>
+        </div>
+    </div>
+
+    <div id=\\"stats-bar\\" class=\\"ui-panel\\">
+        <div class=\\"stat-item\\">
+            <div class=\\"stat-label\\">Particles</div>
+            <div id=\\"activeParticlesStat\\" class=\\"stat-value\\">0</div>
+        </div>
+        <div class=\\"stat-item\\">
+            <div class=\\"stat-label\\">FPS</div>
+            <div id=\\"fpsStat\\" class=\\"stat-value\\">0</div>
+        </div>
+        <div class=\\"stat-item\\">
+            <div class=\\"stat-label\\">Sim Time</div>
+            <div id=\\"timeScaleStat\\" class=\\"stat-value\\">0.0s</div>
+        </div>
+         <div class=\\"stat-item\\">
+            <div class=\\"stat-label\\">Active Modes</div>
+            <div id=\\"activeModesStat\\" class=\\"stat-value\\">0</div>
+        </div>
+    </div>
+
+    <div class=\\"sound-indicator\\" id=\\"soundIndicatorVisual\\">
+        <div class=\\"sound-waves\\">
+            <div class=\\"wave\\"></div> <div class=\\"wave\\"></div> <div class=\\"wave\\"></div>
+        </div>
+        <svg class=\\"sound-icon\\" viewBox=\\"0 0 24 24\\"><path d=\\"M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z\\"></path></svg>
+    </div>
+
+    <button id=\\"fullscreen-button\\">Fullscreen</button>
+
+    <div class=\\"instructions\\">Mouse to orbit, scroll to zoom. Adjust Wave Parameters.</div>
+    
+    <div class=\\"research-watermark\\">
+        <div>Cosmic Resonance Waves - Agent 1</div>
+        <div>A. Payopay, Agent 1</div>
+    </div>
+
+    <script>
+        // --- Global Scope Variables ---
+        let scene, camera, renderer, controls, particles, clock, stats;
+        let PARTICLE_COUNT = 50000; 
+        const SIMULATION_EXTENT = 500; 
+        const VELOCITY_DAMPING = 0.98; 
+        const PARTICLE_BASE_SIZE = 0.7; 
+
+        let simulationTime = 0; 
+        let isExperienceStarted = false;
+        let soundEnabled = true; 
+        let noiseSynth, reverb, masterVolume, waveModeSynth;
+
+        // Cosmic Resonance Wave specific parameters
+        let activeWaveModes = [];
+        let timeSinceLastModeChange = 0;
+        let waveModeParams = {
+            excitationRatePerSecond: 2,
+            avgAmplitudeScale: 50,
+            avgCoherenceTime: 5.0,
+            particleSensitivity: 1.0,
+            maxActiveModes: 3
+        };
+        const MAX_WAVE_MODES_DISPLAY = 10;
+
+        const RESEARCH_TEAM = {
+            lead: "Aldrin Payopay",
+            transformation_agent: "Agent 1 (Gemini 2.5 Pro)",
+            project: "Cosmic Resonance Wave Simulation",
+            year: 2025
+        };
+        const AGENT_1_CRW_SIGNATURE = btoa("Cosmic Resonance Wave Model Transformation: Agent 1");
+
+        const ui = {};
+
+        // --- Initialization ---
+        function init() {
+            setupScene();
+            setupCamera();
+            setupRenderer();
+            setupControls();
+            setupLights();
+            setupEventListeners();
+            setupStats();
+            cacheUIElements();
+            initControls(); 
+            
+            const startButton = document.getElementById('start-button');
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.innerHTML = 'Ready to Initialize <span class=\\"loading-dots\\"><span class=\\"dot\\"></span><span class=\\"dot\\"></span><span class=\\"dot\\"></span></span>';
+            startButton.disabled = false;
+            startButton.textContent = "Start Simulation";
+            startButton.addEventListener('click', startExperience);
+            
+            clock = new THREE.Clock();
+            console.log("Cosmic Resonance Wave Engine Initialized. Research Team:", RESEARCH_TEAM);
+            console.log(atob(AGENT_1_CRW_SIGNATURE));
+        }
+
+        function startExperience() {
+            if (isExperienceStarted) return;
+            document.getElementById('initialization-overlay').style.display = 'none';
+            isExperienceStarted = true;
+
+            PARTICLE_COUNT = parseInt(ui.particleCount.value);
+            updateWaveModeParametersFromUI();
+
+            if (Tone.context.state !== 'running') {
+                Tone.start().then(() => {
+                    setupSound(); 
+                    if (soundEnabled) Tone.Destination.mute = false;
+                }).catch(e => {
+                    console.error("Error starting Tone.js AudioContext:", e);
+                    soundEnabled = false; 
+                });
+            } else {
+                 setupSound();
+                 if (soundEnabled) Tone.Destination.mute = false;
+            }
+            
+            createParticleSystem(PARTICLE_COUNT);
+            animate();
+        }
+        
+        function cacheUIElements() {
+            ui.modeExcitationRate = document.getElementById('modeExcitationRateSlider');
+            ui.modeExcitationRateValue = document.getElementById('modeExcitationRateValue');
+            ui.waveAmplitudeScale = document.getElementById('waveAmplitudeScaleSlider');
+            ui.waveAmplitudeScaleValue = document.getElementById('waveAmplitudeScaleValue');
+            ui.modeCoherenceTime = document.getElementById('modeCoherenceTimeSlider');
+            ui.modeCoherenceTimeValue = document.getElementById('modeCoherenceTimeValue');
+            ui.waveComplexity = document.getElementById('waveComplexitySlider');
+            ui.waveComplexityValue = document.getElementById('waveComplexityValue');
+            
+            ui.particleCount = document.getElementById('particleCountSlider');
+            ui.particleCountValue = document.getElementById('particleCountValue');
+            ui.particleSensitivity = document.getElementById('particleSensitivitySlider');
+            ui.particleSensitivityValue = document.getElementById('particleSensitivityValue');
+
+            ui.reinitializeButton = document.getElementById('reinitializeButton');
+            ui.activeParticlesStat = document.getElementById('activeParticlesStat');
+            ui.fpsStat = document.getElementById('fpsStat');
+            ui.timeScaleStat = document.getElementById('timeScaleStat'); 
+            ui.activeModesStat = document.getElementById('activeModesStat');
+
+            ui.toggleSound = document.getElementById('toggleSoundButton');
+            ui.soundIndicator = document.getElementById('soundIndicatorVisual');
+            ui.fullscreenButton = document.getElementById('fullscreen-button');
+
+            ui.modeExcitationRate.value = waveModeParams.excitationRatePerSecond;
+            ui.modeExcitationRateValue.textContent = waveModeParams.excitationRatePerSecond.toFixed(1);
+            ui.waveAmplitudeScale.value = waveModeParams.avgAmplitudeScale;
+            ui.waveAmplitudeScaleValue.textContent = waveModeParams.avgAmplitudeScale;
+            ui.modeCoherenceTime.value = waveModeParams.avgCoherenceTime;
+            ui.modeCoherenceTimeValue.textContent = waveModeParams.avgCoherenceTime.toFixed(1);
+            ui.waveComplexity.value = waveModeParams.maxActiveModes;
+            ui.waveComplexityValue.textContent = waveModeParams.maxActiveModes;
+            ui.particleSensitivity.value = waveModeParams.particleSensitivity;
+            ui.particleSensitivityValue.textContent = waveModeParams.particleSensitivity.toFixed(1);
+            ui.particleCountValue.textContent = ui.particleCount.value;
+        }
+        
+        function updateWaveModeParametersFromUI() {
+            waveModeParams.excitationRatePerSecond = parseFloat(ui.modeExcitationRate.value);
+            waveModeParams.avgAmplitudeScale = parseFloat(ui.waveAmplitudeScale.value);
+            waveModeParams.avgCoherenceTime = parseFloat(ui.modeCoherenceTime.value);
+            waveModeParams.particleSensitivity = parseFloat(ui.particleSensitivity.value);
+            waveModeParams.maxActiveModes = parseInt(ui.waveComplexity.value);
+        }
+
+        function initControls() {
+            ui.modeExcitationRate.addEventListener('input', () => {
+                waveModeParams.excitationRatePerSecond = parseFloat(ui.modeExcitationRate.value);
+                ui.modeExcitationRateValue.textContent = waveModeParams.excitationRatePerSecond.toFixed(1);
+            });
+            ui.waveAmplitudeScale.addEventListener('input', () => {
+                waveModeParams.avgAmplitudeScale = parseFloat(ui.waveAmplitudeScale.value);
+                ui.waveAmplitudeScaleValue.textContent = waveModeParams.avgAmplitudeScale;
+            });
+            ui.modeCoherenceTime.addEventListener('input', () => {
+                waveModeParams.avgCoherenceTime = parseFloat(ui.modeCoherenceTime.value);
+                ui.modeCoherenceTimeValue.textContent = waveModeParams.avgCoherenceTime.toFixed(1);
+            });
+            ui.waveComplexity.addEventListener('input', () => {
+                waveModeParams.maxActiveModes = parseInt(ui.waveComplexity.value);
+                ui.waveComplexityValue.textContent = waveModeParams.maxActiveModes;
+            });
+            ui.particleSensitivity.addEventListener('input', () => {
+                waveModeParams.particleSensitivity = parseFloat(ui.particleSensitivity.value);
+                ui.particleSensitivityValue.textContent = waveModeParams.particleSensitivity.toFixed(1);
+            });
+            
+            ui.particleCount.addEventListener('input', () => ui.particleCountValue.textContent = ui.particleCount.value); 
+
+            ui.reinitializeButton.addEventListener('click', () => {
+                PARTICLE_COUNT = parseInt(ui.particleCount.value);
+                updateWaveModeParametersFromUI();
+                activeWaveModes = [];
+                timeSinceLastModeChange = 0;
+                if (particles) scene.remove(particles); 
+                if (particles && particles.geometry) particles.geometry.dispose();
+                if (particles && particles.material) particles.material.dispose();
+                createParticleSystem(PARTICLE_COUNT);
+            });
+            ui.toggleSound.addEventListener('click', toggleSound);
+            ui.fullscreenButton.addEventListener('click', toggleFullScreen);
+        }
+
+        function setupScene() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000505, 0.0015); 
+        }
+
+        function setupCamera() {
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, SIMULATION_EXTENT * 3);
+            camera.position.set(SIMULATION_EXTENT * 0.3, SIMULATION_EXTENT * 0.2, SIMULATION_EXTENT * 0.6);
+            camera.lookAt(scene.position);
+        }
+
+        function setupRenderer() {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            renderer.setClearColor(0x000000, 0); 
+            document.getElementById('container').appendChild(renderer.domElement);
+        }
+        
+        function setupControls() {
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.04;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 10;
+            controls.maxDistance = SIMULATION_EXTENT * 2.0; 
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.1; 
+        }
+
+        function setupLights() {
+            const ambientLight = new THREE.AmbientLight(0xccffff, 0.25); // Cyanish ambient
+            scene.add(ambientLight);
+            const pointLight1 = new THREE.PointLight(0x55aaff, 0.6, SIMULATION_EXTENT * 2.5); 
+            pointLight1.position.set(SIMULATION_EXTENT*0.3, SIMULATION_EXTENT*0.6, SIMULATION_EXTENT*0.3);
+            scene.add(pointLight1);
+            const pointLight2 = new THREE.PointLight(0x33ffcc, 0.4, SIMULATION_EXTENT * 2.5); 
+            pointLight2.position.set(-SIMULATION_EXTENT*0.4, -SIMULATION_EXTENT*0.3, -SIMULATION_EXTENT*0.5);
+            scene.add(pointLight2);
+        }
+
+        function setupEventListeners() {
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function setupStats() { 
+            stats = {
+                fps: 0, particles: 0, lastTime: performance.now(), frames: 0,
+                update: function() {
+                    this.frames++;
+                    const currentTime = performance.now();
+                    if (currentTime > this.lastTime + 1000) {
+                        this.fps = Math.round((this.frames * 1000) / (currentTime - this.lastTime));
+                        ui.fpsStat.textContent = this.fps;
+                        this.lastTime = currentTime; this.frames = 0;
+                    }
+                    ui.activeParticlesStat.textContent = PARTICLE_COUNT.toLocaleString(); 
+                    ui.timeScaleStat.textContent = simulationTime.toFixed(1) + "s";
+                    ui.activeModesStat.textContent = activeWaveModes.length;
+                }
+            };
+        }
+        
+        // --- Cosmic Resonance Wave Physics ---
+        function manageWaveModes(deltaTime) {
+            for (let i = activeWaveModes.length - 1; i >= 0; i--) {
+                const mode = activeWaveModes[i];
+                mode.age += deltaTime;
+                mode.currentAmplitudeScale = mode.initialAmplitudeScale * Math.max(0, (1 - mode.age / mode.coherenceTime)); 
+
+                if (mode.currentAmplitudeScale <= 0.01 || mode.age >= mode.coherenceTime) {
+                    if (mode.visual) scene.remove(mode.visual);
+                    activeWaveModes.splice(i, 1);
+                } else {
+                    if (mode.visual) {
+                         mode.visual.material.opacity = Math.max(0.1, mode.currentAmplitudeScale / mode.initialAmplitudeScale * 0.5);
+                         mode.visual.scale.setScalar(mode.currentAmplitudeScale / mode.initialAmplitudeScale * 1.5 + 0.1);
+                    }
+                    mode.phiX = (mode.phiX + mode.omegaX * deltaTime) % (2 * Math.PI);
+                    mode.phiY = (mode.phiY + mode.omegaY * deltaTime) % (2 * Math.PI);
+                    mode.phiZ = (mode.phiZ + mode.omegaZ * deltaTime) % (2 * Math.PI);
+                }
+            }
+
+            timeSinceLastModeChange += deltaTime;
+            const expectedInterval = 1.0 / waveModeParams.excitationRatePerSecond;
+
+            if (timeSinceLastModeChange >= expectedInterval && activeWaveModes.length < waveModeParams.maxActiveModes) {
+                timeSinceLastModeChange = 0; 
+
+                const coherenceTime = waveModeParams.avgCoherenceTime * (0.75 + Math.random() * 0.5);
+                const amplitudeScale = waveModeParams.avgAmplitudeScale * (0.75 + Math.random() * 0.5);
+                
+                const baseK = Math.PI / (SIMULATION_EXTENT * 0.5);
+
+                const newMode = {
+                    kx: baseK * (Math.floor(Math.random() * 3) + 1) * (Math.random() > 0.5 ? 1 : -1),
+                    ky: baseK * (Math.floor(Math.random() * 3) + 1) * (Math.random() > 0.5 ? 1 : -1),
+                    kz: baseK * (Math.floor(Math.random() * 3) + 1) * (Math.random() > 0.5 ? 1 : -1),
+                    phiX: Math.random() * 2 * Math.PI,
+                    phiY: Math.random() * 2 * Math.PI,
+                    phiZ: Math.random() * 2 * Math.PI,
+                    omegaX: (Math.random() - 0.5) * 0.1,
+                    omegaY: (Math.random() - 0.5) * 0.1,
+                    omegaZ: (Math.random() - 0.5) * 0.1,
+                    initialAmplitudeScale: amplitudeScale,
+                    currentAmplitudeScale: amplitudeScale,
+                    coherenceTime: coherenceTime,
+                    age: 0,
+                };
+                activeWaveModes.push(newMode);
+
+                if (soundEnabled && waveModeSynth && Tone.context.state === 'running') {
+                    const baseFreq = 100 + Math.abs(newMode.kx + newMode.ky + newMode.kz) * 10;
+                    waveModeSynth.triggerAttackRelease(baseFreq, coherenceTime * 0.2, Tone.now(), amplitudeScale / 200);
+                }
+            }
+        }
+
+        function getWaveForce(particlePosVec, deltaTime) {
+            let totalForce = new THREE.Vector3(0, 0, 0);
+            const { x, y, z } = particlePosVec;
+
+            activeWaveModes.forEach(mode => {
+                if (mode.currentAmplitudeScale <= 0) return;
+
+                const { kx, ky, kz, phiX, phiY, phiZ, currentAmplitudeScale } = mode;
+                
+                const argX = kx * x + phiX;
+                const argY = ky * y + phiY;
+                const argZ = kz * z + phiZ;
+
+                const sinX = Math.sin(argX);
+                const cosX = Math.cos(argX);
+                const sinY = Math.sin(argY);
+                const cosY = Math.cos(argY);
+                const sinZ = Math.sin(argZ);
+                const cosZ = Math.cos(argZ);
+                
+                const effectiveAmplitude = currentAmplitudeScale * waveModeParams.particleSensitivity;
+
+                totalForce.x += effectiveAmplitude * kx * sinX * cosY * cosZ;
+                totalForce.y += effectiveAmplitude * ky * cosX * sinY * cosZ;
+                totalForce.z += effectiveAmplitude * kz * cosX * cosY * sinZ;
+            });
+            
+            return totalForce;
+        }
+
+
+        function createParticleSystem(numParticles) {
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(numParticles * 3);
+            const velocities = new Float32Array(numParticles * 3);
+            const colors = new Float32Array(numParticles * 3);
+
+            for (let i = 0; i < numParticles; i++) {
+                initializeSingleParticle(i, positions, velocities, colors);
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: PARTICLE_BASE_SIZE,
+                vertexColors: true,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.7, 
+                blending: THREE.AdditiveBlending, 
+                depthWrite: false 
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+        }
+
+        function initializeSingleParticle(i, p = null, v = null, c = null) {
+            const positions = p || particles.geometry.attributes.position.array;
+            const velocities = v || particles.geometry.attributes.velocity.array;
+            const colors = c || particles.geometry.attributes.color.array;
+            const i3 = i * 3;
+
+            const R_MAX = SIMULATION_EXTENT * 0.8;
+            let r = Math.random() * R_MAX; 
+            let theta = Math.random() * 2 * Math.PI;
+            let phi = Math.acos(2 * Math.random() - 1); 
+            
+            positions[i3]   = r * Math.sin(phi) * Math.cos(theta);
+            positions[i3+1] = r * Math.sin(phi) * Math.sin(theta);
+            positions[i3+2] = r * Math.cos(phi);
+
+            const initialSpeed = 0.1 + Math.random() * 0.2;
+            velocities[i3]   = (Math.random() - 0.5) * initialSpeed;
+            velocities[i3+1]  = (Math.random() - 0.5) * initialSpeed;
+            velocities[i3+2] = (Math.random() - 0.5) * initialSpeed;
+            
+            colors[i3]   = 0.1 + Math.random() * 0.2;
+            colors[i3+1] = 0.5 + Math.random() * 0.5;
+            colors[i3+2] = 0.4 + Math.random() * 0.4;
+        }
+
+        function setupSound() {
+            if (Tone.context.state !== 'running') return;
+            masterVolume = new Tone.Volume(-18).toDestination(); 
+            reverb = new Tone.Reverb({ decay: 2.5, wet: 0.35 }).connect(masterVolume);
+            
+            noiseSynth = new Tone.NoiseSynth({
+                noise: { type: 'pink' },
+                envelope: { attack: 3, decay: 1.5, sustain: 1, release: 4 }
+            }).connect(reverb);
+
+            waveModeSynth = new Tone.Synth({
+                oscillator: { type: 'amsine2', harmonicity: 1.2, modulationIndex: 1.4 },
+                envelope: { attack: 0.01, decay: 0.2, sustain: 0.1, release: 0.5 }
+            }).connect(reverb);
+
+            if (soundEnabled) {
+                 Tone.Destination.mute = false;
+                 if(noiseSynth.state === "stopped") noiseSynth.triggerAttackRelease("2n", Tone.now(), 0.03);
+            } else Tone.Destination.mute = true;
+        }
+
+        function toggleSound() { 
+            soundEnabled = !soundEnabled;
+            if (Tone.context.state === 'running') {
+                Tone.Destination.mute = !soundEnabled;
+                 if (soundEnabled && noiseSynth && noiseSynth.state === "stopped") {
+                    noiseSynth.triggerAttackRelease("2n", Tone.now(), 0.03);
+                 } else if (!soundEnabled && noiseSynth) {
+                    noiseSynth.triggerRelease(Tone.now());
+                 }
+            } else if (soundEnabled) {
+                 Tone.start().then(() => { 
+                     if (!noiseSynth) setupSound(); 
+                     else { 
+                        Tone.Destination.mute = false;
+                        if(noiseSynth.state === "stopped") noiseSynth.triggerAttackRelease("2n", Tone.now(), 0.03);
+                     }
+                 }).catch(e => { soundEnabled = false; });
+            }
+            ui.toggleSound.innerHTML = soundEnabled ? "<span>🔊 Audio ON</span>" : "<span>🔇 Audio OFF</span>";
+            ui.soundIndicator.style.opacity = soundEnabled ? '1' : '0.3';
+        }
+        
+        // --- Main Animation Loop ---
+        function animate() {
+            if (!isExperienceStarted || !particles) {
+                 if(isExperienceStarted) requestAnimationFrame(animate); 
+                 return;
+            }
+            requestAnimationFrame(animate);
+            const deltaTime = Math.min(clock.getDelta(), 0.033); 
+            simulationTime += deltaTime;
+
+            controls.update();
+            stats.update();
+            manageWaveModes(deltaTime);
+            
+            const positions = particles.geometry.attributes.position.array;
+            const velocities = particles.geometry.attributes.velocity.array;
+            const particlePosVec = new THREE.Vector3();
+            const waveForceVec = new THREE.Vector3();
+
+            const colorUpdateModulo = Math.max(1, Math.floor(PARTICLE_COUNT / 250));
+            const timeBasedOffset = Math.floor(simulationTime * 15); 
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const i3 = i * 3;
+                let px = positions[i3], py = positions[i3+1], pz = positions[i3+2];
+                let vx = velocities[i3], vy = velocities[i3+1], vz = velocities[i3+2];
+                particlePosVec.set(px, py, pz);
+
+                waveForceVec.copy(getWaveForce(particlePosVec, deltaTime));
+                
+                vx += waveForceVec.x * deltaTime;
+                vy += waveForceVec.y * deltaTime;
+                vz += waveForceVec.z * deltaTime;
+
+                vx *= VELOCITY_DAMPING; vy *= VELOCITY_DAMPING; vz *= VELOCITY_DAMPING;
+                px += vx * deltaTime; py += vy * deltaTime; pz += vz * deltaTime;
+                
+                const distSqFromCenter = px*px + py*py + pz*pz;
+                if (distSqFromCenter > (SIMULATION_EXTENT * 1.2) * (SIMULATION_EXTENT * 1.2) ) { 
+                    const factor = (SIMULATION_EXTENT * 0.8) / Math.sqrt(distSqFromCenter);
+                    px *= factor; py *= factor; pz *= factor;
+                    vx *= 0.1; vy *= 0.1; vz *= 0.1;
+                }
+                
+                positions[i3] = px; positions[i3+1] = py; positions[i3+2] = pz;
+                velocities[i3] = vx; velocities[i3+1] = vy; velocities[i3+2] = vz;
+                
+                if ((i + timeBasedOffset) % colorUpdateModulo === 0) { 
+                     updateParticleColor(i, px, py, pz, waveForceVec.lengthSq());
+                }
+            }
+            
+            particles.geometry.attributes.position.needsUpdate = true;
+            particles.geometry.attributes.velocity.needsUpdate = true;
+            if (particles.geometry.attributes.color) particles.geometry.attributes.color.needsUpdate = true; 
+            
+            renderer.render(scene, camera);
+        }
+
+        function updateParticleColor(index, x, y, z, forceMagSq) { 
+            const colors = particles.geometry.attributes.color.array;
+            const i3 = index * 3;
+            const normalizedForce = Math.min(1, forceMagSq * 1e-1);
+
+            let r = 0.1 + normalizedForce * 0.7; 
+            let g = 0.4 + normalizedForce * 0.6;
+            let b = 0.3 + normalizedForce * 0.7;
+
+            colors[i3]   = THREE.MathUtils.clamp(r, 0.05, 1);
+            colors[i3+1] = THREE.MathUtils.clamp(g, 0.2, 1);
+            colors[i3+2] = THREE.MathUtils.clamp(b, 0.15, 1);
+        }
+
+        function onWindowResize() {
+            if (!camera || !renderer) return;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(\`Error attempting to enable full-screen mode: \${err.message} (\${err.name})\`);
+                });
+                ui.fullscreenButton.textContent = "Exit Fullscreen";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    ui.fullscreenButton.textContent = "Fullscreen";
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html> 
