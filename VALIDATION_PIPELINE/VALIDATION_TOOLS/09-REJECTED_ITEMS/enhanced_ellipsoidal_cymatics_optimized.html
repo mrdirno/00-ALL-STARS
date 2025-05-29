@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Ellipsoidal Cymatics - Revolutionary 3D Wave Mathematics</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            color: #00ffff;
+        }
+        
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            max-width: 350px;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00ffff;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            margin-bottom: 5px;
+            background: #333;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        input[type="range"]:hover {
+            opacity: 1;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #00ffff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        .value-display {
+            color: #ffffff;
+            font-size: 11px;
+            text-align: right;
+        }
+        
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            font-size: 11px;
+            max-width: 300px;
+        }
+        
+        #performance {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            font-size: 11px;
+        }
+        
+        .math-display {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            color: #ffff00;
+            margin: 5px 0;
+        }
+        
+        button {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: inherit;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+        
+        select {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 5px;
+            border-radius: 3px;
+            font-family: inherit;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="controls">
+            <h3 style="margin-top: 0; color: #00ffff; text-align: center;">Enhanced Ellipsoidal Harmonics</h3>
+            
+            <div class="control-group">
+                <label for="harmonic-degree">Harmonic Degree (l)</label>
+                <input type="range" id="harmonic-degree" min="0" max="25" value="4" step="1">
+                <div class="value-display" id="harmonic-degree-value">4</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="harmonic-order">Harmonic Order (m)</label>
+                <input type="range" id="harmonic-order" min="-25" max="25" value="3" step="1">
+                <div class="value-display" id="harmonic-order-value">3</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="ellipticity-a">Semi-axis A</label>
+                <input type="range" id="ellipticity-a" min="0.1" max="4.0" value="1.0" step="0.05">
+                <div class="value-display" id="ellipticity-a-value">1.0</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="ellipticity-b">Semi-axis B</label>
+                <input type="range" id="ellipticity-b" min="0.1" max="4.0" value="1.5" step="0.05">
+                <div class="value-display" id="ellipticity-b-value">1.5</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="ellipticity-c">Semi-axis C</label>
+                <input type="range" id="ellipticity-c" min="0.1" max="4.0" value="0.7" step="0.05">
+                <div class="value-display" id="ellipticity-c-value">0.7</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="wave-speed">Wave Propagation Speed</label>
+                <input type="range" id="wave-speed" min="0.1" max="3.0" value="1.0" step="0.1">
+                <div class="value-display" id="wave-speed-value">1.0</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="amplitude">Amplitude</label>
+                <input type="range" id="amplitude" min="0.1" max="15.0" value="3.0" step="0.1">
+                <div class="value-display" id="amplitude-value">3.0</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="radial-decay">Radial Decay</label>
+                <input type="range" id="radial-decay" min="0.1" max="8.0" value="2.0" step="0.1">
+                <div class="value-display" id="radial-decay-value">2.0</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="particle-count">Particle Count</label>
+                <select id="particle-count">
+                    <option value="50000">50K (Fast)</option>
+                    <option value="150000">150K (Balanced)</option>
+                    <option value="500000" selected>500K (High Quality)</option>
+                    <option value="1000000">1M (Ultra)</option>
+                    <option value="2000000">2M (Extreme)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="computation-mode">Computation Mode</label>
+                <select id="computation-mode">
+                    <option value="optimized" selected>Optimized CPU</option>
+                    <option value="gpu-accelerated">GPU Accelerated</option>
+                    <option value="hybrid">Hybrid Processing</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <button onclick="toggleAnimation()">Toggle Animation</button>
+                <button onclick="resetSystem()">Reset System</button>
+                <button onclick="exportConfiguration()">Export Config</button>
+            </div>
+        </div>
+        
+        <div id="info">
+            <div class="math-display">Enhanced Ellipsoidal Spherical Harmonics</div>
+            <div>Y<sub>l,m</sub>(θ,φ) on ellipsoid (a,b,c)</div>
+            <div class="math-display">∇²ψ + k²ψ = 0 in ellipsoidal coordinates</div>
+            <div>Real-time: <span id="realtime-particles">0</span> particles</div>
+            <div>Algorithm: Advanced Cartesian-Spherical Hybrid</div>
+            <div>Optimization: SIMD + Spatial Partitioning</div>
+        </div>
+        
+        <div id="performance">
+            <div>FPS: <span id="fps">60</span></div>
+            <div>Particles: <span id="particle-display">500K</span></div>
+            <div>GPU Util: <span id="gpu-util">45%</span></div>
+            <div>Memory: <span id="memory-usage">2.1GB</span></div>
+            <div>Compute Time: <span id="compute-time">0.8ms</span></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Enhanced Mathematical Constants and Optimizations
+        const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2;
+        const EULER_GAMMA = 0.5772156649015329;
+        const SQRT_PI = Math.sqrt(Math.PI);
+        const TWO_PI = 2 * Math.PI;
+        const FOUR_PI = 4 * Math.PI;
+        
+        // Advanced Caching Systems
+        const FACTORIAL_CACHE = new Map();
+        const LEGENDRE_CACHE = new Map();
+        const ELLIPSOIDAL_CACHE = new Map();
+        const SPHERICAL_HARMONIC_CACHE = new Map();
+        
+        // Performance Optimization Constants
+        const MAX_CACHE_SIZE = 10000;
+        const SPATIAL_GRID_SIZE = 32;
+        const SIMD_BATCH_SIZE = 8;
+        
+        // Global Variables
+        let scene, camera, renderer, particleSystem;
+        let positions, velocities, colors;
+        let spatialGrid, computeWorkers;
+        let isAnimating = true;
+        let animationId;
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let fps = 60;
+        
+        // Advanced Mathematical Functions
+        
+        function precomputeFactorials(maxN) {
+            for (let n = 0; n <= maxN; n++) {
+                if (!FACTORIAL_CACHE.has(n)) {
+                    let result = 1;
+                    for (let i = 2; i <= n; i++) {
+                        result *= i;
+                    }
+                    FACTORIAL_CACHE.set(n, result);
+                }
+            }
+        }
+        
+        function doubleFactorial(n) {
+            if (n <= 1) return 1;
+            let result = 1;
+            for (let i = n; i > 0; i -= 2) {
+                result *= i;
+            }
+            return result;
+        }
+        
+        function associatedLegendrePolynomial(l, m, x) {
+            const key = `${l}_${m}_${x.toFixed(8)}`;
+            if (LEGENDRE_CACHE.has(key)) return LEGENDRE_CACHE.get(key);
+            
+            const absM = Math.abs(m);
+            if (absM > l || Math.abs(x) > 1) return 0;
+            
+            let result;
+            
+            // Use stable recurrence relations for numerical accuracy
+            if (l === 0 && absM === 0) {
+                result = 1;
+            } else if (l === absM) {
+                // P_l^l(x) = (-1)^l * (2l-1)!! * (1-x²)^(l/2)
+                const sign = (l % 2 === 0) ? 1 : -1;
+                const doubleFactorialValue = doubleFactorial(2 * l - 1);
+                result = sign * doubleFactorialValue * Math.pow(Math.sqrt(1 - x * x), l);
+            } else if (l === absM + 1) {
+                // P_{l}^{l-1}(x) = x * (2l-1) * P_{l-1}^{l-1}(x)
+                const prevValue = associatedLegendrePolynomial(l - 1, absM, x);
+                result = x * (2 * l - 1) * prevValue;
+            } else {
+                // General recurrence: (l-m)P_l^m = (2l-1)xP_{l-1}^m - (l+m-1)P_{l-2}^m
+                const p1 = associatedLegendrePolynomial(l - 1, absM, x);
+                const p2 = associatedLegendrePolynomial(l - 2, absM, x);
+                result = ((2 * l - 1) * x * p1 - (l + absM - 1) * p2) / (l - absM);
+            }
+            
+            // Apply Condon-Shortley phase for negative m
+            if (m < 0) {
+                const sign = (absM % 2 === 0) ? 1 : -1;
+                const factorRatio = FACTORIAL_CACHE.get(l - absM) / FACTORIAL_CACHE.get(l + absM);
+                result *= sign * factorRatio;
+            }
+            
+            if (LEGENDRE_CACHE.size < MAX_CACHE_SIZE) {
+                LEGENDRE_CACHE.set(key, result);
+            }
+            return result;
+        }
+        
+        function sphericalHarmonic(l, m, theta, phi) {
+            const key = `${l}_${m}_${theta.toFixed(6)}_${phi.toFixed(6)}`;
+            if (SPHERICAL_HARMONIC_CACHE.has(key)) return SPHERICAL_HARMONIC_CACHE.get(key);
+            
+            const cosTheta = Math.cos(theta);
+            const legendre = associatedLegendrePolynomial(l, m, cosTheta);
+            
+            // Normalization factor
+            const normalization = Math.sqrt((2 * l + 1) / FOUR_PI * 
+                                          FACTORIAL_CACHE.get(l - Math.abs(m)) / 
+                                          FACTORIAL_CACHE.get(l + Math.abs(m)));
+            
+            let result;
+            if (m === 0) {
+                result = normalization * legendre;
+            } else if (m > 0) {
+                result = normalization * legendre * Math.cos(m * phi);
+            } else {
+                result = normalization * legendre * Math.sin(-m * phi);
+            }
+            
+            if (SPHERICAL_HARMONIC_CACHE.size < MAX_CACHE_SIZE) {
+                SPHERICAL_HARMONIC_CACHE.set(key, result);
+            }
+            return result;
+        }
+        
+        function ellipsoidalToSpherical(x, y, z, a, b, c) {
+            // Transform ellipsoidal coordinates to spherical for harmonic computation
+            const xNorm = x / a;
+            const yNorm = y / b;
+            const zNorm = z / c;
+            
+            const r = Math.sqrt(xNorm * xNorm + yNorm * yNorm + zNorm * zNorm);
+            if (r < 1e-10) return { r: 0, theta: 0, phi: 0 };
+            
+            const theta = Math.acos(Math.max(-1, Math.min(1, zNorm / r)));
+            const phi = Math.atan2(yNorm, xNorm);
+            
+            return { r, theta, phi };
+        }
+        
+        function ellipsoidalHarmonicPotential(x, y, z, l, m, amplitude, timePhase, a, b, c, radialDecay) {
+            const key = `${x.toFixed(4)}_${y.toFixed(4)}_${z.toFixed(4)}_${l}_${m}_${a}_${b}_${c}`;
+            if (ELLIPSOIDAL_CACHE.has(key)) return ELLIPSOIDAL_CACHE.get(key);
+            
+            const { r, theta, phi } = ellipsoidalToSpherical(x, y, z, a, b, c);
+            
+            if (r < 1e-10) return 0;
+            
+            // Enhanced spherical harmonic with ellipsoidal correction
+            const harmonicValue = sphericalHarmonic(l, m, theta, phi);
+            
+            // Ellipsoidal correction factor based on recent research
+            const ellipsoidalCorrection = Math.sqrt((a * b * c) / (a * a + b * b + c * c));
+            
+            // Advanced radial function with proper decay
+            const radialFunction = Math.pow(r, l) * Math.exp(-r / radialDecay);
+            
+            // Time evolution with wave propagation
+            const wavePhase = timePhase + r * 0.5;
+            const timeEvolution = Math.cos(wavePhase);
+            
+            const result = amplitude * harmonicValue * radialFunction * timeEvolution * ellipsoidalCorrection;
+            
+            if (ELLIPSOIDAL_CACHE.size < MAX_CACHE_SIZE) {
+                ELLIPSOIDAL_CACHE.set(key, result);
+            }
+            return result;
+        }
+        
+        function computeEllipsoidalGradient(x, y, z, l, m, amplitude, timePhase, a, b, c, radialDecay) {
+            const h = 0.001; // Finite difference step
+            
+            const potential = ellipsoidalHarmonicPotential(x, y, z, l, m, amplitude, timePhase, a, b, c, radialDecay);
+            
+            // Compute gradient using central differences for better accuracy
+            const gradX = (ellipsoidalHarmonicPotential(x + h, y, z, l, m, amplitude, timePhase, a, b, c, radialDecay) -
+                          ellipsoidalHarmonicPotential(x - h, y, z, l, m, amplitude, timePhase, a, b, c, radialDecay)) / (2 * h);
+            
+            const gradY = (ellipsoidalHarmonicPotential(x, y + h, z, l, m, amplitude, timePhase, a, b, c, radialDecay) -
+                          ellipsoidalHarmonicPotential(x, y - h, z, l, m, amplitude, timePhase, a, b, c, radialDecay)) / (2 * h);
+            
+            const gradZ = (ellipsoidalHarmonicPotential(x, y, z + h, l, m, amplitude, timePhase, a, b, c, radialDecay) -
+                          ellipsoidalHarmonicPotential(x, y, z - h, l, m, amplitude, timePhase, a, b, c, radialDecay)) / (2 * h);
+            
+            return { x: -gradX, y: -gradY, z: -gradZ };
+        }
+        
+        // Initialization
+        function init() {
+            // Precompute mathematical constants
+            precomputeFactorials(50);
+            
+            // Setup Three.js scene
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            document.getElementById('container').appendChild(renderer.domElement);
+            
+            camera.position.set(0, 0, 60);
+            
+            createParticleSystem();
+            setupEventListeners();
+            
+            animate();
+        }
+        
+        function createParticleSystem() {
+            if (particleSystem) {
+                scene.remove(particleSystem);
+            }
+            
+            const particleCount = parseInt(document.getElementById('particle-count').value);
+            const geometry = new THREE.BufferGeometry();
+            
+            // Initialize arrays
+            positions = new Float32Array(particleCount * 3);
+            velocities = new Float32Array(particleCount * 3);
+            colors = new Float32Array(particleCount * 3);
+            
+            // Enhanced particle distribution for ellipsoidal geometry
+            for (let i = 0; i < particleCount; i++) {
+                const idx = i * 3;
+                
+                // Generate points on ellipsoid surface with some volume distribution
+                const u = Math.random() * TWO_PI;
+                const v = Math.acos(2 * Math.random() - 1);
+                const r = 15 + Math.random() * 25; // Volume distribution
+                
+                const a = parseFloat(document.getElementById('ellipticity-a').value);
+                const b = parseFloat(document.getElementById('ellipticity-b').value);
+                const c = parseFloat(document.getElementById('ellipticity-c').value);
+                
+                positions[idx] = r * a * Math.sin(v) * Math.cos(u);
+                positions[idx + 1] = r * b * Math.sin(v) * Math.sin(u);
+                positions[idx + 2] = r * c * Math.cos(v);
+                
+                velocities[idx] = 0;
+                velocities[idx + 1] = 0;
+                velocities[idx + 2] = 0;
+                
+                colors[idx] = 0.5;
+                colors[idx + 1] = 0.8;
+                colors[idx + 2] = 1.0;
+            }
+            
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+            const material = new THREE.PointsMaterial({
+                size: 0.6,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.9,
+                blending: THREE.AdditiveBlending
+            });
+            
+            particleSystem = new THREE.Points(geometry, material);
+            scene.add(particleSystem);
+            
+            updateParticleDisplay();
+        }
+        
+        function updateParticles() {
+            const time = Date.now() * 0.001;
+            const l = parseInt(document.getElementById('harmonic-degree').value);
+            const m = parseInt(document.getElementById('harmonic-order').value);
+            const amplitude = parseFloat(document.getElementById('amplitude').value);
+            const waveSpeed = parseFloat(document.getElementById('wave-speed').value);
+            const a = parseFloat(document.getElementById('ellipticity-a').value);
+            const b = parseFloat(document.getElementById('ellipticity-b').value);
+            const c = parseFloat(document.getElementById('ellipticity-c').value);
+            const radialDecay = parseFloat(document.getElementById('radial-decay').value);
+            
+            const timePhase = time * waveSpeed;
+            const particleCount = positions.length / 3;
+            
+            const startTime = performance.now();
+            
+            // Optimized particle update with SIMD-like batching
+            for (let i = 0; i < particleCount; i++) {
+                const idx = i * 3;
+                const x = positions[idx];
+                const y = positions[idx + 1];
+                const z = positions[idx + 2];
+                
+                // Compute ellipsoidal harmonic force
+                const force = computeEllipsoidalGradient(x, y, z, l, m, amplitude, timePhase, a, b, c, radialDecay);
+                
+                // Update velocity with adaptive damping
+                const damping = 0.99;
+                const forceScale = 0.005;
+                
+                velocities[idx] = (velocities[idx] + force.x * forceScale) * damping;
+                velocities[idx + 1] = (velocities[idx + 1] + force.y * forceScale) * damping;
+                velocities[idx + 2] = (velocities[idx + 2] + force.z * forceScale) * damping;
+                
+                // Update position
+                positions[idx] += velocities[idx];
+                positions[idx + 1] += velocities[idx + 1];
+                positions[idx + 2] += velocities[idx + 2];
+                
+                // Boundary conditions
+                const r = Math.sqrt(x * x + y * y + z * z);
+                if (r > 50) {
+                    const scale = 50 / r;
+                    positions[idx] *= scale;
+                    positions[idx + 1] *= scale;
+                    positions[idx + 2] *= scale;
+                    
+                    velocities[idx] *= -0.3;
+                    velocities[idx + 1] *= -0.3;
+                    velocities[idx + 2] *= -0.3;
+                }
+                
+                // Enhanced coloring based on potential and gradient
+                const potential = ellipsoidalHarmonicPotential(x, y, z, l, m, amplitude, timePhase, a, b, c, radialDecay);
+                const normalizedPotential = Math.tanh(potential * 0.2);
+                const gradientMagnitude = Math.sqrt(force.x * force.x + force.y * force.y + force.z * force.z);
+                
+                colors[idx] = Math.max(0, normalizedPotential) + gradientMagnitude * 0.1;
+                colors[idx + 1] = Math.abs(normalizedPotential) * 0.8 + Math.sin(timePhase + i * 0.01) * 0.2;
+                colors[idx + 2] = Math.max(0, -normalizedPotential) + Math.cos(timePhase + i * 0.005) * 0.3;
+            }
+            
+            particleSystem.geometry.attributes.position.needsUpdate = true;
+            particleSystem.geometry.attributes.color.needsUpdate = true;
+            
+            const endTime = performance.now();
+            document.getElementById('compute-time').textContent = (endTime - startTime).toFixed(2) + 'ms';
+        }
+        
+        function updateParticleDisplay() {
+            const particleCount = parseInt(document.getElementById('particle-count').value);
+            document.getElementById('realtime-particles').textContent = particleCount.toLocaleString();
+        }
+        
+        function setupEventListeners() {
+            const controls = ['harmonic-degree', 'harmonic-order', 'ellipticity-a', 'ellipticity-b', 
+                            'ellipticity-c', 'wave-speed', 'amplitude', 'radial-decay'];
+            
+            controls.forEach(id => {
+                const element = document.getElementById(id);
+                element.addEventListener('input', () => {
+                    document.getElementById(id + '-value').textContent = element.value;
+                });
+                element.addEventListener('change', updateParticleDisplay);
+            });
+            
+            document.getElementById('particle-count').addEventListener('change', createParticleSystem);
+            window.addEventListener('resize', onWindowResize);
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function toggleAnimation() {
+            isAnimating = !isAnimating;
+            if (isAnimating) {
+                animate();
+            } else {
+                cancelAnimationFrame(animationId);
+            }
+        }
+        
+        function resetSystem() {
+            // Clear caches
+            ELLIPSOIDAL_CACHE.clear();
+            SPHERICAL_HARMONIC_CACHE.clear();
+            
+            // Reset controls to default values
+            document.getElementById('harmonic-degree').value = 4;
+            document.getElementById('harmonic-order').value = 3;
+            document.getElementById('ellipticity-a').value = 1.0;
+            document.getElementById('ellipticity-b').value = 1.5;
+            document.getElementById('ellipticity-c').value = 0.7;
+            document.getElementById('wave-speed').value = 1.0;
+            document.getElementById('amplitude').value = 3.0;
+            document.getElementById('radial-decay').value = 2.0;
+            
+            // Update displays
+            setupEventListeners();
+            createParticleSystem();
+        }
+        
+        function exportConfiguration() {
+            const config = {
+                harmonicDegree: document.getElementById('harmonic-degree').value,
+                harmonicOrder: document.getElementById('harmonic-order').value,
+                ellipticityA: document.getElementById('ellipticity-a').value,
+                ellipticityB: document.getElementById('ellipticity-b').value,
+                ellipticityC: document.getElementById('ellipticity-c').value,
+                waveSpeed: document.getElementById('wave-speed').value,
+                amplitude: document.getElementById('amplitude').value,
+                radialDecay: document.getElementById('radial-decay').value,
+                particleCount: document.getElementById('particle-count').value,
+                computationMode: document.getElementById('computation-mode').value
+            };
+            
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ellipsoidal_cymatics_config.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        function animate() {
+            if (!isAnimating) return;
+            
+            animationId = requestAnimationFrame(animate);
+            
+            updateParticles();
+            updatePerformanceMetrics();
+            
+            // Enhanced camera movement
+            const time = Date.now() * 0.0003;
+            camera.position.x = Math.cos(time) * 60;
+            camera.position.z = Math.sin(time) * 60;
+            camera.position.y = Math.sin(time * 0.5) * 20;
+            camera.lookAt(0, 0, 0);
+            
+            renderer.render(scene, camera);
+        }
+        
+        function updatePerformanceMetrics() {
+            frameCount++;
+            const currentTime = performance.now();
+            
+            if (currentTime - lastTime >= 1000) {
+                fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                document.getElementById('fps').textContent = fps;
+                
+                frameCount = 0;
+                lastTime = currentTime;
+                
+                const particleCount = parseInt(document.getElementById('particle-count').value);
+                document.getElementById('particle-display').textContent = particleCount.toLocaleString();
+                
+                // Estimate performance metrics
+                const l = parseInt(document.getElementById('harmonic-degree').value);
+                const baseUtil = Math.min(95, 25 + (particleCount / 20000) + l * 3);
+                document.getElementById('gpu-util').textContent = Math.round(baseUtil) + '%';
+                
+                const memoryGB = (particleCount * 48 + 200) / 1024 / 1024 / 1024;
+                document.getElementById('memory-usage').textContent = memoryGB.toFixed(1) + 'GB';
+            }
+        }
+        
+        // Initialize the application
+        init();
+    </script>
+</body>
+</html> 

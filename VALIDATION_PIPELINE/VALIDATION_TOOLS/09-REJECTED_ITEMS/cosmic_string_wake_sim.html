@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!--
+    Resonance is All You Need: Cosmic String Wake Simulation
+    Concept & Transformation by Agent 1 (Gemini 2.5 Pro)
+    Original Base: pgw_particle_simulation.html (Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, Agent 1)
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Aldrin Payopay, Claude Opus 4, Gemini 2.5 Pro, Agent 1">
+    <meta name="description" content="Cosmic String Wake Particle Simulation. Transformation by Agent 1.">
+    <meta name="keywords" content="Aldrin Payopay, cosmic string, wake, large scale structure, cosmology, particle simulation, resonance">
+    <meta name="creator" content="Aldrin Payopay (Human Researcher), Agent 1 (AI Transformation)">
+    <title>Cosmic String Wake Simulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        /* CSS Styling - Unchanged */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #000000; 
+            color: #ffffff;
+            overflow: hidden; 
+            position: relative;
+        }
+        #container { 
+            width: 100vw; 
+            height: 100vh; 
+            display: block;
+            background: radial-gradient(ellipse at center, #201018 0%, #000000 100%); /* New gradient */
+        }
+        .ui-panel {
+            position: absolute;
+            background: rgba(45, 25, 25, 0.15); /* Adjusted color theme */
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(200, 100, 100, 0.15); 
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease;
+        }
+        .ui-panel:hover {
+            background: rgba(55, 35, 35, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+        #controls-panel { 
+            top: 20px; 
+            left: 20px; 
+            width: 380px; 
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.6s ease forwards;
+            animation-delay: 0.3s;
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        #controls-panel::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); } /* Red/Orange theme */
+        #controls-panel::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #E85050 0%, #E05D1D 100%); }
+        #controls-panel { scrollbar-color: #E22B2B rgba(45, 25, 25, 0.1); }
+
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        #stats-bar { 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(20px);
+            padding: 16px 32px;
+            z-index: 10;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .stat-label { font-size: 0.75rem; color: rgba(255, 200, 200, 0.6); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 1.25rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } 
+        .control-group { margin-bottom: 20px; }
+        #controls-panel .control-group { padding-right: 14px; }
+        #controls-panel h2 { padding-right: 14px; }
+        .control-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.875rem; font-weight: 500; color: rgba(255, 220, 220, 0.9); text-transform: uppercase; letter-spacing: 0.05em; }
+        .control-value { font-size: 1rem; color: #E22B2B; font-weight: 600; }
+        .control-group small { display: block; color: rgba(255, 200, 200, 0.5); font-size: 0.75rem; font-weight: 400; text-transform: none; letter-spacing: normal; margin-top: -8px; margin-bottom: 12px; }
+        .info-icon { font-size: 0.7em; color: rgba(226, 43, 43, 0.7); font-weight: 400; margin-left: 8px; cursor: help; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+        .info-icon:hover { color: rgba(226, 43, 43, 1); transform: scale(1.1); }
+        input[type=\"range\"]::-webkit-slider-thumb { background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); box-shadow: 0 2px 10px rgba(226, 43, 43, 0.5); }
+        input[type=\"range\"]::-webkit-slider-thumb:hover { box-shadow: 0 4px 20px rgba(226, 43, 43, 0.8); }
+        input[type=\"range\"]::-moz-range-thumb { background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); box-shadow: 0 2px 10px rgba(226, 43, 43, 0.5); }
+        select, .ui-input-number { background: rgba(55, 35, 35, 0.1); border: 1px solid rgba(200, 100, 100, 0.2); }
+        select:hover, .ui-input-number:hover { background: rgba(65, 45, 45, 0.15); border-color: rgba(220, 120, 120, 0.3); }
+        select:focus, .ui-input-number:focus { border-color: #E22B2B; box-shadow: 0 0 0 3px rgba(226, 43, 43, 0.2); }
+        button { background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); }
+        button:hover { box-shadow: 0 10px 30px rgba(226, 43, 43, 0.4); }
+        button.active { background: linear-gradient(135deg, #f5576c 0%, #CF63CF 100%); } 
+        h2 { background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); -webkit-background-clip: text; }
+        #initialization-overlay { background: radial-gradient(ellipse at center, #201018 0%, #000000 100%); }
+        .init-title { background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); -webkit-background-clip: text; }
+        .init-subtitle { color: rgba(255, 220, 220, 0.7); }
+        #start-button { background: linear-gradient(135deg, #E22B2B 0%, #E04A00 100%); box-shadow: 0 10px 40px rgba(226, 43, 43, 0.4); }
+        #start-button:hover { box-shadow: 0 15px 50px rgba(226, 43, 43, 0.6); }
+        .dot { background: #E22B2B; }
+        .wave { border: 2px solid rgba(226, 43, 43, 0.6); }
+        .sound-icon { fill: #E22B2B; }
+        .instructions { background: rgba(45, 25, 25, 0.1); border: 1px solid rgba(200, 100, 100, 0.1); color: rgba(255, 200, 200, 0.7); }
+        .research-watermark { color: rgba(226, 43, 43, 0.1); }
+        .pulse-indicator { background-color: #E22B2B; }
+        @keyframes pulseAnim { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(226, 43, 43, 0.7); } 50% { transform: scale(1.5); box-shadow: 0 0 10px 15px rgba(226, 43, 43, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(226, 43, 43, 0); } }
+        #fullscreen-button { background: rgba(45, 25, 25, 0.2); border: 1px solid rgba(200, 100, 100, 0.15); }
+        #fullscreen-button:hover { background: rgba(55, 35, 35, 0.3); }
+    </style>
+</head>
+<body>
+    <div id="container\"></div>
+
+    <div id="initialization-overlay\">
+        <div class="init-content">
+            <div class="init-title">Cosmic String Wake Simulation</div>
+            <div class="init-subtitle">Visualizing particle dynamics influenced by a moving Cosmic String wake. <br>A conceptual model by Agent 1.</div>
+            <button id="start-button\">Initialize Simulation</button>
+            <div id="status-message\">Loading assets... <span class="loading-dots"><span class="dot\"></span><span class="dot\"></span><span class="dot\"></span></span></div>
+            <div id="error-message\" style="display:none;\"></div>
+        </div>
+    </div>
+    
+    <div id="controls-panel\" class="ui-panel\">
+        <h2>Cosmic String</h2>
+        <div class="control-group">
+            <label for="stringTensionSlider\">String Tension (Gμ): <span id="stringTensionValue\" class="control-value\">1e-6</span> <span class="info-icon\" title="Dimensionless tension of the cosmic string. Higher values create stronger wakes.">ℹ️</span></label>
+            <input type="range\" id="stringTensionSlider\" min="-8" max="-5" step="0.1" value="-6"> <!-- Represents log10(Gμ) -->
+            <small>Logarithmic scale. Affects gravitational wake strength.</small>
+        </div>
+        <div class="control-group">
+            <label for="stringSpeedSlider\">String Speed (β=v/c): <span id="stringSpeedValue\" class="control-value\">0.5</span> <span class="info-icon\" title="Speed of the cosmic string as a fraction of the speed of light.">ℹ️</span></label>
+            <input type="range\" id="stringSpeedSlider\" min="0.1" max="0.99" step="0.01" value="0.5">
+            <small>Determines the opening angle of the wake.</small>
+        </div>
+         <div class="control-group">
+            <label for="stringDirectionToggle\">String Direction: <span id="stringDirectionValue\" class="control-value\">X-axis</span> <span class="info-icon\" title="Main axis of string propagation.">ℹ️</span></label>
+            <select id="stringDirectionToggle\">
+                <option value="x" selected>Moves along X-axis</option>
+                <option value="y">Moves along Y-axis</option>
+                <option value="z">Moves along Z-axis</option>
+                <option value="diag_xy">Moves along XY diagonal</option>
+            </select>
+            <small>Changes the primary direction of the string's motion.</small>
+        </div>
+
+        <h2>Particle & System</h2>
+        <div class="control-group">
+            <label for="particleCountSlider\">Particle Count: <span id="particleCountValue\" class="control-value\">50000</span> <span class="info-icon\" title="Total particles. Requires re-init.">ℹ️</span></label>
+            <input type="range\" id="particleCountSlider\" min="1000" max="250000" step="1000" value="50000">
+            <small>More particles = denser structures (impacts performance).</small>
+        </div>
+         <div class="control-group">
+            <label for="particlesToSpawnSlider\">Spawn Rate / Frame: <span id="particlesToSpawnValue\" class="control-value\">500</span> <span class="info-icon\" title="Particles (re)initialized per frame.">ℹ️</span></label>
+            <input type="range\" id="particlesToSpawnSlider\" min="0" max="5000" step="100" value="500">
+            <small>Higher rates fill volume faster or make patterns dynamic.</small>
+        </div>
+         <div class="control-group"> <!-- Removed Central Gravity as string is dominant -->
+            <button id="reinitializeButton\">Re-initialize Simulation</button>
+            <small>Applies particle count and string parameter changes.</small>
+        </div>
+        <div class="control-group">
+            <button id="toggleSoundButton\"><span>🔊 Audio ON</span></button>
+            <small>Toggles sound (less thematically tied to strings).</small>
+        </div>
+    </div>
+
+    <div id="stats-bar\" class="ui-panel\">
+        <div class="stat-item">
+            <div class="stat-label\">Particles</div>
+            <div id="activeParticlesStat\" class="stat-value\">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label\">FPS</div>
+            <div id="fpsStat\" class="stat-value\">0</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label\">Sim Time</div>
+            <div id="timeScaleStat\" class="stat-value\">0.0s</div>
+        </div>
+         <div class="stat-item">
+            <div class="stat-label\">String Speed β</div>
+            <div id="stringSpeedStat\" class="stat-value\">0.5</div>
+        </div>
+    </div>
+
+    <div class="sound-indicator\" id="soundIndicatorVisual\">
+        <div class="sound-waves">
+            <div class="wave\"></div> <div class="wave\"></div> <div class="wave\"></div>
+        </div>
+        <svg class="sound-icon\" viewBox="0 0 24 24\"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z\"></path></svg>
+    </div>
+
+    <button id="fullscreen-button\">Fullscreen</button>
+
+    <div class="instructions\">Mouse to orbit, scroll to zoom. Adjust Cosmic String parameters.</div>
+    
+    <div class="research-watermark\">
+        <div>Cosmic String Wake Sim - Agent 1</div>
+        <div>A. Payopay, Agent 1</div>
+    </div>
+
+    <script>
+        // --- Global Scope Variables ---
+        let scene, camera, renderer, controls, particles, clock, stats;
+        let PARTICLE_COUNT = 50000; 
+        const SIMULATION_EXTENT = 500; 
+        const VELOCITY_DAMPING = 0.97; // Slightly more damping
+        const PARTICLE_BASE_SIZE = 0.8; // Slightly smaller default
+
+        let simulationTime = 0; 
+        let currentSpawnIndex = 0;
+        let particlesToSpawnPerFrame = 500;
+        let isExperienceStarted = false;
+        let soundEnabled = true; 
+        let heartbeatSynth, noiseSynth, reverb, masterVolume;
+
+        // Cosmic String specific parameters
+        let cosmicString = {
+            position: new THREE.Vector3(), // Current position of a point on the string (center of segment shown)
+            velocityVec: new THREE.Vector3(), // Velocity vector
+            direction: new THREE.Vector3(1,0,0), // Orientation of the string itself (e.g. along Y axis)
+            speed_beta: 0.5, // v/c
+            tension_Gmu: 1e-6,
+            length: SIMULATION_EXTENT * 2, // Visual length of string segment
+            wakeAngle: 0 
+        };
+        let stringVisual; // For the THREE.Line object
+
+        const RESEARCH_TEAM = {
+            lead: "Aldrin Payopay",
+            transformation_agent: "Agent 1 (Gemini 2.5 Pro)",
+            project: "Cosmic String Wake Simulation",
+            year: 2025
+        };
+        const AGENT_1_CS_SIGNATURE = btoa("Cosmic String Model Transformation: Agent 1");
+
+        const ui = {};
+
+        // --- Initialization ---\n        function init() {
+            setupScene();
+            setupCamera();
+            setupRenderer();
+            setupControls();
+            setupLights();
+            setupEventListeners();
+            setupStats();
+            cacheUIElements();
+            initControls(); 
+            createCosmicStringVisual(); // Initialize string visual early
+            
+            const startButton = document.getElementById('start-button');
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.innerHTML = 'Ready to Initialize <span class="loading-dots"><span class="dot\"></span><span class="dot\"></span><span class="dot\"></span></span>';
+            startButton.disabled = false;
+            startButton.textContent = "Start Simulation";
+            startButton.addEventListener('click', startExperience);
+            
+            clock = new THREE.Clock();
+            console.log("Cosmic String Engine Initialized. Research Team:", RESEARCH_TEAM);
+            console.log(atob(AGENT_1_CS_SIGNATURE));
+        }
+
+        function startExperience() {
+            if (isExperienceStarted) return;
+            document.getElementById('initialization-overlay').style.display = 'none';
+            isExperienceStarted = true;
+
+            PARTICLE_COUNT = parseInt(ui.particleCount.value);
+            particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+            
+            updateCosmicStringParameters();
+
+            if (Tone.context.state !== 'running') {
+                Tone.start().then(() => {
+                    setupSound(); 
+                    if (soundEnabled) Tone.Destination.mute = false;
+                }).catch(e => {
+                    console.error("Error starting Tone.js AudioContext:", e);
+                    soundEnabled = false; 
+                });
+            } else {
+                 setupSound();
+                 if (soundEnabled) Tone.Destination.mute = false;
+            }
+            
+            createParticleSystem(PARTICLE_COUNT);
+            animate();
+        }
+        
+        function cacheUIElements() {
+            ui.stringTension = document.getElementById('stringTensionSlider');
+            ui.stringTensionValue = document.getElementById('stringTensionValue');
+            ui.stringSpeed = document.getElementById('stringSpeedSlider');
+            ui.stringSpeedValue = document.getElementById('stringSpeedValue');
+            ui.stringDirection = document.getElementById('stringDirectionToggle');
+            ui.stringDirectionValue = document.getElementById('stringDirectionValue');
+            
+            ui.particleCount = document.getElementById('particleCountSlider');
+            ui.particleCountValue = document.getElementById('particleCountValue');
+            ui.particlesToSpawn = document.getElementById('particlesToSpawnSlider');
+            ui.particlesToSpawnValue = document.getElementById('particlesToSpawnValue');
+
+            ui.reinitializeButton = document.getElementById('reinitializeButton');
+            ui.activeParticlesStat = document.getElementById('activeParticlesStat');
+            ui.fpsStat = document.getElementById('fpsStat');
+            ui.timeScaleStat = document.getElementById('timeScaleStat'); 
+            ui.stringSpeedStat = document.getElementById('stringSpeedStat');
+
+            ui.toggleSound = document.getElementById('toggleSoundButton');
+            ui.soundIndicator = document.getElementById('soundIndicatorVisual');
+            ui.fullscreenButton = document.getElementById('fullscreen-button');
+
+            // Set initial values
+            ui.stringTensionValue.textContent = parseFloat(Math.pow(10, ui.stringTension.value)).toExponential(1);
+            ui.stringSpeedValue.textContent = ui.stringSpeed.value;
+            ui.stringDirectionValue.textContent = ui.stringDirection.options[ui.stringDirection.selectedIndex].text;
+            ui.particleCountValue.textContent = ui.particleCount.value;
+            ui.particlesToSpawnValue.textContent = ui.particlesToSpawn.value;
+        }
+
+        function initControls() {
+            ui.stringTension.addEventListener('input', () => {
+                cosmicString.tension_Gmu = Math.pow(10, parseFloat(ui.stringTension.value));
+                ui.stringTensionValue.textContent = cosmicString.tension_Gmu.toExponential(1);
+                updateCosmicStringParameters(); // Wake angle depends on tension and speed
+            });
+            ui.stringSpeed.addEventListener('input', () => {
+                cosmicString.speed_beta = parseFloat(ui.stringSpeed.value);
+                ui.stringSpeedValue.textContent = cosmicString.speed_beta.toFixed(2);
+                ui.stringSpeedStat.textContent = cosmicString.speed_beta.toFixed(2);
+                updateCosmicStringParameters();
+            });
+            ui.stringDirection.addEventListener('change', () => {
+                ui.stringDirectionValue.textContent = ui.stringDirection.options[ui.stringDirection.selectedIndex].text;
+                updateCosmicStringParameters();
+            });
+            
+            ui.particleCount.addEventListener('input', () => ui.particleCountValue.textContent = ui.particleCount.value); 
+            ui.particlesToSpawn.addEventListener('input', () => {
+                ui.particlesToSpawnValue.textContent = ui.particlesToSpawn.value;
+                particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+            });
+
+            ui.reinitializeButton.addEventListener('click', () => {
+                PARTICLE_COUNT = parseInt(ui.particleCount.value);
+                particlesToSpawnPerFrame = parseInt(ui.particlesToSpawn.value);
+                currentSpawnIndex = 0; 
+                if (particles) scene.remove(particles); 
+                if (particles && particles.geometry) particles.geometry.dispose();
+                if (particles && particles.material) particles.material.dispose();
+                
+                updateCosmicStringParameters(); // Ensure string params are fresh before creating particles
+                resetStringPosition();
+                createParticleSystem(PARTICLE_COUNT);
+            });
+            ui.toggleSound.addEventListener('click', toggleSound);
+            ui.fullscreenButton.addEventListener('click', toggleFullScreen);
+        }
+
+        function setupScene() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.0012); 
+        }
+
+        function setupCamera() {
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, SIMULATION_EXTENT * 3);
+            camera.position.set(SIMULATION_EXTENT * 0.5, SIMULATION_EXTENT * 0.3, SIMULATION_EXTENT * 0.5);
+            camera.lookAt(scene.position);
+        }
+
+        function setupRenderer() {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Cap pixel ratio for performance
+            renderer.setClearColor(0x000000, 0); 
+            document.getElementById('container').appendChild(renderer.domElement);
+        }
+        
+        function setupControls() {
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 20;
+            controls.maxDistance = SIMULATION_EXTENT * 2.5; 
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.08; 
+        }
+
+        function setupLights() {
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3); 
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffeedd, 0.7); // Warmer directional
+            directionalLight.position.set(0.5, 0.8, 1);
+            scene.add(directionalLight);
+        }
+
+        function setupEventListeners() {
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function setupStats() { 
+            stats = {
+                fps: 0, particles: 0, lastTime: performance.now(), frames: 0,
+                update: function() {
+                    this.frames++;
+                    const currentTime = performance.now();
+                    if (currentTime > this.lastTime + 1000) {
+                        this.fps = Math.round((this.frames * 1000) / (currentTime - this.lastTime));
+                        ui.fpsStat.textContent = this.fps;
+                        this.lastTime = currentTime; this.frames = 0;
+                    }
+                    ui.activeParticlesStat.textContent = PARTICLE_COUNT.toLocaleString(); 
+                    ui.timeScaleStat.textContent = simulationTime.toFixed(1) + "s";
+                }
+            };
+        }
+        
+        // --- Cosmic String Physics & Visuals ---
+        function updateCosmicStringParameters() {
+            cosmicString.tension_Gmu = Math.pow(10, parseFloat(ui.stringTension.value));
+            cosmicString.speed_beta = parseFloat(ui.stringSpeed.value);
+            
+            // Wake 'opening angle' (deficit angle) is proportional to 4 * PI * G * mu / c^2 = 4 * PI * tension_Gmu
+            cosmicString.wakeAngle = 4 * Math.PI * cosmicString.tension_Gmu; 
+
+            const C_LIGHT_SIM = SIMULATION_EXTENT / 5; // Simulated speed of light (distance units per second)
+            const speed = cosmicString.speed_beta * C_LIGHT_SIM;
+
+            const selectedDirection = ui.stringDirection.value;
+            if (selectedDirection === "x") cosmicString.velocityVec.set(speed, 0, 0);
+            else if (selectedDirection === "y") cosmicString.velocityVec.set(0, speed, 0);
+            else if (selectedDirection === "z") cosmicString.velocityVec.set(0, 0, speed);
+            else if (selectedDirection === "diag_xy") cosmicString.velocityVec.set(speed / Math.sqrt(2), speed / Math.sqrt(2), 0);
+            
+            // For this simulation, the string itself is oriented along the Y axis, and moves in XZ plane (or other selected axis)
+            cosmicString.direction.set(0, 1, 0); // String oriented along Y-axis
+        }
+        
+        function resetStringPosition() {
+            // Start string from one side of the box, moving towards the other
+            const startOffset = -SIMULATION_EXTENT * 0.9;
+            if (cosmicString.velocityVec.x !== 0) cosmicString.position.set(startOffset * Math.sign(cosmicString.velocityVec.x), 0, 0);
+            else if (cosmicString.velocityVec.y !== 0) cosmicString.position.set(0, startOffset * Math.sign(cosmicString.velocityVec.y), 0);
+            else if (cosmicString.velocityVec.z !== 0) cosmicString.position.set(0, 0, startOffset * Math.sign(cosmicString.velocityVec.z));
+            else cosmicString.position.set(startOffset,0,0); // Default if no velocity
+        }
+
+        function createCosmicStringVisual() {
+            const material = new THREE.LineBasicMaterial({ color: 0xffcc00, linewidth: 3 }); // Bright yellow
+            const points = [];
+            points.push(new THREE.Vector3(0, -cosmicString.length / 2, 0));
+            points.push(new THREE.Vector3(0, cosmicString.length / 2, 0));
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            
+            stringVisual = new THREE.Line(geometry, material);
+            scene.add(stringVisual);
+            resetStringPosition(); // Set initial position
+        }
+
+        function updateStringVisual(deltaTime) {
+            cosmicString.position.addScaledVector(cosmicString.velocityVec, deltaTime);
+            stringVisual.position.copy(cosmicString.position);
+
+            // If string moves out of bounds, reset it to the other side
+            const P = cosmicString.position;
+            const V = cosmicString.velocityVec;
+            const S = SIMULATION_EXTENT * 1.1; // Reset boundary
+
+            if ((V.x > 0 && P.x > S) || (V.x < 0 && P.x < -S) ||
+                (V.y > 0 && P.y > S) || (V.y < 0 && P.y < -S) ||
+                (V.z > 0 && P.z > S) || (V.z < 0 && P.z < -S)) {
+                resetStringPosition();
+            }
+        }
+
+        // Simplified gravitational kick from a cosmic string wake
+        function getCosmicStringWakeForce(particlePosVec, stringCurrentPos, stringVelVec, stringTension, wakeDeficitAngle) {
+            let force = new THREE.Vector3(0,0,0);
+            if (stringVelVec.lengthSq() === 0) return force; // No wake if string isn't moving
+
+            // Vector from string (at current time) to particle
+            let relPos = particlePosVec.clone().sub(stringCurrentPos);
+
+            // Project relPos onto the plane PERPENDICULAR to string's velocity vector
+            // This defines the plane of the wake "sheet"
+            let normalToWakePlane = stringVelVec.clone().normalize();
+            
+            // Distance of particle from the wake plane (component along normalToWakePlane)
+            let distToWakePlane = relPos.dot(normalToWakePlane);
+
+            // Is particle "behind" the string (in the wake region)?
+            // Wake exists for distToWakePlane < 0 (if string moves in +normal direction)
+            if (distToWakePlane < 0 && distToWakePlane > -SIMULATION_EXTENT * 0.5) { // Consider wake up to a certain depth
+                // Project particle onto the string's path to find the closest point on string path
+                // This is not the string itself, but the line it's moving along
+                
+                // Simplified: the force is attractive towards the wake plane (normalToWakePlane)
+                // Strength depends on tension and how "deep" in the wake (distToWakePlane)
+                // The deficit angle creates a "wedge" removed from spacetime. Particles are pulled towards center of this wedge.
+                // For a string moving along X, wake is in YZ plane, deficit angle is around X axis.
+                // Force proportional to Gμ / r_perp (distance to string line in wake plane)
+                
+                // Let's use a simpler model: force is towards the plane defined by string and string velocity
+                // Strength proportional to deficit angle (tension) and inversely to some effective distance.
+                let kickStrength = 8 * Math.PI * stringTension * cosmicString.speed_beta; // Vilenkin & Shellard formula basis for velocity kick
+                                                                             // This is a velocity kick, so for force: kickStrength / dt. Here, it's an acceleration.
+                kickStrength *= 50000; // Scaling factor for simulation
+
+                // Force acts to "close" the deficit angle.
+                // Direction is towards the plane normal to string.direction and containing string.velocity
+                let forceDir = normalToWakePlane.clone().multiplyScalar(-1); // Towards the plane from behind
+                
+                // Attenuate force further from the string's path
+                let stringPathPoint = new THREE.Vector3(); // Closest point on string's line of motion
+                stringPathPoint.copy(stringCurrentPos).addScaledVector(normalToWakePlane, distToWakePlane); // Point in wake plane
+                let distToPath = particlePosVec.distanceTo(stringPathPoint);
+
+                if(distToPath < 1.0) distToPath = 1.0; // Avoid singularity
+                
+                force.add(forceDir.multiplyScalar(kickStrength / (distToPath * distToPath + 100) )); // Inverse square like falloff, with softening
+            }
+            return force;
+        }
+
+
+        function createParticleSystem(numParticles) {
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(numParticles * 3);
+            const velocities = new Float32Array(numParticles * 3);
+            const colors = new Float32Array(numParticles * 3);
+
+            for (let i = 0; i < numParticles; i++) {
+                initializeSingleParticle(i, positions, velocities, colors);
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: PARTICLE_BASE_SIZE,
+                vertexColors: true,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.65, 
+                blending: THREE.AdditiveBlending, 
+                depthWrite: false 
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            currentSpawnIndex = 0; 
+        }
+
+        function initializeSingleParticle(i, p = null, v = null, c = null) {
+            const positions = p || particles.geometry.attributes.position.array;
+            const velocities = v || particles.geometry.attributes.velocity.array;
+            const colors = c || particles.geometry.attributes.color.array;
+
+            const i3 = i * 3;
+            const R_MAX = SIMULATION_EXTENT * 0.9;
+            let r = Math.cbrt(Math.random()) * R_MAX; // Cube root for more uniform volume distribution
+            let theta = Math.random() * 2 * Math.PI;
+            let phi = Math.acos(2 * Math.random() - 1); 
+            
+            positions[i3]   = r * Math.sin(phi) * Math.cos(theta);
+            positions[i3+1] = r * Math.sin(phi) * Math.sin(theta);
+            positions[i3+2] = r * Math.cos(phi);
+
+            const initialSpeed = 0.05 + Math.random() * 0.1; // Very low initial velocities
+            velocities[i3]   = (Math.random() - 0.5) * initialSpeed;
+            velocities[i3+1]  = (Math.random() - 0.5) * initialSpeed;
+            velocities[i3+2] = (Math.random() - 0.5) * initialSpeed;
+            
+            // Colors: reddish/orange hues for cosmic string theme
+            colors[i3]   = 0.7 + Math.random() * 0.3; // R
+            colors[i3+1] = 0.3 + Math.random() * 0.3; // G
+            colors[i3+2] = 0.1 + Math.random() * 0.2; // B
+        }
+
+        function setupSound() { /* Sound less relevant, can be minimal */
+            if (Tone.context.state !== 'running') return;
+            masterVolume = new Tone.Volume(-20).toDestination(); 
+            reverb = new Tone.Reverb({ decay: 1.5, wet: 0.2 }).connect(masterVolume);
+            // A low hum or crackle might be thematic for strings
+            noiseSynth = new Tone.NoiseSynth({
+                noise: { type: 'brown' },
+                envelope: { attack: 2, decay: 1, sustain: 1, release: 3 }
+            }).connect(reverb);
+            if (soundEnabled) {
+                 Tone.Destination.mute = false;
+                 if(noiseSynth.state === "stopped") noiseSynth.triggerAttackRelease("4n", Tone.now(), 0.05); // low volume hum
+            } else Tone.Destination.mute = true;
+        }
+
+        function toggleSound() { 
+            soundEnabled = !soundEnabled;
+            if (Tone.context.state === 'running') {
+                Tone.Destination.mute = !soundEnabled;
+                 if (soundEnabled && noiseSynth && noiseSynth.state === "stopped") {
+                    noiseSynth.triggerAttackRelease("4n", Tone.now(), 0.05);
+                 } else if (!soundEnabled && noiseSynth) {
+                    noiseSynth.triggerRelease(Tone.now());
+                 }
+            } else if (soundEnabled) {
+                 Tone.start().then(() => { 
+                     if (!noiseSynth) setupSound(); // Setup if not already
+                     else { // if already setup, just unmute and play
+                        Tone.Destination.mute = false;
+                        if(noiseSynth.state === "stopped") noiseSynth.triggerAttackRelease("4n", Tone.now(), 0.05);
+                     }
+                 }).catch(e => { soundEnabled = false; });
+            }
+            ui.toggleSound.innerHTML = soundEnabled ? "<span>🔊 Audio ON</span>" : "<span>🔇 Audio OFF</span>";
+            ui.soundIndicator.style.opacity = soundEnabled ? '1' : '0.3';
+        }
+        
+        // --- Main Animation Loop ---
+        function animate() {
+            if (!isExperienceStarted || !particles) {
+                 if(isExperienceStarted) requestAnimationFrame(animate); 
+                 return;
+            }
+            requestAnimationFrame(animate);
+            const deltaTime = Math.min(clock.getDelta(), 0.033); 
+            simulationTime += deltaTime;
+
+            controls.update();
+            stats.update();
+            updateStringVisual(deltaTime);
+
+            for (let i = 0; i < particlesToSpawnPerFrame; i++) { // Particle spawning
+                if (currentSpawnIndex < PARTICLE_COUNT) { 
+                    initializeSingleParticle(currentSpawnIndex); 
+                    currentSpawnIndex++; 
+                } else if (particlesToSpawnPerFrame > 0) { 
+                    currentSpawnIndex = 0; // Loop spawn
+                    initializeSingleParticle(currentSpawnIndex);
+                    currentSpawnIndex++;
+                }
+            }
+            
+            const positions = particles.geometry.attributes.position.array;
+            const velocities = particles.geometry.attributes.velocity.array;
+            const particlePosVec = new THREE.Vector3();
+            const stringForceVec = new THREE.Vector3();
+
+            const colorUpdateModulo = Math.max(1, Math.floor(PARTICLE_COUNT / 200));
+            const timeBasedOffset = Math.floor(simulationTime * 10); 
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const i3 = i * 3;
+                let px = positions[i3], py = positions[i3+1], pz = positions[i3+2];
+                let vx = velocities[i3], vy = velocities[i3+1], vz = velocities[i3+2];
+                particlePosVec.set(px, py, pz);
+
+                // 1. Cosmic String Wake Force
+                stringForceVec.copy(getCosmicStringWakeForce(
+                    particlePosVec, 
+                    cosmicString.position, 
+                    cosmicString.velocityVec, 
+                    cosmicString.tension_Gmu,
+                    cosmicString.wakeAngle
+                ));
+                
+                vx += stringForceVec.x * deltaTime;
+                vy += stringForceVec.y * deltaTime;
+                vz += stringForceVec.z * deltaTime;
+
+                vx *= VELOCITY_DAMPING; vy *= VELOCITY_DAMPING; vz *= VELOCITY_DAMPING;
+                px += vx * deltaTime; py += vy * deltaTime; pz += vz * deltaTime;
+                
+                // Boundary: if particles go too far, re-initialize them near center
+                const distSqFromCenter = px*px + py*py + pz*pz;
+                if (distSqFromCenter > (SIMULATION_EXTENT * 1.1) * (SIMULATION_EXTENT * 1.1) ) { 
+                    initializeSingleParticle(i); // Re-initialize this particle
+                    // Get new values directly rather than waiting for next loop
+                    px = positions[i3]; py = positions[i3+1]; pz = positions[i3+2];
+                    vx = velocities[i3]; vy = velocities[i3+1]; vz = velocities[i3+2];
+                }
+                
+                positions[i3] = px; positions[i3+1] = py; positions[i3+2] = pz;
+                velocities[i3] = vx; velocities[i3+1] = vy; velocities[i3+2] = vz;
+                
+                if ((i + timeBasedOffset) % colorUpdateModulo === 0) { 
+                     updateParticleColor(i, px, py, pz, stringForceVec.lengthSq()); // Color by force magnitude squared
+                }
+            }
+            
+            particles.geometry.attributes.position.needsUpdate = true;
+            particles.geometry.attributes.velocity.needsUpdate = true;
+            if (particles.geometry.attributes.color) particles.geometry.attributes.color.needsUpdate = true; 
+            
+            if (controls.autoRotate) { 
+                 camera.position.x += Math.sin(simulationTime * 0.015) * 0.008; 
+                 camera.position.z += Math.cos(simulationTime * 0.020) * 0.008;
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        function updateParticleColor(index, x, y, z, forceMagSq) { 
+            const colors = particles.geometry.attributes.color.array;
+            const i3 = index * 3;
+            const normalizedForce = Math.min(1, forceMagSq * 1e6); // Adjust multiplier for typical force values
+
+            let r = 0.6 + normalizedForce * 0.4; 
+            let g = 0.2 + normalizedForce * 0.2;
+            let b = 0.1;
+
+            colors[i3]   = THREE.MathUtils.clamp(r, 0.1, 1);
+            colors[i3+1] = THREE.MathUtils.clamp(g, 0.1, 0.8);
+            colors[i3+2] = THREE.MathUtils.clamp(b + normalizedForce * 0.1, 0.05, 0.5);
+        }
+
+        function onWindowResize() {
+            if (!camera || !renderer) return;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+                ui.fullscreenButton.textContent = "Exit Fullscreen";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    ui.fullscreenButton.textContent = "Fullscreen";
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html> 

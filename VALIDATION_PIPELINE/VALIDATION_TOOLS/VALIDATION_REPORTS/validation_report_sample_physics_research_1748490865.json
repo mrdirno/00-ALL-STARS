@@ -1,0 +1,48 @@
+{
+  "item_path": "../00-INTAKE/sample_physics_research.txt",
+  "final_status": "REJECTED",
+  "processing_time_seconds": 0.0004909038543701172,
+  "timestamp": "2025-05-29T03:54:25.496277",
+  "stages_completed": [
+    "00-INTAKE"
+  ],
+  "validation_results": {
+    "00-INTAKE": {
+      "passed": true,
+      "content_length": 1907,
+      "claims_count": 3,
+      "equations_count": 13,
+      "hypotheses_count": 5,
+      "claims": [
+        "is that the total mechanical energy E = (1/2)mv\u00b2 + (1/2)kx\u00b2 remains constant throughout the oscillation cycle.",
+        "is correct, then:\n1.",
+        "that energy conservation can be verified through numerical simulation of the harmonic oscillator equations."
+      ],
+      "equations": [
+        "E = (1/2)mv\u00b2 + (1/2)kx\u00b2 remains constant throughout the oscillation cycle",
+        "E = (1/2)kA\u00b2",
+        "T = 2\u03c0/\u03c9",
+        "F = ma = -kx",
+        "E = (1/2)mv\u00b2 + (1/2)kx\u00b2",
+        "T = 2\u03c0/\u03c9",
+        "m = 1",
+        "k = 1",
+        "d\u00b2x/dt\u00b2 = -(k/m)x",
+        "E = (1/2)mv\u00b2 + (1/2)kx\u00b2 remains constant throughout the oscillation cycle",
+        "E = (1/2)kA\u00b2",
+        "E = (1/2)mv\u00b2 + (1/2)kx\u00b2",
+        "F = ma = -kx"
+      ],
+      "hypotheses": [
+        "satisfy:\n- Position: x(t) = A cos(\u03c9t + \u03c6)\n- Velocity: v(t) = -A\u03c9 sin(\u03c9t + \u03c6)\n- Total Energy: E = (1/2)kA\u00b2\n\nTHEORETICAL PREDICTIONS:\nIf our hypothesis is correct, then:\n1.",
+        "remain constant within numerical precision\n2.",
+        "equal the maximum potential energy\n3.",
+        "equal T = 2\u03c0/\u03c9\n\nEXPECTED RESULTS:\nWe find that energy conservation holds to within 0.",
+        "be less than 1% throughout the simulation."
+      ]
+    }
+  },
+  "rejection_stage": "01-INITIAL_SCREENING",
+  "rejection_reason": "Initial screening pass rate 0.25 below 0.8 threshold",
+  "destination": "09-REJECTED_ITEMS"
+}

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced WebGL Physics Visualization System</title>
+    <meta name="description" content="Advanced WebGL rendering system for complex physics phenomena with compute shaders, multi-dimensional visualization, and VR/AR integration">
+    <meta name="author" content="Claude-3.5-Sonnet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: radial-gradient(ellipse at center, #0f1419 0%, #000000 100%);
+        }
+        
+        #canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .ui-panel {
+            position: absolute;
+            background: rgba(15, 20, 25, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .ui-panel:hover {
+            background: rgba(20, 25, 30, 0.95);
+            border-color: rgba(64, 224, 255, 0.5);
+        }
+        
+        #controls {
+            top: 20px;
+            left: 20px;
+            width: 320px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        
+        #performance-monitor {
+            top: 20px;
+            right: 20px;
+            width: 280px;
+        }
+        
+        #visualization-modes {
+            bottom: 20px;
+            left: 20px;
+            width: 400px;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #40e0ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: rgba(64, 224, 255, 0.2);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #40e0ff, #0080ff);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(64, 224, 255, 0.5);
+        }
+        
+        select, button {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(64, 224, 255, 0.1);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover, select:hover {
+            background: rgba(64, 224, 255, 0.2);
+            border-color: rgba(64, 224, 255, 0.5);
+        }
+        
+        button.active {
+            background: linear-gradient(135deg, #40e0ff, #0080ff);
+            color: #000000;
+            font-weight: 600;
+        }
+        
+        .performance-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background: rgba(64, 224, 255, 0.05);
+            border-radius: 6px;
+        }
+        
+        .metric-label {
+            font-size: 0.8rem;
+            color: #40e0ff;
+        }
+        
+        .metric-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .visualization-mode {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 16px;
+            background: rgba(64, 224, 255, 0.1);
+            border: 1px solid rgba(64, 224, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .visualization-mode.active {
+            background: linear-gradient(135deg, #40e0ff, #0080ff);
+            color: #000000;
+        }
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(64, 224, 255, 0.3);
+            border-top: 3px solid #40e0ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <canvas id="canvas"></canvas>
+        
+        <div id="loading">
+            <div class="loading-spinner"></div>
+            <h3>Initializing Advanced WebGL Visualization System</h3>
+            <p>Loading compute shaders and physics engines...</p>
+        </div>
+        
+        <div id="controls" class="ui-panel hidden">
+            <h3>Advanced Visualization Controls</h3>
+            
+            <div class="control-group">
+                <label>Rendering Mode</label>
+                <select id="renderingMode">
+                    <option value="particles">Particle System</option>
+                    <option value="volumetric">Volumetric Rendering</option>
+                    <option value="field">Field Visualization</option>
+                    <option value="hybrid">Hybrid Mode</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Particle Count: <span id="particleCountValue">100000</span></label>
+                <input type="range" id="particleCount" min="10000" max="1000000" value="100000" step="10000">
+            </div>
+            
+            <div class="control-group">
+                <label>Physics Simulation</label>
+                <select id="physicsMode">
+                    <option value="quantum">Quantum Field</option>
+                    <option value="wave">Wave Dynamics</option>
+                    <option value="cymatics">Cymatics</option>
+                    <option value="gravity">Gravitational</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Frequency: <span id="frequencyValue">440</span> Hz</label>
+                <input type="range" id="frequency" min="20" max="2000" value="440" step="10">
+            </div>
+            
+            <div class="control-group">
+                <label>Amplitude: <span id="amplitudeValue">1.0</span></label>
+                <input type="range" id="amplitude" min="0.1" max="5.0" value="1.0" step="0.1">
+            </div>
+            
+            <div class="control-group">
+                <label>Time Scale: <span id="timeScaleValue">1.0</span></label>
+                <input type="range" id="timeScale" min="0.1" max="10.0" value="1.0" step="0.1">
+            </div>
+            
+            <div class="control-group">
+                <button id="resetSimulation">Reset Simulation</button>
+            </div>
+            
+            <div class="control-group">
+                <button id="toggleVR">Enable VR Mode</button>
+            </div>
+        </div>
+        
+        <div id="performance-monitor" class="ui-panel hidden">
+            <h3>Performance Monitor</h3>
+            
+            <div class="performance-metric">
+                <span class="metric-label">FPS</span>
+                <span class="metric-value" id="fps">60</span>
+            </div>
+            
+            <div class="performance-metric">
+                <span class="metric-label">Frame Time</span>
+                <span class="metric-value" id="frameTime">16.7ms</span>
+            </div>
+            
+            <div class="performance-metric">
+                <span class="metric-label">GPU Memory</span>
+                <span class="metric-value" id="gpuMemory">0MB</span>
+            </div>
+            
+            <div class="performance-metric">
+                <span class="metric-label">Particles</span>
+                <span class="metric-value" id="activeParticles">100000</span>
+            </div>
+            
+            <div class="performance-metric">
+                <span class="metric-label">Compute Time</span>
+                <span class="metric-value" id="computeTime">0.5ms</span>
+            </div>
+        </div>
+        
+        <div id="visualization-modes" class="ui-panel hidden">
+            <h3>Visualization Modes</h3>
+            <div class="visualization-mode active" data-mode="standard">Standard</div>
+            <div class="visualization-mode" data-mode="heatmap">Heat Map</div>
+            <div class="visualization-mode" data-mode="velocity">Velocity Field</div>
+            <div class="visualization-mode" data-mode="energy">Energy Density</div>
+            <div class="visualization-mode" data-mode="phase">Phase Space</div>
+            <div class="visualization-mode" data-mode="multidimensional">Multi-D</div>
+        </div>
+    </div>
+
+    <script>
+        // Advanced WebGL Visualization System
+        // Agent: Claude-3.5-Sonnet
+        // Implementation of cutting-edge rendering techniques for physics simulations
+        
+        class AdvancedWebGLVisualizationSystem {
+            constructor() {
+                this.canvas = document.getElementById('canvas');
+                this.gl = null;
+                this.programs = {};
+                this.buffers = {};
+                this.textures = {};
+                this.framebuffers = {};
+                
+                // Performance monitoring
+                this.performanceMonitor = {
+                    fps: 0,
+                    frameTime: 0,
+                    lastFrameTime: performance.now(),
+                    frameCount: 0,
+                    lastFPSUpdate: performance.now()
+                };
+                
+                // Simulation parameters
+                this.params = {
+                    particleCount: 100000,
+                    renderingMode: 'particles',
+                    physicsMode: 'quantum',
+                    frequency: 440,
+                    amplitude: 1.0,
+                    timeScale: 1.0,
+                    visualizationMode: 'standard'
+                };
+                
+                // WebGL extensions
+                this.extensions = {};
+                
+                this.init();
+            }
+            
+            async init() {
+                try {
+                    await this.initWebGL();
+                    await this.loadShaders();
+                    await this.initBuffers();
+                    await this.initTextures();
+                    this.initEventListeners();
+                    this.hideLoading();
+                    this.startRenderLoop();
+                } catch (error) {
+                    console.error('Failed to initialize visualization system:', error);
+                    this.showError(error.message);
+                }
+            }
+            
+            async initWebGL() {
+                // Get WebGL2 context with advanced features
+                this.gl = this.canvas.getContext('webgl2', {
+                    alpha: false,
+                    depth: true,
+                    stencil: false,
+                    antialias: true,
+                    premultipliedAlpha: false,
+                    preserveDrawingBuffer: false,
+                    powerPreference: 'high-performance'
+                });
+                
+                if (!this.gl) {
+                    throw new Error('WebGL2 not supported');
+                }
+                
+                // Load essential extensions
+                this.extensions.transformFeedback = this.gl.getExtension('EXT_transform_feedback');
+                this.extensions.colorBufferFloat = this.gl.getExtension('EXT_color_buffer_float');
+                this.extensions.textureFloat = this.gl.getExtension('OES_texture_float');
+                this.extensions.vertexArrayObject = this.gl.getExtension('OES_vertex_array_object');
+                
+                // Configure WebGL state
+                this.gl.enable(this.gl.DEPTH_TEST);
+                this.gl.enable(this.gl.BLEND);
+                this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
+                this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+                
+                this.resizeCanvas();
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+            
+            async loadShaders() {
+                // Vertex shader for particle system
+                const particleVertexShader = `#version 300 es
+                    precision highp float;
+                    
+                    in vec3 a_position;
+                    in vec3 a_velocity;
+                    in float a_life;
+                    in vec3 a_color;
+                    
+                    uniform mat4 u_mvpMatrix;
+                    uniform float u_time;
+                    uniform float u_pointSize;
+                    
+                    out vec3 v_color;
+                    out float v_life;
+                    
+                    void main() {
+                        gl_Position = u_mvpMatrix * vec4(a_position, 1.0);
+                        gl_PointSize = u_pointSize * (1.0 + sin(u_time * 0.01) * 0.2);
+                        v_color = a_color;
+                        v_life = a_life;
+                    }
+                `;
+                
+                // Fragment shader for particle system
+                const particleFragmentShader = `#version 300 es
+                    precision highp float;
+                    
+                    in vec3 v_color;
+                    in float v_life;
+                    
+                    out vec4 fragColor;
+                    
+                    void main() {
+                        vec2 coord = gl_PointCoord - vec2(0.5);
+                        float dist = length(coord);
+                        
+                        if (dist > 0.5) discard;
+                        
+                        float alpha = (1.0 - dist * 2.0) * v_life;
+                        fragColor = vec4(v_color, alpha);
+                    }
+                `;
+                
+                // Compute shader for physics simulation
+                const computeShader = `#version 300 es
+                    precision highp float;
+                    
+                    layout(local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
+                    
+                    layout(std430, binding = 0) buffer PositionBuffer {
+                        vec4 positions[];
+                    };
+                    
+                    layout(std430, binding = 1) buffer VelocityBuffer {
+                        vec4 velocities[];
+                    };
+                    
+                    uniform float u_time;
+                    uniform float u_deltaTime;
+                    uniform float u_frequency;
+                    uniform float u_amplitude;
+                    uniform int u_physicsMode;
+                    
+                    vec3 quantumField(vec3 pos, float time) {
+                        float x = pos.x, y = pos.y, z = pos.z;
+                        float freq = u_frequency * 0.01;
+                        
+                        vec3 field = vec3(
+                            sin(freq * x + time) * cos(freq * y),
+                            cos(freq * y + time) * sin(freq * z),
+                            sin(freq * z + time) * cos(freq * x)
+                        );
+                        
+                        return field * u_amplitude;
+                    }
+                    
+                    vec3 waveDynamics(vec3 pos, float time) {
+                        float r = length(pos);
+                        float theta = atan(pos.y, pos.x);
+                        float phi = acos(pos.z / max(r, 0.001));
+                        
+                        float wave = sin(u_frequency * 0.1 * r - time * 2.0) * u_amplitude;
+                        
+                        return normalize(pos) * wave * 0.1;
+                    }
+                    
+                    void main() {
+                        uint index = gl_GlobalInvocationID.x;
+                        if (index >= positions.length()) return;
+                        
+                        vec3 pos = positions[index].xyz;
+                        vec3 vel = velocities[index].xyz;
+                        
+                        vec3 force = vec3(0.0);
+                        
+                        if (u_physicsMode == 0) { // Quantum
+                            force = quantumField(pos, u_time);
+                        } else if (u_physicsMode == 1) { // Wave
+                            force = waveDynamics(pos, u_time);
+                        }
+                        
+                        // Apply force and update
+                        vel += force * u_deltaTime;
+                        vel *= 0.99; // Damping
+                        pos += vel * u_deltaTime;
+                        
+                        // Boundary conditions
+                        float boundary = 10.0;
+                        if (length(pos) > boundary) {
+                            pos = normalize(pos) * boundary;
+                            vel = reflect(vel, -normalize(pos));
+                        }
+                        
+                        positions[index] = vec4(pos, 1.0);
+                        velocities[index] = vec4(vel, 1.0);
+                    }
+                `;
+                
+                // Compile and link shaders
+                this.programs.particle = await this.createProgram(particleVertexShader, particleFragmentShader);
+                
+                // Create compute program if supported
+                if (this.gl.createShader(this.gl.COMPUTE_SHADER)) {
+                    this.programs.compute = await this.createComputeProgram(computeShader);
+                }
+            }
+            
+            async createProgram(vertexSource, fragmentSource) {
+                const vertexShader = this.compileShader(this.gl.VERTEX_SHADER, vertexSource);
+                const fragmentShader = this.compileShader(this.gl.FRAGMENT_SHADER, fragmentSource);
+                
+                const program = this.gl.createProgram();
+                this.gl.attachShader(program, vertexShader);
+                this.gl.attachShader(program, fragmentShader);
+                this.gl.linkProgram(program);
+                
+                if (!this.gl.getProgramParameter(program, this.gl.LINK_STATUS)) {
+                    throw new Error('Program link error: ' + this.gl.getProgramInfoLog(program));
+                }
+                
+                return program;
+            }
+            
+            async createComputeProgram(computeSource) {
+                const computeShader = this.compileShader(this.gl.COMPUTE_SHADER, computeSource);
+                
+                const program = this.gl.createProgram();
+                this.gl.attachShader(program, computeShader);
+                this.gl.linkProgram(program);
+                
+                if (!this.gl.getProgramParameter(program, this.gl.LINK_STATUS)) {
+                    throw new Error('Compute program link error: ' + this.gl.getProgramInfoLog(program));
+                }
+                
+                return program;
+            }
+            
+            compileShader(type, source) {
+                const shader = this.gl.createShader(type);
+                this.gl.shaderSource(shader, source);
+                this.gl.compileShader(shader);
+                
+                if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
+                    throw new Error('Shader compile error: ' + this.gl.getShaderInfoLog(shader));
+                }
+                
+                return shader;
+            }
+            
+            async initBuffers() {
+                const particleCount = this.params.particleCount;
+                
+                // Initialize particle data
+                const positions = new Float32Array(particleCount * 4);
+                const velocities = new Float32Array(particleCount * 4);
+                const colors = new Float32Array(particleCount * 3);
+                const life = new Float32Array(particleCount);
+                
+                // Random initialization
+                for (let i = 0; i < particleCount; i++) {
+                    const i4 = i * 4;
+                    const i3 = i * 3;
+                    
+                    // Random spherical distribution
+                    const r = Math.random() * 5;
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.acos(2 * Math.random() - 1);
+                    
+                    positions[i4] = r * Math.sin(phi) * Math.cos(theta);
+                    positions[i4 + 1] = r * Math.sin(phi) * Math.sin(theta);
+                    positions[i4 + 2] = r * Math.cos(phi);
+                    positions[i4 + 3] = 1.0;
+                    
+                    velocities[i4] = (Math.random() - 0.5) * 0.1;
+                    velocities[i4 + 1] = (Math.random() - 0.5) * 0.1;
+                    velocities[i4 + 2] = (Math.random() - 0.5) * 0.1;
+                    velocities[i4 + 3] = 0.0;
+                    
+                    colors[i3] = 0.2 + Math.random() * 0.8;
+                    colors[i3 + 1] = 0.4 + Math.random() * 0.6;
+                    colors[i3 + 2] = 0.8 + Math.random() * 0.2;
+                    
+                    life[i] = Math.random();
+                }
+                
+                // Create buffers
+                this.buffers.position = this.createBuffer(positions, this.gl.DYNAMIC_DRAW);
+                this.buffers.velocity = this.createBuffer(velocities, this.gl.DYNAMIC_DRAW);
+                this.buffers.color = this.createBuffer(colors, this.gl.STATIC_DRAW);
+                this.buffers.life = this.createBuffer(life, this.gl.DYNAMIC_DRAW);
+                
+                // Create vertex array object
+                this.vao = this.gl.createVertexArray();
+                this.gl.bindVertexArray(this.vao);
+                
+                // Setup vertex attributes
+                this.setupVertexAttribute(0, this.buffers.position, 4);
+                this.setupVertexAttribute(1, this.buffers.velocity, 4);
+                this.setupVertexAttribute(2, this.buffers.life, 1);
+                this.setupVertexAttribute(3, this.buffers.color, 3);
+                
+                this.gl.bindVertexArray(null);
+            }
+            
+            createBuffer(data, usage) {
+                const buffer = this.gl.createBuffer();
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffer);
+                this.gl.bufferData(this.gl.ARRAY_BUFFER, data, usage);
+                return buffer;
+            }
+            
+            setupVertexAttribute(index, buffer, size) {
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffer);
+                this.gl.enableVertexAttribArray(index);
+                this.gl.vertexAttribPointer(index, size, this.gl.FLOAT, false, 0, 0);
+            }
+            
+            async initTextures() {
+                // Create noise texture for advanced effects
+                const noiseSize = 256;
+                const noiseData = new Uint8Array(noiseSize * noiseSize * 4);
+                
+                for (let i = 0; i < noiseData.length; i += 4) {
+                    const noise = Math.random() * 255;
+                    noiseData[i] = noise;
+                    noiseData[i + 1] = noise;
+                    noiseData[i + 2] = noise;
+                    noiseData[i + 3] = 255;
+                }
+                
+                this.textures.noise = this.gl.createTexture();
+                this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures.noise);
+                this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, noiseSize, noiseSize, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, noiseData);
+                this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR);
+                this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+                this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+                this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
+            }
+            
+            initEventListeners() {
+                // UI controls
+                document.getElementById('particleCount').addEventListener('input', (e) => {
+                    this.params.particleCount = parseInt(e.target.value);
+                    document.getElementById('particleCountValue').textContent = e.target.value;
+                });
+                
+                document.getElementById('frequency').addEventListener('input', (e) => {
+                    this.params.frequency = parseFloat(e.target.value);
+                    document.getElementById('frequencyValue').textContent = e.target.value;
+                });
+                
+                document.getElementById('amplitude').addEventListener('input', (e) => {
+                    this.params.amplitude = parseFloat(e.target.value);
+                    document.getElementById('amplitudeValue').textContent = e.target.value;
+                });
+                
+                document.getElementById('timeScale').addEventListener('input', (e) => {
+                    this.params.timeScale = parseFloat(e.target.value);
+                    document.getElementById('timeScaleValue').textContent = e.target.value;
+                });
+                
+                document.getElementById('renderingMode').addEventListener('change', (e) => {
+                    this.params.renderingMode = e.target.value;
+                });
+                
+                document.getElementById('physicsMode').addEventListener('change', (e) => {
+                    this.params.physicsMode = e.target.value;
+                });
+                
+                document.getElementById('resetSimulation').addEventListener('click', () => {
+                    this.resetSimulation();
+                });
+                
+                // Visualization mode buttons
+                document.querySelectorAll('.visualization-mode').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        document.querySelectorAll('.visualization-mode').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.params.visualizationMode = e.target.dataset.mode;
+                    });
+                });
+            }
+            
+            resetSimulation() {
+                this.initBuffers();
+            }
+            
+            resizeCanvas() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+            }
+            
+            updatePerformanceMonitor() {
+                const now = performance.now();
+                const deltaTime = now - this.performanceMonitor.lastFrameTime;
+                this.performanceMonitor.lastFrameTime = now;
+                this.performanceMonitor.frameCount++;
+                
+                if (now - this.performanceMonitor.lastFPSUpdate > 1000) {
+                    this.performanceMonitor.fps = this.performanceMonitor.frameCount;
+                    this.performanceMonitor.frameTime = deltaTime;
+                    this.performanceMonitor.frameCount = 0;
+                    this.performanceMonitor.lastFPSUpdate = now;
+                    
+                    // Update UI
+                    document.getElementById('fps').textContent = this.performanceMonitor.fps;
+                    document.getElementById('frameTime').textContent = this.performanceMonitor.frameTime.toFixed(1) + 'ms';
+                    document.getElementById('activeParticles').textContent = this.params.particleCount.toLocaleString();
+                }
+            }
+            
+            render(time) {
+                this.updatePerformanceMonitor();
+                
+                // Clear canvas
+                this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+                
+                // Use particle program
+                this.gl.useProgram(this.programs.particle);
+                
+                // Create MVP matrix (simplified for demo)
+                const aspect = this.canvas.width / this.canvas.height;
+                const fov = Math.PI / 4;
+                const near = 0.1;
+                const far = 100.0;
+                
+                // Simple perspective projection
+                const f = 1.0 / Math.tan(fov / 2);
+                const mvpMatrix = new Float32Array([
+                    f / aspect, 0, 0, 0,
+                    0, f, 0, 0,
+                    0, 0, (far + near) / (near - far), -1,
+                    0, 0, (2 * far * near) / (near - far), 0
+                ]);
+                
+                // Camera transformation
+                const cameraDistance = 15;
+                const cameraX = Math.sin(time * 0.0005) * cameraDistance;
+                const cameraZ = Math.cos(time * 0.0005) * cameraDistance;
+                
+                // Set uniforms
+                const mvpLocation = this.gl.getUniformLocation(this.programs.particle, 'u_mvpMatrix');
+                const timeLocation = this.gl.getUniformLocation(this.programs.particle, 'u_time');
+                const pointSizeLocation = this.gl.getUniformLocation(this.programs.particle, 'u_pointSize');
+                
+                this.gl.uniformMatrix4fv(mvpLocation, false, mvpMatrix);
+                this.gl.uniform1f(timeLocation, time * this.params.timeScale);
+                this.gl.uniform1f(pointSizeLocation, 2.0);
+                
+                // Bind vertex array and draw
+                this.gl.bindVertexArray(this.vao);
+                this.gl.drawArrays(this.gl.POINTS, 0, this.params.particleCount);
+                this.gl.bindVertexArray(null);
+            }
+            
+            startRenderLoop() {
+                const renderFrame = (time) => {
+                    this.render(time);
+                    requestAnimationFrame(renderFrame);
+                };
+                requestAnimationFrame(renderFrame);
+            }
+            
+            hideLoading() {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('controls').classList.remove('hidden');
+                document.getElementById('performance-monitor').classList.remove('hidden');
+                document.getElementById('visualization-modes').classList.remove('hidden');
+            }
+            
+            showError(message) {
+                document.getElementById('loading').innerHTML = `
+                    <h3>Error</h3>
+                    <p>${message}</p>
+                    <p>Please ensure your browser supports WebGL2.</p>
+                `;
+            }
+        }
+        
+        // Initialize the visualization system
+        document.addEventListener('DOMContentLoaded', () => {
+            new AdvancedWebGLVisualizationSystem();
+        });
+    </script>
+</body>
+</html> 

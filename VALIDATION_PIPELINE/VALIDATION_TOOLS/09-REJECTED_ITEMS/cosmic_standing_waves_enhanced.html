@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Enhanced Cosmic Standing Wave Particle System (2025)</title>
+<style>
+  body { 
+    margin: 0; 
+    overflow: hidden; 
+    background: radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%);
+    font-family: 'Arial', sans-serif;
+  }
+  canvas { display: block; }
+  
+  .controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(20, 20, 40, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 100, 200, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    font-size: 12px;
+    z-index: 100;
+  }
+  
+  .control-group {
+    margin-bottom: 10px;
+  }
+  
+  .control-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #8A2BE2;
+    font-weight: bold;
+  }
+  
+  .control-group input[type="range"] {
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .control-group span {
+    color: #ffffff;
+    font-size: 11px;
+  }
+  
+  .info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(20, 20, 40, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 100, 200, 0.3);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    font-size: 11px;
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+<canvas id="particleCanvas"></canvas>
+
+<div class="controls">
+  <h3 style="margin: 0 0 15px 0; color: #8A2BE2;">Enhanced Wave Controls</h3>
+  
+  <div class="control-group">
+    <label>Spherical Harmonic L:</label>
+    <input type="range" id="harmonicL" min="0" max="6" value="2" step="1">
+    <span id="harmonicLValue">2</span>
+  </div>
+  
+  <div class="control-group">
+    <label>Spherical Harmonic M:</label>
+    <input type="range" id="harmonicM" min="-6" max="6" value="0" step="1">
+    <span id="harmonicMValue">0</span>
+  </div>
+  
+  <div class="control-group">
+    <label>Wave Amplitude:</label>
+    <input type="range" id="amplitude" min="10" max="150" value="50" step="5">
+    <span id="amplitudeValue">50</span>
+  </div>
+  
+  <div class="control-group">
+    <label>Temporal Frequency:</label>
+    <input type="range" id="frequency" min="0.005" max="0.05" value="0.01" step="0.005">
+    <span id="frequencyValue">0.01</span>
+  </div>
+  
+  <div class="control-group">
+    <label>Ellipticity:</label>
+    <input type="range" id="ellipticity" min="0.5" max="2.0" value="1.0" step="0.1">
+    <span id="ellipticityValue">1.0</span>
+  </div>
+  
+  <div class="control-group">
+    <label>Particle Count:</label>
+    <input type="range" id="particleCount" min="1000" max="15000" value="8000" step="500">
+    <span id="particleCountValue">8000</span>
+  </div>
+</div>
+
+<div class="info">
+  <div>FPS: <span id="fps">60</span></div>
+  <div>Current Harmonic: Y<span id="currentL">2</span><span id="currentM">0</span></div>
+  <div>Mouse: Pan | Wheel: Zoom</div>
+</div>
+
+<script>
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  // Enhanced parameters
+  let numParticles = 8000;
+  const particles = [];
+  const particleSize = 1.2;
+  
+  // Enhanced wave parameters with spherical harmonics
+  let waveAmplitude = 50;
+  let harmonicL = 2;
+  let harmonicM = 0;
+  let temporalFreq = 0.01;
+  let ellipticity = 1.0;
+  
+  let time = 0;
+  let frameCount = 0;
+  let lastFPSTime = 0;
+
+  // Enhanced camera properties
+  let fov = 350;
+  let viewX = 0;
+  let viewY = 0;
+  let viewZ = -800;
+  
+  // Performance optimization
+  const particlePool = [];
+  let activeParticles = 0;
+
+  // Enhanced mathematical functions
+  function factorial(n) {
+    if (n <= 1) return 1;
+    let result = 1;
+    for (let i = 2; i <= n; i++) result *= i;
+    return result;
+  }
+
+  function associatedLegendre(l, m, x) {
+    if (Math.abs(m) > l) return 0;
+    
+    // Clamp x to prevent numerical issues
+    x = Math.max(-1, Math.min(1, x));
+    
+    let pmm = 1.0;
+    if (m > 0) {
+      const sqrt_factor = Math.sqrt(1 - x * x);
+      for (let i = 1; i <= m; i++) {
+        pmm *= (2 * i - 1) * sqrt_factor;
+      }
+      if (m % 2 === 1) pmm *= -1;
+    }
+    
+    if (l === m) return pmm;
+    
+    let pmp1m = x * (2 * m + 1) * pmm;
+    if (l === m + 1) return pmp1m;
+    
+    for (let ll = m + 2; ll <= l; ll++) {
+      const pll = ((2 * ll - 1) * x * pmp1m - (ll + m - 1) * pmm) / (ll - m);
+      pmm = pmp1m;
+      pmp1m = pll;
+    }
+    return pmp1m;
+  }
+
+  function sphericalHarmonic(l, m, theta, phi, timePhase = 0) {
+    if (Math.abs(m) > l) return 0;
+    
+    const normFactor = Math.sqrt((2 * l + 1) / (4 * Math.PI) * 
+      factorial(l - Math.abs(m)) / factorial(l + Math.abs(m)));
+    
+    const cosTheta = Math.cos(theta);
+    const plm = associatedLegendre(l, Math.abs(m), cosTheta);
+    
+    if (m === 0) {
+      return normFactor * plm;
+    } else if (m > 0) {
+      return Math.sqrt(2) * normFactor * plm * Math.cos(m * phi + timePhase);
+    } else {
+      return Math.sqrt(2) * normFactor * plm * Math.sin(Math.abs(m) * phi + timePhase);
+    }
+  }
+
+  class EnhancedParticle {
+    constructor(x, y, z) {
+      this.x0 = x;
+      this.y0 = y;
+      this.z0 = z;
+      this.x = x;
+      this.y = y;
+      this.z = z;
+      
+      // Enhanced color based on initial position
+      const r = Math.sqrt(x*x + y*y + z*z);
+      const hue = (r * 0.3 + 200) % 360;
+      this.color = `hsl(${hue}, 80%, 70%)`;
+      this.brightness = 1.0;
+    }
+
+    updatePosition(time) {
+      // Transform to spherical coordinates for ellipsoidal system
+      const x_ell = this.x0 / ellipticity;
+      const y_ell = this.y0 / ellipticity;
+      const z_ell = this.z0 * ellipticity;
+      
+      const r = Math.sqrt(x_ell*x_ell + y_ell*y_ell + z_ell*z_ell);
+      if (r < 0.001) return;
+      
+      const theta = Math.acos(Math.max(-1, Math.min(1, z_ell / r)));
+      const phi = Math.atan2(y_ell, x_ell);
+      
+      // Calculate spherical harmonic
+      const timePhase = time * temporalFreq * 10;
+      const ylm = sphericalHarmonic(harmonicL, harmonicM, theta, phi, timePhase);
+      
+      // Enhanced force calculation with radial modulation
+      const radialModulation = Math.exp(-Math.pow(r - 300, 2) / (2 * 150 * 150));
+      const force = waveAmplitude * ylm * radialModulation * Math.cos(temporalFreq * time);
+      
+      // Apply force in spherical coordinates, then convert back
+      const forceR = force * 0.3;
+      const forceTheta = force * 0.2 * Math.sin(theta);
+      const forcePhi = force * 0.2;
+      
+      // Convert spherical force to Cartesian
+      const sinTheta = Math.sin(theta);
+      const cosTheta = Math.cos(theta);
+      const sinPhi = Math.sin(phi);
+      const cosPhi = Math.cos(phi);
+      
+      const fx = forceR * sinTheta * cosPhi + forceTheta * cosTheta * cosPhi - forcePhi * sinPhi;
+      const fy = forceR * sinTheta * sinPhi + forceTheta * cosTheta * sinPhi + forcePhi * cosPhi;
+      const fz = forceR * cosTheta - forceTheta * sinTheta;
+      
+      // Apply displacement with some randomness for natural motion
+      const randomFactor = 0.02;
+      this.x = this.x0 + fx + (Math.random() - 0.5) * randomFactor * waveAmplitude;
+      this.y = this.y0 + fy + (Math.random() - 0.5) * randomFactor * waveAmplitude;
+      this.z = this.z0 + fz + (Math.random() - 0.5) * randomFactor * waveAmplitude;
+      
+      // Update brightness based on wave intensity
+      this.brightness = 0.5 + 0.5 * Math.abs(ylm);
+    }
+
+    project() {
+      const effectiveZ = this.z - viewZ;
+      if (effectiveZ <= 0) return null;
+
+      const scale = fov / effectiveZ;
+      const x2d = (this.x - viewX) * scale + width / 2;
+      const y2d = (this.y - viewY) * scale + height / 2;
+      const sizeFactor = Math.max(0.1, 1 - effectiveZ / 3000);
+      return { x: x2d, y: y2d, scale: scale * sizeFactor };
+    }
+
+    draw() {
+      const proj = this.project();
+      if (proj && proj.x >= 0 && proj.x <= width && proj.y >= 0 && proj.y <= height) {
+        ctx.beginPath();
+        const size = particleSize * Math.max(0.3, proj.scale) * (1 + Math.max(0, this.z / 2000));
+        ctx.arc(proj.x, proj.y, size, 0, Math.PI * 2);
+        
+        // Enhanced color with brightness modulation
+        const alpha = this.brightness * Math.max(0.3, proj.scale);
+        ctx.fillStyle = this.color.replace('70%)', `70%, ${alpha})`);
+        ctx.fill();
+        
+        // Add glow effect for brighter particles
+        if (this.brightness > 0.8) {
+          ctx.beginPath();
+          ctx.arc(proj.x, proj.y, size * 2, 0, Math.PI * 2);
+          ctx.fillStyle = this.color.replace('70%)', `70%, ${alpha * 0.2})`);
+          ctx.fill();
+        }
+      }
+    }
+  }
+
+  function initParticles() {
+    particles.length = 0;
+    const spread = 400;
+    
+    for (let i = 0; i < numParticles; i++) {
+      // Enhanced distribution - combination of sphere and some structure
+      let x, y, z;
+      
+      if (Math.random() < 0.7) {
+        // Spherical distribution
+        const r = Math.random() * spread;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        
+        x = r * Math.sin(phi) * Math.cos(theta);
+        y = r * Math.sin(phi) * Math.sin(theta);
+        z = r * Math.cos(phi);
+      } else {
+        // Some structured distribution for interesting patterns
+        const r = spread * 0.8;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.random() * Math.PI;
+        
+        x = r * Math.sin(phi) * Math.cos(theta);
+        y = r * Math.sin(phi) * Math.sin(theta);
+        z = r * Math.cos(phi) * (Math.random() - 0.5) * 0.3;
+      }
+      
+      particles.push(new EnhancedParticle(x, y, z));
+    }
+    activeParticles = particles.length;
+  }
+  
+  // Enhanced interaction
+  let mouseX = 0, mouseY = 0;
+  let targetViewX = 0, targetViewY = 0;
+  let autoPanSpeedX = 0.15;
+  let autoPanSpeedY = 0.1;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / width) * 2 - 1;
+    mouseY = (e.clientY / height) * 2 - 1;
+    targetViewX = mouseX * 200;
+    targetViewY = mouseY * 200;
+  });
+  
+  document.addEventListener('wheel', (e) => {
+    viewZ += e.deltaY * 0.8;
+    viewZ = Math.min(-100, Math.max(-3000, viewZ));
+  });
+
+  // Enhanced UI controls
+  function setupControls() {
+    const controls = {
+      harmonicL: document.getElementById('harmonicL'),
+      harmonicM: document.getElementById('harmonicM'),
+      amplitude: document.getElementById('amplitude'),
+      frequency: document.getElementById('frequency'),
+      ellipticity: document.getElementById('ellipticity'),
+      particleCount: document.getElementById('particleCount')
+    };
+    
+    const values = {
+      harmonicLValue: document.getElementById('harmonicLValue'),
+      harmonicMValue: document.getElementById('harmonicMValue'),
+      amplitudeValue: document.getElementById('amplitudeValue'),
+      frequencyValue: document.getElementById('frequencyValue'),
+      ellipticityValue: document.getElementById('ellipticityValue'),
+      particleCountValue: document.getElementById('particleCountValue')
+    };
+    
+    function updateControl(name, value) {
+      values[name + 'Value'].textContent = value;
+      
+      switch(name) {
+        case 'harmonicL':
+          harmonicL = parseInt(value);
+          // Clamp M to valid range
+          const maxM = harmonicL;
+          controls.harmonicM.max = maxM;
+          controls.harmonicM.min = -maxM;
+          if (Math.abs(harmonicM) > maxM) {
+            harmonicM = 0;
+            controls.harmonicM.value = 0;
+            values.harmonicMValue.textContent = 0;
+          }
+          document.getElementById('currentL').textContent = harmonicL;
+          break;
+        case 'harmonicM':
+          harmonicM = parseInt(value);
+          document.getElementById('currentM').textContent = harmonicM >= 0 ? '⁺' + harmonicM : '⁻' + Math.abs(harmonicM);
+          break;
+        case 'amplitude':
+          waveAmplitude = parseFloat(value);
+          break;
+        case 'frequency':
+          temporalFreq = parseFloat(value);
+          break;
+        case 'ellipticity':
+          ellipticity = parseFloat(value);
+          break;
+        case 'particleCount':
+          const newCount = parseInt(value);
+          if (newCount !== numParticles) {
+            numParticles = newCount;
+            initParticles();
+          }
+          break;
+      }
+    }
+    
+    Object.keys(controls).forEach(name => {
+      controls[name].addEventListener('input', (e) => {
+        updateControl(name, e.target.value);
+      });
+      // Initialize
+      updateControl(name, controls[name].value);
+    });
+  }
+
+  function animate() {
+    // Enhanced fade effect
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+    ctx.fillRect(0, 0, width, height);
+
+    time += 0.02;
+    frameCount++;
+
+    // FPS calculation
+    if (time - lastFPSTime > 1000) {
+      const fps = Math.round(frameCount * 1000 / (time - lastFPSTime));
+      document.getElementById('fps').textContent = fps;
+      frameCount = 0;
+      lastFPSTime = time;
+    }
+
+    // Enhanced camera movement
+    targetViewX += autoPanSpeedX * Math.sin(time * 0.0008);
+    targetViewY += autoPanSpeedY * Math.cos(time * 0.0012);
+
+    viewX += (targetViewX - viewX) * 0.02;
+    viewY += (targetViewY - viewY) * 0.02;
+
+    // Sort particles by depth for proper rendering
+    particles.sort((a, b) => b.z - a.z);
+
+    // Update and draw particles with performance optimization
+    const batchSize = Math.min(500, particles.length);
+    for (let i = 0; i < particles.length; i += batchSize) {
+      const end = Math.min(i + batchSize, particles.length);
+      for (let j = i; j < end; j++) {
+        particles[j].updatePosition(time);
+        particles[j].draw();
+      }
+    }
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  // Initialize everything
+  setupControls();
+  initParticles();
+  animate();
+</script>
+</body>
+</html> 
