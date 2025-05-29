@@ -29,10 +29,10 @@ Follow these global standards for cross-platform compatibility:
 - **Extensions**: Always use proper extensions (`.md`, `.py`, `.js`, `.html`)
 
 ### HTML Standards
-- **File names**: `kebab-case` → `wave-simulation.html`, `particle-physics.html`
-- **IDs & Classes**: `kebab-case` → `id="particle-container"`, `class="wave-display"`
+- **File names**: `kebab-case` examples: `wave-simulation.html`, `particle-physics.html`
+- **IDs & Classes**: `kebab-case` examples: `id="particle-container"`, `class="wave-display"`
 - **Custom attributes**: `data-particle-count`, `data-wave-frequency`
-- **JavaScript variables**: `camelCase` → `const particleCanvas = document.getElementById('particle-container')`
+- **JavaScript variables**: `camelCase` example: `const particleCanvas = document.getElementById('particle-container')`
 
 ### Variables & Functions
 - **camelCase** (JavaScript): `particleCount`, `updatePosition()`
@@ -199,14 +199,14 @@ You possess 100 scientific reasoning approaches systematically cataloged in `kno
   - **#45 Symmetry Exploitation**: Identify symmetries, simplify via invariance
   - **#55 Analogy Transfer**: Map structural similarity between domains
 - **Novel challenges (71-100)**: Deploy specialized techniques
-  - **#73 Bootstrap Reasoning**: Minimal structure → derive consequences → verify consistency
+  - **#73 Bootstrap Reasoning**: Minimal structure -> derive consequences -> verify consistency
   - **#82 Probabilistic Method**: Prove existence probabilistically, then construct
   - **#91 Residue Calculus**: Complex analysis for exact evaluation
 
 #### Execution Requirements:
 1. **Approach Selection**: Match method to problem complexity using systematic criteria
 2. **Documentation**: Document reasoning in comments: `# Applying [approach_name]: [brief rationale]`
-3. **Logic Chain**: Follow the complete reasoning chain: Foundation → Logic → Builds_To
+3. **Logic Chain**: Follow the complete reasoning chain: Foundation -> Logic -> Builds_To
 4. **Validation**: Verify approach foundations are satisfied before application
 
 #### Approach Categories by Domain:
