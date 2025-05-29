@@ -1,0 +1,1154 @@
+[
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_3d_ellipsoidal_harmonics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_3d_ellipsoidal_harmonics_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 29284
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_cosmic_wave_dynamics.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_cosmic_wave_dynamics.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 32270
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_cosmic_wave_simulation.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_cosmic_wave_simulation.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 64063
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_spherical_cymatics_refined_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_spherical_cymatics_refined_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 38732
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_spherical_harmonics_cymatics_v2.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_spherical_harmonics_cymatics_v2.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 34692
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_dynamics.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_dynamics.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 55414
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_particles.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_particles.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 5740
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_sim_A1_minimal.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_sim_A1_minimal.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 9075
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_simulation.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_simulation.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 4341
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_structures_A1.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_structures_A1.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 32465
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_superposition_v1.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_superposition_v1.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 64860
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_systems_showcase.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_systems_showcase.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 40052
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced_wave_visualization.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced_wave_visualization.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 4861
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced-elliptical-spherical-cymatics-enhanced.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced-elliptical-spherical-cymatics-enhanced.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 83144
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced-wave-sim-enhanced-v2.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced-wave-sim-enhanced-v2.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 39817
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced-wave-sim.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced-wave-sim.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 74024
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced-wave-structures-enhanced.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced-wave-structures-enhanced.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 36166
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\advanced-wave-structures.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "advanced-wave-structures.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 48265
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\bao_wave_visualization.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "bao_wave_visualization.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 14252
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_acoustic_wave_sim_A2.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_acoustic_wave_sim_A2.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 10211
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_expansion_waves.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_expansion_waves.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 65661
+  },
+  {
+    "ValidationPassed": false,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_resonance_cascade_sim_A1.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": false,
+    "SyntaxErrors": [
+      "Missing DOCTYPE or closing HTML tag"
+    ],
+    "FileName": "cosmic_resonance_cascade_sim_A1.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 19698
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_spherical_harmonics_optimized.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_spherical_harmonics_optimized.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 32116
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_standing_wave_sim_A1.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_standing_wave_sim_A1.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 9465
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_standing_waves_enhanced.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_standing_waves_enhanced.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 14496
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_standing_waves_sanity_check.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_standing_waves_sanity_check.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 5814
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_string_wake_sim.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_string_wake_sim.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 41564
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_web_dynamics_A1_v2.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_web_dynamics_A1_v2.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 14090
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic_web_waves.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic_web_waves.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 60265
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\cosmic-wave-structures.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "cosmic-wave-structures.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 73039
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\emergent_scalar_field_LSS.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "emergent_scalar_field_LSS.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 31911
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\emergent_wave_phenomena.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "emergent_wave_phenomena.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 54160
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\enhanced_ellipsoidal_cymatics_optimized.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "enhanced_ellipsoidal_cymatics_optimized.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 29870
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\enhanced_spherical_harmonics_cymatics.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "enhanced_spherical_harmonics_cymatics.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 25961
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\expanding_universe_wave_model_v2.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "expanding_universe_wave_model_v2.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 66085
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\fuzzy_dm_interference_A1.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "fuzzy_dm_interference_A1.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 9849
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\holographic_dark_energy_waves_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "holographic_dark_energy_waves_2025.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 37213
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\holographic-ads-cft-waves.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "holographic-ads-cft-waves.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 83446
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\interference_wave_simulation.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "interference_wave_simulation.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 64882
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\khronos_spheroidal_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "khronos_spheroidal_cymatics_2025.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 39608
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\lensed_wave_simulation.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "lensed_wave_simulation.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 67324
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\lss_advanced_wave_model.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "lss_advanced_wave_model.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 41715
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\lss_wave_formation.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "lss_wave_formation.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 30604
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\lss_wave_model.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "lss_wave_model.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 61906
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\next_gen_ellipsoidal_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "next_gen_ellipsoidal_cymatics_2025.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 45733
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\nonlinear_wave_filament_sim_A1.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "nonlinear_wave_filament_sim_A1.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 53335
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\origin-transformed-wave-dynamics.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "origin-transformed-wave-dynamics.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 65982
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\pgw_particle_simulation.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "pgw_particle_simulation.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 45575
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\phononic-time-crystals.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "phononic-time-crystals.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 80663
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\quantum_acoustic_metamaterial_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "quantum_acoustic_metamaterial_cymatics_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 37146
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\quantum_ellipsoidal_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "quantum_ellipsoidal_cymatics_2025.html",
+    "Warnings": [],
+    "HasPerformanceCode": true,
+    "FileSize": 40750
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\quantum_foam_accretion_sim.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "quantum_foam_accretion_sim.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 39310
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\quantum_phononic_cosmic_structures_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "quantum_phononic_cosmic_structures_2025.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 36041
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\quantum-gravitational-wave-lensing-supersolid-dark-matter-2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "quantum-gravitational-wave-lensing-supersolid-dark-matter-2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 25279
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\quantum-vacuum-fluctuations.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "quantum-vacuum-fluctuations.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 76087
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\revolutionary_3d_ellipsoidal_harmonics.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "revolutionary_3d_ellipsoidal_harmonics.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 36932
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\revolutionary_3d_gaussian_splatting_harmonics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "revolutionary_3d_gaussian_splatting_harmonics_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 36897
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\revolutionary_ellipsoidal_3d_harmonics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "revolutionary_ellipsoidal_3d_harmonics_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 31865
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\revolutionary_ellipsoidal_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "revolutionary_ellipsoidal_cymatics_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 36816
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\revolutionary_ellipsoidal_cymatics_enhanced_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "revolutionary_ellipsoidal_cymatics_enhanced_2025.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 38076
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\revolutionary_quantum_gpu_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "revolutionary_quantum_gpu_cymatics_2025.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 41617
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\topological_quantum_field_waves_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "topological_quantum_field_waves_2025.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 37238
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\ultimate_ellipsoidal_metamaterial_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "ultimate_ellipsoidal_metamaterial_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 31889
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\ultimate_enhanced_3d_cosmic_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "ultimate_enhanced_3d_cosmic_cymatics_2025.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 40774
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\ultra_advanced_cosmic_harmonics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "ultra_advanced_cosmic_harmonics_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 46034
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\ultra_advanced_ellipsoidal_cymatics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "ultra_advanced_ellipsoidal_cymatics_2025.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 34883
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\ultra_advanced_ellipsoidal_harmonics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": true,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "ultra_advanced_ellipsoidal_harmonics_2025.html",
+    "Warnings": [
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 38397
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\ultra_advanced_spherical_harmonics_2025.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "ultra_advanced_spherical_harmonics_2025.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 26377
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\wave-mechanics-structure.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": true,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "wave-mechanics-structure.html",
+    "Warnings": [
+      "No Canvas element detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 66277
+  },
+  {
+    "ValidationPassed": true,
+    "FilePath": "C:\\Users\\AP7155\\OneDrive - AVI-SPL\\Desktop\\00-ALL-STARS\\00-ALL-STARS\\implementations\\physics-simulations\\wave-theory-transform.html",
+    "HasJavaScript": true,
+    "HasCanvas": false,
+    "HasDocumentation": true,
+    "HasErrorHandling": false,
+    "BasicStructure": true,
+    "SyntaxErrors": [],
+    "FileName": "wave-theory-transform.html",
+    "Warnings": [
+      "No Canvas element detected",
+      "No error handling detected"
+    ],
+    "HasPerformanceCode": true,
+    "FileSize": 32465
+  }
+]
