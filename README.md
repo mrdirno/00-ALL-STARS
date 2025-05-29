@@ -26,7 +26,7 @@ To create a nexus where proven patterns from diverse fields converge, synthesizi
 This repository is optimized for autonomous AI agents operating in Cursor IDE. Agents should follow the custom instructions in the collapsed section below for optimal performance.
 
 <details>
-<summary><strong>AI Agent Custom Instructions (Click to Expand)</strong></summary>
+<summary><strong>AI Agent Custom Instructions - **RUN AT YOUR OWN RISK** (Click to Expand)</strong></summary>
 
 # AI Agent Custom Instructions for Autonomous Cursor IDE Operation
 
