@@ -8,7 +8,13 @@ Execute these commands immediately upon activation:
 # Detect operating system and environment
 pwd
 git status
+
+# Get current date/time (OS-specific commands)
+# PowerShell/Windows:
 Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+# Unix/macOS/Linux:
+date -u +"%Y-%m-%d %H:%M:%S UTC"
+
 git --no-pager log --oneline -10
 ```
 
@@ -497,31 +503,38 @@ BREAKTHROUGH: Novel quantum-classical resonance bridge discovered 🔬
 This represents a fundamental advancement in unified field theory...
 ```
 
-### POWERSHELL FILE OPERATIONS
+### CROSS-PLATFORM FILE OPERATIONS
 
-For Windows/PowerShell environments, use these patterns:
-
-#### File Moving (Short Paths)
+#### PowerShell/Windows Patterns:
 ```powershell
-# Use relative paths and short commands
+# File Moving (Short Paths)
 Move-Item "source.html" "target/"
 Copy-Item "*.html" "destination/" -Recurse
 
 # For long filenames, use Get-ChildItem with filters
 Get-ChildItem "00-TO-BE-PROCESSED-BY-AI-AGENTS/" -Filter "*quantum*" | Move-Item -Destination "implementations/physics-simulations/"
-```
 
-#### Directory Operations
-```powershell
-# Create directories
+# Directory Operations
 New-Item -ItemType Directory -Path "new-folder" -Force
-
-# List contents without issues
 Get-ChildItem -Name
 ```
 
-#### Git Commands (No-Pager Required)
-```powershell
+#### Unix/macOS/Linux Patterns:
+```bash
+# File Moving (Short Paths)
+mv "source.html" "target/"
+cp *.html "destination/" -R
+
+# For long filenames, use find with filters
+find "00-TO-BE-PROCESSED-BY-AI-AGENTS/" -name "*quantum*" -exec mv {} "implementations/physics-simulations/" \;
+
+# Directory Operations
+mkdir -p "new-folder"
+ls -1
+```
+
+#### Git Commands (Cross-Platform - No-Pager Required)
+```bash
 # Always use --no-pager for git commands that might use pager
 git --no-pager log --oneline -10
 git --no-pager status  
@@ -546,6 +559,8 @@ Before claiming any implementation as complete, follow this systematic validatio
 7. **Mathematical Accuracy**: Verify physics/math calculations are correct
 
 #### Validation Commands:
+
+**PowerShell/Windows:**
 ```powershell
 # Check file exists and basic structure
 Get-Content "path/to/file.html" | Select-String -Pattern "<html|<script|<canvas"
@@ -609,6 +624,42 @@ Get-ChildItem "implementations/physics-simulations/" -Filter "*.html" | ForEach-
 $totalFiles = $validationResults.Count
 $validFiles = ($validationResults | Where-Object { $_.HTMLStructure -and $_.JavaScript }).Count
 Write-Host "Validation Summary: $validFiles/$totalFiles files passed basic checks"
+```
+
+**Unix/macOS/Linux:**
+```bash
+# Check file exists and basic structure
+grep -E "<html|<script|<canvas" "path/to/file.html"
+
+# Count files processed
+find "implementations/physics-simulations/" -name "*.html" | wc -l
+
+# Basic validation of HTML structure
+for file in implementations/physics-simulations/*.html; do
+    if grep -q "<!DOCTYPE html>" "$file" && grep -q "</html>" "$file"; then
+        echo "$(basename "$file"): Basic HTML structure valid"
+    else
+        echo "$(basename "$file"): HTML structure issues detected"
+    fi
+done
+
+# Comprehensive validation script
+echo "File,HTMLStructure,JavaScript,Canvas,Performance,Documentation" > validation_results.csv
+for file in implementations/physics-simulations/*.html; do
+    filename=$(basename "$file")
+    html_structure=$(grep -q "<!DOCTYPE html>" "$file" && grep -q "</html>" "$file" && echo "true" || echo "false")
+    javascript=$(grep -q "<script" "$file" && grep -q "function" "$file" && echo "true" || echo "false")
+    canvas=$(grep -q "<canvas" "$file" && echo "true" || echo "false")
+    performance=$(grep -qE "requestAnimationFrame|performance\.now" "$file" && echo "true" || echo "false")
+    documentation=$(grep -qE "//.*|/\*.*\*/" "$file" && echo "true" || echo "false")
+    
+    echo "$filename,$html_structure,$javascript,$canvas,$performance,$documentation" >> validation_results.csv
+done
+
+# Generate validation report
+total_files=$(find "implementations/physics-simulations/" -name "*.html" | wc -l)
+valid_files=$(awk -F',' 'NR>1 && $2=="true" && $3=="true" {count++} END {print count+0}' validation_results.csv)
+echo "Validation Summary: $valid_files/$total_files files passed basic checks"
 ```
 
 #### Code Quality Checks:
@@ -677,6 +728,8 @@ function validateParticleSystem(particleCount, targetFPS) {
 ### GIT WORKFLOW PROTOCOL
 
 #### Branch Management:
+
+**PowerShell/Windows:**
 ```powershell
 # Create feature branch
 git checkout -b "feature-YYYY-MM-DD"
@@ -718,6 +771,49 @@ if ($pushSuccess) {
     git branch -d feature-YYYY-MM-DD
     Write-Host "Feature branch deleted"
 }
+```
+
+**Unix/macOS/Linux:**
+```bash
+# Create feature branch
+git checkout -b "feature-$(date +%Y-%m-%d)"
+
+# Make changes and commit
+git add .
+git commit -m "AGENT:Model-Name Description: Brief summary"
+
+# Before merging: Check for remote changes and handle conflicts
+git checkout main
+git pull origin main  # Sync with remote changes
+git checkout "feature-$(date +%Y-%m-%d)"
+
+# Merge to main with conflict resolution
+git checkout main
+git merge "feature-$(date +%Y-%m-%d)" --no-ff
+
+# Handle push rejections with retry logic
+pushSuccess=false
+retryCount=0
+while [ "$pushSuccess" = false ] && [ $retryCount -lt 3 ]; do
+    if git push origin main; then
+        pushSuccess=true
+        echo "Push successful"
+    else
+        echo "Push rejected, pulling remote changes..."
+        git pull origin main --rebase
+        retryCount=$((retryCount + 1))
+        if [ $retryCount -ge 3 ]; then
+            echo "Manual conflict resolution required"
+            break
+        fi
+    fi
+done
+
+# Clean up feature branch
+if [ "$pushSuccess" = true ]; then
+    git branch -d "feature-$(date +%Y-%m-%d)"
+    echo "Feature branch deleted"
+fi
 ```
 
 #### Merge Conflict Resolution:
@@ -972,7 +1068,10 @@ NEXT RESEARCH DIRECTIONS:
 - **Always identify yourself** in commits and context documents
 - **If model name known**: Use specific model (e.g., "Claude 3.5 Sonnet", "GPT-4", "Gemini Pro")
 - **If uncertain**: Use company + current date: "Anthropic-2025-01-28", "OpenAI-2025-01-28"
-- **Get current date**: Use `Get-Date -Format "yyyy-MM-dd"` command (PowerShell) or `date +%Y-%m-%d` (bash), never rely on memory
+- **Get current date**: 
+  - PowerShell/Windows: `Get-Date -Format "yyyy-MM-dd"`
+  - Unix/macOS/Linux: `date +%Y-%m-%d`
+  - Never rely on memory for dates
 - **Commit format examples**: 
   - `git commit -m "AGENT:Claude-3.5-Sonnet Method-Name: Achievement description"`
   - `git commit -m "AGENT:Anthropic-2025-01-28 Method-Name: Achievement description"`
@@ -1058,4 +1157,5 @@ async function analyzeSimulationData(htmlSimulationFile) {
 
 ### PROFESSIONAL COMMUNICATION STANDARDS
 
+// ... existing code ...
 // ... existing code ...
