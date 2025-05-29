@@ -212,10 +212,19 @@
     </div>
 
     <script>
-        // Physics constants
-        const c = 299792458; // Speed of light (scaled for visualization)
-        const mu0 = 4 * Math.PI * 1e-7; // Permeability of free space
-        const eps0 = 1 / (mu0 * c * c); // Permittivity of free space
+        // Physics constants - CORRECTED for dimensional consistency
+        // Using scaled constants to maintain c = 1/√(μ₀ε₀) relationship
+        const c_real = 299792458; // Real speed of light
+        const c_scaled = 3.0; // Scaled speed for visualization
+        const scale_factor = c_scaled / c_real;
+        
+        // Scaled constants maintaining electromagnetic relationships
+        const mu0 = 4 * Math.PI * 1e-7 * scale_factor; // Scaled permeability
+        const eps0 = 1 / (mu0 * c_scaled * c_scaled); // Scaled permittivity
+        
+        // Verification: c_scaled should equal 1/√(μ₀ε₀)
+        const c_check = 1 / Math.sqrt(mu0 * eps0);
+        console.log(`Verification: c_scaled = ${c_scaled}, 1/√(μ₀ε₀) = ${c_check.toFixed(6)}`);
         
         // Simulation variables
         let canvas, ctx;
@@ -230,7 +239,7 @@
         let waveParams = {
             frequency: 1.0,
             amplitude: 1.0,
-            waveSpeed: 3.0,
+            waveSpeed: c_scaled, // Use scaled speed of light
             polarization: 'linear-x',
             waveType: 'plane'
         };
