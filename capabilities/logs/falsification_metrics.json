@@ -1,0 +1,17 @@
+{
+  "total_tested": 1,
+  "hypotheses_rejected": 1,
+  "hypotheses_tentatively_accepted": 0,
+  "current_hypothesis": "3-4-2_Modal_Framework",
+  "rejection_rate": 1.0,
+  "validation_bias_warning": false,
+  "preregistration_adherence": 1.0,
+  "negative_results_published": 1,
+  "criteria_changes": 0,
+  "last_updated": "2025-05-30T08:07:48Z",
+  "status": "HYPOTHESIS_REJECTED",
+  "falsification_success": true,
+  "vulnerabilities_found": 3,
+  "time_to_falsification_hours": 1.5,
+  "scientific_integrity_score": 1.0
+}
