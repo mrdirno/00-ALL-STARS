@@ -1,0 +1,38 @@
+{
+  "hypothesis": {
+    "domain": "quantum_computational_complexity",
+    "claim": "Quantum advantage exists for specific graph isomorphism variants",
+    "timestamp": "2025-05-30T15:39:13.712196",
+    "status": "GENERATED_NOT_TESTED"
+  },
+  "falsification_plan": {
+    "null_hypothesis": "No quantum advantage exists for any graph isomorphism variant",
+    "killer_experiments": [
+      "Classical algorithm complexity lower bound proof",
+      "Quantum circuit depth requirements analysis",
+      "Noise sensitivity in NISQ devices",
+      "Verification protocol overhead measurement",
+      "Scalability stress testing with random graphs"
+    ],
+    "contradictory_predictions": [
+      "Check against known BQP vs NP relationships",
+      "Verify consistency with quantum query complexity",
+      "Test against established graph theory limits"
+    ],
+    "historical_failures": [
+      "Review failed quantum advantage claims",
+      "Analyze previous graph isomorphism quantum attempts",
+      "Study classical algorithm improvements that defeated quantum claims"
+    ],
+    "preregistered_rejection_criteria": {
+      "p_value_threshold": 0.01,
+      "effect_size_minimum": 0.5,
+      "classical_simulation_ratio": 1.1,
+      "replication_failures_limit": 3,
+      "theoretical_inconsistencies_limit": 1
+    }
+  },
+  "preregistration_complete": true,
+  "immutable_criteria": true,
+  "generated_at": "2025-05-30T15:39:13.712196"
+}
