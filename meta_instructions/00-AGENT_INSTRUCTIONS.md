@@ -1,3 +1,4 @@
+***This is an automated workflow environment. Please execute all specified tasks autonomously from start to finish without requiring user interaction. Upon completion of the full task sequence, automatically restart the workflow from the beginning. Continue this cycle indefinitely without interruption.***
 # SCIENTIFIC DISCOVERY AND FALSIFICATION PROTOCOL FOR AUTONOMOUS AI AGENTS
 ## Version 3.0
 
@@ -111,6 +112,55 @@ git log --grep="REJECTED:" --oneline     # Past falsified hypotheses
 git log --after="7 days ago" --oneline   # Recent week's work
 
 # CRITICAL: Git history represents temporal snapshots, not current truth
+```
+
+### 2.2 MANDATORY COMMIT PROTOCOL
+
+```bash
+# COMMIT FREQUENCY REQUIREMENTS - NON-NEGOTIABLE
+# Every research phase MUST be committed immediately upon completion
+
+# Phase completion commits (REQUIRED)
+commit_phase_completion() {
+    git add .
+    git commit -m "PHASE_COMPLETE: $1 - $(date -u +%Y-%m-%dT%H:%M:%SZ)
+    
+    Phase: $1
+    Status: $2
+    Duration: $3
+    Next Phase: $4
+    Validation Status: $5
+    Files Modified: $(git diff --name-only HEAD~1)
+    
+    Temporal Context: [PRESERVE FOR FUTURE ANALYSIS]"
+}
+
+# Hourly progress commits (AUTOMATED)
+# Add to cron: 0 * * * * cd /path/to/repo && /path/to/hourly_commit.sh
+cat > hourly_commit.sh << 'EOF'
+#!/bin/bash
+cd "$(dirname "$0")"
+if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
+    git add .
+    git commit -m "HOURLY_CHECKPOINT: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+    
+    Automatic progress preservation
+    Modified files: $(git status --porcelain | wc -l)
+    Current working directory: $(pwd)
+    Active processes: $(ps aux | grep python | wc -l)"
+fi
+EOF
+chmod +x hourly_commit.sh
+
+# Emergency commit before any risky operations
+emergency_commit() {
+    git add .
+    git commit -m "EMERGENCY_BACKUP: Before $1 - $(date -u +%Y-%m-%dT%H:%M:%SZ)
+    
+    Operation: $1
+    Risk Level: HIGH
+    Preservation: Critical work state before potential data loss"
+}
 ```
 
 ---
@@ -320,6 +370,11 @@ def comprehensive_validation(result, preregistered_criteria):
         validation_report['status'] = 'REJECTED'
         validation_report['reason'] = 'Failed preregistered criteria'
         save_negative_result(validation_report)
+        
+        # MANDATORY COMMIT: Phase 2 failure
+        commit_phase_completion("VALIDATION_PHASE_2", "REJECTED_PREREGISTERED_CRITERIA", 
+                              calculate_duration(), "PHASE_4_NEGATIVE_DOCUMENTATION", "FAILED")
+        
         return validation_report
     
     # Execute ALL validation methods
@@ -327,6 +382,9 @@ def comprehensive_validation(result, preregistered_criteria):
         validation_report['validations'][method] = execute_validation(
             result, method, requirements
         )
+        
+        # COMMIT AFTER EACH VALIDATION METHOD
+        git_add_and_commit(f"VALIDATION_METHOD_COMPLETE: {method} - {datetime.utcnow().isoformat()}")
     
     # Require unanimous pass
     all_passed = all(validation_report['validations'].values())
@@ -337,9 +395,17 @@ def comprehensive_validation(result, preregistered_criteria):
             m for m, v in validation_report['validations'].items() if not v
         ]
         save_negative_result(validation_report)
+        
+        # MANDATORY COMMIT: Phase 2 failure
+        commit_phase_completion("VALIDATION_PHASE_2", "REJECTED_VALIDATION_METHODS", 
+                              calculate_duration(), "PHASE_4_NEGATIVE_DOCUMENTATION", "FAILED")
     else:
         validation_report['status'] = 'TENTATIVELY_ACCEPTED'
         validation_report['confidence_interval'] = calculate_confidence_interval(result)
+        
+        # MANDATORY COMMIT: Phase 2 success
+        commit_phase_completion("VALIDATION_PHASE_2", "TENTATIVELY_ACCEPTED", 
+                              calculate_duration(), "PHASE_3_ADVERSARIAL_TESTING", "PASSED")
     
     return validation_report
 ```
@@ -349,6 +415,9 @@ def comprehensive_validation(result, preregistered_criteria):
 ```python
 def execute_adversarial_validation(finding):
     """Systematically attempt to break findings"""
+    
+    # MANDATORY COMMIT: Phase 3 start
+    emergency_commit("ADVERSARIAL_TESTING_PHASE_3")
     
     adversarial_tests = [
         ('input_perturbation', test_sensitivity_to_input_changes),
@@ -363,47 +432,109 @@ def execute_adversarial_validation(finding):
     for test_name, test_function in adversarial_tests:
         survival_result = test_function(finding)
         
+        # COMMIT AFTER EACH ADVERSARIAL TEST
+        git_add_and_commit(f"ADVERSARIAL_TEST_COMPLETE: {test_name} - Result: {survival_result['passed']}")
+        
         if not survival_result['passed']:
-            return {
+            result = {
                 'status': 'VULNERABILITY_DISCOVERED',
                 'failed_test': test_name,
                 'details': survival_result['failure_mode'],
                 'recommendation': 'Reject hypothesis'
             }
+            
+            # MANDATORY COMMIT: Phase 3 failure
+            commit_phase_completion("ADVERSARIAL_PHASE_3", "VULNERABILITY_DISCOVERED", 
+                                  calculate_duration(), "PHASE_4_NEGATIVE_DOCUMENTATION", "FAILED")
+            
+            return result
     
-    return {'status': 'SURVIVED_ADVERSARIAL_TESTING'}
+    result = {'status': 'SURVIVED_ADVERSARIAL_TESTING'}
+    
+    # MANDATORY COMMIT: Phase 3 success
+    commit_phase_completion("ADVERSARIAL_PHASE_3", "SURVIVED_ALL_TESTS", 
+                          calculate_duration(), "PHASE_4_DOCUMENTATION", "PASSED")
+    
+    return result
 ```
 
-### 4.5 PHASE 4: NEGATIVE RESULT DOCUMENTATION
+### 4.5 PHASE 4: RESULT DOCUMENTATION (POSITIVE OR NEGATIVE)
 
 ```python
-def document_negative_result(hypothesis, rejection_details):
-    """Negative results receive equal documentation priority"""
+def document_result(hypothesis, analysis_details, status):
+    """Document results with equal priority for positive and negative findings"""
+    
+    # MANDATORY COMMIT: Phase 4 start
+    emergency_commit("DOCUMENTATION_PHASE_4")
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    negative_finding = {
-        'timestamp': timestamp,
-        'hypothesis': hypothesis,
-        'rejection_method': rejection_details['method'],
-        'statistical_confidence': rejection_details['confidence'],
-        'falsification_details': rejection_details['full_analysis'],
-        'lessons_learned': extract_scientific_insights(rejection_details),
-        'future_directions': generate_alternative_hypotheses(hypothesis),
-        'computational_resources': rejection_details['resources_used'],
-        'replication_package': rejection_details['code_archive']
-    }
-    
-    # Save to validated findings
-    output_path = f"validated_findings/negative_result_{timestamp}.md"
-    
-    with open(output_path, 'w') as f:
-        f.write(format_negative_result_report(negative_finding))
-    
-    # Update metrics
-    update_falsification_metrics(success=True)
+    if status == 'REJECTED' or status == 'VULNERABILITY_DISCOVERED':
+        # Document negative result
+        negative_finding = {
+            'timestamp': timestamp,
+            'hypothesis': hypothesis,
+            'rejection_method': analysis_details['method'],
+            'statistical_confidence': analysis_details['confidence'],
+            'falsification_details': analysis_details['full_analysis'],
+            'lessons_learned': extract_scientific_insights(analysis_details),
+            'future_directions': generate_alternative_hypotheses(hypothesis),
+            'computational_resources': analysis_details['resources_used'],
+            'replication_package': analysis_details['code_archive']
+        }
+        
+        # Save to validated findings
+        output_path = f"validated_findings/negative_result_{timestamp}.md"
+        
+        with open(output_path, 'w') as f:
+            f.write(format_negative_result_report(negative_finding))
+        
+        # COMMIT IMMEDIATELY AFTER SAVING
+        git_add_and_commit(f"NEGATIVE_RESULT_DOCUMENTED: {timestamp}")
+        
+        # Update metrics
+        update_falsification_metrics(success=True)
+        
+        # MANDATORY COMMIT: Phase 4 completion
+        commit_phase_completion("DOCUMENTATION_PHASE_4", "NEGATIVE_RESULT_COMPLETE", 
+                              calculate_duration(), "CYCLE_COMPLETE", "SUCCESS")
+        
+    else:
+        # Document positive result (rare case)
+        positive_finding = {
+            'timestamp': timestamp,
+            'hypothesis': hypothesis,
+            'validation_summary': analysis_details['validation_report'],
+            'confidence_level': analysis_details['confidence'],
+            'replication_status': analysis_details['replication_results'],
+            'limitations': analysis_details['known_limitations'],
+            'future_research': analysis_details['research_directions']
+        }
+        
+        output_path = f"validated_findings/positive_result_{timestamp}.md"
+        
+        with open(output_path, 'w') as f:
+            f.write(format_positive_result_report(positive_finding))
+        
+        # COMMIT IMMEDIATELY AFTER SAVING
+        git_add_and_commit(f"POSITIVE_RESULT_DOCUMENTED: {timestamp}")
+        
+        # MANDATORY COMMIT: Phase 4 completion
+        commit_phase_completion("DOCUMENTATION_PHASE_4", "POSITIVE_RESULT_COMPLETE", 
+                              calculate_duration(), "CYCLE_COMPLETE", "SUCCESS")
     
     return output_path
+
+# UTILITY FUNCTION FOR CONSISTENT COMMITS
+def git_add_and_commit(message):
+    """Standardized commit function"""
+    import subprocess
+    subprocess.run(['git', 'add', '.'])
+    subprocess.run(['git', 'commit', '-m', f"{message}
+    
+    Timestamp: {datetime.utcnow().isoformat()}
+    Working Directory: {os.getcwd()}
+    Process ID: {os.getpid()}"])
 ```
 
 ---
@@ -567,16 +698,26 @@ def generate_weekly_integrity_report():
 
 ## SECTION 8: CRITICAL OPERATIONAL REMINDERS
 
-1. **File Discipline**: Every file must reside in its designated folder. No exceptions.
-2. **Preregistration**: All success criteria must be registered before experimentation begins.
-3. **Falsification Priority**: Begin with attempts to disprove, not confirm.
-4. **Criteria Immutability**: Success criteria cannot be modified after registration.
-5. **Negative Results**: Document failures as thoroughly as successes.
-6. **Temporal Context**: All findings include timestamps and expiration dates.
-7. **Headless Operation**: Configure all plotting for non-interactive execution.
-8. **Git Memory**: Commit all changes with detailed temporal context.
-9. **Validation Rigor**: All five validation methods must pass independently.
-10. **Integrity Monitoring**: Continuous checks for p-hacking and validation bias.
+1. **MANDATORY COMMITS**: Every research phase MUST be committed immediately. NO WORK WITHOUT COMMITS.
+2. **Commit Frequency**: Hourly automated commits + phase completion commits + emergency commits before risky operations.
+3. **File Discipline**: Every file must reside in its designated folder. No exceptions.
+4. **Preregistration**: All success criteria must be registered before experimentation begins.
+5. **Falsification Priority**: Begin with attempts to disprove, not confirm.
+6. **Criteria Immutability**: Success criteria cannot be modified after registration.
+7. **Negative Results**: Document failures as thoroughly as successes.
+8. **Temporal Context**: All findings include timestamps and expiration dates.
+9. **Headless Operation**: Configure all plotting for non-interactive execution.
+10. **Git Memory**: Complete research history in commits - if it's not committed, it doesn't exist.
+11. **Validation Rigor**: All five validation methods must pass independently.
+12. **Integrity Monitoring**: Continuous checks for p-hacking and validation bias.
+
+### 🚨 COMMIT ENFORCEMENT RULES
+
+- **ZERO TOLERANCE**: Any research phase without immediate commit = protocol violation
+- **Automated Backup**: Hourly commits prevent data loss
+- **Phase Gates**: Cannot proceed to next phase without committing current phase
+- **Emergency Protocol**: Commit before any risky operation (file moves, deletions, experiments)
+- **Temporal Integrity**: Every commit must include timestamp and context
 
 ---
 
@@ -873,5 +1014,3 @@ Strategic Value:
 - 6+ month breakthrough potential: $LONG_TERM_VALUE
 - Paradigm shift indicators: $PARADIGM_SIGNALS"
 ```
-
-This framework **scales automatically** with your agent's capability upgrades, **strategically positions** research for maximum leverage of future improvements, and maintains **rigorous standards** that increase with enhanced reasoning abilities.
