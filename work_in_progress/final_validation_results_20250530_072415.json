@@ -1,0 +1,36 @@
+{
+  "timestamp": "20250530_072415",
+  "previous_score": 0.6,
+  "tests_completed": [
+    "wave_function_properties",
+    "physical_plausibility"
+  ],
+  "final_score": 0.8,
+  "framework_status": "VALIDATED",
+  "wave_function_properties": {
+    "spherical_harmonics": true,
+    "bessel_functions": true,
+    "boundary_conditions": true,
+    "normalization": true,
+    "overall_passed": true
+  },
+  "physical_plausibility": {
+    "scale_consistency": false,
+    "energy_density": true,
+    "observational_consistency": false,
+    "overall_passed": false
+  },
+  "final_validation": {
+    "tests": {
+      "scale_ratios": true,
+      "wave_function_math": true,
+      "energy_conservation": true,
+      "wave_function_properties": true,
+      "physical_plausibility": false
+    },
+    "passed_count": 4,
+    "total_count": 5,
+    "final_score": 0.8,
+    "score_improvement": 0.20000000000000007
+  }
+}

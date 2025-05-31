@@ -45,4 +45,4 @@ node_modules/
 .env.local
 .env.development.local
 .env.test.local
-.env.production.local 
+.env.production.local work_in_progress/external_data

@@ -1,0 +1,11 @@
+{
+  "timestamp": "20250530_070925",
+  "previous_score": 0.6,
+  "tests_completed": [
+    "wave_function_properties",
+    "physical_plausibility"
+  ],
+  "final_score": 0.6,
+  "framework_status": "SUBSTANTIALLY_VALIDATED",
+  "wave_function_properties": {
+    "spherical_harmonics": 

@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-05-30T08:07:48.630727",
+  "attacks_passed": 2,
+  "attacks_failed": 3,
+  "vulnerabilities": [
+    {
+      "attack": "scale_mismatch",
+      "severity": "CRITICAL",
+      "details": "Scale off by factor of 5.33e+15",
+      "conclusion": "Framework predicts wrong scales by 16 orders of magnitude"
+    },
+    {
+      "attack": "energy_violation",
+      "severity": "HIGH",
+      "details": "Energy violation: 1.00e-09 at amplitude 1.00e+06",
+      "conclusion": "Energy conservation breaks at extreme scales"
+    },
+    {
+      "attack": "dimensional_analysis",
+      "severity": "CRITICAL",
+      "details": "Dimensional errors: ['Energy coupling constants have undefined units']",
+      "conclusion": "Framework has fundamental dimensional inconsistencies"
+    }
+  ],
+  "verdict": "HYPOTHESIS REJECTED",
+  "confidence": "HIGH",
+  "falsification_success": true
+}
