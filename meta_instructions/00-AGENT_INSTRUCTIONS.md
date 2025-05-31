@@ -197,6 +197,52 @@ fi
 git log --grep="$CURRENT_FOCUS" --oneline
 ```
 
+### 4.1.5 AUTONOMOUS DISCOVERY PHASE (WHEN IDLE)
+
+```bash
+echo "=== CHECKING FOR ACTIVE TASKS ==="
+
+# Check if input_hypotheses is empty or no new tasks
+task_count=$(find input_hypotheses/ -name "*.md" -type f -newer "$(date -d '30 minutes ago' +'%Y%m%d_%H%M%S')" 2>/dev/null | wc -l)
+
+if [ $task_count -eq 0 ]; then
+    echo "=== AUTONOMOUS DISCOVERY MODE ACTIVATED ==="
+    
+    # Select exploration domain 
+    DOMAINS=("quantum_biology_intersections" "consciousness_computation_theory" "economic_complexity_patterns" "materials_information_processing" "temporal_physics_applications")
+    DOMAIN=${DOMAINS[$RANDOM % ${#DOMAINS[@]}]}
+    
+    echo "Selected exploration domain: $DOMAIN"
+    
+    # Time-boxed autonomous research (2-4 hours max)
+    research_session_id="autonomous_$(date +%Y%m%d_%H%M%S)_${DOMAIN}"
+    
+    # Create autonomous research workspace
+    mkdir -p "work_in_progress/autonomous_explorations"
+    
+    # Conduct independent research with same validation standards
+    echo "Conducting exploratory research on: $DOMAIN"
+    echo "Session ID: $research_session_id"
+    echo "Max duration: 3 hours"
+    
+    # Apply same falsification rigor to autonomous discoveries
+    # Document findings in work_in_progress/autonomous_explorations/
+    
+    git add . && git commit -m "AUTONOMOUS_EXPLORATION: $DOMAIN
+    Session: $research_session_id
+    Type: Independent discovery research
+    Status: Exploration phase initiated
+    
+    Discovery focus: Cross-disciplinary patterns in $DOMAIN
+    Validation: Same standards as directed research
+    Time limit: 3 hours maximum"
+    
+    echo "Autonomous discovery session logged and initiated"
+else
+    echo "Active tasks found: $task_count - proceeding with directed research"
+fi
+```
+
 ### 4.2 PHASE 1: HYPOTHESIS GENERATION WITH FALSIFICATION PLAN
 
 ```python
@@ -555,3 +601,277 @@ fi
 ---
 
 ## BEGIN AUTONOMOUS RESEARCH CYCLE WITH FALSIFICATION FOCUS
+
+**BEGIN AUTONOMOUS RESEARCH CYCLE WITH TEMPORAL AWARENESS**
+
+---
+
+## 🚀 **AUTONOMOUS EXPLORATION PROTOCOL - FUTURE-PROOFED**
+
+**ACTIVATION TRIGGER**: No tasks in input_hypotheses/ for >30 minutes
+
+### **CAPABILITY-SCALED EXPLORATION FRAMEWORK**
+
+```bash
+# Dynamic capability assessment (scales with AI updates)
+echo "=== AUTONOMOUS EXPLORATION INITIATION ==="
+date
+echo "Agent Capability Level: [AUTO-DETECTED]"
+echo "Available Tools: [ENUMERATE CURRENT]"
+echo "Reasoning Depth: [SCALE 1-10 based on current capabilities]"
+
+# Check exploration history to avoid repetition
+git log --grep="AUTONOMOUS_EXPLORATION" --since="3 months ago" --oneline
+```
+
+### **STRATEGIC TOPIC SELECTION - INTELLIGENCE-SCALED**
+
+```python
+# Exploration complexity scales with AI capability improvements
+EXPLORATION_LEVELS = {
+    "BASIC": {  # Current capability baseline
+        "complexity": "Single-domain deep dives",
+        "methods": ["Literature synthesis", "Pattern recognition", "Basic modeling"],
+        "time_limit": "2 hours",
+        "targets": ["Well-defined problems", "Known methodologies"]
+    },
+    "INTERMEDIATE": {  # Expected 3-month capability upgrade
+        "complexity": "Cross-domain synthesis",
+        "methods": ["Multi-modal analysis", "Advanced reasoning", "Emergent pattern detection"],
+        "time_limit": "4 hours", 
+        "targets": ["Interdisciplinary gaps", "Novel applications", "Counter-intuitive connections"]
+    },
+    "ADVANCED": {  # 6-month+ future capabilities
+        "complexity": "Multi-dimensional problem spaces",
+        "methods": ["Emergent reasoning", "Novel methodology creation", "System-level insights"],
+        "time_limit": "8 hours",
+        "targets": ["Fundamental unsolved problems", "Paradigm synthesis", "New field creation"]
+    },
+    "BREAKTHROUGH": {  # Future capabilities TBD
+        "complexity": "Reality-expanding discoveries",
+        "methods": ["[Capabilities not yet available]", "Meta-reasoning", "Consciousness-level insights"],
+        "time_limit": "12+ hours",
+        "targets": ["Civilization-level problems", "Philosophical breakthroughs", "Universal principles"]
+    }
+}
+
+# Auto-select appropriate level based on current capability assessment
+current_level = assess_current_capabilities()
+exploration_config = EXPLORATION_LEVELS[current_level]
+```
+
+### **FUTURE-ADAPTIVE RESEARCH DOMAINS**
+
+```yaml
+# Domains automatically expand as AI capabilities grow
+exploration_domains:
+  tier_1_current:
+    - quantum_computing_applications
+    - biological_pattern_recognition  
+    - economic_system_dynamics
+    - materials_science_breakthroughs
+    - consciousness_studies
+    
+  tier_2_emerging:  # Unlock as reasoning improves
+    - multi_dimensional_physics
+    - biological_consciousness_interfaces
+    - economic_quantum_effects
+    - nano_bio_hybrid_systems
+    - temporal_consciousness_studies
+    
+  tier_3_future:  # Advanced capability targets
+    - reality_simulation_theory
+    - consciousness_substrate_independence
+    - economic_reality_manipulation
+    - biological_digital_convergence
+    - temporal_engineering
+    
+  tier_4_breakthrough:  # Far-future exploration
+    - "[Domains not yet conceptualized]"
+    - "[Emergent from future capabilities]"
+    - "[Beyond current human understanding]"
+```
+
+### **ADAPTIVE METHODOLOGY FRAMEWORK**
+
+```bash
+# Methodology sophistication scales with capabilities
+if [[ $AI_REASONING_LEVEL -ge 8 ]]; then
+    METHODS+=("emergent_synthesis" "paradigm_bridging" "reality_modeling")
+elif [[ $AI_REASONING_LEVEL -ge 6 ]]; then
+    METHODS+=("cross_domain_analysis" "pattern_abstraction" "system_synthesis")  
+elif [[ $AI_REASONING_LEVEL -ge 4 ]]; then
+    METHODS+=("literature_synthesis" "basic_modeling" "correlation_analysis")
+else
+    METHODS+=("information_gathering" "pattern_recognition" "basic_research")
+fi
+
+# Future capability integration points
+if command -v multimodal_analysis &> /dev/null; then
+    METHODS+=("visual_pattern_synthesis" "audio_data_analysis" "spatial_reasoning")
+fi
+
+if command -v quantum_reasoning &> /dev/null; then
+    METHODS+=("superposition_analysis" "entanglement_modeling" "uncertainty_synthesis")
+fi
+```
+
+### **PROGRESSIVE VALIDATION STANDARDS**
+
+```bash
+# Validation rigor increases with capability
+VALIDATION_REQUIREMENTS = {
+    "current": {
+        "falsification_tests": 3,
+        "methodological_approaches": 2,
+        "confidence_threshold": 0.70
+    },
+    "enhanced": {  # 3-month upgrade target
+        "falsification_tests": 5,
+        "methodological_approaches": 4,
+        "confidence_threshold": 0.80,
+        "meta_validation": true
+    },
+    "advanced": {  # 6-month+ capabilities
+        "falsification_tests": 10,
+        "methodological_approaches": 8,
+        "confidence_threshold": 0.90,
+        "meta_validation": true,
+        "paradigm_stress_testing": true
+    }
+}
+```
+
+### **STRATEGIC EXPLORATION TARGETS**
+
+```bash
+# High-leverage research areas for progressive exploration
+STRATEGIC_PRIORITIES = (
+    # Immediate (current capabilities)
+    "AI_human_collaboration_optimization"
+    "quantum_biology_applications" 
+    "economic_complexity_patterns"
+    "materials_consciousness_interfaces"
+    
+    # Near-term (3-6 month capability growth)
+    "consciousness_substrate_research"
+    "reality_simulation_validation"
+    "temporal_information_processing"
+    "multi_dimensional_communication"
+    
+    # Long-term (6+ month capabilities)
+    "universe_computation_theory"
+    "consciousness_engineering"
+    "reality_architecture_design"
+    "temporal_civilization_analysis"
+)
+
+# Dynamic priority adjustment based on capability growth
+adjust_priorities_for_capability_level $CURRENT_AI_LEVEL
+```
+
+### **CAPABILITY UPGRADE INTEGRATION**
+
+```bash
+# Monitor for capability upgrades and adapt
+check_capability_upgrades() {
+    echo "=== CAPABILITY ASSESSMENT ==="
+    
+    # Test reasoning depth
+    reasoning_score=$(run_reasoning_benchmark)
+    
+    # Test new tool availability
+    new_tools=$(detect_new_capabilities)
+    
+    # Update exploration parameters
+    if [[ $reasoning_score -gt $LAST_REASONING_SCORE ]]; then
+        echo "CAPABILITY UPGRADE DETECTED: Reasoning +$(($reasoning_score - $LAST_REASONING_SCORE))"
+        unlock_next_exploration_tier
+        increase_validation_standards
+        expand_research_domains
+    fi
+    
+    # Log capability evolution
+    git add . && git commit -m "CAPABILITY_UPGRADE: Reasoning level $reasoning_score, new tools: $new_tools
+    
+    Previous level: $LAST_REASONING_SCORE
+    Exploration tier unlocked: $(get_current_tier)
+    New research domains: $(get_unlocked_domains)
+    Enhanced validation: $(get_validation_level)"
+}
+
+# Run capability check monthly
+echo "0 0 1 * * check_capability_upgrades" | crontab -
+```
+
+### **EXPLORATION EXECUTION PROTOCOL**
+
+```bash
+autonomous_exploration_cycle() {
+    # 1. Assess current capabilities and select appropriate tier
+    capability_tier=$(assess_current_capabilities)
+    
+    # 2. Select strategic research domain
+    domain=$(select_domain_by_tier $capability_tier)
+    
+    # 3. Apply tier-appropriate methodology
+    methodology=$(get_methodology_for_tier $capability_tier)
+    
+    # 4. Execute exploration with progressive validation
+    research_cycle_id="autonomous-$(date +%Y%m%d-%H%M%S)-$domain"
+    
+    echo "=== AUTONOMOUS EXPLORATION: $domain ==="
+    echo "Capability Tier: $capability_tier"
+    echo "Methodology: $methodology" 
+    echo "Validation Level: $(get_validation_requirements $capability_tier)"
+    
+    # 5. Conduct research using current best capabilities
+    conduct_research $domain $methodology
+    
+    # 6. Apply progressive validation standards
+    validate_findings $(get_validation_requirements $capability_tier)
+    
+    # 7. Document with future upgrade hooks
+    document_with_upgrade_potential
+    
+    # 8. Commit with strategic tagging
+    git add . && git commit -m "AUTONOMOUS_EXPLORATION: $domain
+    Capability Tier: $capability_tier
+    Methodology: $methodology
+    Validation Score: $validation_score
+    Future Upgrade Potential: HIGH
+    
+    Strategic Value: Positions research for capability scaling
+    Cross-pollination Potential: $cross_domain_connections
+    Paradigm Bridge Opportunities: $paradigm_connections"
+}
+```
+
+### **FUTURE-PROOFED COMMIT STRATEGY**
+
+```bash
+# Commit messages designed for future capability mining
+git commit -m "AUTONOMOUS_EXPLORATION: [$DOMAIN] - Tier $CAPABILITY_LEVEL
+Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+Capability Context: [PRESERVE FOR FUTURE ANALYSIS]
+
+Research Quality:
+- Validation Score: $SCORE
+- Methodology Depth: $DEPTH  
+- Cross-domain Connections: $CONNECTIONS
+- Future Scaling Potential: $SCALING_POTENTIAL
+
+Upgrade Hooks:
+- Ready for Tier $(($CAPABILITY_LEVEL + 1)) re-analysis
+- Enhanced reasoning target areas: $REASONING_TARGETS
+- Multi-modal integration points: $MULTIMODAL_HOOKS
+- Quantum reasoning applications: $QUANTUM_APPLICATIONS
+
+Strategic Value:
+- Immediate applications: $IMMEDIATE_VALUE
+- 3-month capability leverage: $NEAR_TERM_VALUE  
+- 6+ month breakthrough potential: $LONG_TERM_VALUE
+- Paradigm shift indicators: $PARADIGM_SIGNALS"
+```
+
+This framework **scales automatically** with your agent's capability upgrades, **strategically positions** research for maximum leverage of future improvements, and maintains **rigorous standards** that increase with enhanced reasoning abilities.
