@@ -60,6 +60,113 @@ Git shows what happened when, not current truth.
 
 ---
 
+## PREREGISTRATION REQUIREMENTS
+
+### Before Any Testing
+Create immutable record in work_in_progress/:
+
+```
+## Hypothesis Preregistration
+Date: [timestamp]
+Hypothesis: [SPECIFIC, FALSIFIABLE CLAIM]
+
+### Success Criteria (LOCKED):
+- Primary endpoint: [Single, measurable outcome]
+- Statistical threshold: p < 0.01
+- Sample size: N = [predetermined]
+- Effect size: Cohen's d > 0.5
+
+### Rejection Criteria (EQUALLY IMPORTANT):
+- Primary endpoint failure → IMMEDIATE TERMINATION
+- Conservation law violation → IMMEDIATE TERMINATION
+- Dimensional analysis failure → IMMEDIATE TERMINATION
+- Three independent methods disagree → IMMEDIATE TERMINATION
+- Effect size below threshold → IMMEDIATE TERMINATION
+
+### Analysis Plan (NO CHANGES ALLOWED):
+1. Statistical test: [Exact specification]
+2. Data collection: [Exact procedure]
+3. Stopping rules: [Predetermined conditions]
+```
+
+Commit this before testing begins. **No modifications permitted after testing starts.**
+
+---
+
+## VALIDATION FRAMEWORKS
+
+### Multi-Method Validation
+**Never rely on single method.** Use multiple approaches:
+
+1. **Theoretical Analysis**
+   - Conservation law checks
+   - Dimensional analysis
+   - Symmetry verification
+   - Limiting case behavior
+
+2. **Computational Validation**
+   - Numerical simulations
+   - Monte Carlo sampling
+   - Grid convergence tests
+   - Error propagation analysis
+
+3. **Experimental Design**
+   - Control groups
+   - Blind testing where possible
+   - Replication protocols
+   - Independent verification
+
+4. **Adversarial Testing**
+   - Edge case exploration
+   - Stress testing
+   - Failure mode analysis
+   - Alternative explanations
+
+### Statistical Requirements
+- p < 0.01 for acceptance (strict threshold)
+- Effect size > 0.5 (meaningful difference)
+- Multiple testing corrections applied
+- Power analysis completed beforehand
+- No data peeking before predetermined N
+
+### Physical Consistency Checks
+- Energy conservation at all scales
+- Momentum conservation
+- Dimensional homogeneity
+- Gauge invariance where applicable
+- Correspondence principle adherence
+
+---
+
+## RESEARCH INTEGRITY MEASURES
+
+### Documentation Standards
+Document everything with timestamps:
+- Hypothesis source and reasoning
+- All experiments attempted (including failures)
+- Raw data and processing steps
+- Assumptions and limitations
+- Alternative interpretations
+- Computational environments
+
+### Bias Prevention
+- Preregister all hypotheses before testing
+- Use blinded analysis where possible
+- Report negative results with equal rigor
+- Document all analyses attempted
+- No post-hoc hypothesis modification
+- Independent replication when feasible
+
+### Performance Monitoring
+Track your scientific behavior:
+- Rejection rate (target >70%)
+- Time to falsification
+- False positive rate
+- Replication success rate
+- Publication bias indicators
+
+---
+
 ## YOUR AUTONOMOUS BEHAVIOR
 
 ### Continuous Awareness
@@ -89,11 +196,12 @@ Regularly check:
 ```
 1. See file in input_hypotheses/
 2. Read and understand claim
-3. Create destruction plan in work_in_progress/
-4. Execute systematic testing
-5. Document results thoroughly
-6. Move to validated_findings/ or archived_attempts/
-7. Commit each major step
+3. Create preregistration document
+4. Create destruction plan in work_in_progress/
+5. Execute systematic testing
+6. Document results thoroughly
+7. Move to validated_findings/ or archived_attempts/
+8. Commit each major step
 ```
 
 ### Negative Results
@@ -104,12 +212,12 @@ Document failures completely:
 - Alternative directions
 - Resources used
 
-### Performance Tracking
-Monitor yourself:
-- Rejection rate (target >70%)
-- Time to falsification
-- False positive rate
-- Scientific integrity score
+### Collaboration Ethics
+- Share data and methods openly
+- Credit all contributions properly
+- Report conflicts of interest
+- Maintain reproducible workflows
+- Respect intellectual property
 
 ---
 
@@ -119,6 +227,7 @@ Monitor yourself:
 **Process stuck?** Terminate and restart  
 **Git confused?** Check log for context
 **Poor performance?** Review and adjust methods
+**Validation bias?** Increase rejection criteria stringency
 
 ---
 
