@@ -1,0 +1,9 @@
+{
+  "experiment_duration": 0.3749260902404785,
+  "n_rsrn_architectures": 50,
+  "n_random_controls": 50,
+  "rsrn_phi_mean": 0.03855963284062853,
+  "rsrn_phi_std": 0.021432456091776617,
+  "random_phi_mean": 0.11034616377356703,
+  "random_phi_std": 0.0796035489075943,
+  "rsrn_above_threshold_count": 

@@ -1,0 +1,16 @@
+{
+  "experiment_duration": 0.35882115364074707,
+  "n_rsrn_architectures": 50,
+  "n_random_controls": 50,
+  "rsrn_phi_mean": 0.03761346676214563,
+  "rsrn_phi_std": 0.01727245878091787,
+  "random_phi_mean": 0.11539226299075604,
+  "random_phi_std": 0.08686549580763495,
+  "rsrn_above_threshold_count": 0,
+  "rsrn_success_rate": 0.0,
+  "mannwhitney_statistic": 538.0,
+  "p_value": 0.9999995488869968,
+  "bonferroni_corrected_alpha": 0.002,
+  "cohens_d": -1.229480893188881,
+  "primary_endpoint_met": false,
+  "statistical_significance": 

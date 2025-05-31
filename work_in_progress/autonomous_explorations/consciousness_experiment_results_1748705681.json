@@ -1,0 +1,923 @@
+{
+  "experiment_duration": 0.37397193908691406,
+  "n_rsrn_architectures": 50,
+  "n_random_controls": 50,
+  "rsrn_phi_mean": 0.03931302380737402,
+  "rsrn_phi_std": 0.021071581689855626,
+  "random_phi_mean": 0.1379328838202615,
+  "random_phi_std": 0.08604861857202656,
+  "rsrn_above_threshold_count": 0,
+  "rsrn_success_rate": 0.0,
+  "mannwhitney_statistic": 285.0,
+  "p_value": 0.9999999999859294,
+  "bonferroni_corrected_alpha": 0.002,
+  "cohens_d": -1.5584845749628897,
+  "primary_endpoint_met": false,
+  "statistical_significance": false,
+  "effect_size_adequate": true,
+  "hypothesis_supported": false,
+  "rsrn_results": [
+    {
+      "phi_approximation": 0.03138775987759901,
+      "global_access_score": 0.3285037878787866,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.08941176470588236,
+      "coherence_index": 0.9594935794129016,
+      "computational_complexity": 0.004674196243286133,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.023076469143645355,
+      "global_access_score": 0.3042028985507252,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.05048076923076923,
+      "coherence_index": 0.965292774605375,
+      "computational_complexity": 0.004882335662841797,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.03956293023248061,
+      "global_access_score": 0.332923076923078,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.08333333333333333,
+      "coherence_index": 0.47540645684472993,
+      "computational_complexity": 0.002279996871948242,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.035105290377900354,
+      "global_access_score": 0.33723316912972195,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.10787172011661808,
+      "coherence_index": 0.9313122277060235,
+      "computational_complexity": 0.0029511451721191406,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.05308169457616851,
+      "global_access_score": 0.34335748792270615,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.12077294685990338,
+      "coherence_index": 0.833072868374461,
+      "computational_complexity": 0.0021266937255859375,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.04071370005806013,
+      "global_access_score": 0.36271929824561333,
+      "self_reference_depth": 5,
+      "integration_bandwidth": 0.16083916083916083,
+      "coherence_index": 0.8679712111245768,
+      "computational_complexity": 0.0017027854919433594,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.02564643415541334,
+      "global_access_score": 0.3126767676767682,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.05816831683168317,
+      "coherence_index": 0.8536589419541883,
+      "computational_complexity": 0.005251646041870117,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.02439967153208621,
+      "global_access_score": 0.3143643643643615,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.06483300589390963,
+      "coherence_index": 0.43813974328479455,
+      "computational_complexity": 0.003345966339111328,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.036763804776943,
+      "global_access_score": 0.34087301587301794,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.11072664359861592,
+      "coherence_index": 0.8827801186185283,
+      "computational_complexity": 0.0027561187744140625,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.03600960654336576,
+      "global_access_score": 0.3374169040835721,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.11278195488721804,
+      "coherence_index": 0.6955183682462489,
+      "computational_complexity": 0.002314329147338867,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.028975132076293816,
+      "global_access_score": 0.3252380952380935,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.08523908523908524,
+      "coherence_index": 0.9544070354248524,
+      "computational_complexity": 0.0032651424407958984,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.017384821893235865,
+      "global_access_score": 0.30724479922593684,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.05004314063848145,
+      "coherence_index": 0.9308171871809643,
+      "computational_complexity": 0.0059261322021484375,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.027978547920542725,
+      "global_access_score": 0.3197649572649532,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.06666666666666667,
+      "coherence_index": 0.8746743149133273,
+      "computational_complexity": 0.0038700103759765625,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.0264960959414061,
+      "global_access_score": 0.3089957264957232,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.05422647527910686,
+      "coherence_index": 0.850664636396691,
+      "computational_complexity": 0.0041658878326416016,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.021867872361693706,
+      "global_access_score": 0.31501057082452383,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.06622516556291391,
+      "coherence_index": 0.9546300520913833,
+      "computational_complexity": 0.004722118377685547,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.052146606116468715,
+      "global_access_score": 0.34901185770751053,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.11855670103092783,
+      "coherence_index": 0.9582865249974925,
+      "computational_complexity": 0.0021200180053710938,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.027598059513854755,
+      "global_access_score": 0.3144467935165601,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.061170212765957445,
+      "coherence_index": 0.8987485489039746,
+      "computational_complexity": 0.004642963409423828,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.024920052442606533,
+      "global_access_score": 0.30997967479674454,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.0624048706240487,
+      "coherence_index": 0.8601508677264054,
+      "computational_complexity": 0.003766775131225586,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.03268290787746568,
+      "global_access_score": 0.3305602240896339,
+      "self_reference_depth": 5,
+      "integration_bandwidth": 0.08644859813084112,
+      "coherence_index": 0.9283461438130224,
+      "computational_complexity": 0.00344085693359375,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.022254406796370474,
+      "global_access_score": 0.30431561996779394,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.0463980463980464,
+      "coherence_index": 0.9576499556990442,
+      "computational_complexity": 0.004395008087158203,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.08418593141416504,
+      "global_access_score": 0.38095238095238126,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.14583333333333334,
+      "coherence_index": 0.9545575340700823,
+      "computational_complexity": 0.001276254653930664,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.07508174676189412,
+      "global_access_score": 0.3680555555555552,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.1566265060240964,
+      "coherence_index": 0.8900019664302008,
+      "computational_complexity": 0.0016350746154785156,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.030990012157735,
+      "global_access_score": 0.33402298850574763,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.07142857142857142,
+      "coherence_index": 0.9153271634608059,
+      "computational_complexity": 0.002546072006225586,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.04203091811078349,
+      "global_access_score": 0.34716666666666796,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.1206896551724138,
+      "coherence_index": 0.8799685677093406,
+      "computational_complexity": 0.0021467208862304688,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.03493400240100478,
+      "global_access_score": 0.32506720430107416,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.0954653937947494,
+      "coherence_index": 0.9411305706034042,
+      "computational_complexity": 0.0029010772705078125,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.043951709151730654,
+      "global_access_score": 0.3473429951690831,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.08900523560209424,
+      "coherence_index": 0.9645290046325509,
+      "computational_complexity": 0.0021970272064208984,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.02930415234545193,
+      "global_access_score": 0.3298850574712645,
+      "self_reference_depth": 5,
+      "integration_bandwidth": 0.09169054441260745,
+      "coherence_index": 0.9465047321658488,
+      "computational_complexity": 0.0025539398193359375,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.051630534719333425,
+      "global_access_score": 0.3676413255360613,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.18045112781954886,
+      "coherence_index": 0.8960499385490394,
+      "computational_complexity": 0.0016841888427734375,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.021167448998354557,
+      "global_access_score": 0.30239057239057193,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.04330708661417323,
+      "coherence_index": 0.8636593767026245,
+      "computational_complexity": 0.00465703010559082,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.019980009973837812,
+      "global_access_score": 0.3104651162790674,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.06052269601100413,
+      "coherence_index": 0.9511617086278346,
+      "computational_complexity": 0.004272937774658203,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.03418666463053395,
+      "global_access_score": 0.3392820512820525,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.08888888888888889,
+      "coherence_index": 0.851850377188526,
+      "computational_complexity": 0.0024251937866210938,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.030386449274121805,
+      "global_access_score": 0.3311155913978485,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.08661417322834646,
+      "coherence_index": 0.9276966679992464,
+      "computational_complexity": 0.0028290748596191406,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.017581627528206127,
+      "global_access_score": 0.3045539249941822,
+      "self_reference_depth": 5,
+      "integration_bandwidth": 0.05187074829931973,
+      "coherence_index": 0.3916058755237271,
+      "computational_complexity": 0.005884885787963867,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.0611615655065049,
+      "global_access_score": 0.3596949891067532,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.1388888888888889,
+      "coherence_index": 0.9215041127932626,
+      "computational_complexity": 0.0015621185302734375,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.02302057419050368,
+      "global_access_score": 0.30953741496599024,
+      "self_reference_depth": 5,
+      "integration_bandwidth": 0.05656565656565657,
+      "coherence_index": 0.5024361392243147,
+      "computational_complexity": 0.005628824234008789,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.048353675248124964,
+      "global_access_score": 0.3409420289855081,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.09424083769633508,
+      "coherence_index": 0.9651566080543663,
+      "computational_complexity": 0.0020182132720947266,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.0205153785746127,
+      "global_access_score": 0.31155555555555975,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.059490084985835696,
+      "coherence_index": 0.8562556272768026,
+      "computational_complexity": 0.0054700374603271484,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.02782863522812474,
+      "global_access_score": 0.3288515406162445,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.08350730688935282,
+      "coherence_index": 0.6433429495191707,
+      "computational_complexity": 0.003092050552368164,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.04446842418013335,
+      "global_access_score": 0.35158102766798466,
+      "self_reference_depth": 5,
+      "integration_bandwidth": 0.10857142857142857,
+      "coherence_index": 0.8357064525665016,
+      "computational_complexity": 0.0019321441650390625,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.023070663217331106,
+      "global_access_score": 0.31543004798818597,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.06882591093117409,
+      "coherence_index": 0.33944721577693887,
+      "computational_complexity": 0.00421905517578125,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.05348930721211211,
+      "global_access_score": 0.36271929824561355,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.16774193548387098,
+      "coherence_index": 0.8953797234949553,
+      "computational_complexity": 0.0016739368438720703,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.05036837867180833,
+      "global_access_score": 0.35238095238095263,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.12631578947368421,
+      "coherence_index": 0.9844325007688093,
+      "computational_complexity": 0.001851797103881836,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.03685440090460389,
+      "global_access_score": 0.3440512820512836,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.11428571428571428,
+      "coherence_index": 0.9421256600278114,
+      "computational_complexity": 0.0024080276489257812,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.023195073096351732,
+      "global_access_score": 0.31039455782313247,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.05842911877394636,
+      "coherence_index": 0.2525488118413334,
+      "computational_complexity": 0.005493879318237305,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.024308860665578705,
+      "global_access_score": 0.31560958421423485,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.057803468208092484,
+      "coherence_index": 0.8947721042748715,
+      "computational_complexity": 0.0043392181396484375,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.118929054415701,
+      "global_access_score": 0.40303030303030324,
+      "self_reference_depth": 1,
+      "integration_bandwidth": 0.325,
+      "coherence_index": 0.9361418664561544,
+      "computational_complexity": 0.0012559890747070312,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.09969689749161241,
+      "global_access_score": 0.3989898989898993,
+      "self_reference_depth": 2,
+      "integration_bandwidth": 0.2765957446808511,
+      "coherence_index": 0.980089234348706,
+      "computational_complexity": 0.0013530254364013672,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.08221829679453801,
+      "global_access_score": 0.3901098901098903,
+      "self_reference_depth": 4,
+      "integration_bandwidth": 0.21875,
+      "coherence_index": 0.9266505872612077,
+      "computational_complexity": 0.0013990402221679688,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.04044226653288532,
+      "global_access_score": 0.32426075268817117,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.08955223880597014,
+      "coherence_index": 0.9752303843370759,
+      "computational_complexity": 0.0027132034301757812,
+      "architecture_type": "RSRN"
+    },
+    {
+      "phi_approximation": 0.04426666675742052,
+      "global_access_score": 0.34411111111111226,
+      "self_reference_depth": 3,
+      "integration_bandwidth": 0.10572687224669604,
+      "coherence_index": 0.966616683644939,
+      "computational_complexity": 0.0019969940185546875,
+      "architecture_type": "RSRN"
+    }
+  ],
+  "random_results": [
+    {
+      "phi_approximation": 0.04100191341368125,
+      "global_access_score": 0.32934343434343566,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.09296781883194279,
+      "coherence_index": 0.9617059686623658,
+      "computational_complexity": 0.0054378509521484375,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.18406957311151348,
+      "global_access_score": 0.39737274220032776,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.2973856209150327,
+      "coherence_index": 0.9461352379647966,
+      "computational_complexity": 0.0032591819763183594,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.03367433869142073,
+      "global_access_score": 0.32081916099773605,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.07338444687842278,
+      "coherence_index": 0.957721470452961,
+      "computational_complexity": 0.005586147308349609,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.20726731759674805,
+      "global_access_score": 0.39999999999999764,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.3192090395480226,
+      "coherence_index": 0.9617868026034744,
+      "computational_complexity": 0.00374603271484375,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.12571956505641482,
+      "global_access_score": 0.3789710763394938,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.21869158878504674,
+      "coherence_index": 0.9747717292678432,
+      "computational_complexity": 0.005089998245239258,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.06104979610736907,
+      "global_access_score": 0.3497089947089911,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.132,
+      "coherence_index": 0.9015866245198375,
+      "computational_complexity": 0.004046916961669922,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.016863464564098964,
+      "global_access_score": 0.2696447467876043,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.024096385542168676,
+      "coherence_index": 0.9369347712032352,
+      "computational_complexity": 0.0012521743774414062,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.03005696337235075,
+      "global_access_score": 0.3153632478632447,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.07076923076923076,
+      "coherence_index": 0.9368813750271707,
+      "computational_complexity": 0.0039539337158203125,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.12738515696021685,
+      "global_access_score": 0.3818884408602126,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.2283464566929134,
+      "coherence_index": 0.9485830711149048,
+      "computational_complexity": 0.0035440921783447266,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.22189291181914175,
+      "global_access_score": 0.4166666666666661,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.31666666666666665,
+      "coherence_index": 0.8935535593989351,
+      "computational_complexity": 0.0015501976013183594,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.07682582920192031,
+      "global_access_score": 0.36120857699804976,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.15517241379310345,
+      "coherence_index": 0.9572762461545204,
+      "computational_complexity": 0.001867055892944336,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.10425824879401913,
+      "global_access_score": 0.38278388278388303,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.21739130434782608,
+      "coherence_index": 0.9439915879281549,
+      "computational_complexity": 0.0014710426330566406,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.13450703776283,
+      "global_access_score": 0.3869047619047622,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.2360248447204969,
+      "coherence_index": 0.9466290606290372,
+      "computational_complexity": 0.0020411014556884766,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.2611025947438079,
+      "global_access_score": 0.417748917748919,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.391025641025641,
+      "coherence_index": 0.9499830898294173,
+      "computational_complexity": 0.002524137496948242,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.07391873726978945,
+      "global_access_score": 0.3570478723404321,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.13441483198146004,
+      "coherence_index": 0.9324175407592837,
+      "computational_complexity": 0.00631403923034668,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.11146142919419107,
+      "global_access_score": 0.37777777777777627,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.21727019498607242,
+      "coherence_index": 0.9480729904972055,
+      "computational_complexity": 0.0034749507904052734,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.04304774960399832,
+      "global_access_score": 0.3374358974358989,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.09777777777777778,
+      "coherence_index": 0.9147376245592882,
+      "computational_complexity": 0.0024089813232421875,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.1995820642408368,
+      "global_access_score": 0.4105392156862735,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.3516483516483517,
+      "coherence_index": 0.964985751037673,
+      "computational_complexity": 0.001634836196899414,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.22863318672954333,
+      "global_access_score": 0.4037433155080177,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.34203655352480417,
+      "coherence_index": 0.9502201294629034,
+      "computational_complexity": 0.004593849182128906,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.025299015816515065,
+      "global_access_score": 0.347727272727273,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.11666666666666667,
+      "coherence_index": 0.9604079496008158,
+      "computational_complexity": 0.0011410713195800781,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.11139334460622044,
+      "global_access_score": 0.37163159837578663,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.18452380952380953,
+      "coherence_index": 0.96291790954787,
+      "computational_complexity": 0.005841255187988281,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.2651286023608206,
+      "global_access_score": 0.4076719576719536,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.3619047619047619,
+      "coherence_index": 0.9525023550783243,
+      "computational_complexity": 0.005290985107421875,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.14097292455248908,
+      "global_access_score": 0.38333333333332853,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.21904761904761905,
+      "coherence_index": 0.9561295636107139,
+      "computational_complexity": 0.004937887191772461,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.17528749766915686,
+      "global_access_score": 0.40204678362573065,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.3050847457627119,
+      "coherence_index": 0.9714497772834586,
+      "computational_complexity": 0.0018520355224609375,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.10552767450457919,
+      "global_access_score": 0.37144308943089466,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.1751227495908347,
+      "coherence_index": 0.9420651632224847,
+      "computational_complexity": 0.005733966827392578,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.2632288460318464,
+      "global_access_score": 0.40448717948718016,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.34026465028355385,
+      "coherence_index": 0.9431381906563231,
+      "computational_complexity": 0.00644993782043457,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.1917998338843678,
+      "global_access_score": 0.39312169312168865,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.27314814814814814,
+      "coherence_index": 0.9623499701977166,
+      "computational_complexity": 0.004662990570068359,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.11293333972746106,
+      "global_access_score": 0.3882783882783884,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.2222222222222222,
+      "coherence_index": 0.966995259519597,
+      "computational_complexity": 0.0012521743774414062,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.06412137222924694,
+      "global_access_score": 0.35251322751322417,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.13359528487229863,
+      "coherence_index": 0.7700699154023875,
+      "computational_complexity": 0.003833770751953125,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.07469461750654964,
+      "global_access_score": 0.35814022578728155,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.13020833333333334,
+      "coherence_index": 0.9628664659169631,
+      "computational_complexity": 0.0036039352416992188,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.16871714959872128,
+      "global_access_score": 0.41851851851851857,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.28,
+      "coherence_index": 0.9549378949462135,
+      "computational_complexity": 0.0010898113250732422,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.1034876026235396,
+      "global_access_score": 0.37698412698412787,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.20640569395017794,
+      "coherence_index": 0.9772489952607329,
+      "computational_complexity": 0.0030050277709960938,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.0866080037022314,
+      "global_access_score": 0.36200716845878034,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.16434540389972144,
+      "coherence_index": 0.9623605342108107,
+      "computational_complexity": 0.0031311511993408203,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.0278807105320409,
+      "global_access_score": 0.3219298245614031,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.07586206896551724,
+      "coherence_index": 0.9208626456742076,
+      "computational_complexity": 0.001550912857055664,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.16798114777255313,
+      "global_access_score": 0.396388888888891,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.2813852813852814,
+      "coherence_index": 0.957158912884098,
+      "computational_complexity": 0.0026340484619140625,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.029485891416544563,
+      "global_access_score": 0.33669301712779975,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.0639269406392694,
+      "coherence_index": 0.9840414169953544,
+      "computational_complexity": 0.002199888229370117,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.28575738581135773,
+      "global_access_score": 0.4038647342995228,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.34026745913818723,
+      "coherence_index": 0.9651112291558085,
+      "computational_complexity": 0.008191823959350586,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.33519384233551147,
+      "global_access_score": 0.41090425531915636,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.39879518072289155,
+      "coherence_index": 0.961545723348352,
+      "computational_complexity": 0.009042978286743164,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.17485900901860912,
+      "global_access_score": 0.38661616161616674,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.24830393487109906,
+      "coherence_index": 0.9551602580247899,
+      "computational_complexity": 0.006814002990722656,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.10012377317806805,
+      "global_access_score": 0.3878205128205134,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.24074074074074073,
+      "coherence_index": 0.9800882159069922,
+      "computational_complexity": 0.001238107681274414,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.09233433254948012,
+      "global_access_score": 0.39259259259259255,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.25,
+      "coherence_index": 0.9844663828028221,
+      "computational_complexity": 0.0011141300201416016,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.31934810869395774,
+      "global_access_score": 0.4148148148148112,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.3906633906633907,
+      "coherence_index": 0.9628628589976576,
+      "computational_complexity": 0.005490303039550781,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.1068227893556507,
+      "global_access_score": 0.3801169590643266,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.20833333333333334,
+      "coherence_index": 0.924669360868404,
+      "computational_complexity": 0.0018191337585449219,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.056525355064183186,
+      "global_access_score": 0.3484299516908223,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.13170731707317074,
+      "coherence_index": 0.8797809894565939,
+      "computational_complexity": 0.0022399425506591797,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.07699583789736451,
+      "global_access_score": 0.36072396438250115,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.14613180515759314,
+      "coherence_index": 0.9652884435010751,
+      "computational_complexity": 0.00638580322265625,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.121209179257096,
+      "global_access_score": 0.3944444444444442,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.2638888888888889,
+      "coherence_index": 0.9661882789500007,
+      "computational_complexity": 0.0015778541564941406,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.194499796923505,
+      "global_access_score": 0.4025974025974034,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.30434782608695654,
+      "coherence_index": 0.9653862622823771,
+      "computational_complexity": 0.0024280548095703125,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.060563874536256786,
+      "global_access_score": 0.35457875457875504,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.140625,
+      "coherence_index": 0.9013387215334893,
+      "computational_complexity": 0.0018389225006103516,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.24805139326821793,
+      "global_access_score": 0.40101626016260394,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.3153153153153153,
+      "coherence_index": 0.9506823083394594,
+      "computational_complexity": 0.006279945373535156,
+      "architecture_type": "Random"
+    },
+    {
+      "phi_approximation": 0.32749406035504164,
+      "global_access_score": 0.41289198606272043,
+      "self_reference_depth": 0,
+      "integration_bandwidth": 0.391156462585034,
+      "coherence_index": 0.9451682641937909,
+      "computational_complexity": 0.0069010257720947266,
+      "architecture_type": "Random"
+    }
+  ]
+}
