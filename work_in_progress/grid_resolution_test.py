@@ -175,8 +175,9 @@ class GridResolutionValidator:
                 r3 = h3 / total_strength  
                 r4 = h4 / total_strength
                 
-                # Expected 3-4:2 pattern: [2/9, 3/9, 4/9]
-                expected = np.array([2/9, 3/9, 4/9])
+                # Expected sawtooth harmonic ratios from amplitudes 1/n
+                raw = np.array([1/2, 1/3, 1/4])
+                expected = raw / raw.sum()
                 observed = np.array([r2, r3, r4])
                 
                 deviation = np.sqrt(np.mean((observed - expected)**2))
@@ -290,7 +291,7 @@ class GridResolutionValidator:
         """
         Generate comprehensive validation report
         """
-        report_path = "work_in_progress/grid_resolution_validation_report.md"
+        report_path = "grid_resolution_validation_report.md"  # Fixed path - we're already in work_in_progress
         
         with open(report_path, 'w') as f:
             f.write("# Grid Resolution Independence Validation Report\n\n")
@@ -367,10 +368,10 @@ class GridResolutionValidator:
         ax2.legend()
         
         plt.tight_layout()
-        plt.savefig('work_in_progress/grid_resolution_validation.png', dpi=300, bbox_inches='tight')
+        plt.savefig('grid_resolution_validation.png', dpi=300, bbox_inches='tight')
         plt.close()
         
-        print("Validation plot saved: work_in_progress/grid_resolution_validation.png")
+        print("Validation plot saved: grid_resolution_validation.png")
 
 
 def load_desi_data():
@@ -438,11 +439,12 @@ def main():
     print(f"Test result: {consistency['verdict']}")
     print(f"Confidence: {consistency['confidence']}")
     
-    if "CONSISTENT" in consistency['verdict']:
+    # Use startswith to avoid matching 'INCONSISTENT'
+    if consistency['verdict'].startswith("CONSISTENT"):
         print("\n✅ DISCOVERY VALIDATED: Pattern is resolution-independent")
         print("   → Sawtooth signature appears genuine")
         print("   → Ready for next validation phase")
-    elif "MODERATELY" in consistency['verdict']:
+    elif consistency['verdict'].startswith("MODERATELY"):
         print("\n⚠️ CAUTION: Some resolution dependence detected")
         print("   → Further investigation needed")
         print("   → Consider higher resolution tests")

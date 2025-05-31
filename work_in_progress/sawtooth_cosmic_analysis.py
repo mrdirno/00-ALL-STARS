@@ -226,13 +226,14 @@ class SawtoothCosmicAnalyzer:
             total_strength = h2_strength + h3_strength + h4_strength
             
             if total_strength > 0:
-                # Normalize ratios
+                # Normalize observed ratios
                 h2_ratio = h2_strength / total_strength
                 h3_ratio = h3_strength / total_strength
                 h4_ratio = h4_strength / total_strength
                 
-                # Expected 3-4:2 pattern: [2/9, 3/9, 4/9] 
-                expected = np.array([2/9, 3/9, 4/9])
+                # Expected sawtooth harmonic ratios from amplitudes 1/n
+                raw = np.array([1/2, 1/3, 1/4])
+                expected = raw / raw.sum()
                 observed = np.array([h2_ratio, h3_ratio, h4_ratio])
                 
                 deviation = np.sqrt(np.mean((observed - expected)**2))
@@ -244,7 +245,7 @@ class SawtoothCosmicAnalyzer:
                     'harmonic_2': h2_strength,
                     'harmonic_3': h3_strength,
                     'harmonic_4': h4_strength,
-                    'ratios': observed,
+                    'ratio_342': observed,
                     'expected_ratios': expected
                 }
         
@@ -254,8 +255,9 @@ class SawtoothCosmicAnalyzer:
             'harmonic_2': 0.0,
             'harmonic_3': 0.0,
             'harmonic_4': 0.0,
-            'ratios': np.array([0, 0, 0]),
-            'expected_ratios': np.array([2/9, 3/9, 4/9])
+            'ratio_342': np.array([0, 0, 0]),
+            # Fallback expected ratios using normalized amplitudes 1/n
+            'expected_ratios': np.array([1/2, 1/3, 1/4]) / np.sum([1/2, 1/3, 1/4])
         }
     
     def _analyze_sawtooth_results(self, detections):
