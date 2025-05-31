@@ -1,60 +1,64 @@
-# Input Hypotheses Folder
+# Research Hypotheses & Active Investigations
 
-This folder contains research hypotheses, proposals, and materials for autonomous agent investigation.
+This directory contains research hypotheses in various stages of development and testing.
 
-## Current Contents
+## 🚨 **SCIENTIFIC STATUS UPDATES**
 
 ### 🔬 **3-4:2 Modal Framework for Cosmic Structure**
-**Status**: Awaiting full validation through agent protocol  
-**Confidence**: High (computational validation completed)  
-**Date Added**: 2025-01-29  
 
-**Files**:
+**Status**: ❌ **FALSIFIED** (May 30, 2025)  
+**Definitive Result**: `validated_findings/negative_result_20250530_falsification.md`
+
+**Historical Research Record**:
 - `FORMAL_3-4-2_MODAL_FRAMEWORK_COMPLETE.md` - Complete formal research paper
-- `MATHEMATICAL_FRAMEWORK_OUTLINE.md` - Mathematical foundations
-- `SUPPLEMENTARY_MATERIALS_INDEX.md` - Supporting documentation
-- `CENTRAL_MASS_DETERMINATION_PROPOSAL.md` - Central mass calculation proposal
-- `COSMOLOGICAL_PRINCIPLE_RECONCILIATION.md` - Cosmological principle analysis
-- `modal-resonance-wave-validator.html` - Interactive validation tool
-- `prototype_interference_calculator.py` - Computational prototype
+- `MATHEMATICAL_CORRECTIONS_COMPLETE.md` - Mathematical correction process
+- `modal_342_corrected_framework.md` - Corrected mathematical framework  
+- `modal_342_mathematical_framework.md` - Original framework (for comparison)
+- `modal-resonance-wave-validator.html` - Validation tool
+- `modal_resonance_observation_sequence.md` - Observation methodology
 
-### 📊 **Supporting Research**
-- `cosmic_resonance_gyroscopic_precession_proposal.md` - Gyroscopic precession analysis
-- `modal_resonance_observation_sequence.md` - Observational testing sequence
-- `planar_shell_structure_analysis.md` - Structural analysis
+**Note**: Framework was rigorously tested and systematically falsified due to scale mismatches (15+ orders of magnitude), energy violations, and dimensional inconsistencies. All files preserved for historical research record.
 
-## Agent Processing Instructions
+---
 
-When processing these materials, agents should:
+## 🔍 **Active Research Areas**
 
-1. **Memory Consultation**: Check git history for previous investigations
-2. **Temporal Context**: Note when materials were added and any evolution
-3. **Validation Protocol**: Apply full scientific validation methods
-4. **Cross-Reference**: Check for related work in other domains
-5. **Documentation**: Record findings with confidence levels and limitations
+### 🌌 **Cosmic Structure & Mass Determination**
+- `CENTRAL_MASS_DETERMINATION_PROPOSAL.md` - Universe central mass reverse-engineering
+- `COSMOLOGICAL_PRINCIPLE_RECONCILIATION.md` - Reconciling wave mechanics with cosmology
+- `hierarchical_energy_cascade_analysis.md` - Energy flow in cosmic structures
+- `planar_shell_structure_analysis.md` - Cosmic shell structure analysis
 
-## Validation Status
+### 🔬 **Mathematical & Computational Tools**
+- `prototype_interference_calculator.py` - Interference pattern calculations
+- `vacuum-wave-simulator-accurate-gravity-relative-spin_clean_habitabl_zones_ui.html` - Advanced wave simulator
 
-- **Computational Validation**: ✅ Completed (modal resonance validator)
-- **Mathematical Validation**: ✅ Completed (corrected framework)
-- **Peer Review**: ⏳ Pending (awaiting agent protocol)
-- **Observational Testing**: ⏳ Pending (requires telescope data)
-- **Cross-Domain Verification**: ⏳ Pending (multi-method approach)
+### 📊 **Discovery Analysis**
+- `SAWTOOTH_DISCOVERY_SUMMARY.md` - Sawtooth wave pattern analysis
 
-## Expected Outcomes
+---
 
-Agents processing this material should:
-- Validate or refute the 3-4:2 modal framework
-- Identify observational tests
-- Suggest improvements or corrections
-- Determine readiness for publication
-- Recommend next research directions
+## 📋 **Research Protocol**
 
-## Historical Context
+### Current Priorities:
+1. Develop new hypotheses incorporating lessons from modal framework falsification
+2. Focus on observationally testable predictions
+3. Ensure dimensional consistency in all mathematical frameworks
+4. Validate or refute remaining hypotheses using rigorous falsification protocols
 
-This framework emerged from analysis of cosmic structure formation patterns and has undergone:
-- Initial mathematical development (2025-01-29)
-- Computational validation (2025-01-29)
-- Contamination cleanup and proper organization (2025-01-29)
+### Guidelines:
+- All new hypotheses must address scale matching with observed cosmic structures
+- Mathematical frameworks require proper dimensional analysis
+- Energy conservation must hold under extreme conditions
+- Prefer falsification over validation to avoid bias
 
-All materials have been moved from the previous validation pipeline structure to comply with proper agent instruction protocols. 
+---
+
+## 📁 **File Organization**
+
+- **Core Hypotheses**: Primary research documents
+- **Supporting Materials**: Mathematical derivations and tools
+- **Analysis Tools**: Computational validation scripts
+- **Historical Record**: Completed research (including falsified hypotheses)
+
+**Note**: Files in this directory represent the complete research process, including both validated insights and falsified hypotheses. Negative results are preserved as valuable scientific knowledge. 
